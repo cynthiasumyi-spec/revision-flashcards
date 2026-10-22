@@ -30,19 +30,21 @@
       background:var(--card); border-radius:16px;
       border:1px solid var(--line); box-shadow:none;
       overflow:hidden; transition:transform .12s ease;
-      min-height:210px;
+      min-height:230px;
     }
     a.chapter:active { transform:scale(0.985); }
     .hero {
-      height:110px; display:grid; place-items:center;
-      font-size:3rem; line-height:1;
+      height:130px; background:#eef2f7; overflow:hidden;
+      display:block; position:relative;
+    }
+    .hero img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      box-shadow:none;
     }
     .body { padding:14px 14px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
     .title {
-      margin:0; font-size:1.05rem; font-weight:800; line-height:1.3;
-      display:flex; align-items:flex-start; gap:6px;
+      margin:0; font-size:1.02rem; font-weight:800; line-height:1.3;
     }
-    .title .emoji { flex:0 0 auto; }
     .desc {
       margin:0; color:var(--muted); font-size:0.84rem; line-height:1.35;
       display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
@@ -60,7 +62,7 @@
     .note { text-align:center; color:var(--muted); font-size:0.85rem; padding:0 20px 24px; }
     @media (max-width:420px) {
       .wrap { grid-template-columns:1fr; }
-      .hero { height:120px; font-size:3.2rem; }
+      .hero { height:160px; }
     }
   </style>
 </head>
@@ -71,41 +73,41 @@
   </header>
   <main class="wrap">
     <a class="chapter" href="unit1/index.html">
-      <div class="hero" style="background:#2a9d8f">💝</div>
+      <div class="hero"><img src="covers/unit1.jpg" alt="Unit 1" loading="lazy" decoding="async" /></div>
       <div class="body">
-        <h2 class="title"><span class="emoji">💝</span><span>Unit 1 For a good cause</span></h2>
+        <h2 class="title">Unit 1 For a good cause</h2>
         <p class="desc">慈善與義工 · 10 個生字</p>
         <span class="tag teal">Words in use</span>
       </div>
     </a>
     <a class="chapter" href="unit2/index.html">
-      <div class="hero" style="background:#5dade2">🌊</div>
+      <div class="hero"><img src="covers/unit2.jpg" alt="Unit 2" loading="lazy" decoding="async" /></div>
       <div class="body">
-        <h2 class="title"><span class="emoji">🌊</span><span>Unit 2 Lend a helping hand</span></h2>
+        <h2 class="title">Unit 2 Lend a helping hand</h2>
         <p class="desc">天災與影響 · 10 個生字</p>
         <span class="tag blue">Words in use</span>
       </div>
     </a>
     <a class="chapter" href="unit3/index.html">
-      <div class="hero" style="background:#f4a261">👨‍🍳</div>
+      <div class="hero"><img src="covers/unit3.jpg" alt="Unit 3" loading="lazy" decoding="async" /></div>
       <div class="body">
-        <h2 class="title"><span class="emoji">👨‍🍳</span><span>Unit 3 Junior Super Chef</span></h2>
+        <h2 class="title">Unit 3 Junior Super Chef</h2>
         <p class="desc">煮食動詞 · 12 個生字</p>
         <span class="tag orange">Words in use</span>
       </div>
     </a>
     <a class="chapter" href="unit4/index.html">
-      <div class="hero" style="background:#7b68ee">🎬</div>
+      <div class="hero"><img src="covers/unit4.jpg" alt="Unit 4" loading="lazy" decoding="async" /></div>
       <div class="body">
-        <h2 class="title"><span class="emoji">🎬</span><span>Unit 4 Film magic</span></h2>
+        <h2 class="title">Unit 4 Film magic</h2>
         <p class="desc">電影類型與性格形容詞 · 14 個生字</p>
         <span class="tag purple">Words in use</span>
       </div>
     </a>
     <a class="chapter" href="dictation3/index.html">
-      <div class="hero" style="background:#2f6fed">📝</div>
+      <div class="hero"><img src="covers/dictation3.jpg" alt="Dictation 3" loading="lazy" decoding="async" /></div>
       <div class="body">
-        <h2 class="title"><span class="emoji">📝</span><span>Dictation 3 生字卡</span></h2>
+        <h2 class="title">Dictation 3 生字卡</h2>
         <p class="desc">默書溫習（電影＋明喻）· 15 張字卡</p>
         <span class="tag green">生字卡</span>
       </div>
