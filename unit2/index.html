@@ -8,9 +8,10 @@
 <style>
 :root {
   --bg:#f4f7fb; --card:#fff; --ink:#1a2332; --muted:#5b6b7c;
-  --accent:#e76f51; --accent-soft:#f9dfd8;
+  --accent:#5dade2; --accent-soft:color-mix(in srgb, #5dade2 22%, white);
   --coral:#FF6B4A; --teal:#01383b; --box:#e6f5f3;
-  --shadow:0 8px 24px rgba(26,35,50,.08); --radius:18px;
+  --radius:18px;
+  --illust:168px; /* mid between small (~100) and large (~240) */
 }
 * { box-sizing:border-box; }
 html,body {
@@ -40,14 +41,17 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
   padding:16px 16px 14px; position:relative;
 }
 .card.playing { outline:2px solid var(--accent); }
-.top { display:flex; flex-direction:column; gap:14px; align-items:stretch; }
+.top { display:flex; gap:14px; align-items:flex-start; }
 .illust {
-  width:100%; height:auto; aspect-ratio:1 / 1; max-height:280px;
-  border-radius:16px; background:#fff; overflow:hidden;
-  border:1px solid rgba(26,35,50,.06); box-shadow:none;
+  flex:0 0 var(--illust); width:var(--illust); height:var(--illust);
+  border-radius:14px; background:#fff; overflow:hidden;
+  border:1px solid rgba(26,35,50,.08); box-shadow:none;
 }
-.illust img { width:100%; height:100%; object-fit:contain; background:#fff; display:block; }
-.main { flex:1; min-width:0; width:100%; padding-right:56px; }
+.illust img {
+  width:100%; height:100%; object-fit:contain; background:#fff;
+  display:block; box-shadow:none; filter:none;
+}
+.main { flex:1; min-width:0; padding-right:56px; }
 .num {
   display:inline-grid; place-items:center;
   min-width:28px; height:28px; padding:0 8px; border-radius:8px;
@@ -55,26 +59,28 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
   font-weight:700; font-size:.85rem; margin-bottom:6px;
 }
 .syllables {
-  font-size:1.55rem; font-weight:800; color:var(--teal);
-  line-height:1.25; letter-spacing:.01em; margin:0 0 6px;
-  word-break:break-word;
+  font-size:1.5rem; font-weight:800; color:var(--teal);
+  line-height:1.25; margin:0 0 6px; word-break:break-word;
 }
 .zh {
-  font-size:1.05rem; font-weight:700; color:var(--coral);
-  margin:0 0 10px; line-height:1.35;
+  font-size:1.02rem; font-weight:700; color:var(--coral);
+  margin:0 0 4px; line-height:1.35;
 }
 .speaker {
   position:absolute; top:14px; right:14px;
-  width:56px; height:56px; border-radius:50%; border:0;
-  background:var(--accent); color:#fff; font-size:1.55rem;
-  box-shadow:none;
-  display:grid; place-items:center; cursor:pointer; z-index:2;
+  width:52px; height:52px; border-radius:50%; border:0;
+  background:var(--accent); color:#fff; font-size:1.45rem;
+  box-shadow:none !important; filter:none !important; text-shadow:none;
+  display:grid; place-items:center; cursor:pointer; z-index:3; line-height:1;
 }
 .speaker:active { transform:scale(.94); }
-.card.playing .speaker { outline:3px solid color-mix(in srgb, var(--accent) 55%, white); filter:brightness(.95); }
+.card.playing .speaker {
+  outline:3px solid color-mix(in srgb, var(--accent) 40%, white);
+  box-shadow:none !important; animation:none; filter:none;
+}
 .ex {
   background:var(--box); border:1.5px solid color-mix(in srgb, var(--accent) 45%, white);
-  border-radius:14px; padding:12px 12px 10px; margin-top:8px;
+  border-radius:14px; padding:12px; margin-top:10px;
 }
 .ex-label {
   display:inline-block; font-size:.78rem; font-weight:700; color:#fff;
@@ -84,8 +90,11 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 .ex-zh { font-size:.9rem; line-height:1.4; color:var(--muted); margin:0; }
 .hl { color:var(--coral); font-weight:700; }
 @media (min-width:640px) {
-  .illust { max-height:340px; }
-  .syllables { font-size:1.75rem; }
+  :root { --illust:196px; }
+  .syllables { font-size:1.7rem; }
+}
+@media (max-width:380px) {
+  :root { --illust:140px; }
 }
 </style>
 </head>
@@ -93,90 +102,79 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 <header>
   <a class="back" href="../index.html">← 返回目錄</a>
   <h1>Unit 2 Lend a helping hand</h1>
-  <p class="sub">點 🔊 聽讀音 · 例句目標字已標示橙色</p>
+  <p class="sub">共 10 個生字／詞語 · Primary 6 例句 + 中一進階例句</p>
 </header>
-<p class="hint">共 10 個生字／詞語 · Primary 6 例句 + 中一進階例句</p>
-<main class="list" id="list"></main>
+<p class="hint">點喇叭聽讀音；插圖大小取中間值，無陰影。</p>
+<div class="list" id="list"></div>
 <script>
 const CARDS = [{"n": 1, "en": "a drought", "syllables": "a drought", "zh": "旱災", "pos": "名詞 n.", "ex_en": "The dry land shows there is a drought.", "ex_zh": "乾裂的土地顯示發生了旱災。", "adv_en": "Because there has been no rain for months, the farmers suffer from a drought.", "adv_zh": "因為好幾個月沒有下雨，農夫正受旱災之苦。", "highlight": "a drought", "audio": "audio/audio_01.mp3", "img": "thumb_01.png", "art_source": "irasutoya:https://www.irasutoya.com/2016/08/blog-post_84.html"}, {"n": 2, "en": "an earthquake", "syllables": "an earth-quake", "zh": "地震", "pos": "名詞 n.", "ex_en": "The buildings fell down in an earthquake.", "ex_zh": "地震中樓房倒塌了。", "adv_en": "When an earthquake suddenly starts, people must hide under a strong table.", "adv_zh": "當地震突然發生時，人們必須躲在堅固的桌子下。", "highlight": "an earthquake", "audio": "audio/audio_02.mp3", "img": "thumb_02.jpg", "art_source": "generated"}, {"n": 3, "en": "a flood", "syllables": "a flood", "zh": "水災", "pos": "名詞 n.", "ex_en": "People walk through water during a flood.", "ex_zh": "水災期間人們在水中行走。", "adv_en": "After heavy rain, a flood fills the streets so nobody can drive.", "adv_zh": "大雨過後，水災淹沒街道，所以沒有人能開車。", "highlight": "a flood", "audio": "audio/audio_03.mp3", "img": "thumb_03.png", "art_source": "irasutoya:https://www.irasutoya.com/2018/07/blog-post_91.html"}, {"n": 4, "en": "a landslip", "syllables": "a land-slip", "zh": "山泥傾瀉", "pos": "名詞 n.", "ex_en": "Rocks cover the road after a landslip.", "ex_zh": "山泥傾瀉後，石頭覆蓋了道路。", "adv_en": "Because of a landslip on the mountain, the road is blocked and cars cannot pass.", "adv_zh": "因為山上發生山泥傾瀉，道路被堵塞，汽車無法通過。", "highlight": "a landslip", "audio": "audio/audio_04.mp3", "img": "thumb_04.png", "art_source": "irasutoya:https://www.irasutoya.com/2012/10/blog-post_25.html"}, {"n": 5, "en": "a tsunami", "syllables": "a tsu-na-mi", "zh": "海嘯", "pos": "名詞 n.", "ex_en": "A huge wave comes in a tsunami.", "ex_zh": "海嘯時湧來巨大的海浪。", "adv_en": "When a tsunami approaches the coast, people must move to higher ground quickly.", "adv_zh": "當海嘯逼近海岸時，人們必須迅速移往高處。", "highlight": "a tsunami", "audio": "audio/audio_05.mp3", "img": "thumb_05.jpg", "art_source": "generated"}, {"n": 6, "en": "a typhoon", "syllables": "a ty-phoon", "zh": "颱風", "pos": "名詞 n.", "ex_en": "Strong wind bends the trees in a typhoon.", "ex_zh": "颱風中強風吹彎了樹木。", "adv_en": "Although a typhoon is coming, the family stays indoors and waits safely.", "adv_zh": "雖然颱風快到了，這家人仍留在室內安全地等待。", "highlight": "a typhoon", "audio": "audio/audio_06.mp3", "img": "thumb_06.jpg", "art_source": "generated"}, {"n": 7, "en": "block roads", "syllables": "block roads", "zh": "堵塞道路", "pos": "動詞短語 v.", "ex_en": "The flood water can block roads.", "ex_zh": "洪水可以堵塞道路。", "adv_en": "Fallen trees block roads after the storm, so buses cannot run.", "adv_zh": "暴風雨後倒下的樹木堵塞道路，所以巴士無法行駛。", "highlight": "block roads", "audio": "audio/audio_07.mp3", "img": "thumb_07.png", "art_source": "irasutoya:https://www.irasutoya.com/2017/07/blog-post_48.html"}, {"n": 8, "en": "damage crops", "syllables": "dam-age crops", "zh": "損毀農作物", "pos": "動詞短語 v.", "ex_en": "The dry weather can damage crops.", "ex_zh": "乾旱天氣會損毀農作物。", "adv_en": "If there is no rain for too long, the heat will damage crops in the fields.", "adv_zh": "如果太久沒下雨，高溫就會損毀田裡的農作物。", "highlight": "damage crops", "audio": "audio/audio_08.mp3", "img": "thumb_08.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/08/blog-post_86.html"}, {"n": 9, "en": "destroy buildings", "syllables": "de-stroy build-ings", "zh": "摧毀建築物", "pos": "動詞短語 v.", "ex_en": "The strong quake can destroy buildings.", "ex_zh": "強烈地震能摧毀建築物。", "adv_en": "An earthquake which is very strong may destroy buildings in the city centre.", "adv_zh": "非常強烈的地震可能摧毀市中心的建築物。", "highlight": "destroy buildings", "audio": "audio/audio_09.mp3", "img": "thumb_09.jpg", "art_source": "generated"}, {"n": 10, "en": "injure people", "syllables": "in-jure peo-ple", "zh": "使人受傷", "pos": "動詞短語 v.", "ex_en": "Falling rocks may injure people.", "ex_zh": "掉落的石頭可能使人受傷。", "adv_en": "Rescuers help a girl who was hurt when the disaster injured people nearby.", "adv_zh": "救護人員幫助一個女孩，她是在災難使人受傷時被傷到的。", "highlight": "injure people", "audio": "audio/audio_10.mp3", "img": "thumb_10.jpg", "art_source": "generated"}];
 const list = document.getElementById('list');
-let currentAudio=null, currentEl=null, lastPlayAt=0;
-const GUARD_MS=180;
+let currentAudio = null;
 
-function highlight(text, target) {
+function hl(text, target) {
   if (!target) return text;
-  // Escape and match with word boundaries (letters)
-  const esc = target.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+');
-  const re = new RegExp('(?<![A-Za-z])(' + esc + ')(?![A-Za-z])', 'ig');
-  return text.replace(re, '<span class="hl">$1</span>');
+  const i = text.toLowerCase().indexOf(target.toLowerCase());
+  if (i < 0) return text;
+  return text.slice(0,i) + '<span class="hl">' + text.slice(i,i+target.length) + '</span>' + text.slice(i+target.length);
 }
 
-function stopCurrent() {
-  if (currentAudio) { currentAudio.pause(); currentAudio.currentTime=0; currentAudio=null; }
-  if (currentEl) { currentEl.classList.remove('playing'); currentEl=null; }
-}
-
-function playCard(card, el) {
-  const now=Date.now();
-  if (now-lastPlayAt<GUARD_MS && currentEl===el) return;
-  lastPlayAt=now; stopCurrent();
-  const audio=new Audio(card.audio);
-  currentAudio=audio; currentEl=el||null;
-  if (el) el.classList.add('playing');
-  audio.addEventListener('ended', () => {
-    if (currentAudio===audio) { if (el) el.classList.remove('playing'); currentAudio=null; currentEl=null; }
-  });
-  audio.addEventListener('error', () => {
-    if (el) el.classList.remove('playing');
-    if (currentAudio===audio) { currentAudio=null; currentEl=null; }
-  });
-  const p=audio.play();
-  if (p && p.catch) p.catch(() => { if (el) el.classList.remove('playing'); });
+function playCard(card, article) {
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  document.querySelectorAll('.card.playing').forEach(el => el.classList.remove('playing'));
+  article.classList.add('playing');
+  const a = new Audio(card.audio);
+  currentAudio = a;
+  a.play().catch(()=>{});
+  a.onended = () => article.classList.remove('playing');
 }
 
 CARDS.forEach(card => {
-  const article=document.createElement('article');
-  article.className='card';
-  article.id='c'+String(card.n).padStart(2,'0');
+  const article = document.createElement('article');
+  article.className = 'card';
 
-  const speaker=document.createElement('button');
-  speaker.type='button'; speaker.className='speaker';
-  speaker.setAttribute('aria-label','播放：'+card.en);
-  speaker.textContent='🔊';
+  const speaker = document.createElement('button');
+  speaker.type = 'button';
+  speaker.className = 'speaker';
+  speaker.setAttribute('aria-label', '播放：' + card.en);
+  speaker.textContent = '🔊';
   speaker.addEventListener('click', e => { e.stopPropagation(); playCard(card, article); });
-
-  const top=document.createElement('div'); top.className='top';
-  if (card.img) {
-    const wrap=document.createElement('div'); wrap.className='illust';
-    const img=document.createElement('img');
-    img.src=card.img; img.alt=card.en; img.loading='lazy'; img.decoding='async';
-    wrap.appendChild(img); top.appendChild(wrap);
-  }
-  const main=document.createElement('div'); main.className='main';
-  main.innerHTML =
-    '<span class="num">'+String(card.n).padStart(2,'0')+'</span>'+
-    '<p class="syllables">'+card.syllables+'</p>'+
-    '<p class="zh">'+card.zh+'（'+card.pos+'）</p>';
-  top.appendChild(main);
-
-  function exBox(label, en, zh) {
-    const d=document.createElement('div'); d.className='ex';
-    d.innerHTML =
-      '<span class="ex-label">'+label+'</span>'+
-      '<p class="ex-en">'+highlight(en, card.highlight)+'</p>'+
-      '<p class="ex-zh">'+zh+'</p>';
-    return d;
-  }
-
   article.appendChild(speaker);
+
+  const top = document.createElement('div');
+  top.className = 'top';
+
+  if (card.img) {
+    const wrap = document.createElement('div');
+    wrap.className = 'illust';
+    const img = document.createElement('img');
+    img.src = card.img; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
+    wrap.appendChild(img);
+    top.appendChild(wrap);
+  }
+
+  const main = document.createElement('div');
+  main.className = 'main';
+  main.innerHTML =
+    '<span class="num">' + String(card.n).padStart(2,'0') + '</span>' +
+    '<p class="syllables">' + card.syllables + '</p>' +
+    '<p class="zh">' + card.zh + '（' + card.pos + '）</p>';
+  top.appendChild(main);
   article.appendChild(top);
-  article.appendChild(exBox('例句', card.ex_en, card.ex_zh));
-  article.appendChild(exBox('進階例句', card.adv_en, card.adv_zh));
-  // tap card (except speaker) also plays
+
+  const ex1 = document.createElement('div');
+  ex1.className = 'ex';
+  ex1.innerHTML = '<span class="ex-label">例句</span><p class="ex-en">' + hl(card.ex_en, card.highlight) + '</p><p class="ex-zh">' + card.ex_zh + '</p>';
+  const ex2 = document.createElement('div');
+  ex2.className = 'ex';
+  ex2.innerHTML = '<span class="ex-label">進階例句</span><p class="ex-en">' + hl(card.adv_en, card.highlight) + '</p><p class="ex-zh">' + card.adv_zh + '</p>';
+  article.appendChild(ex1);
+  article.appendChild(ex2);
+
   article.addEventListener('click', e => {
-    if (e.target===speaker || speaker.contains(e.target)) return;
+    if (e.target === speaker || speaker.contains(e.target)) return;
     playCard(card, article);
   });
+
   list.appendChild(article);
 });
 </script>
