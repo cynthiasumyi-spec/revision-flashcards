@@ -36,17 +36,18 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 }
 .card {
   background:var(--card); border-radius:var(--radius);
-  box-shadow:var(--shadow); border:1px solid rgba(26,35,50,.05);
+  box-shadow:none; border:1px solid rgba(26,35,50,.08);
   padding:16px 16px 14px; position:relative;
 }
 .card.playing { outline:2px solid var(--accent); }
-.top { display:flex; gap:12px; align-items:flex-start; }
+.top { display:flex; flex-direction:column; gap:14px; align-items:stretch; }
 .illust {
-  flex:0 0 96px; width:96px; height:96px; border-radius:14px;
-  background:#eef2f7; overflow:hidden; border:1px solid rgba(26,35,50,.06);
+  width:100%; height:auto; aspect-ratio:1 / 1; max-height:280px;
+  border-radius:16px; background:#fff; overflow:hidden;
+  border:1px solid rgba(26,35,50,.06); box-shadow:none;
 }
 .illust img { width:100%; height:100%; object-fit:contain; background:#fff; display:block; }
-.main { flex:1; min-width:0; }
+.main { flex:1; min-width:0; width:100%; padding-right:56px; }
 .num {
   display:inline-grid; place-items:center;
   min-width:28px; height:28px; padding:0 8px; border-radius:8px;
@@ -64,17 +65,13 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 }
 .speaker {
   position:absolute; top:14px; right:14px;
-  width:52px; height:52px; border-radius:50%; border:0;
-  background:var(--accent); color:#fff; font-size:1.4rem;
-  box-shadow:0 6px 16px rgba(0,0,0,.16);
+  width:56px; height:56px; border-radius:50%; border:0;
+  background:var(--accent); color:#fff; font-size:1.55rem;
+  box-shadow:none;
   display:grid; place-items:center; cursor:pointer; z-index:2;
 }
 .speaker:active { transform:scale(.94); }
-.card.playing .speaker { animation:pulse .9s ease infinite; filter:brightness(.92); }
-@keyframes pulse {
-  0%,100% { box-shadow:0 0 0 0 rgba(0,0,0,.25); }
-  50% { box-shadow:0 0 0 10px rgba(0,0,0,0); }
-}
+.card.playing .speaker { outline:3px solid color-mix(in srgb, var(--accent) 55%, white); filter:brightness(.95); }
 .ex {
   background:var(--box); border:1.5px solid color-mix(in srgb, var(--accent) 45%, white);
   border-radius:14px; padding:12px 12px 10px; margin-top:8px;
@@ -87,7 +84,7 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 .ex-zh { font-size:.9rem; line-height:1.4; color:var(--muted); margin:0; }
 .hl { color:var(--coral); font-weight:700; }
 @media (min-width:640px) {
-  .illust { flex-basis:120px; width:120px; height:120px; }
+  .illust { max-height:340px; }
   .syllables { font-size:1.75rem; }
 }
 </style>
