@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>小六英文生字卡 · Revision Flashcards</title>
+  <style>
+    :root { --bg:#f4f7fb; --ink:#1a2332; --muted:#5b6b7c; --card:#fff; --shadow:0 10px 28px rgba(26,35,50,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif; background:var(--bg); color:var(--ink); }
+    header { padding:28px 20px 10px; text-align:center; }
+    h1 { margin:0; font-size:1.6rem; }
+    .sub { color:var(--muted); margin:8px 0 0; font-size:0.95rem; }
+    .wrap { max-width:720px; margin:0 auto; padding:16px 16px 40px; display:grid; gap:14px; }
+    a.chapter {
+      display:flex; gap:16px; align-items:center; text-decoration:none; color:inherit;
+      background:var(--card); border-radius:20px; padding:18px 18px;
+      box-shadow:var(--shadow); border:1px solid rgba(26,35,50,.05);
+      transition: transform .12s ease;
+    }
+    a.chapter:active { transform: scale(0.98); }
+    .icon {
+      width:58px; height:58px; border-radius:16px; display:grid; place-items:center;
+      font-size:1.7rem; color:#fff; flex:0 0 auto;
+    }
+    .meta h2 { margin:0; font-size:1.15rem; }
+    .meta p { margin:4px 0 0; color:var(--muted); font-size:0.9rem; }
+    .note { text-align:center; color:var(--muted); font-size:0.85rem; padding:8px 20px 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>小六英文生字卡</h1>
+    <p class="sub">按單元溫習 · 點圖放大 · 點 🔊 聽讀音</p>
+  </header>
+  <main class="wrap">
+    <a class="chapter" href="unit1/index.html">
+      <div class="icon" style="background:#2a9d8f">💝</div>
+      <div class="meta">
+        <h2>Unit 1 For a good cause</h2>
+        <p>慈善與義工 · 10 張生字卡</p>
+      </div>
+    </a>
+    <a class="chapter" href="unit2/index.html">
+      <div class="icon" style="background:#e76f51">🌊</div>
+      <div class="meta">
+        <h2>Unit 2 Lend a helping hand</h2>
+        <p>天災與影響 · 10 張生字卡</p>
+      </div>
+    </a>
+    <a class="chapter" href="unit3/index.html">
+      <div class="icon" style="background:#f4a261">👨‍🍳</div>
+      <div class="meta">
+        <h2>Unit 3 Junior Super Chef</h2>
+        <p>煮食動詞 · 12 張生字卡</p>
+      </div>
+    </a>
+    <a class="chapter" href="unit4/index.html">
+      <div class="icon" style="background:#7b68ee">🎬</div>
+      <div class="meta">
+        <h2>Unit 4 Film magic</h2>
+        <p>電影類型與性格形容詞 · 14 張生字卡</p>
+      </div>
+    </a>
+    <a class="chapter" href="dictation3/index.html">
+      <div class="icon" style="background:#2f6fed">📝</div>
+      <div class="meta">
+        <h2>Dictation 3 生字卡</h2>
+        <p>默書溫習（電影＋明喻）· 15 張</p>
+      </div>
+    </a>
+  </main>
+  <p class="note">供 GitHub Pages 使用 · 相對路徑 · 無需伺服器</p>
+</body>
+</html>
