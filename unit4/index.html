@@ -22,8 +22,13 @@ header {
   position:sticky; top:0; z-index:10;
   background:rgba(252,240,216,.96);
   backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border-bottom:3px solid var(--coral);
+  border-bottom:0; box-shadow:none;
   padding:14px 16px 12px;
+}
+/* Solid coral color block (not a stroke frame) */
+header::after {
+  content:""; display:block; height:8px; background:var(--coral);
+  margin:12px -16px -12px;
 }
 .back { display:inline-block; color:var(--coral); text-decoration:none; font-weight:700; font-size:.92rem; margin-bottom:6px; }
 h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
