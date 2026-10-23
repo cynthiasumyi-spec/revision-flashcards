@@ -1,163 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="format-detection" content="telephone=no" />
-  <title>Dictation 3 Flashcards</title>
-  <style>
-:root {
-      --bg: #fcf0d8;
-      --cream: #fcf0d8;
-      --navy: #243c6c;
-      --white: #ffffff;
-      --coral: #fc903c;
-      --green: #009c48;
-      --sky: #84c0e4;
-      --sunny: #fcc03c;
-      --pink: #f0909c;
-      --muted: #5a6570;
-      --ink: #183c6c;
-      --radius: 22px;
-    }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0; padding: 0;
-      background: var(--bg); color: var(--navy);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
-        "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-    header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(252, 240, 216, 0.96);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-bottom: 0; box-shadow: none;
-      padding: 14px 16px 12px;
-    }
-    /* Solid coral color block (not a stroke frame) */
-    header::after {
-      content: ""; display: block; height: 8px; background: var(--coral);
-      margin: 12px -16px -12px;
-    }
-    .back {
-      display: inline-block; color: var(--coral); text-decoration: none;
-      font-weight: 700; font-size: 0.92rem; margin-bottom: 6px;
-    }
-    h1 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--navy); }
-    .sub { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
-    .hint {
-      max-width: 720px; margin: 10px auto 0; padding: 0 20px;
-      color: var(--muted); font-size: 0.88rem;
-    }
-    .grid {
-      display: grid; grid-template-columns: 1fr; gap: 16px;
-      padding: 16px; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
-      max-width: 720px; margin: 0 auto;
-    }
-    @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
-    /* Canva Class News: solid fills, rounded, NO outer stroke / shadow */
-    .card {
-      border-radius: var(--radius);
-      box-shadow: none; border: 0; outline: none; overflow: hidden;
-      display: flex; flex-direction: column;
-      color: var(--white);
-    }
-    .card.fill-coral { background: var(--coral); color: var(--white); }
-    .card.fill-green { background: var(--green); color: var(--white); }
-    .card.fill-navy  { background: var(--navy);  color: var(--white); }
-    .card.fill-sky   { background: var(--sky);   color: #183c6c; }
-    .card.fill-sunny { background: var(--sunny); color: #183c6c; }
-    .card.fill-pink  { background: var(--pink);  color: var(--white); }
-    .img-wrap {
-      position: relative; width: 100%;
-      background: rgba(255,255,255,0.18);
-      aspect-ratio: 3 / 4; overflow: hidden; cursor: zoom-in;
-    }
-    .fill-sky .img-wrap, .fill-sunny .img-wrap {
-      background: rgba(36,60,108,0.10);
-    }
-    .img-wrap img {
-      display: block; width: 100%; height: 100%;
-      object-fit: cover; object-position: center; background: var(--white);
-      user-select: none; -webkit-user-drag: none;
-      box-shadow: none;
-    }
-    .speaker {
-      position: absolute; right: 12px; bottom: 12px;
-      width: 56px; height: 56px; border-radius: 50%; border: 0;
-      background: rgba(255,255,255,0.95); color: var(--navy); font-size: 1.55rem;
-      box-shadow: none !important;
-      display: grid; place-items: center; cursor: pointer; z-index: 2;
-    }
-    .fill-sky .speaker, .fill-sunny .speaker {
-      background: var(--navy); color: var(--white);
-    }
-    .speaker:active { transform: scale(0.94); }
-    .card.playing .speaker {
-      outline: 3px solid var(--sunny); outline-offset: 2px;
-      animation: none; box-shadow: none !important;
-    }
-    .meta {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 14px 14px;
-    }
-    .num {
-      flex: 0 0 auto; min-width: 34px; height: 34px; border-radius: 10px;
-      background: rgba(255,255,255,0.28); color: inherit;
-      font-weight: 800; font-size: 0.95rem;
-      display: grid; place-items: center;
-    }
-    .fill-sky .num, .fill-sunny .num {
-      background: rgba(24,60,108,0.14); color: #183c6c;
-    }
-    .label { font-size: 1.05rem; font-weight: 700; line-height: 1.35; color: inherit; }
-
-    .lightbox {
-      position: fixed; inset: 0; z-index: 100;
-      background: rgba(36, 60, 108, 0.92);
-      display: none; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 100%; max-height: calc(100vh - 88px);
-      width: auto; height: auto; object-fit: contain;
-      border-radius: 16px; background: var(--white); box-shadow: none;
-    }
-    .lb-bar {
-      display: flex; gap: 12px; align-items: center; justify-content: center;
-      margin-top: 12px; width: 100%; max-width: 480px;
-    }
-    .lb-btn {
-      appearance: none; border: 0; border-radius: 999px;
-      padding: 12px 18px; font-size: 1rem; font-weight: 700;
-      cursor: pointer; color: var(--white); box-shadow: none;
-    }
-    .lb-close { background: var(--navy); }
-    .lb-play { background: var(--coral); }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>Dictation 3 flashcards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../assets/unit.css"/>
 </head>
 <body>
-  <header>
-    <a class="back" href="../index.html">← Back to home</a>
-    <h1>Dictation 3 Flashcards</h1>
-    <p class="sub">Tap a card to enlarge · Tap 🔊 for audio</p>
-  </header>
-  <p class="hint">Tip: tap a picture for the full card; tap the speaker for audio. Solid rounded cards, no frame.</p>
-  <main class="grid" id="grid"></main>
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full flashcard">
-    <img id="lb-img" alt="" />
-    <div class="lb-bar">
-      <button type="button" class="lb-btn lb-play" id="lb-play">🔊 Play audio</button>
-      <button type="button" class="lb-btn lb-close" id="lb-close">Close</button>
-    </div>
+<header class="unit-header">
+  <a class="back" href="../index.html">Back to packs</a>
+  <h1>Dictation 3</h1>
+  <p class="sub">15 cards · Film genres, adjectives and similes</p>
+</header>
+<p class="hint">Tap Play for audio. Tap the picture to enlarge.</p>
+<div class="grid" id="grid"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarge illustration">
+  <img id="lb-img" alt="" />
+  <div class="lb-bar">
+    <button type="button" class="lb-btn lb-play" id="lb-play">Play audio</button>
+    <button type="button" class="lb-btn lb-close" id="lb-close">Close</button>
   </div>
-
-  <script>
-    const CARDS = [
+</div>
+<script>
+const CARDS = [
       { n: 1,  img: "card_01_action_film.png",   audio: "audio/audio_01.mp3", label: "an action film" },
       { n: 2,  img: "card_02_comedy.png",        audio: "audio/audio_02.mp3", label: "a comedy" },
       { n: 3,  img: "card_03_fantasy_film.png",  audio: "audio/audio_03.mp3", label: "a fantasy film" },
@@ -174,130 +43,81 @@
       { n: 14, img: "card_14_strong_as_ox.png",  audio: "audio/audio_14.mp3", label: "as strong as an ox" },
       { n: 15, img: "card_15_hungry_as_wolf.png",audio: "audio/audio_15.mp3", label: "as hungry as a wolf" }
     ];
+const grid = document.getElementById("grid");
+const lightbox = document.getElementById("lightbox");
+const lbImg = document.getElementById("lb-img");
+const lbPlay = document.getElementById("lb-play");
+const lbClose = document.getElementById("lb-close");
+const SPEAKER_SVG = "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\" fill=\"currentColor\"><path d=\"M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z\"/></svg>";
+let currentAudio = null;
+let currentCardEl = null;
+let activeCard = null;
 
-    const FILLS = ["fill-coral","fill-green","fill-navy","fill-sky","fill-sunny","fill-pink"];
-    const grid = document.getElementById("grid");
-    const lightbox = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lb-img");
-    const lbPlay = document.getElementById("lb-play");
-    const lbClose = document.getElementById("lb-close");
+function openLightbox(card, el) {
+  activeCard = { card, el };
+  lbImg.src = card.img;
+  lbImg.alt = card.label;
+  lightbox.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox() {
+  lightbox.classList.remove("open");
+  document.body.style.overflow = "";
+  activeCard = null;
+}
+if (lbClose) lbClose.addEventListener("click", closeLightbox);
+if (lightbox) lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+if (lbPlay) lbPlay.addEventListener("click", () => { if (activeCard) playCard(activeCard.card, activeCard.el); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
 
-    let currentAudio = null;
-    let currentCardEl = null;
-    let lastPlayAt = 0;
-    let activeCard = null;
-    const GUARD_MS = 180;
+function playCard(card, el) {
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  document.querySelectorAll(".d-card.playing").forEach(n => n.classList.remove("playing"));
+  el.classList.add("playing");
+  const a = new Audio(card.audio);
+  currentAudio = a;
+  a.play().catch(()=>{});
+  a.onended = () => el.classList.remove("playing");
+}
 
-    function stopCurrent() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-      }
-      if (currentCardEl) {
-        currentCardEl.classList.remove("playing");
-        currentCardEl = null;
-      }
-    }
+CARDS.forEach(card => {
+  const article = document.createElement("article");
+  article.className = "d-card card";
 
-    function playCard(card, cardEl) {
-      const now = Date.now();
-      if (now - lastPlayAt < GUARD_MS && currentCardEl === cardEl) return;
-      lastPlayAt = now;
-      stopCurrent();
-      const audio = new Audio(card.audio);
-      currentAudio = audio;
-      currentCardEl = cardEl || null;
-      if (cardEl) cardEl.classList.add("playing");
-      audio.addEventListener("ended", () => {
-        if (currentAudio === audio) {
-          if (cardEl) cardEl.classList.remove("playing");
-          currentAudio = null;
-          currentCardEl = null;
-        }
-      });
-      audio.addEventListener("error", () => {
-        if (cardEl) cardEl.classList.remove("playing");
-        if (currentAudio === audio) { currentAudio = null; currentCardEl = null; }
-      });
-      const p = audio.play();
-      if (p && p.catch) p.catch(() => { if (cardEl) cardEl.classList.remove("playing"); });
-    }
+  const speaker = document.createElement("button");
+  speaker.type = "button";
+  speaker.className = "speaker";
+  speaker.setAttribute("aria-label", "Play: " + card.label);
+  speaker.innerHTML = SPEAKER_SVG;
+  speaker.addEventListener("click", e => { e.stopPropagation(); playCard(card, article); });
+  article.appendChild(speaker);
 
-    function openLightbox(card, cardEl) {
-      activeCard = { card, cardEl };
-      lbImg.src = card.img;
-      lbImg.alt = card.label;
-      lightbox.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
+  const wrap = document.createElement("div");
+  wrap.className = "illust";
+  const img = document.createElement("img");
+  img.src = card.img; img.alt = card.label; img.loading = "lazy"; img.decoding = "async";
+  wrap.appendChild(img);
+  wrap.setAttribute("role", "button");
+  wrap.setAttribute("tabindex", "0");
+  wrap.setAttribute("aria-label", "Enlarge: " + card.label);
+  wrap.addEventListener("click", e => { e.stopPropagation(); openLightbox(card, article); });
+  wrap.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(card, article); }
+  });
+  article.appendChild(wrap);
 
-    function closeLightbox() {
-      lightbox.classList.remove("open");
-      document.body.style.overflow = "";
-      activeCard = null;
-    }
+  const lab = document.createElement("p");
+  lab.className = "label-word";
+  lab.innerHTML = '<span class="num">' + card.n + '</span> ' + card.label;
+  article.appendChild(lab);
 
-    lbClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-    lbPlay.addEventListener("click", () => {
-      if (activeCard) playCard(activeCard.card, activeCard.cardEl);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeLightbox();
-    });
+  article.addEventListener("click", e => {
+    if (e.target === speaker || speaker.contains(e.target)) return;
+    playCard(card, article);
+  });
 
-    CARDS.forEach((card) => {
-      const article = document.createElement("article");
-      article.className = "card " + FILLS[(card.n - 1) % FILLS.length];
-
-      const imgWrap = document.createElement("div");
-      imgWrap.className = "img-wrap";
-      imgWrap.setAttribute("role", "button");
-      imgWrap.setAttribute("tabindex", "0");
-      imgWrap.setAttribute("aria-label", "Enlarge: " + card.label);
-
-      const img = document.createElement("img");
-      img.src = card.img;
-      img.alt = card.label;
-      img.loading = "lazy";
-      img.decoding = "async";
-
-      const speaker = document.createElement("button");
-      speaker.type = "button";
-      speaker.className = "speaker";
-      speaker.setAttribute("aria-label", "Play: " + card.label);
-      speaker.textContent = "🔊";
-      speaker.addEventListener("click", (e) => {
-        e.stopPropagation();
-        playCard(card, article);
-      });
-
-      imgWrap.appendChild(img);
-      imgWrap.appendChild(speaker);
-      imgWrap.addEventListener("click", (e) => {
-        if (e.target === speaker || speaker.contains(e.target)) return;
-        openLightbox(card, article);
-      });
-      imgWrap.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openLightbox(card, article);
-        }
-      });
-
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.innerHTML =
-        '<span class="num">' + String(card.n).padStart(2, "0") + "</span>" +
-        '<span class="label">' + card.label + "</span>";
-
-      article.appendChild(imgWrap);
-      article.appendChild(meta);
-      grid.appendChild(article);
-    });
-  </script>
+  grid.appendChild(article);
+});
+</script>
 </body>
 </html>
