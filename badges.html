@@ -26,6 +26,7 @@
     <p class="badge-lead">Badges unlock when you finish practice. This page does not keep a score.</p>
     <p class="badge-count" id="badge-count">0 earned</p>
     <div class="badge-grid" id="badge-grid" aria-live="polite"></div>
+    <p class="badge-credit">Medal illustrations from <a href="https://www.irasutoya.com/2015/10/blog-post_431.html">いらすとや · coloured medals</a> and <a href="https://www.irasutoya.com/2014/02/blog-post_4985.html">いらすとや · gold medal</a>.</p>
   </main>
   <script src="practice/badges.js"></script>
   <script>
@@ -38,14 +39,29 @@
     list.forEach(function (b) {
       var card = document.createElement('article');
       card.className = 'badge-card ' + (b.earned ? 'is-earned' : 'is-locked');
+      var art = document.createElement('div');
+      art.className = 'badge-art';
+      if (b.earned) {
+        var img = document.createElement('img');
+        img.src = b.image;
+        img.alt = '';
+        art.appendChild(img);
+      } else {
+        art.classList.add('is-placeholder');
+      }
       var kicker = document.createElement('p');
       kicker.className = 'badge-kicker';
       kicker.textContent = b.earned ? 'Earned' : 'Locked';
       var name = document.createElement('h2');
       name.className = 'badge-name';
       name.textContent = b.title;
+      var english = document.createElement('p');
+      english.className = 'badge-english';
+      english.textContent = b.english;
+      card.appendChild(art);
       card.appendChild(kicker);
       card.appendChild(name);
+      card.appendChild(english);
       if (b.unitLabel) {
         var unit = document.createElement('p');
         unit.className = 'badge-unit';

@@ -155,6 +155,40 @@ test('catalog lists five unit badges and no streak badge', () => {
   assert.ok(titles.includes('Hard 挑戰者'));
   assert.ok(titles.includes('錯題殺手'));
   assert.ok(titles.includes('Unit 完成者'));
+  const english = {
+    starter: 'First Steps',
+    'letters-phrase': 'Phrase Speller',
+    'match-pro': 'Match Master',
+    'timed-brave': 'Timed Hero',
+    'hard-challenger': 'Hard Challenger',
+    'review-clear': 'Review Slayer'
+  };
+  window.Badges.catalog().forEach(b => {
+    assert.equal(typeof b.english, 'string');
+    assert.match(b.english, /[A-Za-z]/);
+    assert.match(b.image, /^assets\/badges\/[a-z0-9-]+\.png$/);
+    if (english[b.id]) assert.equal(b.english, english[b.id]);
+    if (b.id.indexOf('unit-done:') === 0) {
+      assert.equal(b.english, 'Unit Completer');
+      assert.equal(b.image, 'assets/badges/unit-completer.png');
+    }
+  });
+});
+
+test('a newly earned badge carries its English title and medal path', () => {
+  const { window } = setup();
+  const result = window.Badges.recordSession('unit1', 'fill', 'easy');
+  const starter = result.newBadges.find(b => b.id === 'starter');
+  assert.equal(starter.title, '起步新手');
+  assert.equal(starter.english, 'First Steps');
+  assert.equal(starter.image, 'assets/badges/first-steps.png');
+  const listed = window.Badges.listWithStatus().find(b => b.id === 'starter');
+  assert.equal(listed.earned, true);
+  assert.equal(listed.english, 'First Steps');
+  const locked = window.Badges.listWithStatus().find(b => b.id === 'match-pro');
+  assert.equal(locked.earned, false);
+  assert.equal(locked.english, 'Match Master');
+  assert.equal(locked.image, 'assets/badges/match-master.png');
 });
 
 test('mastery wrong then three corrects clears 需要重溫 for that unit', () => {

@@ -52,24 +52,41 @@ window.Badges = (function () {
     return data.units[unitId];
   }
 
+  /*
+   * Medal art is original いらすとや clipart, saved locally (not generated).
+   * Coloured ribbon medals: https://www.irasutoya.com/2015/10/blog-post_431.html
+   * Number 1 gold medal: https://www.irasutoya.com/2014/02/blog-post_4985.html
+   */
   function catalog() {
     const globals = [
-      { id: 'starter', title: '起步新手', detail: 'Finish any one practice session.' },
-      { id: 'letters-phrase', title: '詞組拼寫手', detail: 'Finish Missing Letters for one unit.' },
-      { id: 'match-pro', title: '配對高手', detail: 'Finish one Memory Match round of six cards.' },
-      { id: 'timed-brave', title: '限時勇者', detail: 'Finish one Timed Challenge.' },
-      { id: 'hard-challenger', title: 'Hard 挑戰者', detail: 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.' },
-      { id: 'review-clear', title: '錯題殺手', detail: 'Clear every 需要重溫 word in one unit.' }
+      { id: 'starter', title: '起步新手', english: 'First Steps', image: 'assets/badges/first-steps.png', detail: 'Finish any one practice session.' },
+      { id: 'letters-phrase', title: '詞組拼寫手', english: 'Phrase Speller', image: 'assets/badges/phrase-speller.png', detail: 'Finish Missing Letters for one unit.' },
+      { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish one Memory Match round of six cards.' },
+      { id: 'timed-brave', title: '限時勇者', english: 'Timed Hero', image: 'assets/badges/timed-hero.png', detail: 'Finish one Timed Challenge.' },
+      { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.' },
+      { id: 'review-clear', title: '錯題殺手', english: 'Review Slayer', image: 'assets/badges/review-slayer.png', detail: 'Clear every 需要重溫 word in one unit.' }
     ];
     const units = ORDER.map(function (u) {
       return {
         id: 'unit-done:' + u.id,
         title: 'Unit 完成者',
+        english: 'Unit Completer',
+        image: 'assets/badges/unit-completer.png',
         unitLabel: u.label,
         detail: u.label + ' · finish Sentence Fill, Missing Letters, and Memory Match.'
       };
     });
     return globals.concat(units);
+  }
+
+  function imageSrc(path) {
+    if (!path) return '';
+    try {
+      if (typeof location !== 'undefined' && location.pathname.indexOf('/practice/') !== -1) {
+        return '../' + path;
+      }
+    } catch (e) { /* tests */ }
+    return path;
   }
 
   function award(data, id) {
@@ -80,6 +97,8 @@ window.Badges = (function () {
     return {
       id: id,
       title: found ? found.title : id,
+      english: found ? found.english : '',
+      image: found ? found.image : '',
       earnedAt: earnedAt
     };
   }
@@ -192,6 +211,8 @@ window.Badges = (function () {
       return {
         id: b.id,
         title: b.title,
+        english: b.english,
+        image: b.image,
         unitLabel: b.unitLabel || '',
         detail: b.detail,
         earned: !!earned,
@@ -203,12 +224,37 @@ window.Badges = (function () {
 
   function writeResult(el, result) {
     if (!el) return;
+    while (el.firstChild) el.removeChild(el.firstChild);
     const fresh = (result && result.newBadges) || [];
-    if (fresh.length) {
-      el.textContent = 'New badge: ' + fresh.map(function (b) { return b.title; }).join(' · ');
-    } else {
+    if (!fresh.length) {
       el.textContent = 'Saved. Open Badges to see what you have earned.';
+      return;
     }
+    fresh.forEach(function (b) {
+      const row = document.createElement('div');
+      row.className = 'badge-toast';
+      const img = document.createElement('img');
+      img.className = 'badge-toast-art';
+      img.src = imageSrc(b.image);
+      img.alt = '';
+      const text = document.createElement('div');
+      text.className = 'badge-toast-text';
+      const kicker = document.createElement('p');
+      kicker.className = 'badge-toast-kicker';
+      kicker.textContent = 'New badge';
+      const name = document.createElement('p');
+      name.className = 'badge-toast-name';
+      name.textContent = b.title;
+      const english = document.createElement('p');
+      english.className = 'badge-toast-english';
+      english.textContent = b.english || '';
+      text.appendChild(kicker);
+      text.appendChild(name);
+      text.appendChild(english);
+      row.appendChild(img);
+      row.appendChild(text);
+      el.appendChild(row);
+    });
   }
 
   return {
@@ -225,6 +271,7 @@ window.Badges = (function () {
     lockReason: lockReason,
     formatEarned: formatEarned,
     listWithStatus: listWithStatus,
+    imageSrc: imageSrc,
     writeResult: writeResult,
     load: load
   };
