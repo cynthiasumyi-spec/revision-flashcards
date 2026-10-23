@@ -862,13 +862,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: center;
+  justify-content: center;
   gap: 0.35rem 0.85rem;
 }
 .badge-prompt-art {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  flex: 1 1 16rem;
+  flex: 0 0 auto;
   min-width: 0;
 }
 .badge-prompt-art img {
@@ -881,7 +883,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   margin: 0 -0.55rem;
 }
 .badge-prompt-copy {
-  flex: 1 1 14rem;
+  flex: 0 0 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -927,8 +929,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .badge-prompt-go:hover { background: var(--navy); color: var(--cream); }
 @media (max-width: 640px) {
-  .badge-prompt-card { flex-direction: column; text-align: center; padding: 0.45rem 0.7rem 0.9rem; }
-  .badge-prompt-art { flex-basis: auto; }
+  .badge-prompt-card { flex-direction: column; text-align: center; padding: 0.55rem 0.75rem 0.7rem; }
+  .badge-prompt-art,
+  .badge-prompt-copy { width: 100%; }
   .badge-prompt-art img { width: 5.6rem; height: 6.7rem; margin: 0 -0.45rem; }
   .badge-prompt-copy { align-items: center; }
   .badge-prompt-go { width: 100%; }
