@@ -47,6 +47,7 @@
     list.forEach(function (b) {
       var card = document.createElement('article');
       card.className = 'badge-card ' + (b.earned ? 'is-earned' : 'is-locked');
+      card.title = b.detail;
       var art = document.createElement('div');
       art.className = 'badge-art';
       if (b.earned) {
@@ -56,10 +57,8 @@
         art.appendChild(img);
       } else {
         art.classList.add('is-placeholder');
+        art.innerHTML = '<svg class="badge-silhouette" viewBox="0 0 120 148" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M22 140c3-34 14-50 38-50s35 16 38 50z"/></svg>';
       }
-      var kicker = document.createElement('p');
-      kicker.className = 'badge-kicker';
-      kicker.textContent = b.earned ? 'Earned' : 'Locked';
       var name = document.createElement('h2');
       name.className = 'badge-name';
       name.textContent = b.title;
@@ -67,7 +66,6 @@
       english.className = 'badge-english';
       english.textContent = b.english;
       card.appendChild(art);
-      card.appendChild(kicker);
       card.appendChild(name);
       card.appendChild(english);
       if (b.unitLabel) {
@@ -76,13 +74,9 @@
         unit.textContent = b.unitLabel;
         card.appendChild(unit);
       }
-      var detail = document.createElement('p');
-      detail.className = 'badge-detail';
-      detail.textContent = b.detail;
-      card.appendChild(detail);
       var date = document.createElement('p');
       date.className = 'badge-date';
-      date.textContent = b.earned ? ('Earned ' + b.earnedLabel) : 'Not yet';
+      date.textContent = b.earned ? ('Earned ' + b.earnedLabel) : 'Locked';
       card.appendChild(date);
       grid.appendChild(card);
     });
