@@ -53,7 +53,8 @@ test('hard fill counts as the fill core, not as easy', () => {
   window.Badges.recordSession('unit1', 'letters', 'easy');
   window.Badges.recordSession('unit1', 'match');
   assert.equal(window.Badges.coreComplete('unit1'), true);
-  assert.equal(window.Badges.hardUnlocked('unit1'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'fill'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'letters'), true);
 });
 
 test('unit 1 and dictation 3 are open and later units wait for the previous core', () => {
@@ -89,13 +90,21 @@ test('units 2 to 4 stay gated and dictation 3 stays open', () => {
   assert.equal(window.Badges.unitUnlocked('dictation3'), true);
 });
 
-test('hard mode waits for easy fill and easy letters', () => {
+test('easy unlocks hard for that same practice only', () => {
   const { window } = setup();
-  assert.equal(window.Badges.hardUnlocked('unit1'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'fill'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'letters'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'match'), false);
   window.Badges.recordSession('unit1', 'fill', 'easy');
-  assert.equal(window.Badges.hardUnlocked('unit1'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'fill'), true);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'letters'), false);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'match'), false);
   window.Badges.recordSession('unit1', 'letters', 'easy');
-  assert.equal(window.Badges.hardUnlocked('unit1'), true);
+  assert.equal(window.Badges.hardUnlocked('unit1', 'letters'), true);
+  assert.equal(window.Badges.hardUnlocked('unit2', 'letters'), false);
+  window.Badges.recordSession('unit2', 'letters', 'easy');
+  assert.equal(window.Badges.hardUnlocked('unit2', 'letters'), true);
+  assert.equal(window.Badges.hardUnlocked('unit2', 'fill'), false);
 });
 
 test('phrase, match, timed, and hard badges unlock once', () => {

@@ -24,7 +24,7 @@
     </div>
     <div class="progress-bar" aria-hidden="true"><span id="prog"></span></div>
   </div>
-  <p class="hard-note" id="hard-note" hidden>Hard unlocks after you finish Easy Sentence Fill and Easy Missing Letters for this unit.</p>
+  <p class="hard-note" id="hard-note" hidden>Finish Easy Sentence Fill to unlock Hard.</p>
   <div class="panel" id="game">
     <p class="section-label" id="bank-label">Word bank · drag into the blank</p>
     <div class="word-bank" id="bank"></div>
@@ -109,7 +109,7 @@
   }
 
   function syncHardLock() {
-    const open = !B || B.hardUnlocked(unitId);
+    const open = !B || B.hardUnlocked(unitId, 'fill');
     const btn = document.getElementById('diff-hard');
     btn.classList.toggle('is-locked', !open);
     btn.setAttribute('aria-disabled', open ? 'false' : 'true');
@@ -142,7 +142,7 @@
 
   document.getElementById('diff-easy').addEventListener('click', function () { setMode('easy'); });
   document.getElementById('diff-hard').addEventListener('click', function () {
-    if (B && !B.hardUnlocked(unitId)) return;
+    if (B && !B.hardUnlocked(unitId, 'fill')) return;
     setMode('hard');
   });
 
@@ -398,7 +398,7 @@
   });
 
   syncHardLock();
-  if (new URLSearchParams(location.search).get('diff') === 'hard' && (!B || B.hardUnlocked(unitId))) {
+  if (new URLSearchParams(location.search).get('diff') === 'hard' && (!B || B.hardUnlocked(unitId, 'fill'))) {
     setMode('hard');
   } else {
     render();

@@ -191,9 +191,12 @@ window.Badges = (function () {
     return coreCompleteFrom(load().units[unitId]);
   }
 
-  function hardUnlocked(unitId) {
+  function hardUnlocked(unitId, activity) {
     const st = load().units[unitId];
-    return !!(st && st.fillEasy && st.lettersEasy);
+    if (!st) return false;
+    if (activity === 'fill') return !!st.fillEasy;
+    if (activity === 'letters') return !!st.lettersEasy;
+    return false;
   }
 
   function unitIndex(unitId) {
