@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=17" />
+  <link rel="stylesheet" href="assets/site.css?v=18" />
 </head>
 <body>
   <a class="sr-only skip" href="#packs">Skip to packs</a>
@@ -17,11 +17,8 @@
     <div class="topbar-inner">
       <a class="brand" href="#top">English Revision</a>
       <nav class="nav-plain" aria-label="Primary">
-        <a class="nav-jump" href="#packs">Packs</a>
-        <a href="#how">How it works</a>
+        <a class="nav-jump" href="#packs">Revision</a>
         <a class="nav-jump" href="practice/index.html">Practice</a>
-        <a href="badges.html" id="nav-badges">Badges</a>
-        <a class="nav-action" href="#start">Start</a>
       </nav>
     </div>
   </header>
@@ -54,10 +51,11 @@
       <div class="packs-field">
         <div class="sheet reveal">
           <h2 class="sheet-title" id="packs-title">The packs</h2>
-          <p class="sheet-note">Five revision packs. Pick one to open.</p>
+          <p class="sheet-note">Swipe left or right. Pick a pack to open.</p>
 
-          <div class="pack-grid" id="pack-index">
-            <article class="pack-card tone-coral reveal reveal-delay-1">
+          <div class="pack-carousel">
+          <div class="pack-track" id="pack-index" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Revision packs">
+            <article class="pack-card tone-coral reveal reveal-delay-1" aria-roledescription="slide" aria-label="Unit 1 of 5">
               <div class="pack-cover"><img src="covers/unit1.jpg" alt="Unit 1 cover: For a good cause" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
                 <h3>Unit 1 · For a good cause</h3>
@@ -66,7 +64,7 @@
                 <a class="btn btn-primary pack-open" href="unit1/index.html">Open Unit 1</a>
               </div>
             </article>
-            <article class="pack-card tone-green reveal reveal-delay-2">
+            <article class="pack-card tone-green reveal reveal-delay-2" aria-roledescription="slide" aria-label="Unit 2 of 5">
               <div class="pack-cover"><img src="covers/unit2.jpg" alt="Unit 2 cover: Lend a helping hand" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
                 <h3>Unit 2 · Lend a helping hand</h3>
@@ -75,7 +73,7 @@
                 <a class="btn btn-primary pack-open" href="unit2/index.html">Open Unit 2</a>
               </div>
             </article>
-            <article class="pack-card tone-sky reveal reveal-delay-3">
+            <article class="pack-card tone-sky reveal reveal-delay-3" aria-roledescription="slide" aria-label="Unit 3 of 5">
               <div class="pack-cover"><img src="covers/unit3.jpg" alt="Unit 3 cover: Junior Super Chef" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
                 <h3>Unit 3 · Junior Super Chef</h3>
@@ -84,7 +82,7 @@
                 <a class="btn btn-primary pack-open" href="unit3/index.html">Open Unit 3</a>
               </div>
             </article>
-            <article class="pack-card tone-sunny reveal reveal-delay-4">
+            <article class="pack-card tone-sunny reveal reveal-delay-4" aria-roledescription="slide" aria-label="Unit 4 of 5">
               <div class="pack-cover"><img src="covers/unit4.jpg" alt="Unit 4 cover: Film magic" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
                 <h3>Unit 4 · Film magic</h3>
@@ -93,7 +91,7 @@
                 <a class="btn btn-primary pack-open" href="unit4/index.html">Open Unit 4</a>
               </div>
             </article>
-            <article class="pack-card tone-pink reveal reveal-delay-5">
+            <article class="pack-card tone-pink reveal reveal-delay-5" aria-roledescription="slide" aria-label="Dictation 3 of 5">
               <div class="pack-cover"><img src="covers/dictation3.jpg" alt="Dictation 3 cover" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
                 <h3>Dictation 3 · Films and similes</h3>
@@ -102,6 +100,12 @@
                 <a class="btn btn-primary pack-open" href="dictation3/index.html">Open Dictation 3</a>
               </div>
             </article>
+          </div>
+          <div class="pack-carousel-bar">
+            <button type="button" class="pack-carousel-btn" id="pack-prev">Previous</button>
+            <p class="pack-carousel-status nums" id="pack-status" aria-live="polite">1 of 5</p>
+            <button type="button" class="pack-carousel-btn" id="pack-next">Next</button>
+          </div>
           </div>
 
           <p class="sheet-foot nums reveal">61 words · 5 packs · English UI · Traditional Chinese glosses</p>
@@ -209,6 +213,95 @@
       } else {
         document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
       }
+    }
+
+    var track = document.getElementById("pack-index");
+    var prev = document.getElementById("pack-prev");
+    var next = document.getElementById("pack-next");
+    var status = document.getElementById("pack-status");
+    if (track && prev && next && status) {
+      var cards = Array.prototype.slice.call(track.querySelectorAll(".pack-card"));
+      var active = 0;
+      function leftOf(card) {
+        var trackRect = track.getBoundingClientRect();
+        var cardRect = card.getBoundingClientRect();
+        return cardRect.left - trackRect.left + track.scrollLeft;
+      }
+      function nearest() {
+        var x = track.scrollLeft;
+        var best = 0;
+        var bestDist = Infinity;
+        cards.forEach(function (card, i) {
+          var dist = Math.abs(leftOf(card) - x);
+          if (dist < bestDist) { bestDist = dist; best = i; }
+        });
+        return best;
+      }
+      function paint() {
+        status.textContent = (active + 1) + " of " + cards.length;
+        prev.disabled = active === 0;
+        next.disabled = active === cards.length - 1;
+        cards.forEach(function (card, i) {
+          var hide = i !== active && !card.contains(document.activeElement);
+          card.setAttribute("aria-hidden", hide ? "true" : "false");
+        });
+      }
+      var lockUntil = 0;
+      function go(index) {
+        var i = Math.max(0, Math.min(cards.length - 1, index));
+        active = i;
+        paint();
+        lockUntil = Date.now() + (reduce ? 40 : 520);
+        track.scrollTo({ left: leftOf(cards[i]), behavior: reduce ? "auto" : "smooth" });
+      }
+      prev.addEventListener("click", function () { go(active - 1); });
+      next.addEventListener("click", function () { go(active + 1); });
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
+      });
+      var scrollTick = 0;
+      track.addEventListener("scroll", function () {
+        if (Date.now() < lockUntil) return;
+        if (scrollTick) cancelAnimationFrame(scrollTick);
+        scrollTick = requestAnimationFrame(function () {
+          if (Date.now() < lockUntil) return;
+          active = nearest();
+          paint();
+        });
+      }, { passive: true });
+      var drag = null;
+      track.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        if (e.target.closest("a, button")) return;
+        e.preventDefault();
+        drag = { x: e.clientX, left: track.scrollLeft, moved: false, id: e.pointerId };
+      });
+      track.addEventListener("pointermove", function (e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        var dx = e.clientX - drag.x;
+        if (!drag.moved && Math.abs(dx) < 8) return;
+        if (!drag.moved) {
+          track.setPointerCapture(e.pointerId);
+          track.style.scrollSnapType = "none";
+        }
+        drag.moved = true;
+        track.scrollLeft = drag.left - dx;
+      });
+      function endDrag(e) {
+        if (!drag || e.pointerId !== drag.id) return;
+        var dx = e.clientX - drag.x;
+        var moved = drag.moved;
+        drag = null;
+        track.style.scrollSnapType = "";
+        if (!moved) return;
+        if (dx <= -48) go(active + 1);
+        else if (dx >= 48) go(active - 1);
+        else go(active);
+      }
+      track.addEventListener("pointerup", endDrag);
+      track.addEventListener("pointercancel", endDrag);
+      paint();
     }
   })();
   </script>
