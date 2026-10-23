@@ -1,0 +1,326 @@
+/* Watch mode — Huawei kids/rugged smartwatch
+   Rounded-square (squircle) display, slightly taller than wide (~4:5 / 3:4).
+   Target viewports ~200×250 and ~240×300. Thick bezel safe inset ~10–12%.
+   Cream / navy / Classroom Hub accents. English UI. */
+
+:root {
+  --cream: #fcf0d8;
+  --surface: #fcf0e4;
+  --navy: #243c6c;
+  --muted: #5a6570;
+  --sunny: #fcc03c;
+  --coral: #fc903c;
+  --pink: #f0909c;
+  --green: #009c48;
+  --sky: #84c0e4;
+  --white: #ffffff;
+  --font: "Nunito", "Fredoka", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  /* ~10–12% of short side for thick inner bezel + camera notch headroom */
+  --safe-pct: 11%;
+  --bezel-top: max(12%, env(safe-area-inset-top, 0px));
+  --bezel-x: max(10%, env(safe-area-inset-left, 0px));
+  --bezel-bottom: max(10%, env(safe-area-inset-bottom, 0px));
+  --squircle: 22%;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  width: 100%; height: 100%;
+  background: #1a2744;
+  color: var(--navy);
+  font-family: var(--font);
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Full-bleed app with safe inset so content clears rounded corners + notch */
+.app {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  padding:
+    max(22px, var(--bezel-top))
+    max(18px, var(--bezel-x))
+    max(18px, var(--bezel-bottom));
+  background: #1a2744;
+}
+
+.face {
+  flex: 1;
+  min-height: 0;
+  background: var(--cream);
+  border-radius: var(--squircle);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px var(--sunny);
+}
+
+/* Optional Huawei device chrome for review screenshots */
+body.device-huawei {
+  background: #c5b4d8; /* lavender case vibe */
+}
+body.device-huawei .app {
+  background: #2a2a32;
+  /* Simulate thick bezel + slight vertical phone-in-watch */
+  padding: 14% 11% 12%;
+  border-radius: 28%;
+}
+body.device-huawei .app::before {
+  /* Camera notch hint above screen */
+  content: "";
+  position: absolute;
+  top: 5.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10%;
+  height: 3.2%;
+  max-width: 28px;
+  max-height: 10px;
+  background: #111;
+  border-radius: 40%;
+  z-index: 2;
+  pointer-events: none;
+}
+body.device-huawei .face {
+  border-radius: 18%;
+  clip-path: inset(0 round 18%);
+}
+
+/* Prefer taller-than-wide watch viewports */
+@media (max-width: 280px) and (min-aspect-ratio: 3/5) and (max-aspect-ratio: 5/6) {
+  :root {
+    --squircle: 20%;
+  }
+  .app {
+    padding-top: max(24px, 12%);
+    padding-left: max(18px, 10%);
+    padding-right: max(18px, 10%);
+    padding-bottom: max(20px, 10%);
+  }
+}
+
+/* —— Home: pack list —— */
+.home {
+  display: flex; flex-direction: column;
+  flex: 1; min-height: 0;
+}
+.home-head {
+  padding: 8px 10px 6px;
+  text-align: center;
+  background: var(--navy);
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.home-head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.85rem, 5.2vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.home-head p {
+  margin: 2px 0 0;
+  font-size: clamp(0.5rem, 2.8vw, 0.65rem);
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.packs {
+  flex: 1; min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 8px 10px;
+  display: flex; flex-direction: column; gap: 6px;
+  scrollbar-width: none;
+}
+.packs::-webkit-scrollbar { display: none; }
+
+.pack-btn {
+  display: block; width: 100%;
+  border: none; border-radius: 12px;
+  padding: 9px 11px;
+  text-align: left;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(0.68rem, 3.8vw, 0.88rem);
+  color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 2px 0 rgba(36,60,108,0.12);
+  cursor: pointer;
+  min-height: 42px;
+}
+.pack-btn:active { transform: scale(0.97); }
+.pack-btn .sub {
+  display: block;
+  font-weight: 500;
+  font-size: 0.65em;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.pack-btn.tone-u1 { border-left: 5px solid var(--sunny); }
+.pack-btn.tone-u2 { border-left: 5px solid var(--green); }
+.pack-btn.tone-u3 { border-left: 5px solid var(--sky); }
+.pack-btn.tone-u4 { border-left: 5px solid var(--sunny); }
+.pack-btn.tone-d3 { border-left: 5px solid var(--pink); }
+
+.home-foot {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.5rem;
+  color: var(--muted);
+  background: var(--surface);
+}
+.home-foot a {
+  color: var(--navy);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* —— Play view —— */
+.play { display: none; flex: 1; min-height: 0; flex-direction: column; }
+.play.is-on { display: flex; }
+.home.is-off { display: none; }
+
+.play-top {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 4px;
+  padding: 5px 8px;
+  background: var(--navy);
+  color: var(--cream);
+}
+.play-top .back, .play-top .count {
+  font-size: clamp(0.5rem, 2.8vw, 0.68rem);
+  font-weight: 700;
+  background: transparent; border: none; color: var(--cream);
+  padding: 5px 7px; min-height: 32px; min-width: 32px;
+  cursor: pointer; font-family: var(--font);
+}
+.play-top .back { text-decoration: none; }
+.play-top .title {
+  flex: 1; text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(0.55rem, 3.1vw, 0.75rem);
+  font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.stage {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 6px 10px 4px;
+  text-align: center;
+  gap: 3px;
+  overflow: hidden;
+}
+
+/* Taller viewport → allow a bit larger illust */
+.illust-wrap {
+  width: min(38vw, 86px);
+  height: min(38vw, 86px);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 2px 0 rgba(36,60,108,0.1);
+  flex-shrink: 0;
+}
+.illust-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.word {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 6.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 100%;
+  word-break: break-word;
+}
+.syl {
+  margin: 0;
+  font-size: clamp(0.48rem, 2.6vw, 0.62rem);
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.zh {
+  margin: 0;
+  font-size: clamp(0.55rem, 3.2vw, 0.78rem);
+  color: var(--coral);
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 100%;
+}
+
+/* Large bottom controls — primary tap targets */
+.controls {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 6px;
+  padding: 8px 10px 12px;
+}
+.controls button {
+  border: none; border-radius: 999px;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.72rem, 4vw, 0.95rem);
+  cursor: pointer;
+  color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 3px 0 rgba(36,60,108,0.15);
+}
+.controls button:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(36,60,108,0.15); }
+.controls .play-audio {
+  background: var(--coral);
+  color: var(--white);
+  font-size: clamp(0.85rem, 4.6vw, 1.05rem);
+  min-height: 48px;
+}
+.controls .play-audio.is-playing {
+  background: var(--sunny);
+  color: var(--navy);
+}
+.controls .nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Desktop preview: Huawei-ish 4:5 frame */
+@media (min-width: 400px) {
+  .app {
+    width: 240px;
+    height: 300px;
+    max-width: 240px;
+    max-height: 300px;
+    margin: 32px auto;
+    position: relative;
+    inset: auto;
+    border-radius: 28%;
+    box-shadow: 0 14px 40px rgba(36,60,108,0.35);
+    padding: 14% 11% 12%;
+  }
+  body.device-huawei .app {
+    width: 260px;
+    height: 320px;
+    max-width: 260px;
+    max-height: 320px;
+  }
+}

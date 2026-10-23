@@ -1,39 +1,22 @@
-/* Unit / dictation screens — soft pastel + doodles (match homepage) */
+/* Unit / dictation screens — Classroom Hub (after-folder-revise-2) tokens
+   Per-unit themes via body.theme-unit1 … theme-dictation3
+   Fredoka (display) + Nunito (body) · solid accents · no pastel mint chrome */
+
 :root {
-  --bg: #F7F3E9;
-  --surface: #FFFCF5;
-  --ink: #1D2B53;
-  --muted: #5A6578;
-  --accent: #C47A5A;
-  --accent-ink: #ffffff;
-  --navy: #1D2B53;
-  --cream: #F7F3E9;
-  --pale-yellow: #FDE49E;
-  --mint: #D5E8B4;
-  --dusty-rose: #F4CFD0;
-  --light-green: #C8E6C9;
-  --soft-sky: #B8D4E8;
-  --terracotta: #C47A5A;
+  --bg: #fcf0d8;
+  --surface: #fcf0e4;
+  --ink: #243c6c;
+  --muted: #5a6570;
+  --accent: #fcc03c;       /* default sunny; overridden per theme */
+  --accent-ink: #243c6c;   /* text on accent header; Unit 2 overrides to white */
+  --navy: #243c6c;
+  --cream: #fcf0d8;
+  --sunny: #fcc03c;
+  --green: #009c48;
+  --sky: #84c0e4;
+  --pink: #f0909c;
+  --coral: #fc903c;        /* CTA */
   --white: #ffffff;
-
-  --coral: #F4CFD0;
-  --sunny: #FDE49E;
-  --green: #D5E8B4;
-  --sky: #B8D4E8;
-  --pink: #F8D9D0;
-
-  --field-1: #F4CFD0;
-  --field-1-ink: #1D2B53;
-  --field-2: #D5E8B4;
-  --field-2-ink: #1D2B53;
-  --field-3: #B8D4E8;
-  --field-3-ink: #1D2B53;
-  --field-4: #FDE49E;
-  --field-4-ink: #1D2B53;
-  --field-5: #C8E6C9;
-  --field-5-ink: #1D2B53;
-  --field-6: #1D2B53;
-  --field-6-ink: #F7F3E9;
 
   --font-display: "Fredoka", "Nunito", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
   --font-text: "Nunito", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
@@ -45,10 +28,35 @@
   --t-press: 140ms;
   --t-hover: 180ms;
 
-  --shell: 0.85rem; /* coloured pastel shell thickness around cream panel */
+  --shell: 0.85rem; /* coloured shell thickness around cream panel */
+  --highlight: rgba(252, 192, 60, 0.95); /* sunny word highlight */
+}
 
-  --doodle-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23C47A5A' fill-opacity='0.16'%3E%3Ccircle cx='18' cy='22' r='2.2'/%3E%3Ccircle cx='52' cy='14' r='1.6'/%3E%3Ccircle cx='88' cy='28' r='2'/%3E%3Ccircle cx='30' cy='58' r='1.5'/%3E%3Ccircle cx='70' cy='48' r='2.4'/%3E%3Ccircle cx='100' cy='70' r='1.7'/%3E%3Ccircle cx='22' cy='92' r='2'/%3E%3Ccircle cx='58' cy='98' r='1.5'/%3E%3Ccircle cx='94' cy='100' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
-  --doodle-loops: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='140' viewBox='0 0 180 140'%3E%3Cg fill='none' stroke='%231D2B53' stroke-opacity='0.1' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M20 40c20-28 48-10 40 18-8 26-40 18-30-8 6-16 28-14 34 4'/%3E%3Cpath d='M110 30c24-18 50 4 36 28-12 20-42 12-30-10'/%3E%3C/g%3E%3C/svg%3E");
+/* —— Per-unit theme tokens —— */
+body.theme-unit1 {
+  --accent: #fcc03c;
+  --accent-ink: #243c6c;
+  --shell-color: #fcc03c;
+}
+body.theme-unit2 {
+  --accent: #009c48;
+  --accent-ink: #ffffff; /* white text on green header */
+  --shell-color: #009c48;
+}
+body.theme-unit3 {
+  --accent: #84c0e4;
+  --accent-ink: #243c6c;
+  --shell-color: #84c0e4;
+}
+body.theme-unit4 {
+  --accent: #fcc03c;
+  --accent-ink: #243c6c;
+  --shell-color: #fcc03c;
+}
+body.theme-dictation3 {
+  --accent: #f0909c;
+  --accent-ink: #243c6c;
+  --shell-color: #f0909c;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -67,26 +75,15 @@ html, body {
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
 button { font: inherit; cursor: pointer; }
-:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 3px; }
-::selection { background: var(--pale-yellow); color: var(--navy); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+::selection { background: var(--sunny); color: var(--navy); }
 
 .unit-header {
   position: sticky; top: 0; z-index: 20;
-  background: var(--mint);
-  color: var(--navy);
+  background: var(--accent);
+  color: var(--accent-ink);
   padding: 1rem var(--margin) 1.15rem;
   overflow: hidden;
-}
-.unit-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--doodle-dots), var(--doodle-loops);
-  background-size: 120px 120px, 180px 140px;
-  background-repeat: repeat, no-repeat;
-  background-position: 0 0, 70% 30%;
-  opacity: 0.85;
-  pointer-events: none;
 }
 .unit-header > * { position: relative; z-index: 1; }
 .back {
@@ -96,9 +93,10 @@ button { font: inherit; cursor: pointer; }
   font-size: 1rem;
   text-decoration: none;
   margin-bottom: 0.4rem;
-  color: var(--terracotta);
+  color: var(--accent-ink);
+  opacity: 0.9;
 }
-.back:hover { color: var(--navy); }
+.back:hover { opacity: 1; text-decoration: underline; }
 .unit-header h1 {
   margin: 0;
   font-family: var(--font-display);
@@ -107,14 +105,14 @@ button { font: inherit; cursor: pointer; }
   line-height: 1.1;
   letter-spacing: -0.02em;
   max-width: 22ch;
-  color: var(--navy);
+  color: var(--accent-ink);
 }
 .sub {
   margin: 0.4rem 0 0;
-  color: var(--navy);
+  color: var(--accent-ink);
   font-size: 1rem;
   font-weight: 600;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .hint {
   max-width: 720px;
@@ -141,7 +139,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--ink);
   border: 0;
   border-radius: var(--radius);
-  background: var(--dusty-rose);
+  background: var(--shell-color, var(--accent));
   /* Keep overflow visible so speaker isn't clipped; shell is padding not border */
   overflow: visible;
 }
@@ -156,32 +154,37 @@ button { font: inherit; cursor: pointer; }
   pointer-events: none;
 }
 
-.card.fill-a { background: var(--dusty-rose); color: var(--navy); }
-.card.fill-b { background: var(--mint); color: var(--navy); }
-.card.fill-c { background: var(--soft-sky); color: var(--navy); }
-.card.fill-d { background: var(--pale-yellow); color: var(--navy); }
-.card.fill-e { background: var(--light-green); color: var(--navy); }
-.card.fill-f { background: var(--navy); color: var(--navy); }
+/* Fill variants all use unit shell colour (no leftover pastel mint/rose) */
+.card.fill-a,
+.card.fill-b,
+.card.fill-c,
+.card.fill-d,
+.card.fill-e,
+.card.fill-f {
+  background: var(--shell-color, var(--accent));
+  color: var(--ink);
+}
 .card.fill-f::after { background: var(--cream); }
 
 .card.playing { outline: 4px solid var(--navy); outline-offset: 2px; }
 
-/* Speaker fully inside cream panel: shell + inner radius clearance + gap */
+/* Speaker fully inside cream panel: shell + inner radius clearance + gap
+   Stays sunny yellow on every unit */
 .speaker {
   position: absolute;
   top: calc(var(--shell) + 14px);
   right: calc(var(--shell) + 14px);
   width: 44px; height: 44px;
   border-radius: 14px;
-  background: var(--pale-yellow);
+  background: var(--sunny);
   color: var(--navy);
   z-index: 2;
   display: grid; place-items: center;
   border: 0;
-  box-shadow: 0 1px 0 rgba(29,43,83,0.06);
+  box-shadow: 0 1px 0 rgba(36, 60, 108, 0.08);
   transition: transform var(--t-press) var(--ease-out), background var(--t-hover);
 }
-.speaker:hover { background: var(--mint); }
+.speaker:hover { background: #f0b020; }
 .speaker:active { transform: scale(0.94); }
 .speaker svg { width: 22px; height: 22px; }
 
@@ -197,7 +200,7 @@ button { font: inherit; cursor: pointer; }
   border-radius: var(--radius-sm);
   overflow: hidden;
   aspect-ratio: 1;
-  background: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.45);
   cursor: pointer;
 }
 .illust img {
@@ -234,7 +237,7 @@ button { font: inherit; cursor: pointer; }
   margin-top: 0.85rem;
   padding: 0.85rem 0.95rem;
   border-radius: var(--radius-sm);
-  background: rgba(29,43,83,0.05);
+  background: rgba(36, 60, 108, 0.05);
 }
 .ex-label {
   display: block;
@@ -252,7 +255,7 @@ button { font: inherit; cursor: pointer; }
   font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", var(--font-text);
 }
 .hl {
-  background: rgba(253,228,158,0.95);
+  background: var(--highlight);
   color: var(--navy);
   border-radius: 6px;
   padding: 0 0.15em;
@@ -260,7 +263,7 @@ button { font: inherit; cursor: pointer; }
 
 .lightbox {
   position: fixed; inset: 0;
-  background: rgba(29,43,83,0.88);
+  background: rgba(36, 60, 108, 0.88);
   display: none;
   align-items: center;
   justify-content: center;
@@ -285,7 +288,7 @@ button { font: inherit; cursor: pointer; }
   border: 0;
   font-weight: 700;
   font-family: var(--font-display);
-  background: var(--terracotta);
+  background: var(--coral);
   color: var(--white);
 }
 .lb-close { background: var(--cream); color: var(--navy); }
@@ -306,7 +309,6 @@ button { font: inherit; cursor: pointer; }
     right: calc(var(--shell) + 12px);
   }
   .unit-header h1 { max-width: none; }
-  /* Allow speaker to sit in corner without clipping into shell */
   .card { overflow: visible; }
   .lb-btn { flex: 1 1 auto; min-width: 7rem; }
 }
