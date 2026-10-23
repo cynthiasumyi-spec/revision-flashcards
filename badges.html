@@ -50,15 +50,10 @@
       card.title = b.detail;
       var art = document.createElement('div');
       art.className = 'badge-art';
-      if (b.earned) {
-        var img = document.createElement('img');
-        img.src = b.image;
-        img.alt = '';
-        art.appendChild(img);
-      } else {
-        art.classList.add('is-placeholder');
-        art.innerHTML = '<svg class="badge-silhouette" viewBox="0 0 120 148" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M22 140c3-34 14-50 38-50s35 16 38 50z"/></svg>';
-      }
+      var img = document.createElement('img');
+      img.src = b.image;
+      img.alt = '';
+      art.appendChild(img);
       var name = document.createElement('h2');
       name.className = 'badge-name';
       name.textContent = b.title;
