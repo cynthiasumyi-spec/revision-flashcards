@@ -10,7 +10,7 @@
   --bg:#fcf0d8; --cream:#fcf0d8; --navy:#243c6c; --white:#ffffff;
   --coral:#fc903c; --green:#009c48; --sky:#84c0e4; --sunny:#fcc03c; --pink:#f0909c;
   --muted:#5a6570; --ink:#183c6c; --radius:22px;
-  --illust:168px;
+  --illust:210px;
 }
 * { box-sizing:border-box; }
 html,body {
@@ -60,7 +60,7 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
   border:0; box-shadow:none; cursor:zoom-in;
 }
 .illust img {
-  width:100%; height:100%; object-fit:contain; background:var(--white);
+  width:100%; height:100%; object-fit:cover; object-position:center; background:var(--white);
   display:block; box-shadow:none; filter:none;
 }
 .main { flex:1; min-width:0; padding-right:56px; }
@@ -115,11 +115,11 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
   padding:0 4px; border-radius:4px;
 }
 @media (min-width:640px) {
-  :root { --illust:196px; }
+  :root { --illust:248px; }
   .syllables { font-size:1.7rem; }
 }
 @media (max-width:380px) {
-  :root { --illust:140px; }
+  :root { --illust:168px; }
 }
 /* Lightbox */
 .lightbox {
