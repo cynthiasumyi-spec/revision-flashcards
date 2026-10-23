@@ -144,24 +144,25 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--sunny);
   box-shadow: none;
 }
+/* Unselected: pastel wash of tone; navy text for contrast */
 .pill.tone-sunny:not(.is-active),
 .pill.tone-green:not(.is-active),
 .pill.tone-sky:not(.is-active),
 .pill.tone-coral:not(.is-active),
 .pill.tone-pink:not(.is-active) {
-  color: var(--white);
+  color: var(--ink);
 }
-.pill.tone-sunny:not(.is-active) { background: var(--sunny); }
-.pill.tone-green:not(.is-active) { background: var(--green); }
-.pill.tone-sky:not(.is-active) { background: var(--sky); }
-.pill.tone-coral:not(.is-active) { background: var(--coral); }
-.pill.tone-pink:not(.is-active) { background: var(--pink); }
+.pill.tone-sunny:not(.is-active) { background: color-mix(in srgb, var(--sunny) 42%, #fff); }
+.pill.tone-green:not(.is-active) { background: color-mix(in srgb, var(--green) 38%, #fff); }
+.pill.tone-sky:not(.is-active) { background: color-mix(in srgb, var(--sky) 45%, #fff); }
+.pill.tone-coral:not(.is-active) { background: color-mix(in srgb, var(--coral) 42%, #fff); }
+.pill.tone-pink:not(.is-active) { background: color-mix(in srgb, var(--pink) 45%, #fff); }
 .pill.is-locked { opacity: 0.58; filter: saturate(0.7); }
 .pill .badge {
   font-size: 0.68rem;
   font-weight: 700;
-  background: rgba(36, 60, 108, 0.35);
-  color: var(--white);
+  background: rgba(36, 60, 108, 0.22);
+  color: var(--ink);
   padding: 0.12rem 0.45rem;
   border-radius: var(--pill);
 }
