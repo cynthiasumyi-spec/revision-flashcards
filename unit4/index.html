@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
@@ -96,7 +96,7 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
   outline:3px solid var(--sunny); outline-offset:2px;
   box-shadow:none !important; animation:none; filter:none;
 }
-/* 例句: high-contrast near-white inset on ALL fills (navy text) */
+/* Example: high-contrast near-white inset on ALL fills (navy text) */
 .ex {
   background:rgba(255,255,255,.92);
   border:0; border-radius:14px; padding:12px; margin-top:10px;
@@ -150,17 +150,17 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
 </head>
 <body>
 <header>
-  <a class="back" href="../index.html">← 返回目錄</a>
+  <a class="back" href="../index.html">← Back to home</a>
   <h1>Unit 4 Film magic</h1>
-  <p class="sub">共 14 個生字／詞語 · Primary 6 例句 + 中一進階例句</p>
+  <p class="sub">14 words · Primary 6 examples + Form 1 advanced examples</p>
 </header>
-<p class="hint">點喇叭聽讀音；點插圖可放大；插圖大小取中間值，無陰影、無外框。</p>
+<p class="hint">Tap the speaker for audio; tap the illustration to enlarge. Mid-size art, no shadow or frame.</p>
 <div class="list" id="list"></div>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大插圖">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarge illustration">
   <img id="lb-img" alt="" />
   <div class="lb-bar">
-    <button type="button" class="lb-btn lb-play" id="lb-play">🔊 聽讀音</button>
-    <button type="button" class="lb-btn lb-close" id="lb-close">關閉</button>
+    <button type="button" class="lb-btn lb-play" id="lb-play">🔊 Play audio</button>
+    <button type="button" class="lb-btn lb-close" id="lb-close">Close</button>
   </div>
 </div>
 <script>
@@ -215,7 +215,7 @@ CARDS.forEach(card => {
   const speaker = document.createElement('button');
   speaker.type = 'button';
   speaker.className = 'speaker';
-  speaker.setAttribute('aria-label', '播放：' + card.en);
+  speaker.setAttribute('aria-label', 'Play: ' + card.en);
   speaker.textContent = '🔊';
   speaker.addEventListener('click', e => { e.stopPropagation(); playCard(card, article); });
   article.appendChild(speaker);
@@ -231,7 +231,7 @@ CARDS.forEach(card => {
     wrap.appendChild(img);
     wrap.setAttribute('role', 'button');
     wrap.setAttribute('tabindex', '0');
-    wrap.setAttribute('aria-label', '放大：' + card.en);
+    wrap.setAttribute('aria-label', 'Enlarge: ' + card.en);
     wrap.addEventListener('click', e => { e.stopPropagation(); openLightbox(card, article); });
     wrap.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openLightbox(card, article); }
@@ -250,10 +250,10 @@ CARDS.forEach(card => {
 
   const ex1 = document.createElement('div');
   ex1.className = 'ex';
-  ex1.innerHTML = '<span class="ex-label">例句</span><p class="ex-en">' + hl(card.ex_en, card.highlight) + '</p><p class="ex-zh">' + card.ex_zh + '</p>';
+  ex1.innerHTML = '<span class="ex-label">Example</span><p class="ex-en">' + hl(card.ex_en, card.highlight) + '</p><p class="ex-zh">' + card.ex_zh + '</p>';
   const ex2 = document.createElement('div');
   ex2.className = 'ex';
-  ex2.innerHTML = '<span class="ex-label">進階例句</span><p class="ex-en">' + hl(card.adv_en, card.highlight) + '</p><p class="ex-zh">' + card.adv_zh + '</p>';
+  ex2.innerHTML = '<span class="ex-label">Advanced example</span><p class="ex-en">' + hl(card.adv_en, card.highlight) + '</p><p class="ex-zh">' + card.adv_zh + '</p>';
   article.appendChild(ex1);
   article.appendChild(ex2);
 
