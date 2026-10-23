@@ -316,3 +316,30 @@ button { font: inherit; cursor: pointer; }
 .card .ex { margin-left: 0.85rem; margin-right: 0.85rem; }
 .card .ex:last-child { margin-bottom: 0.85rem; }
 .illust { position: relative; z-index: 1; }
+
+
+/* Practice link in unit header */
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.header-nav .back { margin-bottom: 0; }
+.practice-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--accent-ink);
+  background: rgba(255,255,255,0.55);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.practice-link:hover { background: rgba(255,255,255,0.85); text-decoration: underline; }
+body.theme-unit2 .practice-link {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Practice · P6 Revision Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="practice.css"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="../index.html">← Home</a>
+  <h1>Practice hub</h1>
+  <p class="sub" id="unit-sub">Pick a unit and a game</p>
+</header>
+<main class="wrap">
+  <p class="section-label">Unit</p>
+  <div class="unit-pills" id="unit-pills" role="list"></div>
+
+  <p class="section-label">Quiz</p>
+  <div class="game-grid" id="game-grid"></div>
+</main>
+
+<script src="data/unit1.js"></script>
+<script src="data/unit2.js"></script>
+<script src="data/unit3.js"></script>
+<script src="data/unit4.js"></script>
+<script src="data/dictation3.js"></script>
+<script src="data/registry.js"></script>
+<script src="mastery.js"></script>
+<script src="common.js"></script>
+<script>
+(function () {
+  const C = window.PracticeCommon;
+  const R = window.PracticeRegistry;
+  const unitId = C.unitParam();
+  const pack = R.getUnit(unitId);
+  const units = R.listUnits();
+
+  document.getElementById('unit-sub').textContent = (pack && pack.title) || 'Pick a unit and a game';
+
+  const pills = document.getElementById('unit-pills');
+  units.forEach(u => {
+    const a = document.createElement('a');
+    a.href = 'index.html?unit=' + encodeURIComponent(u.id);
+    a.className = 'pill tone-' + u.tone + (u.id === unitId ? ' is-active' : '') + (u.ready ? '' : ' is-locked');
+    a.setAttribute('role', 'listitem');
+    a.innerHTML = C.escapeHtml(u.label) + (u.ready ? '' : ' <span class="badge">soon</span>');
+    pills.appendChild(a);
+  });
+
+  const ready = !!(pack && ((pack.fillIn && pack.fillIn.length) || (pack.matching && pack.matching.length)));
+  const games = [
+    { id: 'fill', cls: 'gc-fill', icon: 'icons/fill.svg', title: 'Sentence fill-in', desc: 'Easy: drag words · Hard: type yourself', href: 'fill.html' },
+    { id: 'letters', cls: 'gc-letters', icon: 'icons/letters.svg', title: 'Missing letters', desc: 'Easy or hard letter gaps', href: 'letters.html' },
+    { id: 'match', cls: 'gc-match', icon: 'icons/match.svg', title: 'Memory match', desc: 'EN ↔ Chinese + picture', href: 'match.html' },
+    { id: 'timed', cls: 'gc-timed', icon: 'icons/timed.svg', title: 'Timed challenge', desc: '60 seconds · combo bonus', href: 'timed.html' }
+  ];
+  const grid = document.getElementById('game-grid');
+  games.forEach(g => {
+    const a = document.createElement(ready ? 'a' : 'div');
+    if (ready) a.href = C.practiceLink(g.href, unitId);
+    a.className = 'game-card ' + g.cls + (ready ? '' : ' is-disabled');
+    a.innerHTML = '<div class="icon"><img src="' + g.icon + '" alt="" width="34" height="34"/></div><h3>' + g.title + '</h3><p>' + g.desc + '</p>';
+    grid.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>

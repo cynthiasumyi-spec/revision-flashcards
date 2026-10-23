@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Primary 6 English Flashcards</title>
-  <meta name="description" content="Hong Kong Primary 6 English vocabulary flashcards. Open a pack, hear the word, read the bilingual example." />
+  <title>Primary 6 Revision Tools</title>
+  <meta name="description" content="Primary 6 Revision Tools for Hong Kong students — vocabulary packs, practice games, and review progress." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -15,10 +15,11 @@
 
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#top">P6 Flashcards</a>
+      <a class="brand" href="#top">P6 Revision Tools</a>
       <nav class="nav-plain" aria-label="Primary">
         <a href="#packs">Packs</a>
         <a href="#how">How it works</a>
+        <a href="practice/index.html">Practice</a>
         <a class="nav-action" href="#start">Start</a>
       </nav>
     </div>
@@ -27,10 +28,23 @@
   <main id="top">
     <!-- Hero: navy board + yellow title (no folder tabs) -->
     <section class="hero hero-simple" aria-labelledby="hero-title">
-      <h1 class="hero-title" id="hero-title">P6 flashcards</h1>
-      <p class="hero-support">
-        Hong Kong Primary 6 vocabulary. Open a pack, hear the word, read the bilingual example.
-      </p>
+      <h1 class="hero-title" id="hero-title">Primary 6 Revision Tools</h1>
+      <p class="hero-support">Revise with ease</p>
+    </section>
+
+
+    <!-- Review progress (mastery-driven across all units) -->
+    <section class="section today-home" id="today" aria-labelledby="today-title">
+      <div class="today-home-inner reveal">
+        <div class="today-home-card today-progress-card">
+          <div class="today-progress-head">
+            <h2 class="today-home-title" id="today-title">Review progress</h2>
+            <p class="today-home-lead"><span id="today-home-count">0</span> words ready · open Practice to start</p>
+            <a class="btn btn-primary" href="practice/index.html">Practice hub</a>
+          </div>
+          <div class="review-progress-list" id="review-progress" aria-label="Mastery by unit"></div>
+        </div>
+      </div>
     </section>
 
     <!-- Simple pack cards grid -->
@@ -139,7 +153,7 @@
     <div class="postcard reveal">
       <div class="postcard-left">
         <p class="postcard-sign">Keep practising</p>
-        <p>Primary 6 English Flashcards for Hong Kong students. English UI with Traditional Chinese glosses. For learning and revision only.</p>
+        <p>Primary 6 Revision Tools for Hong Kong students. English UI with Traditional Chinese glosses. For learning and revision only.</p>
       </div>
       <div class="postcard-right">
         <figure class="stamp">
@@ -148,6 +162,7 @@
         <a href="#packs">The packs</a>
         <a href="unit1/index.html">Unit 1</a>
         <a href="dictation3/index.html">Dictation 3</a>
+        <a href="practice/index.html">Practice</a>
         <a href="watch/index.html">Watch mode</a>
         <a href="#top">Back to top</a>
       </div>
@@ -176,6 +191,54 @@
         document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
       }
     }
+  })();
+  </script>
+
+  <script src="practice/data/unit1.js"></script>
+  <script src="practice/data/unit2.js"></script>
+  <script src="practice/data/unit3.js"></script>
+  <script src="practice/data/unit4.js"></script>
+  <script src="practice/data/dictation3.js"></script>
+  <script src="practice/data/registry.js"></script>
+  <script src="practice/mastery.js"></script>
+  <script>
+  (function () {
+    try {
+      var M = window.Mastery;
+      var R = window.PracticeRegistry;
+      var keys = M.allKnownKeysFromRegistry();
+      var list = M.suggestToday(keys, 20);
+      var el = document.getElementById('today-home-count');
+      if (el) el.textContent = String(list.length);
+
+      var tones = { sunny: 'sunny', green: 'green', sky: 'sky', coral: 'coral', pink: 'pink' };
+      var box = document.getElementById('review-progress');
+      if (!box || !R) return;
+      R.listUnits().forEach(function (u) {
+        var pack = R.getUnit(u.id);
+        var wordKeys = (pack && pack.words) ? pack.words.map(function (w) { return w.key; }) : [];
+        var total = wordKeys.length;
+        var neu = 0, review = 0, mastered = 0;
+        wordKeys.forEach(function (k) {
+          var w = M.load().words[k];
+          if (!w || w.state === 'new') neu += 1;
+          else if (w.state === 'review') review += 1;
+          else if (w.state === 'mastered') mastered += 1;
+        });
+        var pct = total ? Math.round((mastered / total) * 100) : 0;
+        var locked = !u.ready || !total;
+        var row = document.createElement('a');
+        row.href = locked ? 'practice/index.html' : ('practice/index.html?unit=' + encodeURIComponent(u.id));
+        row.className = 'review-row tone-' + (tones[u.tone] || 'sky') + (locked ? ' is-locked' : '');
+        row.innerHTML =
+          '<div class="review-row-top">' +
+            '<span class="review-label">' + u.label + '</span>' +
+            '<span class="review-pct">' + (locked && !total ? 'Soon' : (pct + '%')) + '</span>' +
+          '</div>' +
+          '<div class="review-track" aria-hidden="true"><span class="review-fill" style="width:' + (locked ? 0 : pct) + '%"></span></div>';
+        box.appendChild(row);
+      });
+    } catch (e) {}
   })();
   </script>
 </body>
