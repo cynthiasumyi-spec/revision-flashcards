@@ -328,12 +328,23 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .toast {
   margin-top: 0.85rem;
-  padding: 0.7rem 1rem;
-  border-radius: var(--pill);
+  padding: 0.55rem 0.9rem 0.55rem 0.55rem;
+  border-radius: 1.25rem;
   font-weight: 700;
   background: var(--sky);
   color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
+.toast-cat {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+  background: none;
+}
+.toast-body { flex: 1; min-width: 0; }
 .toast.ok { background: var(--green); color: var(--white); }
 .toast.bad { background: var(--pink); color: var(--navy); }
 

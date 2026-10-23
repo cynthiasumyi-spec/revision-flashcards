@@ -201,13 +201,14 @@ window.Badges = (function () {
   }
 
   function unitUnlocked(unitId) {
+    if (unitId === 'unit1' || unitId === 'dictation3') return true;
     const i = unitIndex(unitId);
-    if (i < 0) return false;
-    if (i === 0) return true;
+    if (i <= 0) return false;
     return coreComplete(ORDER[i - 1].id);
   }
 
   function lockReason(unitId) {
+    if (unitId === 'unit1' || unitId === 'dictation3') return '';
     const i = unitIndex(unitId);
     if (i <= 0) return '';
     const prev = ORDER[i - 1];

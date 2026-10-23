@@ -97,15 +97,44 @@ window.PracticeCommon = (function () {
     return slots;
   }
 
-  function toast(el, msg, kind) {
+  /**
+   * Quiz feedback cats from いらすとや
+   * https://www.irasutoya.com/2017/12/blog-post_89.html
+   * feedback-ok.png = マルを出す猫, feedback-bad.png = バツを出す猫
+   */
+  function feedbackArt(kind) {
+    if (kind === 'ok') return 'icons/feedback-ok.png';
+    if (kind === 'bad') return 'icons/feedback-bad.png';
+    return '';
+  }
+
+  function showFeedback(el, kind, fillBody) {
     if (!el) return;
-    el.textContent = msg;
-    el.className = 'toast ' + (kind || '');
+    while (el.firstChild) el.removeChild(el.firstChild);
+    el.className = 'toast' + (kind ? ' ' + kind : '');
+    const src = feedbackArt(kind);
+    if (src) {
+      const img = document.createElement('img');
+      img.className = 'toast-cat';
+      img.src = src;
+      img.alt = '';
+      el.appendChild(img);
+    }
+    const body = document.createElement('div');
+    body.className = 'toast-body';
+    if (fillBody) fillBody(body);
+    el.appendChild(body);
     el.hidden = false;
+  }
+
+  function toast(el, msg, kind) {
+    showFeedback(el, kind, function (body) {
+      body.textContent = msg;
+    });
   }
 
   return {
     shuffle, unitParam, loadUnit, hubLink, practiceLink,
-    playAudio, escapeHtml, maskWord, maskPhrase, patternToSlots, toast
+    playAudio, escapeHtml, maskWord, maskPhrase, patternToSlots, toast, showFeedback
   };
 })();
