@@ -53,9 +53,14 @@ window.Badges = (function () {
   }
 
   /*
-   * Medal art is original いらすとや clipart, saved locally (not generated).
-   * Coloured ribbon medals: https://www.irasutoya.com/2015/10/blog-post_431.html
-   * Number 1 gold medal: https://www.irasutoya.com/2014/02/blog-post_4985.html
+   * Badge art is original いらすとや clipart of people, saved locally (not generated).
+   * First Steps: https://www.irasutoya.com/2013/11/blog-post_508.html
+   * Unit Completer: https://www.irasutoya.com/2014/09/blog-post_58.html
+   * Phrase Speller: https://www.irasutoya.com/2013/01/blog-post_2739.html
+   * Match Master: https://www.irasutoya.com/2017/07/blog-post_978.html
+   * Timed Hero: https://www.irasutoya.com/2012/12/blog-post_271.html
+   * Hard Challenger: https://www.irasutoya.com/2020/01/blog-post_69.html
+   * Review Slayer: https://www.irasutoya.com/2017/09/blog-post_494.html
    */
   function catalog() {
     const globals = [
