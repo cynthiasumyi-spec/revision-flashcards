@@ -1,0 +1,265 @@
+/* Unit / dictation card screens — same colour-chapters language as homepage */
+:root {
+  --bg: #f8f8f8;
+  --surface: #eeeeee;
+  --ink: #0a0a0a;
+  --muted: #6a6a6a;
+  --accent: #1f6b3a;
+  --accent-ink: #ffffff;
+  --field-1: #c3edce;
+  --field-1-ink: #0a0a0a;
+  --field-2: #f8c7c9;
+  --field-2-ink: #0a0a0a;
+  --field-3: #ffffff;
+  --field-3-ink: #0a0a0a;
+  --font-display: "Red Hat Display", system-ui, sans-serif;
+  --font-text: "Red Hat Text", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --margin: clamp(1rem, 2.2vw, 1.75rem);
+  --illust: 220px;
+  --radius: 0;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.unit-header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--field-1);
+  color: var(--field-1-ink);
+  padding: 1rem var(--margin) 1.1rem;
+}
+.back {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-bottom: 0.35rem;
+  color: var(--accent);
+}
+.back:hover { color: var(--ink); text-decoration: underline; }
+.unit-header h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+.sub {
+  margin: 0.4rem 0 0;
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.hint {
+  max-width: 720px;
+  margin: 1rem auto 0;
+  padding: 0 var(--margin);
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.list, .grid {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem var(--margin) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.card {
+  position: relative;
+  padding: 1.15rem 1.15rem 1rem;
+  color: var(--ink);
+  border: 0;
+  border-radius: var(--radius);
+}
+.card.fill-a { background: var(--field-1); color: var(--field-1-ink); }
+.card.fill-b { background: var(--field-2); color: var(--field-2-ink); }
+.card.fill-c { background: var(--ink); color: var(--field-3); }
+.card.fill-d { background: var(--field-3); color: var(--field-3-ink); }
+.card.fill-e { background: var(--accent); color: var(--accent-ink); }
+.card.fill-f { background: #8fd9a3; color: var(--ink); }
+
+.top { display: flex; gap: 1rem; align-items: flex-start; }
+.illust {
+  flex: 0 0 var(--illust);
+  width: var(--illust); height: var(--illust);
+  background: var(--field-3);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.illust img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  background: var(--field-3);
+}
+.main { flex: 1; min-width: 0; padding-right: 3.5rem; }
+.num {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+.syllables, .label-word {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.45rem, 1.1rem + 1.5vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.35rem;
+  word-break: break-word;
+}
+.zh {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.speaker {
+  position: absolute; top: 1rem; right: 1rem;
+  width: 3.25rem; height: 3.25rem;
+  border: 0; border-radius: 0;
+  background: var(--field-3);
+  color: var(--ink);
+  display: grid; place-items: center;
+  z-index: 3;
+  transition: transform var(--t-press), background var(--t-hover);
+}
+.speaker svg { width: 1.45rem; height: 1.45rem; }
+.card.fill-c .speaker,
+.card.fill-e .speaker {
+  background: var(--field-1);
+  color: var(--ink);
+}
+.speaker:hover { background: var(--accent); color: var(--accent-ink); }
+.speaker:active { transform: scale(0.94); }
+.card.playing .speaker {
+  outline: 3px solid var(--field-2);
+  outline-offset: 2px;
+}
+
+.ex {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  padding: 0.85rem 1rem;
+  margin-top: 0.75rem;
+}
+.card.fill-d .ex { background: var(--surface); }
+.ex-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+  color: var(--accent);
+}
+.ex-en { font-size: 1.05rem; line-height: 1.45; margin: 0 0 0.3rem; color: var(--ink); }
+.ex-zh { font-size: 1rem; line-height: 1.4; margin: 0; color: var(--ink); opacity: 0.92; }
+.hl {
+  background: var(--ink);
+  color: var(--field-3);
+  font-weight: 700;
+  padding: 0 0.2em;
+}
+
+/* Dictation picture cards */
+.d-card {
+  position: relative;
+  background: var(--field-1);
+  color: var(--field-1-ink);
+  padding: 0.85rem;
+}
+.d-card:nth-child(3n+2) { background: var(--field-2); color: var(--field-2-ink); }
+.d-card:nth-child(3n+3) { background: var(--ink); color: var(--field-3); }
+.d-card .illust {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  flex: none;
+}
+.d-card .label-word {
+  margin-top: 0.75rem;
+  padding-right: 3.5rem;
+}
+.d-card .speaker { top: 0.85rem; right: 0.85rem; }
+.d-card:nth-child(3n+3) .speaker {
+  background: var(--field-1);
+  color: var(--ink);
+}
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(10, 10, 10, 0.92);
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 0.75rem;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 88px);
+  width: auto; height: auto;
+  object-fit: contain;
+  background: var(--field-3);
+}
+.lb-bar {
+  display: flex; gap: 0.75rem; align-items: center; justify-content: center;
+  margin-top: 0.75rem; width: 100%; max-width: 480px;
+}
+.lb-btn {
+  appearance: none; border: 0; border-radius: 0;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 900;
+  cursor: pointer; color: var(--accent-ink);
+  transition: transform var(--t-press), background var(--t-hover);
+}
+.lb-btn:active { transform: scale(0.97); }
+.lb-close { background: var(--field-3); color: var(--ink); }
+.lb-play { background: var(--accent); color: var(--accent-ink); }
+
+@media (min-width: 640px) {
+  :root { --illust: 260px; }
+}
+@media (max-width: 380px) {
+  :root { --illust: 160px; }
+  .main { padding-right: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
