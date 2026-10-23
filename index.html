@@ -20,6 +20,7 @@
         <a href="#packs">Packs</a>
         <a href="#how">How it works</a>
         <a href="practice/index.html">Practice</a>
+        <a href="badges.html">Badges</a>
         <a class="nav-action" href="#start">Start</a>
       </nav>
     </div>
@@ -30,6 +31,12 @@
     <section class="hero hero-simple" aria-labelledby="hero-title">
       <h1 class="hero-title" id="hero-title">English Revision</h1>
       <p class="hero-support">Flashcards, games, quizzes</p>
+      <a class="score-chip" href="badges.html" id="score-chip">
+        <span>Today <strong id="home-today" class="nums">0</strong></span>
+        <span class="score-chip-gap" aria-hidden="true"></span>
+        <span>Total <strong id="home-total" class="nums">0</strong></span>
+        <span class="score-chip-go">Badges</span>
+      </a>
     </section>
 
     <!-- Simple pack cards grid -->
@@ -99,7 +106,9 @@
           <div class="today-progress-head">
             <h2 class="today-home-title" id="today-title">Review progress</h2>
             <p class="today-home-lead"><span id="today-home-count">0</span> words ready · open Practice to start</p>
+            <p class="today-score-line nums" id="home-score-line">Today: 0 · Total: 0</p>
             <a class="btn btn-primary" href="practice/index.html">Practice hub</a>
+            <a class="btn btn-badges" href="badges.html">Badges</a>
           </div>
           <div class="review-progress-list" id="review-progress" aria-label="Mastery by unit"></div>
         </div>
@@ -163,6 +172,7 @@
         <a href="unit1/index.html">Unit 1</a>
         <a href="dictation3/index.html">Dictation 3</a>
         <a href="practice/index.html">Practice</a>
+        <a href="badges.html">Badges</a>
         <a href="watch/index.html">Watch mode</a>
         <a href="#top">Back to top</a>
       </div>
@@ -201,6 +211,7 @@
   <script src="practice/data/dictation3.js"></script>
   <script src="practice/data/registry.js"></script>
   <script src="practice/mastery.js"></script>
+  <script src="practice/score.js"></script>
   <script>
   (function () {
     try {
@@ -210,6 +221,16 @@
       var list = M.suggestToday(keys, 20);
       var el = document.getElementById('today-home-count');
       if (el) el.textContent = String(list.length);
+      if (window.Score) {
+        var todayScore = window.Score.today();
+        var totalScore = window.Score.total();
+        var todayNode = document.getElementById('home-today');
+        var totalNode = document.getElementById('home-total');
+        var scoreLine = document.getElementById('home-score-line');
+        if (todayNode) todayNode.textContent = String(todayScore);
+        if (totalNode) totalNode.textContent = String(totalScore);
+        if (scoreLine) scoreLine.textContent = window.Score.formatTotals(todayScore, totalScore);
+      }
 
       var tones = { sunny: 'sunny', green: 'green', sky: 'sky', coral: 'coral', pink: 'pink' };
       var box = document.getElementById('review-progress');
@@ -227,12 +248,13 @@
         });
         var pct = total ? Math.round((mastered / total) * 100) : 0;
         var locked = !u.ready || !total;
+        var practiceLocked = !!(window.Score && !window.Score.isUnitUnlocked(u.id));
         var row = document.createElement('a');
-        row.href = locked ? 'practice/index.html' : ('practice/index.html?unit=' + encodeURIComponent(u.id));
-        row.className = 'review-row tone-' + (tones[u.tone] || 'sky') + (locked ? ' is-locked' : '');
+        row.href = 'practice/index.html?unit=' + encodeURIComponent(u.id);
+        row.className = 'review-row tone-' + (tones[u.tone] || 'sky') + ((locked || practiceLocked) ? ' is-locked' : '');
         row.innerHTML =
           '<div class="review-row-top">' +
-            '<span class="review-label">' + u.label + '</span>' +
+            '<span class="review-label">' + u.label + (practiceLocked ? ' · locked' : '') + '</span>' +
             '<span class="review-pct">' + (locked && !total ? 'Soon' : (pct + '%')) + '</span>' +
           '</div>' +
           '<div class="review-track" aria-hidden="true"><span class="review-fill" style="width:' + (locked ? 0 : pct) + '%"></span></div>';

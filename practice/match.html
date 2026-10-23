@@ -22,11 +22,15 @@
     <span class="chip">Flips <span id="flips">0</span></span>
     <span class="chip" id="best-chip" hidden>Best <span id="best">—</span></span>
   </div>
+  <div class="toast" id="toast" hidden></div>
   <p class="match-tip" id="match-tip" hidden>Tip: one card is the English word · the other is the picture + Chinese.</p>
   <div class="board" id="board" aria-label="Matching board"></div>
   <div class="panel result-card" id="done" hidden>
     <h2>All matched!</h2>
     <p class="big" id="final-time">0:00</p>
+    <p class="session-score" id="session-score">Session score: +0</p>
+    <p class="session-detail" id="session-detail"></p>
+    <p class="session-totals" id="session-totals">Today: 0 · Total: 0</p>
     <p id="final-msg">0 flips</p>
     <p id="best-msg"></p>
     <div class="btn-row" style="justify-content:center">
@@ -46,6 +50,8 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="score.js"></script>
+<script src="score-ui.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
@@ -57,7 +63,9 @@
   document.getElementById('to-hub').href = C.hubLink(unitId);
   document.getElementById('again').href = C.practiceLink('match.html', unitId);
   document.getElementById('sub').textContent = (pack && pack.title) || '';
+  if (window.ScoreUi && !ScoreUi.enforceUnit(unitId)) return;
 
+  const ledger = window.Score ? Score.ledger() : null;
   const pairs = (pack && pack.matching) ? pack.matching.slice(0, 10) : [];
   if (pairs.length < 4) {
     document.getElementById('board').hidden = true;
@@ -161,19 +169,26 @@
     busy = true;
     const [a, b] = flipped;
     if (a.c.pairId === b.c.pairId && a.c.side !== b.c.side) {
+      const award = window.ScoreUi && ScoreUi.awardCorrect(a.c.wordKey, unitId, 'normal');
+      if (award && ledger) ledger.add(award);
+      M.markCorrect(a.c.wordKey);
+      if (award) C.toast(document.getElementById('toast'), ScoreUi.correctToast(award, 'Nice!'), award.points > 0 ? 'ok' : '');
       setTimeout(() => {
         a.btn.classList.add('is-matched');
         b.btn.classList.add('is-matched');
         a.btn.disabled = true;
         b.btn.disabled = true;
         matched += 1;
-        M.markCorrect(a.c.wordKey);
         dismissTip();
         flipped = [];
         busy = false;
         if (matched >= pairs.length) finish();
       }, 280);
     } else {
+      if (window.ScoreUi) {
+        ScoreUi.awardWrong(a.c.wordKey);
+        if (b.c.wordKey !== a.c.wordKey) ScoreUi.awardWrong(b.c.wordKey);
+      }
       M.markWrong(a.c.wordKey);
       M.markWrong(b.c.wordKey);
       setTimeout(() => {
@@ -194,6 +209,10 @@
     document.getElementById('final-msg').textContent = flips + ' flips';
     const isBest = M.setMatchBest(unitId, { ms, flips, at: Date.now() });
     document.getElementById('best-msg').textContent = isBest ? 'New best score!' : '';
+    if (window.Score && ledger) {
+      ledger.add(Score.completePractice({ unitId: unitId, practice: 'match', mode: 'normal' }));
+      ScoreUi.paintSummary(ledger);
+    }
   }
 })();
 </script>

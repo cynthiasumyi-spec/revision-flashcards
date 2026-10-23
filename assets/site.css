@@ -828,6 +828,51 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero.hero-simple .hero-support {
   margin-bottom: 0.5rem;
 }
+.score-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1.15rem auto 0.35rem;
+  padding: 0.4rem 0.45rem 0.4rem 1rem;
+  background: var(--cream);
+  color: var(--navy);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 650;
+  text-decoration: none;
+}
+.score-chip strong { color: var(--coral); font-size: 1.15rem; }
+.score-chip-gap {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--sunny);
+}
+.score-chip-go {
+  background: var(--coral);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+}
+.score-chip:hover .score-chip-go { background: var(--navy); }
+.today-score-line {
+  flex: 1 0 100%;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 650;
+  color: var(--navy);
+}
+.today-home-card .btn-badges,
+.today-progress-card .btn-badges {
+  background: var(--navy);
+  color: var(--cream);
+  border-radius: 999px;
+}
+.today-home-card .btn-badges:hover,
+.today-progress-card .btn-badges:hover {
+  background: var(--sunny);
+  color: var(--navy);
+}
 .folder-stack { display: none !important; }
 
 .pack-card {

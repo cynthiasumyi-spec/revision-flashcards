@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Badges · English Revision</title>
+  <meta name="description" content="Badges you can earn in English Revision practice." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="stylesheet" href="assets/badges.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">English Revision</a>
+      <nav class="nav-plain" aria-label="Primary">
+        <a href="index.html#packs">Packs</a>
+        <a href="practice/index.html">Practice</a>
+        <a href="badges.html" aria-current="page">Badges</a>
+        <a class="nav-action" href="index.html#start">Start</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-simple hero-badges" aria-labelledby="badge-title">
+      <h1 class="hero-title" id="badge-title">Badges</h1>
+      <p class="hero-support">Earn them in practice. Each bonus is added once.</p>
+      <p class="score-chip" id="score-chip">
+        <span>Today <strong id="badge-today" class="nums">0</strong></span>
+        <span class="score-chip-gap" aria-hidden="true"></span>
+        <span>Total <strong id="badge-total" class="nums">0</strong></span>
+      </p>
+    </section>
+
+    <section class="badge-page">
+      <div class="badge-sheet">
+        <p class="badge-lead">Grey badges are still locked. Earned badges show the day you got them.</p>
+        <ul class="badge-list" id="badge-list"></ul>
+        <a class="badge-back" href="index.html">Back home</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="practice/score.js"></script>
+  <script>
+  (function () {
+    var S = window.Score;
+    if (!S) return;
+    document.getElementById('badge-today').textContent = String(S.today());
+    document.getElementById('badge-total').textContent = String(S.total());
+    var list = document.getElementById('badge-list');
+    var marks = {
+      unitFinisher: 'UF',
+      reviewSlayer: 'RS',
+      timedAce: 'TA',
+      streak3: 'S3',
+      hardChallenger: 'HC'
+    };
+    S.catalog().forEach(function (badge) {
+      var earned = !!badge.earnedAt;
+      var item = document.createElement('li');
+      item.className = 'badge-card ' + (earned ? 'is-earned' : 'is-locked');
+      var status = earned
+        ? ('Earned ' + badge.earnedLabel + (badge.unitLabel ? ' · ' + badge.unitLabel : ''))
+        : 'Locked';
+      item.innerHTML =
+        '<span class="badge-mark" aria-hidden="true">' + marks[badge.id] + '</span>' +
+        '<span class="badge-copy">' +
+          '<span class="badge-name">' + badge.name + ' · <span class="badge-zh">' + badge.zh + '</span></span>' +
+          '<span class="badge-meta">' + badge.condition + ' ' + badge.bonus + '</span>' +
+          '<span class="badge-status">' + status + '</span>' +
+        '</span>';
+      list.appendChild(item);
+    });
+  })();
+  </script>
+</body>
+</html>

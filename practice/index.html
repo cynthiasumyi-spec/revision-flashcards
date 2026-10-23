@@ -14,12 +14,15 @@
   <a class="back" href="../index.html">← Home</a>
   <h1>Practice hub</h1>
   <p class="sub" id="unit-sub">Pick a unit and a game</p>
+  <a class="hub-score" id="hub-score" href="../badges.html">Today 0 · Total 0</a>
 </header>
 <main class="wrap">
   <p class="section-label">Unit</p>
   <div class="unit-pills" id="unit-pills" role="list"></div>
+  <p class="lock-note" id="lock-note" hidden></p>
 
   <p class="section-label">Quiz</p>
+  <p class="hard-note" id="hard-note" hidden></p>
   <div class="game-grid" id="game-grid"></div>
 </main>
 
@@ -30,6 +33,7 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="score.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
@@ -41,22 +45,43 @@
 
   document.getElementById('unit-sub').textContent = (pack && pack.title) || 'Pick a unit and a game';
 
+  const S = window.Score;
+  if (S) {
+    document.getElementById('hub-score').textContent = S.formatTotals(S.today(), S.total());
+  }
+
   const pills = document.getElementById('unit-pills');
   units.forEach(u => {
+    const open = !S || S.isUnitUnlocked(u.id);
     const a = document.createElement('a');
     a.href = 'index.html?unit=' + encodeURIComponent(u.id);
-    a.className = 'pill tone-' + u.tone + (u.id === unitId ? ' is-active' : '') + (u.ready ? '' : ' is-locked');
+    a.className = 'pill tone-' + u.tone + (u.id === unitId ? ' is-active' : '') + (u.ready && open ? '' : ' is-locked');
     a.setAttribute('role', 'listitem');
-    a.innerHTML = C.escapeHtml(u.label) + (u.ready ? '' : ' <span class="badge">soon</span>');
+    const flag = !u.ready ? ' <span class="badge">soon</span>' : (!open ? ' <span class="badge">locked</span>' : '');
+    a.innerHTML = C.escapeHtml(u.label) + flag;
     pills.appendChild(a);
   });
 
-  const ready = !!(pack && ((pack.fillIn && pack.fillIn.length) || (pack.matching && pack.matching.length)));
+  const unitOpen = !S || S.isUnitUnlocked(unitId);
+  const lockNote = document.getElementById('lock-note');
+  const hardNote = document.getElementById('hard-note');
+  if (!unitOpen && S) {
+    lockNote.hidden = false;
+    lockNote.textContent = S.unitLabel(unitId) + ' unlocks at ' + S.pointsToUnlock(unitId) + ' total points. ' + S.formatTotals(S.today(), S.total());
+  } else if (S) {
+    const hardOpen = S.isHardUnlocked(unitId);
+    hardNote.hidden = false;
+    hardNote.textContent = hardOpen
+      ? 'Hard mode is unlocked for this unit.'
+      : 'Hard mode unlocks at 80 points in this unit, or when Easy sentence fill and Easy missing letters are both finished.';
+  }
+
+  const ready = unitOpen && !!(pack && ((pack.fillIn && pack.fillIn.length) || (pack.matching && pack.matching.length)));
   const games = [
     { id: 'fill', cls: 'gc-fill', icon: 'icons/fill.svg', title: 'Sentence fill-in', desc: 'Easy: drag words · Hard: type yourself', href: 'fill.html' },
     { id: 'letters', cls: 'gc-letters', icon: 'icons/letters.svg', title: 'Missing letters', desc: 'Easy or hard letter gaps', href: 'letters.html' },
     { id: 'match', cls: 'gc-match', icon: 'icons/match.svg', title: 'Memory match', desc: 'EN ↔ Chinese + picture', href: 'match.html' },
-    { id: 'timed', cls: 'gc-timed', icon: 'icons/timed.svg', title: 'Timed challenge', desc: '60 seconds · combo bonus', href: 'timed.html' }
+    { id: 'timed', cls: 'gc-timed', icon: 'icons/timed.svg', title: 'Timed challenge', desc: '60 seconds · new words score more', href: 'timed.html' }
   ];
   const grid = document.getElementById('game-grid');
   games.forEach(g => {

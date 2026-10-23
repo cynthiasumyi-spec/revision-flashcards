@@ -38,7 +38,9 @@
   <div class="panel result-card" id="done" hidden>
     <h2>Round complete</h2>
     <p class="big" id="score-big">0</p>
-    <p id="score-msg">correct</p>
+    <p class="session-score" id="session-score">Session score: +0</p>
+    <p class="session-detail" id="session-detail"></p>
+    <p class="session-totals" id="session-totals">Today: 0 · Total: 0</p>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary" id="again" href="#">Play again</a>
       <a class="btn btn-ghost" id="to-hub" href="#">Hub</a>
@@ -56,6 +58,8 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="score.js"></script>
+<script src="score-ui.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
@@ -65,6 +69,10 @@
   document.getElementById('back-hub').href = C.hubLink(unitId);
   document.getElementById('to-hub').href = C.hubLink(unitId);
   document.getElementById('again').href = C.practiceLink('fill.html', unitId);
+  if (window.ScoreUi && !ScoreUi.enforceUnit(unitId)) return;
+
+  let ledger = window.Score ? Score.ledger() : null;
+  let syncHard = window.ScoreUi ? ScoreUi.bindHardToggle(unitId) : function () {};
 
   function loadItems(m) {
     if (m === 'hard') {
@@ -105,12 +113,14 @@
   document.getElementById('diff-hard').addEventListener('click', function () { setMode('hard'); });
 
   function setMode(m) {
+    if (m === 'hard' && window.Score && !Score.isHardUnlocked(unitId)) return;
     mode = m;
     document.getElementById('diff-easy').classList.toggle('is-on', m === 'easy');
     document.getElementById('diff-hard').classList.toggle('is-on', m === 'hard');
     items = loadItems(mode);
     idx = 0;
     correctCount = 0;
+    ledger = window.Score ? Score.ledger() : ledger;
     document.getElementById('done').hidden = true;
     document.getElementById('game').hidden = false;
     if (!items.length) {
@@ -283,10 +293,14 @@
     const ok = isAccept(item, val);
     if (ok) {
       correctCount += 1;
+      const award = window.ScoreUi && ScoreUi.awardCorrect(item.wordKey, unitId, mode);
+      if (award && ledger) ledger.add(award);
       M.markCorrect(item.wordKey);
-      C.toast(toast, 'Nice! ✓', 'ok');
+      C.toast(toast, award ? ScoreUi.correctToast(award, 'Nice!') : 'Nice!', award && award.points > 0 ? 'ok' : (award ? '' : 'ok'));
+      if (syncHard) syncHard();
       if (slotRef.el) slotRef.el.classList.add('filled', 'is-correct');
     } else {
+      if (window.ScoreUi) ScoreUi.awardWrong(item.wordKey);
       M.markWrong(item.wordKey);
       C.toast(toast, 'Answer: ' + item.answer, 'bad');
       if (slotRef.el) slotRef.el.classList.add('is-wrong');
@@ -314,6 +328,11 @@
   btnNext.addEventListener('click', function () {
     idx += 1;
     if (idx >= items.length) {
+      if (window.Score && ledger) {
+        ledger.add(Score.completePractice({ unitId: unitId, practice: 'fill', mode: mode }));
+        ScoreUi.paintSummary(ledger);
+        if (syncHard) syncHard();
+      }
       document.getElementById('game').hidden = true;
       document.getElementById('done').hidden = false;
       document.getElementById('score-big').textContent = correctCount + ' / ' + items.length;

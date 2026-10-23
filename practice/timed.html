@@ -18,7 +18,7 @@
 <main class="wrap">
   <div id="lobby">
     <div class="panel">
-      <p style="margin:0 0 0.75rem;font-weight:600">Answer as many as you can. Combos give bonus points.</p>
+      <p style="margin:0 0 0.75rem;font-weight:600">Finish the deck before the clock runs out. Each new word today is worth 10. Every second left is worth 2.</p>
       <div class="score-row" style="margin-bottom:1rem">
         <label class="toggle"><input type="checkbox" id="penalty"/> Time penalty on wrong (−3s)</label>
       </div>
@@ -46,6 +46,9 @@
   <div class="panel result-card" id="done" hidden>
     <h2>Time's up!</h2>
     <p class="big" id="final-score">0</p>
+    <p class="session-score" id="session-score">Session score: +0</p>
+    <p class="session-detail" id="session-detail"></p>
+    <p class="session-totals" id="session-totals">Today: 0 · Total: 0</p>
     <p id="final-detail"></p>
     <p id="best-msg"></p>
     <div class="btn-row" style="justify-content:center">
@@ -66,6 +69,8 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="score.js"></script>
+<script src="score-ui.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
@@ -76,6 +81,7 @@
   document.getElementById('to-hub').href = C.hubLink(unitId);
   document.getElementById('to-hub2').href = C.hubLink(unitId);
   document.getElementById('sub').textContent = (pack && pack.title) || '';
+  if (window.ScoreUi && !ScoreUi.enforceUnit(unitId)) return;
 
   const fill = (pack && pack.fillIn) || [];
   const words = (pack && pack.words) || [];
@@ -92,7 +98,6 @@
   }
 
   let remaining = 60;
-  let score = 0;
   let combo = 0;
   let answered = 0;
   let correctN = 0;
@@ -100,6 +105,9 @@
   let busy = false;
   let usePenalty = false;
   let queue = [];
+  let ended = false;
+  let correctKeys = [];
+  let sessionKeys = [];
 
   function buildQueue() {
     const q = [];
@@ -129,14 +137,20 @@
     return C.shuffle(q);
   }
 
+  function runningScore() {
+    return sessionKeys.length * 10;
+  }
+
   function start() {
     usePenalty = document.getElementById('penalty').checked;
     remaining = 60;
-    score = 0;
     combo = 0;
     answered = 0;
     correctN = 0;
     busy = false;
+    ended = false;
+    correctKeys = [];
+    sessionKeys = [];
     queue = buildQueue();
     document.getElementById('lobby').hidden = true;
     document.getElementById('done').hidden = true;
@@ -160,8 +174,11 @@
   }
 
   function nextQ() {
-    if (remaining <= 0) return;
-    if (!queue.length) queue = buildQueue();
+    if (ended || remaining <= 0) return;
+    if (!queue.length) {
+      endGame();
+      return;
+    }
     const item = queue.shift();
     busy = false;
     document.getElementById('toast').hidden = true;
@@ -189,21 +206,28 @@
       btn.classList.add('correct');
       correctN += 1;
       combo += 1;
-      const bonus = combo >= 3 ? 2 : 1;
-      const pts = 10 * bonus;
-      score += pts;
+      const preview = window.Score
+        ? Score.previewTimedCorrect({ wordKey: item.wordKey, sessionKeys: sessionKeys })
+        : { points: 10, reason: 'timed', parts: [] };
+      correctKeys.push(item.wordKey);
+      if (preview.points > 0) sessionKeys.push(item.wordKey);
       M.markCorrect(item.wordKey);
-      document.getElementById('score').textContent = String(score);
+      document.getElementById('score').textContent = String(runningScore());
       const comboEl = document.getElementById('combo');
       if (combo >= 2) {
         comboEl.hidden = false;
-        comboEl.textContent = '×' + bonus + ' combo';
+        comboEl.textContent = combo + ' in a row';
       }
-      C.toast(document.getElementById('toast'), '+' + pts, 'ok');
+      C.toast(
+        document.getElementById('toast'),
+        window.Score ? Score.formatCorrectToast(preview) : ('+' + preview.points),
+        preview.points > 0 ? 'ok' : ''
+      );
     } else {
       btn.classList.add('wrong');
       combo = 0;
       document.getElementById('combo').hidden = true;
+      if (window.ScoreUi) ScoreUi.awardWrong(item.wordKey);
       M.markWrong(item.wordKey);
       opts.forEach(o => {
         if (o.textContent.toLowerCase() === item.answer.toLowerCase()) o.classList.add('correct');
@@ -221,15 +245,31 @@
   }
 
   function endGame() {
+    if (ended) return;
+    ended = true;
     clearInterval(timerId);
+    const secondsLeft = Math.max(0, remaining);
     remaining = 0;
     updateTimer();
+    const award = window.Score
+      ? Score.completeTimed({
+          unitId: unitId,
+          correctWordKeys: correctKeys,
+          remainingSeconds: secondsLeft
+        })
+      : null;
+    const ledger = window.Score ? Score.ledger() : null;
+    if (award && ledger) ledger.add(award);
+    const sessionPoints = ledger ? ledger.points() : runningScore();
     document.getElementById('play').hidden = true;
     document.getElementById('done').hidden = false;
-    document.getElementById('final-score').textContent = String(score);
+    document.querySelector('#done h2').textContent = secondsLeft > 0 ? 'Deck complete!' : "Time's up!";
+    document.getElementById('final-score').textContent = String(sessionPoints);
+    if (ledger && window.ScoreUi) ScoreUi.paintSummary(ledger);
     document.getElementById('final-detail').textContent = correctN + ' correct · ' + answered + ' answered';
-    const isBest = M.setTimedBest(unitId, score);
-    document.getElementById('best-msg').textContent = isBest ? 'New best score!' : (best != null && score <= best ? 'Best remains ' + best : '');
+    const isBest = M.setTimedBest(unitId, award ? award.points : sessionPoints);
+    const shownBest = award ? award.points : sessionPoints;
+    document.getElementById('best-msg').textContent = isBest ? 'New best score!' : (best != null && shownBest <= best ? 'Best remains ' + best : '');
   }
 
   document.getElementById('btn-start').addEventListener('click', start);

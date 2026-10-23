@@ -781,6 +781,49 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin: 0;
   font-family: var(--font-display);
 }
+.session-score {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0.35rem 0 0.15rem;
+  color: var(--navy);
+}
+.session-detail, .session-totals {
+  margin: 0.2rem 0;
+  font-weight: 700;
+}
+.session-detail { color: var(--muted); }
+.session-totals { color: var(--navy); }
+.hub-score {
+  display: inline-flex;
+  margin-top: 0.7rem;
+  background: var(--cream);
+  color: var(--navy);
+  text-decoration: none;
+  border-radius: var(--pill);
+  padding: 0.4rem 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 650;
+}
+.hub-score:hover { background: var(--sunny); }
+.lock-note, .hard-note {
+  border-radius: var(--pill);
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  margin: 0 0 0.9rem;
+}
+.lock-note { background: var(--pink); color: var(--navy); }
+.hard-note { background: var(--white); color: var(--navy); }
+.diff-toggle button.is-locked { opacity: 0.5; }
+.diff-toggle button .badge {
+  margin-left: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(36, 60, 108, 0.16);
+  color: var(--navy);
+  padding: 0.08rem 0.4rem;
+  border-radius: var(--pill);
+}
 
 .empty-state {
   text-align: center;

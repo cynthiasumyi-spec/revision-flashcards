@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Score demo seed</title>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+  <main class="badge-page" style="padding:2rem 1.25rem">
+    <h1 class="hero-title" style="color:var(--navy);font-size:2.4rem">Score demo</h1>
+    <p>Loads sample scores into this browser only. Mastery progress is left as it is.</p>
+    <p id="seed-status">Press the button to seed Today 48 and Total 360.</p>
+    <p>
+      <button type="button" class="btn btn-primary" id="seed-btn" style="border-radius:999px">Load demo scores</button>
+    </p>
+    <p>
+      <a href="index.html">Home</a> ·
+      <a href="badges.html">Badges</a> ·
+      <a href="practice/index.html?unit=unit1">Practice Unit 1</a> ·
+      <a href="practice/index.html?unit=unit4">Practice Unit 4 (locked)</a>
+    </p>
+  </main>
+  <script src="practice/seed-demo.js"></script>
+  <script>
+  document.getElementById('seed-btn').addEventListener('click', function () {
+    var result = window.seedScoreDemo();
+    document.getElementById('seed-status').textContent =
+      'Seeded for ' + result.date + '. Today ' + result.today + ' · Total ' + result.total + '.';
+  });
+  if (new URLSearchParams(location.search).get('seed') === '1') {
+    document.getElementById('seed-btn').click();
+  }
+  </script>
+</body>
+</html>
