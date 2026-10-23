@@ -337,6 +337,26 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .toast.ok { background: var(--green); color: var(--white); }
 .toast.bad { background: var(--pink); color: var(--navy); }
 
+.toast.toast-explain-panel {
+  border-radius: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  padding: 0.85rem 1rem;
+}
+.toast .toast-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.02rem;
+  margin-bottom: 0.35rem;
+}
+.toast .toast-explain {
+  font-family: var(--font-text);
+  font-weight: 600;
+  font-size: 0.92rem;
+  opacity: 0.95;
+}
+
+
 /* —— Fill-in —— */
 .sentence {
   font-size: clamp(1.15rem, 1rem + 0.8vw, 1.4rem);
