@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Primary 6 English Flashcards</title>
-  <meta name="description" content="Hong Kong Primary 6 English vocabulary flashcards. open a pack, hear the word, read the bilingual example." />
+  <meta name="description" content="Hong Kong Primary 6 English vocabulary flashcards. Open a pack, hear the word, read the bilingual example." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -25,108 +25,67 @@
   </header>
 
   <main id="top">
-    <!-- Hero: tabbed folder stack on navy desk -->
-    <section class="hero" aria-labelledby="hero-title">
+    <!-- Hero: navy board + yellow title (no folder tabs) -->
+    <section class="hero hero-simple" aria-labelledby="hero-title">
       <h1 class="hero-title" id="hero-title">P6 flashcards</h1>
       <p class="hero-support">
         Hong Kong Primary 6 vocabulary. Open a pack, hear the word, read the bilingual example.
       </p>
-
-      <div class="folder-stack" id="folder-stack" role="list" aria-label="Revision packs as folders">
-        <a class="folder f5" role="listitem" href="dictation3/index.html"
-           data-cover="covers/dictation3.jpg" data-name="Dictation 3 · Films and similes" data-count="15" data-unit="cards"
-           data-alt="Dictation 3 cover" data-tab="Dictation 3">
-          <span class="folder-tab">Dictation 3</span>
-        </a>
-        <a class="folder f4" role="listitem" href="unit4/index.html"
-           data-cover="covers/unit4.jpg" data-name="Unit 4 · Film magic" data-count="14" data-unit="words"
-           data-alt="Unit 4 cover: Film magic" data-tab="Unit 4">
-          <span class="folder-tab">Unit 4</span>
-        </a>
-        <a class="folder f3" role="listitem" href="unit3/index.html"
-           data-cover="covers/unit3.jpg" data-name="Unit 3 · Junior Super Chef" data-count="12" data-unit="words"
-           data-alt="Unit 3 cover: Junior Super Chef" data-tab="Unit 3">
-          <span class="folder-tab">Unit 3</span>
-        </a>
-        <a class="folder f2" role="listitem" href="unit2/index.html"
-           data-cover="covers/unit2.jpg" data-name="Unit 2 · Lend a helping hand" data-count="10" data-unit="words"
-           data-alt="Unit 2 cover: Lend a helping hand" data-tab="Unit 2">
-          <span class="folder-tab">Unit 2</span>
-        </a>
-        <div class="folder f1 is-front" role="listitem" id="front-folder">
-          <span class="folder-tab">Unit 1</span>
-          <div class="folder-open">
-            <figure class="folder-cover">
-              <img id="pack-cover" src="covers/unit1.jpg" alt="Unit 1 cover: For a good cause" width="900" height="680" decoding="async" />
-            </figure>
-            <p class="folder-meta" id="pack-meta">
-              <strong>Unit 1 · For a good cause</strong>
-              <span><span class="nums">10</span> words in this pack · <span class="nums">61</span> words on this site</span>
-            </p>
-            <a class="btn btn-primary folder-cta" href="unit1/index.html">Open Unit 1</a>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- List: printed catalogue sheet + Class News pack cards -->
+    <!-- Simple pack cards grid -->
     <section class="section packs" id="packs" aria-labelledby="packs-title">
       <div class="packs-field">
         <div class="sheet reveal">
           <h2 class="sheet-title" id="packs-title">The packs</h2>
-          <p class="sheet-note">Five paper sets on the desk. Tap a card to revise.</p>
+          <p class="sheet-note">Five revision packs. Pick one to open.</p>
 
           <div class="pack-grid" id="pack-index">
-            <a class="pack-card tone-coral is-active reveal reveal-delay-1" href="unit1/index.html"
-               data-cover="covers/unit1.jpg" data-name="Unit 1 · For a good cause" data-count="10" data-unit="words"
-               data-alt="Unit 1 cover: For a good cause" data-tab="Unit 1">
-              <div class="pack-cover"><img src="covers/unit1.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+            <article class="pack-card tone-coral reveal reveal-delay-1">
+              <div class="pack-cover"><img src="covers/unit1.jpg" alt="Unit 1 cover: For a good cause" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
-                <h3>For a good cause</h3>
-                <p>Charity verbs for Unit 1. adopt a pet, donate money, walkathon.</p>
+                <h3>Unit 1 · For a good cause</h3>
+                <p>Charity verbs. adopt a pet, donate money, walkathon.</p>
                 <p class="pack-tags"><span class="tag">Unit 1</span><span class="tag nums">10 words</span></p>
+                <a class="btn btn-primary pack-open" href="unit1/index.html">Open Unit 1</a>
               </div>
-            </a>
-            <a class="pack-card tone-green reveal reveal-delay-2" href="unit2/index.html"
-               data-cover="covers/unit2.jpg" data-name="Unit 2 · Lend a helping hand" data-count="10" data-unit="words"
-               data-alt="Unit 2 cover: Lend a helping hand" data-tab="Unit 2">
-              <div class="pack-cover"><img src="covers/unit2.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+            </article>
+            <article class="pack-card tone-green reveal reveal-delay-2">
+              <div class="pack-cover"><img src="covers/unit2.jpg" alt="Unit 2 cover: Lend a helping hand" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
-                <h3>Lend a helping hand</h3>
+                <h3>Unit 2 · Lend a helping hand</h3>
                 <p>Natural disasters and how we help. drought, flood, rescue.</p>
                 <p class="pack-tags"><span class="tag">Unit 2</span><span class="tag nums">10 words</span></p>
+                <a class="btn btn-primary pack-open" href="unit2/index.html">Open Unit 2</a>
               </div>
-            </a>
-            <a class="pack-card tone-sky reveal reveal-delay-3" href="unit3/index.html"
-               data-cover="covers/unit3.jpg" data-name="Unit 3 · Junior Super Chef" data-count="12" data-unit="words"
-               data-alt="Unit 3 cover: Junior Super Chef" data-tab="Unit 3">
-              <div class="pack-cover"><img src="covers/unit3.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+            </article>
+            <article class="pack-card tone-sky reveal reveal-delay-3">
+              <div class="pack-cover"><img src="covers/unit3.jpg" alt="Unit 3 cover: Junior Super Chef" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
-                <h3>Junior Super Chef</h3>
+                <h3>Unit 3 · Junior Super Chef</h3>
                 <p>Kitchen verbs. beat, grate, simmer, and more for cooking class.</p>
                 <p class="pack-tags"><span class="tag">Unit 3</span><span class="tag nums">12 words</span></p>
+                <a class="btn btn-primary pack-open" href="unit3/index.html">Open Unit 3</a>
               </div>
-            </a>
-            <a class="pack-card tone-sunny reveal reveal-delay-4" href="unit4/index.html"
-               data-cover="covers/unit4.jpg" data-name="Unit 4 · Film magic" data-count="14" data-unit="words"
-               data-alt="Unit 4 cover: Film magic" data-tab="Unit 4">
-              <div class="pack-cover"><img src="covers/unit4.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+            </article>
+            <article class="pack-card tone-sunny reveal reveal-delay-4">
+              <div class="pack-cover"><img src="covers/unit4.jpg" alt="Unit 4 cover: Film magic" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
-                <h3>Film magic</h3>
+                <h3>Unit 4 · Film magic</h3>
                 <p>Genres and cinema words. action film, comedy, fantasy, musical.</p>
                 <p class="pack-tags"><span class="tag">Unit 4</span><span class="tag nums">14 words</span></p>
+                <a class="btn btn-primary pack-open" href="unit4/index.html">Open Unit 4</a>
               </div>
-            </a>
-            <a class="pack-card tone-pink reveal reveal-delay-5" href="dictation3/index.html"
-               data-cover="covers/dictation3.jpg" data-name="Dictation 3 · Films and similes" data-count="15" data-unit="cards"
-               data-alt="Dictation 3 cover" data-tab="Dictation 3">
-              <div class="pack-cover"><img src="covers/dictation3.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+            </article>
+            <article class="pack-card tone-pink reveal reveal-delay-5">
+              <div class="pack-cover"><img src="covers/dictation3.jpg" alt="Dictation 3 cover" width="640" height="480" loading="lazy" /></div>
               <div class="pack-body">
-                <h3>Dictation 3</h3>
+                <h3>Dictation 3 · Films and similes</h3>
                 <p>Film genres plus similes. blind as a bat, busy as a bee.</p>
                 <p class="pack-tags"><span class="tag">Dictation</span><span class="tag nums">15 cards</span></p>
+                <a class="btn btn-primary pack-open" href="dictation3/index.html">Open Dictation 3</a>
               </div>
-            </a>
+            </article>
           </div>
 
           <p class="sheet-foot nums reveal">61 words · 5 packs · English UI · Traditional Chinese glosses</p>
@@ -134,7 +93,6 @@
       </div>
     </section>
 
-    <!-- How it works: three classroom colour cards (fits page frame) -->
     <section class="section how" id="how" aria-labelledby="how-title">
       <div class="how-wrap reveal">
         <h2 class="how-title" id="how-title">Hear. See. Read.</h2>
@@ -165,13 +123,12 @@
       </div>
     </section>
 
-    <!-- CTA: reply card on coral field -->
     <section class="section cta" id="start" aria-labelledby="cta-title">
       <div class="cta-inner">
       <p class="cta-aside reveal">Sixty-one real syllabus words with audio. Open Unit 1 and start with the first card.</p>
       <div class="reply-card reveal reveal-delay-1">
         <h2 id="cta-title">Start Unit 1</h2>
-        <p>For a good cause. ten charity verbs with examples and Traditional Chinese glosses.</p>
+        <p>For a good cause. Ten charity verbs with examples and Traditional Chinese glosses.</p>
         <a class="btn btn-ink" href="unit1/index.html">Open the pack</a>
       </div>
       </div>
@@ -199,48 +156,7 @@
 
   <script>
   (function () {
-    var TOTAL = 61;
-    var cover = document.getElementById("pack-cover");
-    var meta = document.getElementById("pack-meta");
-    var frontTab = document.querySelector("#front-folder .folder-tab");
-    var frontCta = document.querySelector(".folder-cta");
-    var folders = document.querySelectorAll(".folder[data-cover]");
-    var cards = document.querySelectorAll(".pack-card");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    function showPack(el) {
-      if (!cover || !meta || !el) return;
-      var c = el.getAttribute("data-cover");
-      var name = el.getAttribute("data-name");
-      var count = el.getAttribute("data-count");
-      var unit = el.getAttribute("data-unit") || "words";
-      var alt = el.getAttribute("data-alt") || "";
-      var tab = el.getAttribute("data-tab") || "Pack";
-      cover.src = c;
-      cover.alt = alt;
-      meta.innerHTML =
-        "<strong>" + name + "</strong>" +
-        "<span><span class=\"nums\">" + count + "</span> " + unit +
-        " in this pack · <span class=\"nums\">" + TOTAL + "</span> words on this site</span>";
-      if (frontTab) frontTab.textContent = tab;
-      if (frontCta) {
-        frontCta.href = el.getAttribute("href");
-        frontCta.textContent = "Open " + tab;
-      }
-      cards.forEach(function (a) { a.classList.toggle("is-active", a === el || a.getAttribute("data-cover") === c); });
-      folders.forEach(function (a) { a.classList.toggle("is-dim", a !== el); });
-    }
-
-    folders.forEach(function (el) {
-      el.addEventListener("mouseenter", function () { showPack(el); });
-      el.addEventListener("focus", function () { showPack(el); });
-    });
-    cards.forEach(function (el) {
-      el.addEventListener("mouseenter", function () { showPack(el); });
-      el.addEventListener("focus", function () { showPack(el); });
-    });
-
-    /* Entrances */
     function markIn(el) { el.classList.add("is-in"); }
     var hero = document.querySelector(".hero");
     if (reduce) {

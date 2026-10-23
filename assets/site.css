@@ -813,3 +813,31 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
     opacity: 1; transform: none; transition: none;
   }
 }
+
+
+/* —— Simple homepage (no folder tabs) —— */
+.hero.hero-simple {
+  min-height: auto;
+  padding: 2rem var(--margin) 2.75rem;
+  justify-content: center;
+}
+.hero.hero-simple .hero-title {
+  margin-top: clamp(0.75rem, 3vw, 1.75rem);
+  max-width: 14ch;
+}
+.hero.hero-simple .hero-support {
+  margin-bottom: 0.5rem;
+}
+.folder-stack { display: none !important; }
+
+.pack-card {
+  /* was <a>; now <article> with inner Open button */
+}
+.pack-body .pack-open {
+  margin-top: 0.75rem;
+  align-self: stretch;
+  width: 100%;
+  text-align: center;
+}
+.tone-green .pack-open { color: var(--navy); }
+.tone-green .pack-open:hover { background: var(--sunny); color: var(--navy); }
