@@ -26,179 +26,199 @@ window.PRACTICE_UNIT4 = {
     {
       id: "u4-f1",
       wordKey: "unit4:action",
-      sentence: "Tom loves watching ______ with fast fights.",
+      sentence: "Tom loves watching ______ with car chases, jumps, and fast fights.",
       blank: '______',
-      options: ["an action film", "a comedy", "a fantasy film", "a horror film"],
+      options: ["an action film", "a comedy", "a musical", "a horror film"],
       answer: "an action film",
-      accept: ["an action film"]
+      accept: ["an action film"],
+      explain: "Car chases and fast fights = an action film (\u52d5\u4f5c\u7247)."
     },
     {
       id: "u4-f2",
       wordKey: "unit4:comedy",
-      sentence: "We laughed a lot at ______ last night.",
+      sentence: "We laughed so hard at the funny jokes in ______ last night.",
       blank: '______',
-      options: ["a comedy", "an action film", "a fantasy film", "a horror film"],
+      options: ["a comedy", "an action film", "a horror film", "a science fiction film"],
       answer: "a comedy",
-      accept: ["a comedy"]
+      accept: ["a comedy"],
+      explain: "Funny jokes that make you laugh = a comedy (\u559c\u5287)."
     },
     {
       id: "u4-f3",
       wordKey: "unit4:fantasy",
-      sentence: "The dragon appears in ______.",
+      sentence: "A talking dragon and a magic castle appear in ______.",
       blank: '______',
       options: ["a fantasy film", "an action film", "a comedy", "a horror film"],
       answer: "a fantasy film",
-      accept: ["a fantasy film"]
+      accept: ["a fantasy film"],
+      explain: "Dragons and magic = a fantasy film (\u5947\u5e7b\u7247)."
     },
     {
       id: "u4-f4",
       wordKey: "unit4:horror",
-      sentence: "She closes her eyes during ______.",
+      sentence: "She covers her eyes because the spooky scenes in ______ scare her.",
       blank: '______',
-      options: ["a horror film", "an action film", "a comedy", "a fantasy film"],
+      options: ["a horror film", "a comedy", "a musical", "an action film"],
       answer: "a horror film",
-      accept: ["a horror film"]
+      accept: ["a horror film"],
+      explain: "Spooky scary scenes = a horror film (\u6050\u6016\u7247)."
     },
     {
       id: "u4-f5",
       wordKey: "unit4:musical",
-      sentence: "The actors sing and dance in ______.",
+      sentence: "The actors sing songs and dance on stage in ______.",
       blank: '______',
-      options: ["a musical", "an action film", "a comedy", "a fantasy film"],
+      options: ["a musical", "an action film", "a horror film", "a science fiction film"],
       answer: "a musical",
-      accept: ["a musical"]
+      accept: ["a musical"],
+      explain: "Singing and dancing on stage = a musical (\u97f3\u6a02\u5287\uff0f\u6b4c\u821e\u7247)."
     },
     {
       id: "u4-f6",
       wordKey: "unit4:scifi",
-      sentence: "Robots travel in space in ______.",
+      sentence: "Robots travel to distant planets in space in ______.",
       blank: '______',
-      options: ["a science fiction film", "an action film", "a comedy", "a fantasy film"],
+      options: ["a science fiction film", "a comedy", "a musical", "a horror film"],
       answer: "a science fiction film",
-      accept: ["a science fiction film"]
+      accept: ["a science fiction film"],
+      explain: "Robots and space planets = a science fiction film (\u79d1\u5e7b\u7247)."
     },
     {
       id: "u4-f7",
       wordKey: "unit4:cruel",
-      sentence: "The villain in the story is ______.",
+      sentence: "The villain who hurts the villagers on purpose is ______.",
       blank: '______',
-      options: ["cruel", "an action film", "a comedy", "a fantasy film"],
+      options: ["cruel", "curious", "lonely", "obedient"],
       answer: "cruel",
-      accept: ["cruel"]
+      accept: ["cruel"],
+      explain: "Hurting others on purpose = cruel (\u6b98\u5fcd\u7684)."
     },
     {
       id: "u4-f8",
       wordKey: "unit4:curious",
-      sentence: "The little boy is ______ about magic.",
+      sentence: "The little boy asks so many questions because he is ______ about how magic works.",
       blank: '______',
-      options: ["curious", "an action film", "a comedy", "a fantasy film"],
+      options: ["curious", "cruel", "selfish", "wicked"],
       answer: "curious",
-      accept: ["curious"]
+      accept: ["curious"],
+      explain: "Asking many questions to learn = curious (\u597d\u5947\u7684)."
     },
     {
       id: "u4-f9",
       wordKey: "unit4:lonely",
-      sentence: "The lost puppy looks ______.",
+      sentence: "The lost puppy has no friends nearby and looks ______ in the empty park.",
       blank: '______',
-      options: ["lonely", "an action film", "a comedy", "a fantasy film"],
+      options: ["lonely", "obedient", "wise", "wicked"],
       answer: "lonely",
-      accept: ["lonely"]
+      accept: ["lonely"],
+      explain: "No friends and empty park = lonely (\u5bc2\u5bde\u7684)."
     },
     {
       id: "u4-f10",
       wordKey: "unit4:obedient",
-      sentence: "The dog is ______ and sits when told.",
+      sentence: "The dog is ______ and sits quietly at once when its owner says \u201cSit!\u201d",
       blank: '______',
-      options: ["obedient", "an action film", "a comedy", "a fantasy film"],
+      options: ["obedient", "cruel", "selfish", "wicked"],
       answer: "obedient",
-      accept: ["obedient"]
+      accept: ["obedient"],
+      explain: "Listening and sitting when told = obedient (\u807d\u8a71\u7684)."
     },
     {
       id: "u4-f11",
       wordKey: "unit4:selfish",
-      sentence: "A ______ person only thinks of himself.",
+      sentence: "A ______ person keeps all the snacks and will not share with anyone.",
       blank: '______',
-      options: ["selfish", "an action film", "a comedy", "a fantasy film"],
+      options: ["selfish", "curious", "obedient", "wise"],
       answer: "selfish",
-      accept: ["selfish"]
+      accept: ["selfish"],
+      explain: "Keeping everything and not sharing = selfish (\u81ea\u79c1\u7684)."
     },
     {
       id: "u4-f12",
       wordKey: "unit4:timid",
-      sentence: "The ______ rabbit hides behind a tree.",
+      sentence: "The ______ rabbit hides behind a tree whenever it hears a tiny noise.",
       blank: '______',
-      options: ["timid", "an action film", "a comedy", "a fantasy film"],
+      options: ["timid", "cruel", "wise", "selfish"],
       answer: "timid",
-      accept: ["timid"]
+      accept: ["timid"],
+      explain: "Hiding from tiny noises = timid (\u81bd\u5c0f\u7684)."
     },
     {
       id: "u4-f13",
       wordKey: "unit4:wicked",
-      sentence: "The ______ witch plans a bad spell.",
+      sentence: "The ______ witch plans a dark spell to hurt the whole village.",
       blank: '______',
-      options: ["wicked", "an action film", "a comedy", "a fantasy film"],
+      options: ["wicked", "curious", "lonely", "obedient"],
       answer: "wicked",
-      accept: ["wicked"]
+      accept: ["wicked"],
+      explain: "Planning dark spells to hurt others = wicked (\u90aa\u60e1\u7684)."
     },
     {
       id: "u4-f14",
       wordKey: "unit4:wise",
-      sentence: "The ______ king gives good advice.",
+      sentence: "The ______ king gives careful, good advice that helps his people.",
       blank: '______',
-      options: ["wise", "an action film", "a comedy", "a fantasy film"],
+      options: ["wise", "cruel", "selfish", "timid"],
       answer: "wise",
-      accept: ["wise"]
-    },
+      accept: ["wise"],
+      explain: "Careful good advice = wise (\u660e\u667a\u7684\uff0f\u6709\u667a\u6167\u7684)."
+    }
   ],
 
   fillInHard: [
     {
       id: "u4-h1",
       wordKey: "unit4:action",
-      sentence: "Although the plot is simple, so many viewers who like excitement still choose ______ at the weekend.",
+      sentence: "Although the plot is simple, so many viewers who like car chases and fights still choose ______ at the weekend.",
       blank: '______',
       answer: "an action film",
-      accept: ["an action film"]
+      accept: ["an action film"],
+      explain: "Car chases and fights = an action film (\u52d5\u4f5c\u7247)."
     },
     {
       id: "u4-h2",
       wordKey: "unit4:comedy",
-      sentence: "Although school was hard that day, we watched ______ which made everyone laugh so much.",
+      sentence: "Although school was hard that day, we watched ______ which made everyone laugh so much at the jokes.",
       blank: '______',
       answer: "a comedy",
-      accept: ["a comedy"]
+      accept: ["a comedy"],
+      explain: "Jokes that make everyone laugh = a comedy (\u559c\u5287)."
     },
     {
       id: "u4-h3",
       wordKey: "unit4:fantasy",
-      sentence: "The review says the kingdom which has talking animals belongs in ______ rather than a real-life story.",
+      sentence: "The review says the kingdom which has talking dragons and magic spells belongs in ______ rather than a real-life story.",
       blank: '______',
       answer: "a fantasy film",
-      accept: ["a fantasy film"]
+      accept: ["a fantasy film"],
+      explain: "Talking dragons and magic = a fantasy film (\u5947\u5e7b\u7247)."
     },
     {
       id: "u4-h4",
       wordKey: "unit4:horror",
-      sentence: "Although Mum prefers gentle stories, my brother who loves scary scenes still picks ______.",
+      sentence: "Although Mum prefers gentle stories, my brother who loves spooky scary scenes still picks ______.",
       blank: '______',
       answer: "a horror film",
-      accept: ["a horror film"]
+      accept: ["a horror film"],
+      explain: "Spooky scary scenes = a horror film (\u6050\u6016\u7247)."
     },
     {
       id: "u4-h5",
       wordKey: "unit4:musical",
-      sentence: "The show which is full of songs and dances is ______ that our class wants to see again.",
+      sentence: "The show which is full of songs and dances on stage is ______ that our class wants to see again.",
       blank: '______',
       answer: "a musical",
-      accept: ["a musical"]
+      accept: ["a musical"],
+      explain: "Songs and dances on stage = a musical (\u97f3\u6a02\u5287\uff0f\u6b4c\u821e\u7247)."
     },
     {
       id: "u4-h6",
       wordKey: "unit4:scifi",
-      sentence: "Although the effects look new, the story which is about space travel is still ______ at heart.",
+      sentence: "Although the effects look new, the story which is about robots and space travel is still ______ at heart.",
       blank: '______',
       answer: "a science fiction film",
-      accept: ["a science fiction film"]
+      accept: ["a science fiction film"],
+      explain: "Robots and space travel = a science fiction film (\u79d1\u5e7b\u7247)."
     },
     {
       id: "u4-h7",
@@ -206,7 +226,8 @@ window.PRACTICE_UNIT4 = {
       sentence: "The king who punishes the villagers without reason is so ______ that nobody trusts him.",
       blank: '______',
       answer: "cruel",
-      accept: ["cruel"]
+      accept: ["cruel"],
+      explain: "Punishing without reason = cruel (\u6b98\u5fcd\u7684)."
     },
     {
       id: "u4-h8",
@@ -214,56 +235,63 @@ window.PRACTICE_UNIT4 = {
       sentence: "The girl who asks so many questions about the castle is ______, which helps her solve the mystery.",
       blank: '______',
       answer: "curious",
-      accept: ["curious"]
+      accept: ["curious"],
+      explain: "Asking many questions = curious (\u597d\u5947\u7684)."
     },
     {
       id: "u4-h9",
       wordKey: "unit4:lonely",
-      sentence: "Although he lives in a busy city, the hero who has no friends still feels ______.",
+      sentence: "Although he lives in a busy city, the hero who has no friends still feels ______ every evening.",
       blank: '______',
       answer: "lonely",
-      accept: ["lonely"]
+      accept: ["lonely"],
+      explain: "Having no friends = lonely (\u5bc2\u5bde\u7684)."
     },
     {
       id: "u4-h10",
       wordKey: "unit4:obedient",
-      sentence: "The puppy which always listens to its owner is ______, so it learns tricks quickly.",
+      sentence: "The puppy which always listens when its owner says \u201cSit!\u201d is ______, so it learns tricks quickly.",
       blank: '______',
       answer: "obedient",
-      accept: ["obedient"]
+      accept: ["obedient"],
+      explain: "Always listening to commands = obedient (\u807d\u8a71\u7684)."
     },
     {
       id: "u4-h11",
       wordKey: "unit4:selfish",
-      sentence: "Although she has so much food, the princess who will not share is ______.",
+      sentence: "Although she has so much food, the princess who will not share any snacks is ______.",
       blank: '______',
       answer: "selfish",
-      accept: ["selfish"]
+      accept: ["selfish"],
+      explain: "Not sharing what you have = selfish (\u81ea\u79c1\u7684)."
     },
     {
       id: "u4-h12",
       wordKey: "unit4:timid",
-      sentence: "The rabbit which hides from every noise is ______, although its friends are brave.",
+      sentence: "The rabbit which hides from every tiny noise is ______, although its friends are brave.",
       blank: '______',
       answer: "timid",
-      accept: ["timid"]
+      accept: ["timid"],
+      explain: "Hiding from every noise = timid (\u81bd\u5c0f\u7684)."
     },
     {
       id: "u4-h13",
       wordKey: "unit4:wicked",
-      sentence: "The queen who casts dark spells is ______, which makes the village live in fear.",
+      sentence: "The queen who casts dark spells to hurt others is ______, which makes the village live in fear.",
       blank: '______',
       answer: "wicked",
-      accept: ["wicked"]
+      accept: ["wicked"],
+      explain: "Dark spells to hurt others = wicked (\u90aa\u60e1\u7684)."
     },
     {
       id: "u4-h14",
       wordKey: "unit4:wise",
-      sentence: "The old man who gives careful advice is ______, although he speaks softly.",
+      sentence: "The old man who gives careful good advice is ______, although he speaks softly.",
       blank: '______',
       answer: "wise",
-      accept: ["wise"]
-    },
+      accept: ["wise"],
+      explain: "Careful good advice = wise (\u660e\u667a\u7684)."
+    }
   ],
 
   missingLetters: [

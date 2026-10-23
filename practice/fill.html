@@ -160,6 +160,9 @@
     selectedChip = null;
     slotRef.input = null;
     toast.hidden = true;
+    toast.innerHTML = '';
+    toast.textContent = '';
+    toast.className = 'toast';
     btnCheck.disabled = true;
     btnCheck.hidden = false;
     btnNext.hidden = true;
@@ -284,13 +287,33 @@
     if (ok) {
       correctCount += 1;
       M.markCorrect(item.wordKey);
-      C.toast(toast, 'Nice! ✓', 'ok');
+      toast.innerHTML = '';
+      toast.textContent = 'Correct! ✓';
+      toast.className = 'toast ok';
+      toast.hidden = false;
       if (slotRef.el) slotRef.el.classList.add('filled', 'is-correct');
     } else {
       M.markWrong(item.wordKey);
-      C.toast(toast, 'Answer: ' + item.answer, 'bad');
+      const explain = item.explain || '';
+      toast.innerHTML = '';
+      const title = document.createElement('div');
+      title.className = 'toast-title';
+      title.textContent = 'Correct: ' + item.answer;
+      toast.appendChild(title);
+      if (explain) {
+        const ex = document.createElement('div');
+        ex.className = 'toast-explain';
+        ex.textContent = explain;
+        toast.appendChild(ex);
+      }
+      toast.className = 'toast bad toast-explain-panel';
+      toast.hidden = false;
       if (slotRef.el) slotRef.el.classList.add('is-wrong');
       if (mode === 'hard' && slotRef.input) slotRef.input.value = item.answer;
+      else if (mode === 'easy' && slotRef.el) {
+        slotRef.el.textContent = item.answer;
+        slotRef.el.classList.add('filled');
+      }
     }
     btnNext.hidden = false;
     document.getElementById('prog').style.width = (((idx + 1) / items.length) * 100) + '%';

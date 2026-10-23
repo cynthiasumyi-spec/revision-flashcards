@@ -27,204 +27,227 @@ window.PRACTICE_DICTATION3 = {
     {
       id: "d3-f1",
       wordKey: "dictation3:action",
-      sentence: "Dad booked tickets for ______.",
+      sentence: "Dad booked tickets for ______ because he loves car chases and fights.",
       blank: '______',
       options: ["an action film", "a comedy", "a fantasy film", "a horror film"],
       answer: "an action film",
-      accept: ["an action film"]
+      accept: ["an action film"],
+      explain: "Car chases and fights = an action film (\u52d5\u4f5c\u7247)."
     },
     {
       id: "d3-f2",
       wordKey: "dictation3:comedy",
-      sentence: "We chose ______ for family night.",
+      sentence: "We chose ______ for family night so everyone could laugh at the jokes.",
       blank: '______',
       options: ["a comedy", "an action film", "a fantasy film", "a horror film"],
       answer: "a comedy",
-      accept: ["a comedy"]
+      accept: ["a comedy"],
+      explain: "Family laughs at jokes = a comedy (\u559c\u5287)."
     },
     {
       id: "d3-f3",
       wordKey: "dictation3:fantasy",
-      sentence: "There is a wizard in ______.",
+      sentence: "There is a wizard and a magic wand in ______.",
       blank: '______',
       options: ["a fantasy film", "an action film", "a comedy", "a horror film"],
       answer: "a fantasy film",
-      accept: ["a fantasy film"]
+      accept: ["a fantasy film"],
+      explain: "Wizard and magic wand = a fantasy film (\u5947\u5e7b\u7247)."
     },
     {
       id: "d3-f4",
       wordKey: "dictation3:horror",
-      sentence: "Do not watch ______ before bed.",
+      sentence: "Do not watch ______ before bed \u2014 the spooky scenes will scare you.",
       blank: '______',
       options: ["a horror film", "an action film", "a comedy", "a fantasy film"],
       answer: "a horror film",
-      accept: ["a horror film"]
+      accept: ["a horror film"],
+      explain: "Spooky scenes that scare you = a horror film (\u6050\u6016\u7247)."
     },
     {
       id: "d3-f5",
       wordKey: "dictation3:musical",
-      sentence: "The school show is like ______.",
+      sentence: "The school show is like ______ because the pupils sing and dance on stage.",
       blank: '______',
-      options: ["a musical", "an action film", "a comedy", "a fantasy film"],
+      options: ["a musical", "an action film", "a comedy", "a horror film"],
       answer: "a musical",
-      accept: ["a musical"]
+      accept: ["a musical"],
+      explain: "Singing and dancing on stage = a musical (\u97f3\u6a02\u5287\uff0f\u6b4c\u821e\u7247)."
     },
     {
       id: "d3-f6",
       wordKey: "dictation3:cruel",
-      sentence: "The pirate in the story is ______.",
+      sentence: "The pirate who hurts the villagers on purpose is ______.",
       blank: '______',
-      options: ["cruel", "an action film", "a comedy", "a fantasy film"],
+      options: ["cruel", "curious", "obedient", "timid"],
       answer: "cruel",
-      accept: ["cruel"]
+      accept: ["cruel"],
+      explain: "Hurting others on purpose = cruel (\u6b98\u5fcd\u7684)."
     },
     {
       id: "d3-f7",
       wordKey: "dictation3:curious",
-      sentence: "My sister is ______ about stars.",
+      sentence: "My sister asks many questions about stars because she is ______.",
       blank: '______',
-      options: ["curious", "an action film", "a comedy", "a fantasy film"],
+      options: ["curious", "cruel", "wicked", "timid"],
       answer: "curious",
-      accept: ["curious"]
+      accept: ["curious"],
+      explain: "Asking many questions to learn = curious (\u597d\u5947\u7684)."
     },
     {
       id: "d3-f8",
       wordKey: "dictation3:obedient",
-      sentence: "An ______ child follows the rules.",
+      sentence: "An ______ child follows the classroom rules as soon as the teacher speaks.",
       blank: '______',
-      options: ["obedient", "an action film", "a comedy", "a fantasy film"],
+      options: ["obedient", "cruel", "wicked", "timid"],
       answer: "obedient",
-      accept: ["obedient"]
+      accept: ["obedient"],
+      explain: "Following rules when told = obedient (\u807d\u8a71\u7684)."
     },
     {
       id: "d3-f9",
       wordKey: "dictation3:timid",
-      sentence: "The ______ kitten hides under the sofa.",
+      sentence: "The ______ kitten hides under the sofa whenever it hears a loud noise.",
       blank: '______',
-      options: ["timid", "an action film", "a comedy", "a fantasy film"],
+      options: ["timid", "cruel", "curious", "obedient"],
       answer: "timid",
-      accept: ["timid"]
+      accept: ["timid"],
+      explain: "Hiding from loud noises = timid (\u81bd\u5c0f\u7684)."
     },
     {
       id: "d3-f10",
       wordKey: "dictation3:wicked",
-      sentence: "The ______ witch laughs in the dark.",
+      sentence: "The ______ witch laughs in the dark while planning a harmful spell.",
       blank: '______',
-      options: ["wicked", "an action film", "a comedy", "a fantasy film"],
+      options: ["wicked", "curious", "obedient", "timid"],
       answer: "wicked",
-      accept: ["wicked"]
+      accept: ["wicked"],
+      explain: "Planning a harmful spell = wicked (\u90aa\u60e1\u7684)."
     },
     {
       id: "d3-f11",
       wordKey: "dictation3:blind",
-      sentence: "Without glasses, he is ______.",
+      sentence: "Without his glasses he cannot read the board at all \u2014 he is ______.",
       blank: '______',
-      options: ["as blind as a bat", "an action film", "a comedy", "a fantasy film"],
+      options: ["as blind as a bat", "as busy as a bee", "as free as a bird", "as strong as an ox"],
       answer: "as blind as a bat",
-      accept: ["as blind as a bat"]
+      accept: ["as blind as a bat"],
+      explain: "Cannot see without glasses = as blind as a bat (\u50cf\u8759\u8760\u4e00\u6a23\u770b\u4e0d\u898b)."
     },
     {
       id: "d3-f12",
       wordKey: "dictation3:busy",
-      sentence: "Before the exam she is ______.",
+      sentence: "Before the big exam she studies and tidies from morning to night \u2014 she is ______.",
       blank: '______',
-      options: ["as busy as a bee", "an action film", "a comedy", "a fantasy film"],
+      options: ["as busy as a bee", "as blind as a bat", "as free as a bird", "as hungry as a wolf"],
       answer: "as busy as a bee",
-      accept: ["as busy as a bee"]
+      accept: ["as busy as a bee"],
+      explain: "Working non-stop = as busy as a bee (\u50cf\u871c\u8702\u4e00\u6a23\u5fd9\u788c)."
     },
     {
       id: "d3-f13",
       wordKey: "dictation3:free",
-      sentence: "On holiday I feel ______.",
+      sentence: "On holiday with no homework I ride my bike and feel ______.",
       blank: '______',
-      options: ["as free as a bird", "an action film", "a comedy", "a fantasy film"],
+      options: ["as free as a bird", "as blind as a bat", "as busy as a bee", "as strong as an ox"],
       answer: "as free as a bird",
-      accept: ["as free as a bird"]
+      accept: ["as free as a bird"],
+      explain: "No homework, free to play = as free as a bird (\u50cf\u9ce5\u5152\u4e00\u6a23\u81ea\u7531)."
     },
     {
       id: "d3-f14",
       wordKey: "dictation3:strong",
-      sentence: "The farmer is ______.",
+      sentence: "The farmer lifts heavy bags of rice easily because he is ______.",
       blank: '______',
-      options: ["as strong as an ox", "an action film", "a comedy", "a fantasy film"],
+      options: ["as strong as an ox", "as blind as a bat", "as busy as a bee", "as free as a bird"],
       answer: "as strong as an ox",
-      accept: ["as strong as an ox"]
+      accept: ["as strong as an ox"],
+      explain: "Lifting heavy bags easily = as strong as an ox (\u50cf\u725b\u4e00\u6a23\u5f37\u58ef)."
     },
     {
       id: "d3-f15",
       wordKey: "dictation3:hungry",
-      sentence: "After PE we were ______.",
+      sentence: "After a long PE lesson with no snack, we were ______ and rushed to lunch.",
       blank: '______',
-      options: ["as hungry as a wolf", "an action film", "a comedy", "a fantasy film"],
+      options: ["as hungry as a wolf", "as blind as a bat", "as busy as a bee", "as free as a bird"],
       answer: "as hungry as a wolf",
-      accept: ["as hungry as a wolf"]
-    },
+      accept: ["as hungry as a wolf"],
+      explain: "Very hungry after PE = as hungry as a wolf (\u50cf\u72fc\u4e00\u6a23\u9913)."
+    }
   ],
 
   fillInHard: [
     {
       id: "d3-h1",
       wordKey: "dictation3:action",
-      sentence: "Although the seats were expensive, so many fans who love fights still watched ______ on Saturday.",
+      sentence: "Although the seats were expensive, so many fans who love car chases and fights still watched ______ on Saturday.",
       blank: '______',
       answer: "an action film",
-      accept: ["an action film"]
+      accept: ["an action film"],
+      explain: "Car chases and fights = an action film (\u52d5\u4f5c\u7247)."
     },
     {
       id: "d3-h2",
       wordKey: "dictation3:comedy",
-      sentence: "Because the jokes were so clever, the review which we read called it ______ worth seeing twice.",
+      sentence: "Because the jokes were so clever, the review which we read called it ______ worth seeing twice for a good laugh.",
       blank: '______',
       answer: "a comedy",
-      accept: ["a comedy"]
+      accept: ["a comedy"],
+      explain: "Clever jokes for a good laugh = a comedy (\u559c\u5287)."
     },
     {
       id: "d3-h3",
       wordKey: "dictation3:fantasy",
-      sentence: "Although the dragons look unreal, children who love magic still enjoy ______ at the cinema.",
+      sentence: "Although the dragons look unreal, children who love magic wands and wizards still enjoy ______ at the cinema.",
       blank: '______',
       answer: "a fantasy film",
-      accept: ["a fantasy film"]
+      accept: ["a fantasy film"],
+      explain: "Dragons, magic, wizards = a fantasy film (\u5947\u5e7b\u7247)."
     },
     {
       id: "d3-h4",
       wordKey: "dictation3:horror",
-      sentence: "Because the scenes were so scary, Mum who dislikes dark stories told us not to pick ______.",
+      sentence: "Because the scenes were so spooky and scary, Mum who dislikes dark stories told us not to pick ______.",
       blank: '______',
       answer: "a horror film",
-      accept: ["a horror film"]
+      accept: ["a horror film"],
+      explain: "Spooky scary scenes = a horror film (\u6050\u6016\u7247)."
     },
     {
       id: "d3-h5",
       wordKey: "dictation3:musical",
-      sentence: "Although some songs are long, the class which likes singing still wants to watch ______ together.",
+      sentence: "Although some songs are long, the class which likes singing and dancing on stage still wants to watch ______ together.",
       blank: '______',
       answer: "a musical",
-      accept: ["a musical"]
+      accept: ["a musical"],
+      explain: "Singing and dancing on stage = a musical (\u97f3\u6a02\u5287\uff0f\u6b4c\u821e\u7247)."
     },
     {
       id: "d3-h6",
       wordKey: "dictation3:cruel",
-      sentence: "Although he smiles at first, the pirate who steals from the poor is truly ______.",
+      sentence: "Although he smiles at first, the pirate who steals from and hurts the poor is truly ______.",
       blank: '______',
       answer: "cruel",
-      accept: ["cruel"]
+      accept: ["cruel"],
+      explain: "Hurting the poor = cruel (\u6b98\u5fcd\u7684)."
     },
     {
       id: "d3-h7",
       wordKey: "dictation3:curious",
-      sentence: "Because she asks so many questions, the girl who explores the attic is ______ about every sound.",
+      sentence: "Because she asks so many questions, the girl who explores the attic is ______ about every strange sound.",
       blank: '______',
       answer: "curious",
-      accept: ["curious"]
+      accept: ["curious"],
+      explain: "Asking many questions = curious (\u597d\u5947\u7684)."
     },
     {
       id: "d3-h8",
       wordKey: "dictation3:obedient",
-      sentence: "Although the park is noisy, the dog which waits for commands stays ______ beside its owner.",
+      sentence: "Although the park is noisy, the dog which waits for \u201cSit!\u201d and \u201cStay!\u201d stays ______ beside its owner.",
       blank: '______',
       answer: "obedient",
-      accept: ["obedient"]
+      accept: ["obedient"],
+      explain: "Waiting for commands = obedient (\u807d\u8a71\u7684)."
     },
     {
       id: "d3-h9",
@@ -232,56 +255,63 @@ window.PRACTICE_DICTATION3 = {
       sentence: "Because the thunder was so loud, the child who hid under the blanket felt ______ all night.",
       blank: '______',
       answer: "timid",
-      accept: ["timid"]
+      accept: ["timid"],
+      explain: "Hiding from thunder = timid (\u81bd\u5c0f\u7684)."
     },
     {
       id: "d3-h10",
       wordKey: "dictation3:wicked",
-      sentence: "Although the castle looks bright, the queen who plans dark magic is ______ inside.",
+      sentence: "Although the castle looks bright, the queen who plans dark harmful magic is ______ inside.",
       blank: '______',
       answer: "wicked",
-      accept: ["wicked"]
+      accept: ["wicked"],
+      explain: "Dark harmful magic = wicked (\u90aa\u60e1\u7684)."
     },
     {
       id: "d3-h11",
       wordKey: "dictation3:blind",
-      sentence: "Although he walked carefully, without his glasses he was ______ and nearly missed the step.",
+      sentence: "Although he walked carefully, without his glasses he was ______ and nearly missed the step because he could not see.",
       blank: '______',
       answer: "as blind as a bat",
-      accept: ["as blind as a bat"]
+      accept: ["as blind as a bat"],
+      explain: "Cannot see without glasses = as blind as a bat."
     },
     {
       id: "d3-h12",
       wordKey: "dictation3:busy",
-      sentence: "Because the school fair was coming, Amy who prepared posters was ______ from morning to night.",
+      sentence: "Because the school fair was coming, Amy who prepared posters from morning to night was ______.",
       blank: '______',
       answer: "as busy as a bee",
-      accept: ["as busy as a bee"]
+      accept: ["as busy as a bee"],
+      explain: "Working non-stop = as busy as a bee."
     },
     {
       id: "d3-h13",
       wordKey: "dictation3:free",
-      sentence: "Although homework was finished early, Tom who rode his bike along the path felt ______.",
+      sentence: "Although homework was finished early, Tom who rode his bike with no tasks left felt ______.",
       blank: '______',
       answer: "as free as a bird",
-      accept: ["as free as a bird"]
+      accept: ["as free as a bird"],
+      explain: "No tasks left = as free as a bird."
     },
     {
       id: "d3-h14",
       wordKey: "dictation3:strong",
-      sentence: "Because he carries heavy bags every day, the farmer who works in the fields is ______.",
+      sentence: "Because he carries heavy bags of rice every day, the farmer who works in the fields is ______.",
       blank: '______',
       answer: "as strong as an ox",
-      accept: ["as strong as an ox"]
+      accept: ["as strong as an ox"],
+      explain: "Carrying heavy bags = as strong as an ox."
     },
     {
       id: "d3-h15",
       wordKey: "dictation3:hungry",
-      sentence: "Although dinner was only an hour away, the boys who played football were ______.",
+      sentence: "Although dinner was only an hour away, the boys who played football with no snack were ______.",
       blank: '______',
       answer: "as hungry as a wolf",
-      accept: ["as hungry as a wolf"]
-    },
+      accept: ["as hungry as a wolf"],
+      explain: "Very hungry after sport = as hungry as a wolf."
+    }
   ],
 
   missingLetters: [

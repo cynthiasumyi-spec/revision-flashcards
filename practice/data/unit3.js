@@ -24,210 +24,234 @@ window.PRACTICE_UNIT3 = {
     {
       id: "u3-f1",
       wordKey: "unit3:beat",
-      sentence: "First ______ the eggs until they are light.",
+      sentence: "First ______ the eggs with a whisk until they look light and foamy.",
       blank: '______',
-      options: ["beat", "chop", "mix", "pour"],
+      options: ["beat", "chop", "peel", "bake"],
       answer: "beat",
-      accept: ["beat"]
+      accept: ["beat"],
+      explain: "A whisk makes eggs light and foamy \u2014 that is to beat (\u652a\u6253)."
     },
     {
       id: "u3-f2",
       wordKey: "unit3:chop",
-      sentence: "Please ______ the onions into small pieces.",
+      sentence: "Please ______ the onions with a knife into small pieces for the salad.",
       blank: '______',
-      options: ["chop", "beat", "mix", "pour"],
+      options: ["chop", "beat", "pour", "bake"],
       answer: "chop",
-      accept: ["chop"]
+      accept: ["chop"],
+      explain: "Cutting into small pieces with a knife = chop (\u5207\u788e)."
     },
     {
       id: "u3-f3",
       wordKey: "unit3:mix",
-      sentence: "______ the flour and sugar in a bowl.",
+      sentence: "______ the flour and sugar together in a bowl until they are evenly combined.",
       blank: '______',
-      options: ["mix", "beat", "chop", "pour"],
+      options: ["mix", "fry", "steam", "peel"],
       answer: "mix",
-      accept: ["mix"]
+      accept: ["mix"],
+      explain: "Combining dry ingredients evenly = mix (\u6df7\u5408)."
     },
     {
       id: "u3-f4",
       wordKey: "unit3:pour",
-      sentence: "Slowly ______ the milk into the pan.",
+      sentence: "Slowly ______ the milk from the jug into the pan so it does not splash.",
       blank: '______',
-      options: ["pour", "beat", "chop", "mix"],
+      options: ["pour", "chop", "bake", "peel"],
       answer: "pour",
-      accept: ["pour"]
+      accept: ["pour"],
+      explain: "Liquid from a jug into a pan = pour (\u5012\u5165)."
     },
     {
       id: "u3-f5",
       wordKey: "unit3:spread",
-      sentence: "______ butter on the warm bread.",
+      sentence: "______ a thin layer of butter on the warm toast with a knife.",
       blank: '______',
-      options: ["spread", "beat", "chop", "mix"],
+      options: ["spread", "boil", "steam", "chop"],
       answer: "spread",
-      accept: ["spread"]
+      accept: ["spread"],
+      explain: "A thin layer of butter on toast = spread (\u5857\u62b9)."
     },
     {
       id: "u3-f6",
       wordKey: "unit3:sprinkle",
-      sentence: "______ some cheese on top of the pizza.",
+      sentence: "______ a little grated cheese lightly on top of the hot pizza.",
       blank: '______',
-      options: ["sprinkle", "beat", "chop", "mix"],
+      options: ["sprinkle", "boil", "fry", "peel"],
       answer: "sprinkle",
-      accept: ["sprinkle"]
+      accept: ["sprinkle"],
+      explain: "Lightly scattering cheese on top = sprinkle (\u7051\u4e0a)."
     },
     {
       id: "u3-f7",
       wordKey: "unit3:stir",
-      sentence: "______ the soup so it does not burn.",
+      sentence: "______ the soup with a spoon so it does not stick to the bottom of the pot.",
       blank: '______',
-      options: ["stir", "beat", "chop", "mix"],
+      options: ["stir", "bake", "peel", "fry"],
       answer: "stir",
-      accept: ["stir"]
+      accept: ["stir"],
+      explain: "Moving soup with a spoon so it does not stick = stir (\u652a\u62cc)."
     },
     {
       id: "u3-f8",
       wordKey: "unit3:peel",
-      sentence: "______ the apple before you cut it.",
+      sentence: "______ the apple with a peeler so that no skin is left before you cut it.",
       blank: '______',
-      options: ["peel", "beat", "chop", "mix"],
+      options: ["peel", "beat", "fry", "steam"],
       answer: "peel",
-      accept: ["peel"]
+      accept: ["peel"],
+      explain: "Taking the skin off fruit = peel (\u524a\u76ae)."
     },
     {
       id: "u3-f9",
       wordKey: "unit3:bake",
-      sentence: "We ______ the cake in a hot oven.",
+      sentence: "We ______ the cake in a hot oven until it turns golden brown.",
       blank: '______',
-      options: ["bake", "beat", "chop", "mix"],
+      options: ["bake", "chop", "pour", "stir"],
       answer: "bake",
-      accept: ["bake"]
+      accept: ["bake"],
+      explain: "Cooking in a hot oven = bake (\u70d8\u70e4)."
     },
     {
       id: "u3-f10",
       wordKey: "unit3:boil",
-      sentence: "______ the water before you cook the noodles.",
+      sentence: "______ the water in the pot until big bubbles appear, then add the noodles.",
       blank: '______',
-      options: ["boil", "beat", "chop", "mix"],
+      options: ["boil", "spread", "sprinkle", "chop"],
       answer: "boil",
-      accept: ["boil"]
+      accept: ["boil"],
+      explain: "Water with big bubbles = boil (\u716e\u6cb8)."
     },
     {
       id: "u3-f11",
       wordKey: "unit3:fry",
-      sentence: "Mum will ______ the eggs in a little oil.",
+      sentence: "Mum will ______ the eggs in a little hot oil in the pan until the edges are crispy.",
       blank: '______',
-      options: ["fry", "beat", "chop", "mix"],
+      options: ["fry", "steam", "peel", "mix"],
       answer: "fry",
-      accept: ["fry"]
+      accept: ["fry"],
+      explain: "Cooking in hot oil in a pan = fry (\u714e\uff0f\u7092)."
     },
     {
       id: "u3-f12",
       wordKey: "unit3:steam",
-      sentence: "We ______ the fish over hot water.",
+      sentence: "We ______ the fish over hot water in a steamer so it stays soft and juicy.",
       blank: '______',
-      options: ["steam", "beat", "chop", "mix"],
+      options: ["steam", "fry", "chop", "beat"],
       answer: "steam",
-      accept: ["steam"]
-    },
+      accept: ["steam"],
+      explain: "Cooking over hot water in a steamer = steam (\u84b8)."
+    }
   ],
 
   fillInHard: [
     {
       id: "u3-h1",
       wordKey: "unit3:beat",
-      sentence: "Before you add the flour, ______ the eggs so that the cake rises well.",
+      sentence: "Before you add the flour, ______ the eggs with a whisk so that the cake rises well and looks foamy.",
       blank: '______',
       answer: "beat",
-      accept: ["beat"]
+      accept: ["beat"],
+      explain: "Whisking eggs until foamy = beat (\u652a\u6253)."
     },
     {
       id: "u3-h2",
       wordKey: "unit3:chop",
-      sentence: "After you wash the vegetables, ______ them so that they cook faster in the pan.",
+      sentence: "After you wash the vegetables, ______ them with a knife so that they cook faster in small pieces.",
       blank: '______',
       answer: "chop",
-      accept: ["chop"]
+      accept: ["chop"],
+      explain: "Knife into small pieces = chop (\u5207\u788e)."
     },
     {
       id: "u3-h3",
       wordKey: "unit3:mix",
-      sentence: "When the butter is soft, ______ it with the sugar so that the cream is smooth.",
+      sentence: "When the butter is soft, ______ it with the sugar in a bowl so that the cream is smooth and even.",
       blank: '______',
       answer: "mix",
-      accept: ["mix"]
+      accept: ["mix"],
+      explain: "Combining butter and sugar evenly = mix (\u6df7\u5408)."
     },
     {
       id: "u3-h4",
       wordKey: "unit3:pour",
-      sentence: "After the sauce thickens, carefully ______ it over the pasta so that every strand is covered.",
+      sentence: "After the sauce thickens, carefully ______ it from the jug over the pasta so that every strand is covered.",
       blank: '______',
       answer: "pour",
-      accept: ["pour"]
+      accept: ["pour"],
+      explain: "Liquid from a jug over food = pour (\u5012\u5165)."
     },
     {
       id: "u3-h5",
       wordKey: "unit3:spread",
-      sentence: "Before you toast the bread, ______ a little jam so that it tastes sweet.",
+      sentence: "Before you toast the bread, ______ a little jam on it with a knife so that it tastes sweet.",
       blank: '______',
       answer: "spread",
-      accept: ["spread"]
+      accept: ["spread"],
+      explain: "A layer of jam with a knife = spread (\u5857\u62b9)."
     },
     {
       id: "u3-h6",
       wordKey: "unit3:sprinkle",
-      sentence: "When the pizza comes out, ______ cheese on top so that it melts nicely.",
+      sentence: "When the pizza comes out of the oven, ______ grated cheese lightly on top so that it melts nicely.",
       blank: '______',
       answer: "sprinkle",
-      accept: ["sprinkle"]
+      accept: ["sprinkle"],
+      explain: "Lightly scattering cheese = sprinkle (\u7051\u4e0a)."
     },
     {
       id: "u3-h7",
       wordKey: "unit3:stir",
-      sentence: "While the soup is hot, ______ it gently so that nothing sticks to the bottom.",
+      sentence: "While the soup is hot, ______ it gently with a spoon so that nothing sticks to the bottom.",
       blank: '______',
       answer: "stir",
-      accept: ["stir"]
+      accept: ["stir"],
+      explain: "Spoon motion so soup does not stick = stir (\u652a\u62cc)."
     },
     {
       id: "u3-h8",
       wordKey: "unit3:peel",
-      sentence: "Before you slice the fruit, ______ it so that no skin is left.",
+      sentence: "Before you slice the fruit, ______ it with a peeler so that no skin is left on the plate.",
       blank: '______',
       answer: "peel",
-      accept: ["peel"]
+      accept: ["peel"],
+      explain: "Removing fruit skin = peel (\u524a\u76ae)."
     },
     {
       id: "u3-h9",
       wordKey: "unit3:bake",
-      sentence: "After you prepare the dough, ______ the cookies so that they turn golden brown.",
+      sentence: "After you prepare the dough, ______ the cookies in the oven so that they turn golden brown.",
       blank: '______',
       answer: "bake",
-      accept: ["bake"]
+      accept: ["bake"],
+      explain: "Cookies in the oven = bake (\u70d8\u70e4)."
     },
     {
       id: "u3-h10",
       wordKey: "unit3:boil",
-      sentence: "Before you cook the noodles, ______ the water so that they soften quickly.",
+      sentence: "Before you cook the noodles, ______ the water until big bubbles appear so that they soften quickly.",
       blank: '______',
       answer: "boil",
-      accept: ["boil"]
+      accept: ["boil"],
+      explain: "Water with big bubbles = boil (\u716e\u6cb8)."
     },
     {
       id: "u3-h11",
       wordKey: "unit3:fry",
-      sentence: "When the oil is hot, ______ the eggs so that the edges become crispy.",
+      sentence: "When the oil in the pan is hot, ______ the eggs so that the edges become crispy.",
       blank: '______',
       answer: "fry",
-      accept: ["fry"]
+      accept: ["fry"],
+      explain: "Eggs in hot oil = fry (\u714e\uff0f\u7092)."
     },
     {
       id: "u3-h12",
       wordKey: "unit3:steam",
-      sentence: "After you season the fish, ______ it so that it stays soft and juicy.",
+      sentence: "After you season the fish, ______ it over hot water in a steamer so that it stays soft and juicy.",
       blank: '______',
       answer: "steam",
-      accept: ["steam"]
-    },
+      accept: ["steam"],
+      explain: "Fish over hot water = steam (\u84b8)."
+    }
   ],
 
   missingLetters: [

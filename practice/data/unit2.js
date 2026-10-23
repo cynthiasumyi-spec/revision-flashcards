@@ -22,176 +22,196 @@ window.PRACTICE_UNIT2 = {
     {
       id: "u2-f1",
       wordKey: "unit2:drought",
-      sentence: "The farmers worry about ______ this year.",
+      sentence: "There was no rain for six months, so the farmers worried about ______ drying up their fields.",
       blank: '______',
       options: ["a drought", "an earthquake", "a flood", "a landslip"],
       answer: "a drought",
-      accept: ["a drought"]
+      accept: ["a drought"],
+      explain: "No rain for months = a drought (\u65f1\u707d). Floods have too much water, not too little."
     },
     {
       id: "u2-f2",
       wordKey: "unit2:earthquake",
-      sentence: "People felt the ground shake during ______.",
+      sentence: "Cups rattled and the ground shook for almost a minute during ______ under the city.",
       blank: '______',
-      options: ["an earthquake", "a drought", "a flood", "a landslip"],
+      options: ["an earthquake", "a drought", "a flood", "a typhoon"],
       answer: "an earthquake",
-      accept: ["an earthquake"]
+      accept: ["an earthquake"],
+      explain: "When the ground shakes, it is an earthquake (\u5730\u9707)."
     },
     {
       id: "u2-f3",
       wordKey: "unit2:flood",
-      sentence: "Heavy rain caused ______ in the village.",
+      sentence: "After days of heavy rain, river water covered the streets and caused ______ in the village.",
       blank: '______',
       options: ["a flood", "a drought", "an earthquake", "a landslip"],
       answer: "a flood",
-      accept: ["a flood"]
+      accept: ["a flood"],
+      explain: "Streets covered by river water = a flood (\u6c34\u707d)."
     },
     {
       id: "u2-f4",
       wordKey: "unit2:landslip",
-      sentence: "The hillside fell after ______.",
+      sentence: "After the heavy rain, wet soil slid down the steep hillside and caused ______ onto the road.",
       blank: '______',
-      options: ["a landslip", "a drought", "an earthquake", "a flood"],
+      options: ["a landslip", "a drought", "a tsunami", "a typhoon"],
       answer: "a landslip",
-      accept: ["a landslip"]
+      accept: ["a landslip"],
+      explain: "Soil sliding down a hillside = a landslip (\u5c71\u6ce5\u50be\u7009)."
     },
     {
       id: "u2-f5",
       wordKey: "unit2:tsunami",
-      sentence: "Huge waves hit the coast in ______.",
+      sentence: "After the seaquake, huge ocean waves rushed onto the beach during ______.",
       blank: '______',
-      options: ["a tsunami", "a drought", "an earthquake", "a flood"],
+      options: ["a tsunami", "a drought", "a typhoon", "a landslip"],
       answer: "a tsunami",
-      accept: ["a tsunami"]
+      accept: ["a tsunami"],
+      explain: "Huge ocean waves after a seaquake = a tsunami (\u6d77\u562f)."
     },
     {
       id: "u2-f6",
       wordKey: "unit2:typhoon",
-      sentence: "Schools close when there is ______.",
+      sentence: "Schools in Hong Kong close and Signal 8 is raised when there is ______ with very strong wind.",
       blank: '______',
-      options: ["a typhoon", "a drought", "an earthquake", "a flood"],
+      options: ["a typhoon", "a drought", "an earthquake", "a landslip"],
       answer: "a typhoon",
-      accept: ["a typhoon"]
+      accept: ["a typhoon"],
+      explain: "Signal 8 and strong wind mean a typhoon (\u98b1\u98a8)."
     },
     {
       id: "u2-f7",
       wordKey: "unit2:block",
-      sentence: "Fallen trees can ______ after a storm.",
+      sentence: "Fallen trees lie across the street and ______ so cars and ambulances cannot pass.",
       blank: '______',
-      options: ["block roads", "a drought", "an earthquake", "a flood"],
+      options: ["block roads", "damage crops", "destroy buildings", "injure people"],
       answer: "block roads",
-      accept: ["block roads"]
+      accept: ["block roads"],
+      explain: "Trees across the street stop traffic \u2014 they block roads (\u5835\u585e\u9053\u8def)."
     },
     {
       id: "u2-f8",
       wordKey: "unit2:damage",
-      sentence: "Strong winds may ______ in the fields.",
+      sentence: "Strong winds flatten the rice in the fields and ______ before harvest time.",
       blank: '______',
-      options: ["damage crops", "a drought", "an earthquake", "a flood"],
+      options: ["damage crops", "block roads", "destroy buildings", "injure people"],
       answer: "damage crops",
-      accept: ["damage crops"]
+      accept: ["damage crops"],
+      explain: "Flattened rice in fields = damage crops (\u640d\u6bc0\u8fb2\u4f5c\u7269)."
     },
     {
       id: "u2-f9",
       wordKey: "unit2:destroy",
-      sentence: "A big quake can ______ in the city.",
+      sentence: "The powerful quake made walls fall and can ______ so families lose their homes.",
       blank: '______',
-      options: ["destroy buildings", "a drought", "an earthquake", "a flood"],
+      options: ["destroy buildings", "block roads", "damage crops", "injure people"],
       answer: "destroy buildings",
-      accept: ["destroy buildings"]
+      accept: ["destroy buildings"],
+      explain: "Walls falling and lost homes = destroy buildings (\u6467\u6bc0\u5efa\u7bc9\u7269)."
     },
     {
       id: "u2-f10",
       wordKey: "unit2:injure",
-      sentence: "Broken glass can ______ in an accident.",
+      sentence: "Sharp broken glass from windows can cut arms and legs and ______ in an accident.",
       blank: '______',
-      options: ["injure people", "a drought", "an earthquake", "a flood"],
+      options: ["injure people", "block roads", "damage crops", "destroy buildings"],
       answer: "injure people",
-      accept: ["injure people"]
-    },
+      accept: ["injure people"],
+      explain: "Cutting arms and legs means you injure people (\u4f7f\u4eba\u53d7\u50b7)."
+    }
   ],
 
   fillInHard: [
     {
       id: "u2-h1",
       wordKey: "unit2:drought",
-      sentence: "If there is so little rain for months, farmers who grow rice will face ______ so that their fields dry up.",
+      sentence: "If there is so little rain for months, farmers who grow rice will face ______ so that their fields crack and dry up.",
       blank: '______',
       answer: "a drought",
-      accept: ["a drought"]
+      accept: ["a drought"],
+      explain: "Months with almost no rain = a drought (\u65f1\u707d)."
     },
     {
       id: "u2-h2",
       wordKey: "unit2:earthquake",
-      sentence: "If the ground shakes so much, people who live in tall flats must leave quickly during ______.",
+      sentence: "If the ground shakes so much that cups fall, people who live in tall flats must leave quickly during ______.",
       blank: '______',
       answer: "an earthquake",
-      accept: ["an earthquake"]
+      accept: ["an earthquake"],
+      explain: "Shaking ground = an earthquake (\u5730\u9707)."
     },
     {
       id: "u2-h3",
       wordKey: "unit2:flood",
-      sentence: "Although sandbags are ready, so much rain can still cause ______ which covers the low streets.",
+      sentence: "Although sandbags are ready, so much rain can still cause ______ which covers the low streets with river water.",
       blank: '______',
       answer: "a flood",
-      accept: ["a flood"]
+      accept: ["a flood"],
+      explain: "Streets covered by rainwater = a flood (\u6c34\u707d)."
     },
     {
       id: "u2-h4",
       wordKey: "unit2:landslip",
-      sentence: "If the soil becomes so soft after heavy rain, a hillside which is steep may cause ______.",
+      sentence: "If the soil becomes so soft after heavy rain, a hillside which is steep may send mud down in ______.",
       blank: '______',
       answer: "a landslip",
-      accept: ["a landslip"]
+      accept: ["a landslip"],
+      explain: "Mud sliding from a hillside = a landslip (\u5c71\u6ce5\u50be\u7009)."
     },
     {
       id: "u2-h5",
       wordKey: "unit2:tsunami",
-      sentence: "Although warning sirens ring, so many coastal towns which sit by the sea can still be hit by ______.",
+      sentence: "Although warning sirens ring, so many coastal towns which sit by the sea can still be hit by ______ with giant waves.",
       blank: '______',
       answer: "a tsunami",
-      accept: ["a tsunami"]
+      accept: ["a tsunami"],
+      explain: "Giant sea waves hitting the coast = a tsunami (\u6d77\u562f)."
     },
     {
       id: "u2-h6",
       wordKey: "unit2:typhoon",
-      sentence: "If the wind becomes so strong, schools which have outdoor PE will close because of ______.",
+      sentence: "If the wind becomes so strong that Signal 8 is raised, schools which have outdoor PE will close because of ______.",
       blank: '______',
       answer: "a typhoon",
-      accept: ["a typhoon"]
+      accept: ["a typhoon"],
+      explain: "Signal 8 + strong wind = a typhoon (\u98b1\u98a8)."
     },
     {
       id: "u2-h7",
       wordKey: "unit2:block",
-      sentence: "Fallen trees which lie across the street can ______ so that ambulances cannot pass.",
+      sentence: "Fallen trees which lie across the street can ______ so that ambulances cannot pass to the hospital.",
       blank: '______',
       answer: "block roads",
-      accept: ["block roads"]
+      accept: ["block roads"],
+      explain: "Trees across the street block roads (\u5835\u585e\u9053\u8def)."
     },
     {
       id: "u2-h8",
       wordKey: "unit2:damage",
-      sentence: "Strong winds which last for days may ______ so that farmers lose so much food.",
+      sentence: "Strong winds which last for days may ______ in the fields so that farmers lose so much food before harvest.",
       blank: '______',
       answer: "damage crops",
-      accept: ["damage crops"]
+      accept: ["damage crops"],
+      explain: "Winds hurting plants in fields = damage crops (\u640d\u6bc0\u8fb2\u4f5c\u7269)."
     },
     {
       id: "u2-h9",
       wordKey: "unit2:destroy",
-      sentence: "If the quake is so powerful, it can ______ which people need for shelter.",
+      sentence: "If the quake is so powerful, it can ______ which people need for shelter, leaving walls in ruins.",
       blank: '______',
       answer: "destroy buildings",
-      accept: ["destroy buildings"]
+      accept: ["destroy buildings"],
+      explain: "Ruined walls and lost shelter = destroy buildings (\u6467\u6bc0\u5efa\u7bc9\u7269)."
     },
     {
       id: "u2-h10",
       wordKey: "unit2:injure",
-      sentence: "Broken glass which falls from windows can ______ so that helpers must move carefully.",
+      sentence: "Broken glass which falls from windows can ______ so that helpers must move carefully and bring bandages.",
       blank: '______',
       answer: "injure people",
-      accept: ["injure people"]
-    },
+      accept: ["injure people"],
+      explain: "Glass that cuts people = injure people (\u4f7f\u4eba\u53d7\u50b7)."
+    }
   ],
 
   missingLetters: [
