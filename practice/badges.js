@@ -63,7 +63,7 @@ window.Badges = (function () {
    * Review Slayer: https://www.irasutoya.com/2017/09/blog-post_494.html
    * Unit 1 completer: https://www.irasutoya.com/2014/09/blog-post_58.html
    * Unit 2 completer: https://www.irasutoya.com/2012/11/blog-post_6715.html
-   * Unit 3 completer: https://www.irasutoya.com/2012/11/blog-post_3201.html
+   * Unit 3 completer: https://www.irasutoya.com/2013/09/blog-post_3570.html
    * Unit 4 completer: https://www.irasutoya.com/2013/09/blog-post_4255.html
    * Dictation 3 completer: https://www.irasutoya.com/2013/02/blog-post_4647.html
    */
