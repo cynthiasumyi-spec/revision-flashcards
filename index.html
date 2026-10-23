@@ -1,269 +1,753 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="format-detection" content="telephone=no"/>
-<title>Unit 3 Junior Super Chef</title>
-<style>
-:root {
-  --bg:#fcf0d8; --cream:#fcf0d8; --navy:#243c6c; --white:#ffffff;
-  --coral:#fc903c; --green:#009c48; --sky:#84c0e4; --sunny:#fcc03c; --pink:#f0909c;
-  --muted:#5a6570; --ink:#183c6c; --radius:22px;
-  --illust:168px;
-}
-* { box-sizing:border-box; }
-html,body {
-  margin:0; padding:0; background:var(--bg); color:var(--navy);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  -webkit-tap-highlight-color:transparent;
-}
-header {
-  position:sticky; top:0; z-index:10;
-  background:rgba(252,240,216,.96);
-  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border-bottom:0; box-shadow:none;
-  padding:14px 16px 12px;
-}
-/* Solid coral color block (not a stroke frame) */
-header::after {
-  content:""; display:block; height:8px; background:var(--coral);
-  margin:12px -16px -12px;
-}
-.back { display:inline-block; color:var(--coral); text-decoration:none; font-weight:700; font-size:.92rem; margin-bottom:6px; }
-h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
-.sub { margin:4px 0 0; color:var(--muted); font-size:.9rem; }
-.hint { max-width:720px; margin:10px auto 0; padding:0 16px; color:var(--muted); font-size:.88rem; }
-.list {
-  max-width:720px; margin:0 auto;
-  padding:12px 16px calc(32px + env(safe-area-inset-bottom,0px));
-  display:flex; flex-direction:column; gap:16px;
-}
-/* Canva Class News: solid fills, rounded, NO outer stroke */
-.card {
-  border-radius:var(--radius);
-  box-shadow:none; border:0; outline:none;
-  padding:16px 16px 14px; position:relative;
-  color:var(--white);
-}
-.card.fill-coral { background:var(--coral); color:var(--white); }
-.card.fill-green { background:var(--green); color:var(--white); }
-.card.fill-navy  { background:var(--navy);  color:var(--white); }
-.card.fill-sky   { background:var(--sky);   color:#183c6c; }
-.card.fill-sunny { background:var(--sunny); color:#183c6c; }
-.card.fill-pink  { background:var(--pink);  color:var(--white); }
-.card.playing { outline:none; }
-.top { display:flex; gap:14px; align-items:flex-start; }
-.illust {
-  flex:0 0 var(--illust); width:var(--illust); height:var(--illust);
-  border-radius:14px; background:var(--white); overflow:hidden;
-  border:0; box-shadow:none; cursor:zoom-in;
-}
-.illust img {
-  width:100%; height:100%; object-fit:contain; background:var(--white);
-  display:block; box-shadow:none; filter:none;
-}
-.main { flex:1; min-width:0; padding-right:56px; }
-.num {
-  display:inline-grid; place-items:center;
-  min-width:28px; height:28px; padding:0 8px; border-radius:8px;
-  background:rgba(255,255,255,.28); color:inherit;
-  font-weight:800; font-size:.85rem; margin-bottom:6px;
-}
-.fill-sky .num, .fill-sunny .num {
-  background:rgba(24,60,108,.14); color:#183c6c;
-}
-.syllables {
-  font-size:1.5rem; font-weight:800; color:inherit;
-  line-height:1.25; margin:0 0 6px; word-break:break-word;
-}
-.zh {
-  font-size:1.02rem; font-weight:700; color:inherit;
-  margin:0 0 4px; line-height:1.35; opacity:.95;
-}
-.speaker {
-  position:absolute; top:14px; right:14px;
-  width:52px; height:52px; border-radius:50%; border:0;
-  background:rgba(255,255,255,.95); color:var(--navy); font-size:1.45rem;
-  box-shadow:none !important; filter:none !important; text-shadow:none;
-  display:grid; place-items:center; cursor:pointer; z-index:3; line-height:1;
-}
-.fill-sky .speaker, .fill-sunny .speaker {
-  background:var(--navy); color:var(--white);
-}
-.speaker:active { transform:scale(.94); }
-.card.playing .speaker {
-  outline:3px solid var(--sunny); outline-offset:2px;
-  box-shadow:none !important; animation:none; filter:none;
-}
-/* Example: high-contrast near-white inset on ALL fills (navy text) */
-.ex {
-  background:rgba(255,255,255,.92);
-  border:0; border-radius:14px; padding:12px; margin-top:10px;
-  color:#183c6c;
-}
-.ex-label {
-  display:inline-block; font-size:.78rem; font-weight:800;
-  color:#fff; background:#183c6c;
-  border-radius:999px; padding:3px 10px; margin-bottom:6px;
-}
-.ex-en { font-size:.98rem; line-height:1.45; color:#183c6c; margin:0 0 4px; }
-.ex-zh { font-size:.9rem; line-height:1.4; color:#183c6c; opacity:.92; margin:0; }
-/* Universal vocab highlight: navy chip + white text (passes on every fill) */
-.hl {
-  background:#183c6c; color:#fff; font-weight:800;
-  padding:0 4px; border-radius:4px;
-}
-@media (min-width:640px) {
-  :root { --illust:196px; }
-  .syllables { font-size:1.7rem; }
-}
-@media (max-width:380px) {
-  :root { --illust:140px; }
-}
-/* Lightbox */
-.lightbox {
-  position:fixed; inset:0; z-index:100;
-  background:rgba(36,60,108,.92);
-  display:none; flex-direction:column;
-  align-items:center; justify-content:center;
-  padding:12px; padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
-}
-.lightbox.open { display:flex; }
-.lightbox img {
-  max-width:100%; max-height:calc(100vh - 88px);
-  width:auto; height:auto; object-fit:contain;
-  border-radius:16px; background:var(--white); box-shadow:none;
-}
-.lb-bar {
-  display:flex; gap:12px; align-items:center; justify-content:center;
-  margin-top:12px; width:100%; max-width:480px;
-}
-.lb-btn {
-  appearance:none; border:0; border-radius:999px;
-  padding:12px 18px; font-size:1rem; font-weight:700;
-  cursor:pointer; color:var(--white); box-shadow:none;
-}
-.lb-close { background:var(--navy); }
-.lb-play { background:var(--coral); }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Primary 6 English Flashcards</title>
+  <style>
+    :root {
+      --navy: #243c6c;
+      --navy-deep: #183c6c;
+      --cream: #fcf0d8;
+      --cream-card: #fcf0e4;
+      --white: #ffffff;
+      --coral: #fc903c;
+      --sunny: #fcc03c;
+      --green: #009c48;
+      --sky: #84c0e4;
+      --pink: #f0909c;
+      --muted: #5a6570;
+      --radius: 22px;
+      --radius-sm: 16px;
+      --nav-h: 64px;
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.55;
+      -webkit-tap-highlight-color: transparent;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* —— Sticky nav —— */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: var(--nav-h);
+      background: var(--cream);
+      border-bottom: 0;
+      box-shadow: none;
+      margin-bottom: 8px;
+    }
+    /* Solid coral color block under nav (not a stroke/frame) */
+    .topbar::after {
+      content: "";
+      display: block;
+      height: 8px;
+      background: var(--coral);
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
+    }
+    .topbar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--coral);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: transparent;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: var(--sunny);
+      outline: none;
+    }
+    .nav-toggle {
+      display: none;
+      border: 0;
+      background: var(--navy);
+      border-radius: 12px;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--cream);
+      position: relative;
+    }
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--cream);
+    }
+    .nav-toggle span::before { top: -6px; }
+    .nav-toggle span::after { top: 6px; }
+
+    /* —— Hero (navy band) —— */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      padding: 48px 20px 52px;
+      color: var(--cream);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .hero-kicker {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      background: var(--sunny);
+      color: var(--navy);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--sunny);
+    }
+    .hero-lead {
+      margin: 0 0 26px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--cream);
+      max-width: 22em;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      border-radius: 999px;
+      padding: 13px 24px;
+      border: 0;
+      cursor: pointer;
+      box-shadow: none;
+      transition: transform 0.12s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--coral);
+      color: var(--white);
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: #e87828;
+      outline: none;
+    }
+    .btn-ghost {
+      background: var(--cream);
+      color: var(--navy);
+    }
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: var(--sunny);
+      color: var(--navy);
+      outline: none;
+    }
+
+    /* Flat geometric doodles (no faces / no mascot PNGs) */
+    .doodle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .doodle-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--pink);
+      top: 18%;
+      right: 22%;
+    }
+    .doodle-triangle {
+      width: 0;
+      height: 0;
+      border-left: 28px solid transparent;
+      border-right: 28px solid transparent;
+      border-bottom: 48px solid var(--sky);
+      background: transparent;
+      top: 58%;
+      right: 12%;
+    }
+    .doodle-square {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--green);
+      top: 22%;
+      right: 8%;
+      transform: rotate(12deg);
+    }
+    .doodle-star {
+      width: 40px;
+      height: 40px;
+      background: var(--sunny);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      bottom: 16%;
+      right: 28%;
+    }
+    .doodle-pill {
+      width: 64px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--coral);
+      bottom: 28%;
+      right: 6%;
+      transform: rotate(-18deg);
+    }
+
+    .hero-panel {
+      position: relative;
+      z-index: 1;
+      background: var(--cream);
+      color: var(--navy);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      box-shadow: none;
+    }
+    .hero-panel h2 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+    .hero-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .stat {
+      border-radius: 16px;
+      padding: 14px 8px;
+      text-align: center;
+      box-shadow: none;
+      color: var(--navy);
+    }
+    .stat:nth-child(1) { background: var(--coral); color: var(--white); }
+    .stat:nth-child(2) { background: var(--green); color: var(--white); }
+    .stat:nth-child(3) { background: var(--sky); color: var(--navy); }
+    .stat strong {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .stat span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    /* —— Shared section —— */
+    .section { padding: 48px 20px; }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
+    .section-head {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .section-head .label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--sunny);
+      color: var(--navy);
+    }
+    .section-head h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .section-head p {
+      margin: 0 auto;
+      max-width: 34em;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* —— Units (cream) —— */
+    #units { background: var(--cream); }
+    .units-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    a.unit-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: var(--cream-card);
+      border: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: none;
+      min-height: 100%;
+      transition: transform 0.12s;
+      position: relative;
+    }
+    a.unit-card:active { transform: scale(0.99); }
+    a.unit-card:focus-visible { outline: 3px solid var(--sunny); outline-offset: 2px; }
+    /* Accent = solid color block strip (not outlined box) */
+    a.unit-card::before {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 100%;
+      flex-shrink: 0;
+      background: var(--navy);
+    }
+    a.unit-card.accent-coral::before { background: var(--coral); }
+    a.unit-card.accent-sky::before { background: var(--sky); }
+    a.unit-card.accent-green::before { background: var(--green); }
+    a.unit-card.accent-sunny::before { background: var(--sunny); }
+    a.unit-card.accent-pink::before { background: var(--pink); }
+
+    .unit-cover {
+      aspect-ratio: 16 / 9;
+      height: 120px;
+      background: var(--cream);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .unit-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--cream);
+      box-shadow: none;
+    }
+    .unit-body {
+      padding: 10px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      background: var(--cream-card);
+    }
+    .unit-body h3 {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+    .unit-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .badge {
+      align-self: flex-start;
+      margin-top: auto;
+      font-size: 0.74rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 5px 12px;
+      color: var(--white);
+    }
+    .badge.coral { background: var(--coral); }
+    .badge.sky { background: var(--sky); color: var(--navy); }
+    .badge.green { background: var(--green); }
+    .badge.sunny { background: var(--sunny); color: var(--navy); }
+    .badge.pink { background: var(--pink); color: var(--navy); }
+
+    /* —— Features (sunny band + pill cards) —— */
+    #features {
+      background: var(--sunny);
+    }
+    #features .section-head .label {
+      background: var(--navy);
+      color: var(--cream);
+    }
+    #features .section-head p { color: var(--navy); opacity: 0.85; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .feature {
+      border-radius: 999px;
+      padding: 20px 18px;
+      text-align: center;
+      box-shadow: none;
+      border: none;
+      color: var(--white);
+    }
+    .feature:nth-child(1) { background: var(--coral); }
+    .feature:nth-child(2) { background: var(--green); }
+    .feature:nth-child(3) { background: var(--navy); }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      background: var(--white);
+      box-shadow: none;
+    }
+    .feature h3 {
+      margin: 0 0 4px;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .feature p {
+      margin: 0;
+      font-size: 0.86rem;
+      opacity: 0.95;
+      line-height: 1.35;
+    }
+
+    /* —— About (sky band) —— */
+    #about { background: var(--sky); }
+    #about .section-head .label {
+      background: var(--white);
+      color: var(--navy);
+    }
+    #about .section-head p { color: var(--navy); }
+    .about-card {
+      background: var(--white);
+      border: 0;
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: none;
+    }
+    .about-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    /* —— Quiz placeholder —— */
+
+    /* —— Footer —— */
+    .site-footer {
+      padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px));
+      background: var(--navy);
+      color: var(--cream);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .site-footer strong {
+      color: var(--sunny);
+      font-weight: 800;
+    }
+    .site-footer p { margin: 0 0 6px; }
+    .site-footer p:last-child { margin-bottom: 0; opacity: 0.9; }
+
+    /* —— Responsive —— */
+    @media (max-width: 900px) {
+      .units-grid { grid-template-columns: 1fr 1fr; max-width: 640px; }
+    }
+    @media (max-width: 820px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 24px; }
+      .hero-panel { max-width: 440px; }
+      .doodle-circle { right: 10%; top: 10%; width: 56px; height: 56px; }
+      .doodle-square { right: 4%; width: 36px; height: 36px; }
+      .doodle-triangle { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--cream);
+        border-bottom: 0;
+        box-shadow: none;
+        padding: 8px 12px 14px;
+        gap: 4px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 14px; }
+      .units-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature { border-radius: var(--radius); }
+      .hero { padding: 36px 16px 40px; }
+      .section { padding: 40px 16px; }
+      .doodle-pill,
+      .doodle-star { display: none; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <a class="back" href="../index.html">← Back to home</a>
-  <h1>Unit 3 Junior Super Chef</h1>
-  <p class="sub">12 words · Primary 6 examples + Form 1 advanced examples</p>
-</header>
-<p class="hint">Tap the speaker for audio; tap the illustration to enlarge. Mid-size art, no shadow or frame.</p>
-<div class="list" id="list"></div>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarge illustration">
-  <img id="lb-img" alt="" />
-  <div class="lb-bar">
-    <button type="button" class="lb-btn lb-play" id="lb-play">🔊 Play audio</button>
-    <button type="button" class="lb-btn lb-close" id="lb-close">Close</button>
-  </div>
-</div>
-<script>
-const CARDS = [{"n": 1, "en": "beat", "syllables": "beat", "zh": "攪打", "pos": "動詞 v.", "ex_en": "Mum uses a whisk to beat the eggs.", "ex_zh": "媽媽用打蛋器攪打雞蛋。", "adv_en": "Before she pours the mixture, Mum must beat the eggs until they look pale.", "adv_zh": "在倒入混合物之前，媽媽必須把雞蛋攪打至顏色變淺。", "highlight": "beat", "audio": "audio/audio_01.mp3", "img": "thumb_01.jpg", "art_source": "generated"}, {"n": 2, "en": "chop", "syllables": "chop", "zh": "切碎", "pos": "動詞 v.", "ex_en": "Dad uses a knife to chop the pepper.", "ex_zh": "爸爸用刀把辣椒切碎。", "adv_en": "When you chop vegetables, keep your fingers away from the sharp knife.", "adv_zh": "當你切碎蔬菜時，手指要遠離鋒利的刀。", "highlight": "chop", "audio": "audio/audio_02.mp3", "img": "thumb_02.png", "art_source": "irasutoya:https://www.irasutoya.com/2015/02/blog-post_364.html"}, {"n": 3, "en": "mix", "syllables": "mix", "zh": "混合", "pos": "動詞 v.", "ex_en": "She uses a spoon to mix the ingredients.", "ex_zh": "她用勺子把材料混合。", "adv_en": "After you add the flour, mix everything gently so the cake stays soft.", "adv_zh": "加入麵粉後，輕輕混合所有材料，蛋糕才會保持鬆軟。", "highlight": "mix", "audio": "audio/audio_03.mp3", "img": "thumb_03.png", "art_source": "irasutoya:https://www.irasutoya.com/2016/08/blog-post_95.html"}, {"n": 4, "en": "pour", "syllables": "pour", "zh": "倒入", "pos": "動詞 v.", "ex_en": "He can pour the milk into the bowl.", "ex_zh": "他可以把牛奶倒進碗裡。", "adv_en": "If you pour too quickly, the milk may spill on the table.", "adv_zh": "如果你倒得太快，牛奶可能會灑在桌上。", "highlight": "pour", "audio": "audio/audio_04.mp3", "img": "thumb_04.jpg", "art_source": "generated"}, {"n": 5, "en": "spread", "syllables": "spread", "zh": "塗抹", "pos": "動詞 v.", "ex_en": "I spread butter on the toast.", "ex_zh": "我在吐司上塗抹牛油。", "adv_en": "Although the toast is hot, she carefully spreads butter on it.", "adv_zh": "雖然吐司很燙，她仍小心地在上面塗抹牛油。", "highlight": "spread", "audio": "audio/audio_05.mp3", "img": "thumb_05.jpg", "art_source": "generated"}, {"n": 6, "en": "sprinkle", "syllables": "sprin-kle", "zh": "灑上", "pos": "動詞 v.", "ex_en": "Please sprinkle some salt on the meat.", "ex_zh": "請在肉上灑上一些鹽。", "adv_en": "Before cooking, sprinkle a little salt which makes the meat taste better.", "adv_zh": "烹調前灑上一點鹽，能讓肉的味道更好。", "highlight": "sprinkle", "audio": "audio/audio_06.mp3", "img": "thumb_06.jpg", "art_source": "generated"}, {"n": 7, "en": "stir", "syllables": "stir", "zh": "攪拌", "pos": "動詞 v.", "ex_en": "He uses a spoon to stir the soup.", "ex_zh": "他用勺子攪拌湯。", "adv_en": "You should stir the soup often so it does not stick to the pot.", "adv_zh": "你應該時常攪拌湯，免得粘在鍋底。", "highlight": "stir", "audio": "audio/audio_07.mp3", "img": "thumb_07.jpg", "art_source": "generated"}, {"n": 8, "en": "peel", "syllables": "peel", "zh": "削皮", "pos": "動詞 v.", "ex_en": "She uses a peeler to peel the potato.", "ex_zh": "她用削皮器給馬鈴薯削皮。", "adv_en": "After you peel the potato, wash it before you chop it.", "adv_zh": "給馬鈴薯削皮後，先洗乾淨再切。", "highlight": "peel", "audio": "audio/audio_08.mp3", "img": "thumb_08.png", "art_source": "irasutoya:https://www.irasutoya.com/2017/03/blog-post_426.html"}, {"n": 9, "en": "bake", "syllables": "bake", "zh": "烘烤", "pos": "動詞 v.", "ex_en": "Mum puts the tray in to bake cookies.", "ex_zh": "媽媽把烤盤推進去烘烤曲奇。", "adv_en": "When you bake cookies, wait until they turn golden brown.", "adv_zh": "烘烤曲奇時，要等到它們變成金黃色。", "highlight": "bake", "audio": "audio/audio_09.mp3", "img": "thumb_09.jpg", "art_source": "generated"}, {"n": 10, "en": "boil", "syllables": "boil", "zh": "煮沸", "pos": "動詞 v.", "ex_en": "The water starts to boil in the pot.", "ex_zh": "鍋裡的水開始煮沸。", "adv_en": "After the water begins to boil, you can put the noodles into the pot.", "adv_zh": "水開始煮沸後，你就可以把麵放進鍋裡。", "highlight": "boil", "audio": "audio/audio_10.mp3", "img": "thumb_10.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/12/blog-post_53.html"}, {"n": 11, "en": "fry", "syllables": "fry", "zh": "煎／炒", "pos": "動詞 v.", "ex_en": "Dad uses a pan to fry the eggs.", "ex_zh": "爸爸用平底鍋煎蛋。", "adv_en": "If you fry food on high heat, turn it carefully with a spatula.", "adv_zh": "如果你用大火煎食物，要用鑊鏟小心地翻動。", "highlight": "fry", "audio": "audio/audio_11.mp3", "img": "thumb_11.png", "art_source": "irasutoya:https://www.irasutoya.com/2015/01/blog-post_72.html"}, {"n": 12, "en": "steam", "syllables": "steam", "zh": "蒸", "pos": "動詞 v.", "ex_en": "We steam the vegetables in the steamer.", "ex_zh": "我們用蒸籠蒸蔬菜。", "adv_en": "Because steaming keeps more vitamins, many people steam vegetables for dinner.", "adv_zh": "因為蒸能保留更多維生素，很多人用蒸的方式做晚餐蔬菜。", "highlight": "steam", "audio": "audio/audio_12.mp3", "img": "thumb_12.jpg", "art_source": "generated"}];
-const list = document.getElementById('list');
-const FILLS = ['fill-coral','fill-green','fill-navy','fill-sky','fill-sunny','fill-pink'];
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-const lbPlay = document.getElementById('lb-play');
-const lbClose = document.getElementById('lb-close');
-let currentAudio = null;
-let activeCard = null;
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Primary 6 English Flashcards home">
+        <span class="brand-mark" aria-hidden="true">P6</span>
+        <span>P6 English Flashcards</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+      </button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="#units">Units</a></li>
+        <li><a href="#features">Practice</a></li>
+      </ul>
+    </div>
+  </header>
 
-function openLightbox(card, article) {
-  activeCard = { card, article };
-  lbImg.src = card.img;
-  lbImg.alt = card.en;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-  activeCard = null;
-}
-if (lbClose) lbClose.addEventListener('click', closeLightbox);
-if (lightbox) lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-if (lbPlay) lbPlay.addEventListener('click', () => { if (activeCard) playCard(activeCard.card, activeCard.article); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="doodle doodle-circle" aria-hidden="true"></span>
+      <span class="doodle doodle-square" aria-hidden="true"></span>
+      <span class="doodle doodle-triangle" aria-hidden="true"></span>
+      <span class="doodle doodle-star" aria-hidden="true"></span>
+      <span class="doodle doodle-pill" aria-hidden="true"></span>
+      <div class="hero-inner">
+        <div>
+          <span class="hero-kicker">Primary 6 English · Vocabulary revision</span>
+          <h1 id="hero-title">Primary 6 English Flashcards</h1>
+          <p class="hero-lead">Tap a unit to start</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#units">Start revising</a>
+            <a class="btn btn-ghost" href="#features">See features</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Revision overview">
+          <h2>What's on this site</h2>
+          <p>Pick a unit to revise, or practise the dictation words. Everything works offline.</p>
+          <div class="stat-row">
+            <div class="stat">
+              <strong>4</strong>
+              <span>Units</span>
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              <span>Dictation</span>
+            </div>
+            <div class="stat">
+              <strong>60+</strong>
+              <span>Words</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-function hl(text, target) {
-  if (!target) return text;
-  const i = text.toLowerCase().indexOf(target.toLowerCase());
-  if (i < 0) return text;
-  return text.slice(0,i) + '<span class="hl">' + text.slice(i,i+target.length) + '</span>' + text.slice(i+target.length);
-}
+    <section class="section" id="units" aria-labelledby="units-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="label">UNITS</span>
+          <h2 id="units-title">Choose a unit to start</h2>
+          <p>Tap a card to open that unit's flashcards. Each card has an illustration, audio, and examples.</p>
+        </div>
+        <div class="units-grid">
+          <a class="unit-card accent-coral" href="unit1/index.html">
+            <div class="unit-cover">
+              <img src="covers/unit1.jpg" alt="Unit 1 cover" loading="lazy" decoding="async" />
+            </div>
+            <div class="unit-body">
+              <h3>Unit 1 For a good cause</h3>
+              <p>Charity & volunteering · 10 words</p>
+              <span class="badge coral">Unit</span>
+            </div>
+          </a>
+          <a class="unit-card accent-sky" href="unit2/index.html">
+            <div class="unit-cover">
+              <img src="covers/unit2.jpg" alt="Unit 2 cover" loading="lazy" decoding="async" />
+            </div>
+            <div class="unit-body">
+              <h3>Unit 2 Lend a helping hand</h3>
+              <p>Natural disasters & effects · 10 words</p>
+              <span class="badge sky">Unit</span>
+            </div>
+          </a>
+          <a class="unit-card accent-green" href="unit3/index.html">
+            <div class="unit-cover">
+              <img src="covers/unit3.jpg" alt="Unit 3 cover" loading="lazy" decoding="async" />
+            </div>
+            <div class="unit-body">
+              <h3>Unit 3 Junior Super Chef</h3>
+              <p>Cooking verbs · 12 words</p>
+              <span class="badge green">Unit</span>
+            </div>
+          </a>
+          <a class="unit-card accent-sunny" href="unit4/index.html">
+            <div class="unit-cover">
+              <img src="covers/unit4.jpg" alt="Unit 4 cover" loading="lazy" decoding="async" />
+            </div>
+            <div class="unit-body">
+              <h3>Unit 4 Film magic</h3>
+              <p>Film genres & character adjectives · 14 words</p>
+              <span class="badge sunny">Unit</span>
+            </div>
+          </a>
+          <a class="unit-card accent-pink" href="dictation3/index.html">
+            <div class="unit-cover">
+              <img src="covers/dictation3.jpg" alt="Dictation 3 cover" loading="lazy" decoding="async" />
+            </div>
+            <div class="unit-body">
+              <h3>Dictation 3 flashcards</h3>
+              <p>Dictation practice (films + similes) · 15 cards</p>
+              <span class="badge pink">Dictation</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
 
-function playCard(card, article) {
-  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-  document.querySelectorAll('.card.playing').forEach(el => el.classList.remove('playing'));
-  article.classList.add('playing');
-  const a = new Audio(card.audio);
-  currentAudio = a;
-  a.play().catch(()=>{});
-  a.onended = () => article.classList.remove('playing');
-}
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="section-inner">
+        <div class="section-head">
+          <span class="label">FEATURES</span>
+          <h2 id="features-title">Revision helpers</h2>
+          <p>Open a unit to use these tools — they help you remember and understand.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🔍</div>
+            <h3>Tap to enlarge</h3>
+            <p>Tap an illustration to zoom in and see the details.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">🔊</div>
+            <h3>Pronunciation</h3>
+            <p>Listen to clear audio and practise saying each word aloud.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">📝</div>
+            <h3>Examples + advanced examples</h3>
+            <p>Textbook-style sentences plus advanced examples for deeper understanding.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-CARDS.forEach(card => {
-  const article = document.createElement('article');
-  article.className = 'card ' + FILLS[(card.n - 1) % FILLS.length];
 
-  const speaker = document.createElement('button');
-  speaker.type = 'button';
-  speaker.className = 'speaker';
-  speaker.setAttribute('aria-label', 'Play: ' + card.en);
-  speaker.textContent = '🔊';
-  speaker.addEventListener('click', e => { e.stopPropagation(); playCard(card, article); });
-  article.appendChild(speaker);
+  </main>
 
-  const top = document.createElement('div');
-  top.className = 'top';
+  <footer class="site-footer">
+    <p><strong>Primary 6 English Flashcards</strong> · For learning and revision only</p>
+    <p>© 2026 Primary 6 English Flashcards. All rights reserved.</p>
+  </footer>
 
-  if (card.img) {
-    const wrap = document.createElement('div');
-    wrap.className = 'illust';
-    const img = document.createElement('img');
-    img.src = card.img; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
-    wrap.appendChild(img);
-    wrap.setAttribute('role', 'button');
-    wrap.setAttribute('tabindex', '0');
-    wrap.setAttribute('aria-label', 'Enlarge: ' + card.en);
-    wrap.addEventListener('click', e => { e.stopPropagation(); openLightbox(card, article); });
-    wrap.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openLightbox(card, article); }
-    });
-    top.appendChild(wrap);
-  }
+  <script>
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var nav = document.getElementById("primary-nav");
+      if (!toggle || !nav) return;
 
-  const main = document.createElement('div');
-  main.className = 'main';
-  main.innerHTML =
-    '<span class="num">' + String(card.n).padStart(2,'0') + '</span>' +
-    '<p class="syllables">' + card.syllables + '</p>' +
-    '<p class="zh">' + card.zh + '（' + card.pos + '）</p>';
-  top.appendChild(main);
-  article.appendChild(top);
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      });
 
-  const ex1 = document.createElement('div');
-  ex1.className = 'ex';
-  ex1.innerHTML = '<span class="ex-label">Example</span><p class="ex-en">' + hl(card.ex_en, card.highlight) + '</p><p class="ex-zh">' + card.ex_zh + '</p>';
-  const ex2 = document.createElement('div');
-  ex2.className = 'ex';
-  ex2.innerHTML = '<span class="ex-label">Advanced example</span><p class="ex-en">' + hl(card.adv_en, card.highlight) + '</p><p class="ex-zh">' + card.adv_zh + '</p>';
-  article.appendChild(ex1);
-  article.appendChild(ex2);
-
-  article.addEventListener('click', e => {
-    if (e.target === speaker || speaker.contains(e.target)) return;
-    playCard(card, article);
-  });
-
-  list.appendChild(article);
-});
-</script>
+      nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Open menu");
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
