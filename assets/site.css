@@ -899,6 +899,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: 0.5rem 1.15rem;
   font-size: 0.95rem;
 }
+.badges-entry {
+  background: var(--navy);
+  color: var(--cream);
+  border-radius: 999px;
+}
+.badges-entry:hover { background: var(--sunny); color: var(--navy); }
 /* Practice hub: white text on coral/orange */
 .today-home-card .btn-primary,
 .today-progress-card .btn-primary {
@@ -970,6 +976,85 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .review-row.tone-coral .review-fill { background: var(--coral, #fc903c); }
 .review-row.tone-pink .review-fill { background: var(--pink, #f0909c); }
 /* review-meta removed — kids only see label + % + bar */
+
+/* —— Badges page —— */
+.badge-main {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem) var(--margin) 3rem;
+}
+.badge-main h1 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.badge-lead {
+  max-width: 38rem;
+  font-weight: 650;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+.badge-count {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 1.1rem;
+}
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.85rem;
+}
+.badge-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 1rem 1.05rem 1.1rem;
+  min-height: 9.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.badge-card.is-earned {
+  background: var(--sunny);
+}
+.badge-card.is-locked {
+  background: #f6efe4;
+}
+.badge-kicker {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.badge-name {
+  font-family: "Noto Sans TC", "PingFang TC", var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--navy);
+}
+.badge-unit {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy);
+}
+.badge-detail {
+  color: var(--muted);
+  font-weight: 650;
+  font-size: 0.95rem;
+}
+.badge-card.is-earned .badge-detail { color: var(--navy); }
+.badge-date {
+  margin-top: auto;
+  font-weight: 800;
+  color: var(--navy);
+}
+.badge-card.is-locked .badge-date { color: var(--muted); }
 
 .hero.hero-simple .hero-support-zh {
   font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", var(--font-text);

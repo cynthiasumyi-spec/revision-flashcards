@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Badges · English Revision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">English Revision</a>
+      <nav class="nav-plain" aria-label="Primary">
+        <a href="index.html#packs">Packs</a>
+        <a href="practice/index.html">Practice</a>
+        <a href="badges.html">Badges</a>
+        <a class="nav-action" href="index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+  <main class="badge-main">
+    <h1>Badges</h1>
+    <p class="badge-lead">Badges unlock when you finish practice. This page does not keep a score.</p>
+    <p class="badge-count" id="badge-count">0 earned</p>
+    <div class="badge-grid" id="badge-grid" aria-live="polite"></div>
+  </main>
+  <script src="practice/badges.js"></script>
+  <script>
+  (function () {
+    var B = window.Badges;
+    var list = B.listWithStatus();
+    var earned = list.filter(function (b) { return b.earned; }).length;
+    document.getElementById('badge-count').textContent = earned + ' of ' + list.length + ' earned';
+    var grid = document.getElementById('badge-grid');
+    list.forEach(function (b) {
+      var card = document.createElement('article');
+      card.className = 'badge-card ' + (b.earned ? 'is-earned' : 'is-locked');
+      var kicker = document.createElement('p');
+      kicker.className = 'badge-kicker';
+      kicker.textContent = b.earned ? 'Earned' : 'Locked';
+      var name = document.createElement('h2');
+      name.className = 'badge-name';
+      name.textContent = b.title;
+      card.appendChild(kicker);
+      card.appendChild(name);
+      if (b.unitLabel) {
+        var unit = document.createElement('p');
+        unit.className = 'badge-unit';
+        unit.textContent = b.unitLabel;
+        card.appendChild(unit);
+      }
+      var detail = document.createElement('p');
+      detail.className = 'badge-detail';
+      detail.textContent = b.detail;
+      card.appendChild(detail);
+      var date = document.createElement('p');
+      date.className = 'badge-date';
+      date.textContent = b.earned ? ('Earned ' + b.earnedLabel) : 'Not yet';
+      card.appendChild(date);
+      grid.appendChild(card);
+    });
+  })();
+  </script>
+</body>
+</html>

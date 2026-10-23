@@ -14,7 +14,7 @@
   <a class="back" href="#" id="back-hub">← Practice hub</a>
   <h1>Memory match</h1>
   <p class="sub" id="sub">Unit</p>
-  <p class="howto" id="howto">Flip 2 cards. Match the English word with its Chinese + picture.</p>
+  <p class="howto" id="howto">Six cards, three pairs. A card stays face-up. If the two cards do not match, both turn face-down together. Matched pairs stay face-up.</p>
 </header>
 <main class="wrap">
   <div class="match-stats">
@@ -23,19 +23,25 @@
     <span class="chip" id="best-chip" hidden>Best <span id="best">—</span></span>
   </div>
   <p class="match-tip" id="match-tip" hidden>Tip: one card is the English word · the other is the picture + Chinese.</p>
-  <div class="board" id="board" aria-label="Matching board"></div>
+  <div class="board board-six" id="board" aria-label="Matching board, six cards"></div>
   <div class="panel result-card" id="done" hidden>
     <h2>All matched!</h2>
     <p class="big" id="final-time">0:00</p>
     <p id="final-msg">0 flips</p>
     <p id="best-msg"></p>
+    <p id="badge-note"></p>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary" id="again" href="#">Play again</a>
       <a class="btn btn-ghost" id="to-hub" href="#">Hub</a>
+      <a class="btn btn-ghost" href="../badges.html">Badges</a>
     </div>
   </div>
   <div class="empty-state" id="empty" hidden>
     <p>No matching pairs for this unit yet.</p>
+    <a href="index.html">Back to hub</a>
+  </div>
+  <div class="empty-state" id="locked" hidden>
+    <p id="locked-msg">This unit is locked.</p>
     <a href="index.html">Back to hub</a>
   </div>
 </main>
@@ -46,11 +52,15 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="badges.js"></script>
+<script src="match-logic.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
   const C = window.PracticeCommon;
   const M = window.Mastery;
+  const B = window.Badges;
+  const ML = window.MatchLogic;
   const TIP_KEY = 'p6-flash-match-tip-seen-v1';
   const { id: unitId, pack } = C.loadUnit();
   document.getElementById('back-hub').href = C.hubLink(unitId);
@@ -58,8 +68,16 @@
   document.getElementById('again').href = C.practiceLink('match.html', unitId);
   document.getElementById('sub').textContent = (pack && pack.title) || '';
 
-  const pairs = (pack && pack.matching) ? pack.matching.slice(0, 10) : [];
-  if (pairs.length < 4) {
+  if (B && !B.unitUnlocked(unitId)) {
+    document.getElementById('board').hidden = true;
+    document.querySelector('.match-stats').hidden = true;
+    document.getElementById('locked').hidden = false;
+    document.getElementById('locked-msg').textContent = B.lockReason(unitId);
+    return;
+  }
+
+  const pairs = ML.pickPairs((pack && pack.matching) ? pack.matching : [], C.shuffle);
+  if (ML.cardCount(pairs) !== 6) {
     document.getElementById('board').hidden = true;
     document.getElementById('empty').hidden = false;
     return;
@@ -121,6 +139,7 @@
     btn.className = 'mcard';
     btn.dataset.i = String(i);
     btn.dataset.side = c.side;
+    btn.dataset.pair = c.pairId;
     btn.setAttribute('aria-label', c.side === 'en' ? 'English word card' : 'Picture and Chinese card');
     let frontClass, frontBody;
     if (c.side === 'en') {
@@ -160,7 +179,8 @@
     document.getElementById('flips').textContent = String(flips);
     busy = true;
     const [a, b] = flipped;
-    if (a.c.pairId === b.c.pairId && a.c.side !== b.c.side) {
+    const decision = ML.judge(a.c, b.c);
+    if (decision.matched && decision.matchedStayFaceUp) {
       setTimeout(() => {
         a.btn.classList.add('is-matched');
         b.btn.classList.add('is-matched');
@@ -173,7 +193,7 @@
         busy = false;
         if (matched >= pairs.length) finish();
       }, 280);
-    } else {
+    } else if (decision.flipBothDown) {
       M.markWrong(a.c.wordKey);
       M.markWrong(b.c.wordKey);
       setTimeout(() => {
@@ -193,7 +213,8 @@
     document.getElementById('final-time').textContent = formatMs(ms);
     document.getElementById('final-msg').textContent = flips + ' flips';
     const isBest = M.setMatchBest(unitId, { ms, flips, at: Date.now() });
-    document.getElementById('best-msg').textContent = isBest ? 'New best score!' : '';
+    document.getElementById('best-msg').textContent = isBest ? 'New best round!' : '';
+    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'match'));
   }
 })();
 </script>

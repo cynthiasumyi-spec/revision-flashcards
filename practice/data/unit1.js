@@ -32,7 +32,7 @@ window.PRACTICE_UNIT1 = {
     {
       id: "u1-f2",
       wordKey: "unit1:volunteer",
-      sentence: "Every Saturday Tom wears a helper badge and stays after school to ______ at the community centre.",
+      sentence: "Every Saturday Tom wears a Volunteer badge and stays after school to ______ at the community centre.",
       blank: '______',
       options: ["be a volunteer", "give away old books", "buy/sell raffle tickets", "go on a walkathon"],
       answer: "be a volunteer",
@@ -66,8 +66,8 @@ window.PRACTICE_UNIT1 = {
       blank: '______',
       options: ["does voluntary work", "adopts a pet", "buys flags", "goes on a walkathon"],
       answer: "does voluntary work",
-      accept: ["does voluntary work", "do voluntary work"],
-      explain: "Work done for free to help others is voluntary work (\u7fa9\u52d9\u5de5\u4f5c)."
+      accept: ["does voluntary work"],
+      explain: "Work done for free to help others is voluntary work (\u7fa9\u52d9\u5de5\u4f5c). The subject is 'the girl', so the verb is does."
     },
     {
       id: "u1-f6",
@@ -135,11 +135,11 @@ window.PRACTICE_UNIT1 = {
     {
       id: "u1-h2",
       wordKey: "unit1:volunteer",
-      sentence: "Our school notice asks every student who has free time after school to ______ at the community centre so that helpers are never short.",
+      sentence: "Our school notice asks every student who wants a Volunteer badge to ______ at the community centre so that helpers are never short.",
       blank: '______',
       answer: "be a volunteer",
       accept: ["be a volunteer"],
-      explain: "Free time after school to help at a centre means you be a volunteer (\u7576\u5fd7\u9858\u8005)."
+      explain: "A Volunteer badge names the helper role: be a volunteer (\u7576\u5fd7\u9858\u8005)."
     },
     {
       id: "u1-h3",
@@ -153,7 +153,7 @@ window.PRACTICE_UNIT1 = {
     {
       id: "u1-h4",
       wordKey: "unit1:raffle",
-      sentence: "At the charity sale which our PTA organises each spring, parents who want a chance to win prizes usually ______ near the entrance.",
+      sentence: "At the charity sale which our PTA organises each spring, parents who want a lucky-draw prize usually ______ near the entrance.",
       blank: '______',
       answer: "buy/sell raffle tickets",
       accept: ["buy/sell raffle tickets"],
@@ -165,8 +165,8 @@ window.PRACTICE_UNIT1 = {
       sentence: "Sam, who wants to help people in need without pay, ______ at the elderly home every Saturday afternoon.",
       blank: '______',
       answer: "does voluntary work",
-      accept: ["does voluntary work", "do voluntary work"],
-      explain: "Helping without pay is voluntary work (\u7fa9\u52d9\u5de5\u4f5c)."
+      accept: ["does voluntary work"],
+      explain: "Helping without pay is voluntary work (\u7fa9\u52d9\u5de5\u4f5c). Sam needs does, not do."
     },
     {
       id: "u1-h6",
@@ -180,7 +180,7 @@ window.PRACTICE_UNIT1 = {
     {
       id: "u1-h7",
       wordKey: "unit1:books",
-      sentence: "In her blog entry, Amy explains that she decided to ______ which she no longer reads so that so many other pupils can enjoy them.",
+      sentence: "In her blog entry, Amy explains that she decided to ______ she had finished, so other pupils can enjoy her storybooks.",
       blank: '______',
       answer: "give away old books",
       accept: ["give away old books"],
@@ -216,16 +216,16 @@ window.PRACTICE_UNIT1 = {
   ],
 
   missingLetters: [
-    { id: 'u1-m1', wordKey: 'unit1:adopt', word: 'adopt', pattern: 'a_o_t', audio: '../unit1/audio/audio_01.mp3' },
-    { id: 'u1-m2', wordKey: 'unit1:volunteer', word: 'volunteer', pattern: 'v_l_nte_r', audio: '../unit1/audio/audio_02.mp3' },
-    { id: 'u1-m3', wordKey: 'unit1:flags', word: 'flags', pattern: 'fl_gs', audio: '../unit1/audio/audio_03.mp3' },
-    { id: 'u1-m4', wordKey: 'unit1:raffle', word: 'raffle', pattern: 'r_ff_e', audio: '../unit1/audio/audio_04.mp3' },
-    { id: 'u1-m5', wordKey: 'unit1:voluntary', word: 'voluntary', pattern: 'v_l_nt_ry', audio: '../unit1/audio/audio_05.mp3' },
-    { id: 'u1-m6', wordKey: 'unit1:donate', word: 'donate', pattern: 'd_n_te', audio: '../unit1/audio/audio_06.mp3' },
-    { id: 'u1-m7', wordKey: 'unit1:books', word: 'books', pattern: 'b__ks', audio: '../unit1/audio/audio_07.mp3' },
-    { id: 'u1-m8', wordKey: 'unit1:walkathon', word: 'walkathon', pattern: 'w_lk_th_n', audio: '../unit1/audio/audio_08.mp3' },
-    { id: 'u1-m9', wordKey: 'unit1:fair', word: 'fund-raising', pattern: 'f_nd-r_is_ng', audio: '../unit1/audio/audio_09.mp3' },
-    { id: 'u1-m10', wordKey: 'unit1:elderly', word: 'elderly', pattern: 'e_d_rly', audio: '../unit1/audio/audio_10.mp3' }
+    { id: 'u1-m1', wordKey: 'unit1:adopt', word: 'adopt a pet', audio: '../unit1/audio/audio_01.mp3' },
+    { id: 'u1-m2', wordKey: 'unit1:volunteer', word: 'be a volunteer', audio: '../unit1/audio/audio_02.mp3' },
+    { id: 'u1-m3', wordKey: 'unit1:flags', word: 'buy/sell flags', audio: '../unit1/audio/audio_03.mp3' },
+    { id: 'u1-m4', wordKey: 'unit1:raffle', word: 'buy/sell raffle tickets', audio: '../unit1/audio/audio_04.mp3' },
+    { id: 'u1-m5', wordKey: 'unit1:voluntary', word: 'do voluntary work', audio: '../unit1/audio/audio_05.mp3' },
+    { id: 'u1-m6', wordKey: 'unit1:donate', word: 'donate money', audio: '../unit1/audio/audio_06.mp3' },
+    { id: 'u1-m7', wordKey: 'unit1:books', word: 'give away old books', audio: '../unit1/audio/audio_07.mp3' },
+    { id: 'u1-m8', wordKey: 'unit1:walkathon', word: 'go on a walkathon', audio: '../unit1/audio/audio_08.mp3' },
+    { id: 'u1-m9', wordKey: 'unit1:fair', word: 'take part in a fund-raising fair', audio: '../unit1/audio/audio_09.mp3' },
+    { id: 'u1-m10', wordKey: 'unit1:elderly', word: 'visit an elderly home', audio: '../unit1/audio/audio_10.mp3' }
   ],
 
   matching: [

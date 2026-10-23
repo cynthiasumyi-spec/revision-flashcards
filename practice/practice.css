@@ -390,15 +390,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 
 .blank-slot.blank-slot-hard {
-  min-width: 9rem;
+  min-width: 12rem;
   padding: 0.15rem 0.35rem;
   cursor: text;
 }
 .blank-slot .blank-input {
   display: block;
   width: 100%;
-  min-width: 8rem;
-  max-width: 16rem;
+  min-width: 10rem;
+  max-width: 24rem;
   border: 0;
   background: transparent;
   font-family: var(--font-display);
@@ -491,19 +491,49 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: var(--navy);
   color: var(--white);
 }
+.diff-toggle button.is-locked {
+  opacity: 0.45;
+}
+.hard-meaning {
+  margin: 0.8rem 0 0;
+  text-align: center;
+  font-family: "Noto Sans TC", "PingFang TC", var(--font-text);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+.hard-note {
+  margin: 0.35rem 0 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--sunny);
+  border-radius: var(--pill);
+  padding: 0.55rem 0.9rem;
+  font-size: 0.92rem;
+}
+#no-penalty {
+  margin: 0 0 0.9rem;
+  font-weight: 700;
+  background: var(--sky);
+  color: var(--navy);
+  border-radius: var(--pill);
+  padding: 0.55rem 0.9rem;
+}
 .letter-row {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.35rem;
   justify-content: center;
   align-items: center;
   margin: 0.5rem 0 1rem;
-  white-space: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  white-space: normal;
   max-width: 100%;
   padding: 0.15rem 0.1rem;
-  scrollbar-width: thin;
+}
+.letter-slot.is-space {
+  width: 0.55rem;
+  min-width: 0.55rem;
+  background: transparent;
 }
 .letter-slot {
   width: clamp(1.65rem, 7.2vw, 2.2rem);
@@ -582,13 +612,12 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   gap: 0.5rem;
   margin-bottom: 0.85rem;
 }
-.board {
+.board,
+.board.board-six {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.55rem;
-}
-@media (max-width: 420px) {
-  .board { grid-template-columns: repeat(3, 1fr); }
+  max-width: 640px;
 }
 .mcard {
   aspect-ratio: 3 / 4;
