@@ -9,7 +9,7 @@
 :root {
   --bg:#fcf0d8; --cream:#fcf0d8; --navy:#243c6c; --white:#ffffff;
   --coral:#fc903c; --green:#009c48; --sky:#84c0e4; --sunny:#fcc03c; --pink:#f0909c;
-  --muted:#5a6570; --hl:#fcc03c; --radius:22px;
+  --muted:#5a6570; --ink:#183c6c; --radius:22px;
   --illust:168px;
 }
 * { box-sizing:border-box; }
@@ -44,8 +44,8 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
 .card.fill-coral { background:var(--coral); color:var(--white); }
 .card.fill-green { background:var(--green); color:var(--white); }
 .card.fill-navy  { background:var(--navy);  color:var(--white); }
-.card.fill-sky   { background:var(--sky);   color:var(--navy); }
-.card.fill-sunny { background:var(--sunny); color:var(--navy); }
+.card.fill-sky   { background:var(--sky);   color:#183c6c; }
+.card.fill-sunny { background:var(--sunny); color:#183c6c; }
 .card.fill-pink  { background:var(--pink);  color:var(--white); }
 .card.playing { outline:none; }
 .top { display:flex; gap:14px; align-items:flex-start; }
@@ -66,7 +66,7 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
   font-weight:800; font-size:.85rem; margin-bottom:6px;
 }
 .fill-sky .num, .fill-sunny .num {
-  background:rgba(36,60,108,.14); color:var(--navy);
+  background:rgba(24,60,108,.14); color:#183c6c;
 }
 .syllables {
   font-size:1.5rem; font-weight:800; color:inherit;
@@ -91,27 +91,24 @@ h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
   outline:3px solid var(--sunny); outline-offset:2px;
   box-shadow:none !important; animation:none; filter:none;
 }
-/* 例句: solid inset panels, no stroke */
+/* 例句: high-contrast near-white inset on ALL fills (navy text) */
 .ex {
-  background:rgba(255,255,255,.22);
+  background:rgba(255,255,255,.92);
   border:0; border-radius:14px; padding:12px; margin-top:10px;
-}
-.fill-sky .ex, .fill-sunny .ex {
-  background:rgba(36,60,108,.12);
+  color:#183c6c;
 }
 .ex-label {
-  display:inline-block; font-size:.78rem; font-weight:800; color:inherit;
-  background:rgba(255,255,255,.32); border-radius:999px; padding:3px 10px; margin-bottom:6px;
+  display:inline-block; font-size:.78rem; font-weight:800;
+  color:#fff; background:#183c6c;
+  border-radius:999px; padding:3px 10px; margin-bottom:6px;
 }
-.fill-sky .ex-label, .fill-sunny .ex-label {
-  background:var(--navy); color:var(--white);
+.ex-en { font-size:.98rem; line-height:1.45; color:#183c6c; margin:0 0 4px; }
+.ex-zh { font-size:.9rem; line-height:1.4; color:#183c6c; opacity:.92; margin:0; }
+/* Universal vocab highlight: navy chip + white text (passes on every fill) */
+.hl {
+  background:#183c6c; color:#fff; font-weight:800;
+  padding:0 4px; border-radius:4px;
 }
-.ex-en { font-size:.98rem; line-height:1.45; color:inherit; margin:0 0 4px; }
-.ex-zh { font-size:.9rem; line-height:1.4; color:inherit; opacity:.88; margin:0; }
-/* Vocab highlight: sunny on dark fills; coral on light fills */
-.hl { color:var(--hl); font-weight:800; }
-.fill-sunny .hl, .fill-sky .hl { color:var(--coral); }
-.fill-coral .hl { color:var(--sunny); }
 @media (min-width:640px) {
   :root { --illust:196px; }
   .syllables { font-size:1.7rem; }
