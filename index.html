@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=18" />
+  <link rel="stylesheet" href="assets/site.css?v=19" />
 </head>
 <body>
   <a class="sr-only skip" href="#packs">Skip to packs</a>
@@ -101,14 +101,8 @@
               </div>
             </article>
           </div>
-          <div class="pack-carousel-bar">
-            <button type="button" class="pack-carousel-btn" id="pack-prev">Previous</button>
-            <p class="pack-carousel-status nums" id="pack-status" aria-live="polite">1 of 5</p>
-            <button type="button" class="pack-carousel-btn" id="pack-next">Next</button>
+          <p class="pack-carousel-status nums" id="pack-status" aria-live="polite">1 of 5</p>
           </div>
-          </div>
-
-          <p class="sheet-foot nums reveal">61 words · 5 packs · English UI · Traditional Chinese glosses</p>
         </div>
       </div>
     </section>
@@ -216,10 +210,8 @@
     }
 
     var track = document.getElementById("pack-index");
-    var prev = document.getElementById("pack-prev");
-    var next = document.getElementById("pack-next");
     var status = document.getElementById("pack-status");
-    if (track && prev && next && status) {
+    if (track && status) {
       var cards = Array.prototype.slice.call(track.querySelectorAll(".pack-card"));
       var active = 0;
       function leftOf(card) {
@@ -239,8 +231,6 @@
       }
       function paint() {
         status.textContent = (active + 1) + " of " + cards.length;
-        prev.disabled = active === 0;
-        next.disabled = active === cards.length - 1;
         cards.forEach(function (card, i) {
           var hide = i !== active && !card.contains(document.activeElement);
           card.setAttribute("aria-hidden", hide ? "true" : "false");
@@ -254,8 +244,6 @@
         lockUntil = Date.now() + (reduce ? 40 : 520);
         track.scrollTo({ left: leftOf(cards[i]), behavior: reduce ? "auto" : "smooth" });
       }
-      prev.addEventListener("click", function () { go(active - 1); });
-      next.addEventListener("click", function () { go(active + 1); });
       track.addEventListener("keydown", function (e) {
         if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
         if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }

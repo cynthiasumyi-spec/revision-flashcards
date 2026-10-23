@@ -415,33 +415,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: 0.65rem;
   gap: 0.65rem;
 }
-.pack-carousel-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
-}
 .pack-carousel-status {
-  margin: 0;
+  margin: 0.85rem 0 0;
+  text-align: center;
   font-family: var(--font-display);
   font-weight: 650;
   color: var(--navy);
 }
-.pack-carousel-btn {
-  min-height: 44px;
-  padding: 0.35rem 0.85rem;
-  border: 0;
-  box-shadow: none;
-  background: transparent;
-  color: var(--navy);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: var(--radius-pill);
-}
-.pack-carousel-btn:hover { background: var(--pale-yellow); }
-.pack-carousel-btn:disabled { opacity: 0.35; }
 .pack-card:hover,
 .pack-card:focus-visible { transform: translateY(-4px); }
 .pack-card.is-active { outline: 4px solid var(--navy); outline-offset: 3px; }
@@ -508,14 +488,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .tone-sunny .tag { background: var(--navy); color: var(--cream); }
 .tone-green .folder-tab,
 .tone-green .tag { color: var(--navy); }
-
-.sheet-foot {
-  margin-top: 1.75rem;
-  text-align: center;
-  font-weight: 600;
-  color: var(--navy);
-  font-size: var(--step-body);
-}
 
 /* —— How: cream + doodles —— */
 .how {
