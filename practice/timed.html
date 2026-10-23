@@ -13,15 +13,13 @@
 <header class="prac-header">
   <a class="back" href="#" id="back-hub">← Practice hub</a>
   <h1>Timed challenge</h1>
-  <p class="sub" id="sub">60 seconds · MC + fill mix</p>
+  <p class="sub" id="sub">60 seconds · wrong answers keep the clock</p>
 </header>
 <main class="wrap">
   <div id="lobby">
     <div class="panel">
-      <p style="margin:0 0 0.75rem;font-weight:600">Answer as many as you can. Combos give bonus points.</p>
-      <div class="score-row" style="margin-bottom:1rem">
-        <label class="toggle"><input type="checkbox" id="penalty"/> Time penalty on wrong (−3s)</label>
-      </div>
+      <p style="margin:0 0 0.75rem;font-weight:600">Answer as many as you can. Combos add points inside this round.</p>
+      <p id="no-penalty">Wrong answers do not take time away.</p>
       <p class="chip" id="best-line" hidden>Best score: <strong id="best-score">0</strong></p>
       <div class="btn-row">
         <button type="button" class="btn btn-primary" id="btn-start">Start 60s</button>
@@ -48,7 +46,9 @@
     <p class="big" id="final-score">0</p>
     <p id="final-detail"></p>
     <p id="best-msg"></p>
+    <div id="badge-note" class="badge-note"></div>
     <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-ghost" href="../badges.html">Badges</a>
       <button type="button" class="btn btn-primary" id="btn-again">Play again</button>
       <a class="btn btn-ghost" id="to-hub" href="#">Hub</a>
     </div>
@@ -56,6 +56,10 @@
 
   <div class="empty-state" id="empty" hidden>
     <p>No challenge items for this unit yet.</p>
+    <a href="index.html">Back to hub</a>
+  </div>
+  <div class="empty-state" id="locked" hidden>
+    <p id="locked-msg">This unit is locked.</p>
     <a href="index.html">Back to hub</a>
   </div>
 </main>
@@ -66,16 +70,27 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="badges.js"></script>
+<script src="timed-logic.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
   const C = window.PracticeCommon;
   const M = window.Mastery;
+  const B = window.Badges;
+  const T = window.TimedLogic;
   const { id: unitId, pack } = C.loadUnit();
   document.getElementById('back-hub').href = C.hubLink(unitId);
   document.getElementById('to-hub').href = C.hubLink(unitId);
   document.getElementById('to-hub2').href = C.hubLink(unitId);
   document.getElementById('sub').textContent = (pack && pack.title) || '';
+
+  if (B && !B.unitUnlocked(unitId)) {
+    document.getElementById('lobby').hidden = true;
+    document.getElementById('locked').hidden = false;
+    document.getElementById('locked-msg').textContent = B.lockReason(unitId);
+    return;
+  }
 
   const fill = (pack && pack.fillIn) || [];
   const words = (pack && pack.words) || [];
@@ -98,7 +113,7 @@
   let correctN = 0;
   let timerId = null;
   let busy = false;
-  let usePenalty = false;
+  let ended = false;
   let queue = [];
 
   function buildQueue() {
@@ -130,13 +145,13 @@
   }
 
   function start() {
-    usePenalty = document.getElementById('penalty').checked;
     remaining = 60;
     score = 0;
     combo = 0;
     answered = 0;
     correctN = 0;
     busy = false;
+    ended = false;
     queue = buildQueue();
     document.getElementById('lobby').hidden = true;
     document.getElementById('done').hidden = true;
@@ -209,11 +224,8 @@
         if (o.textContent.toLowerCase() === item.answer.toLowerCase()) o.classList.add('correct');
       });
       C.toast(document.getElementById('toast'), 'Oops', 'bad');
-      if (usePenalty) {
-        remaining = Math.max(0, remaining - 3);
-        updateTimer();
-        if (remaining <= 0) { setTimeout(endGame, 450); return; }
-      }
+      remaining = T ? T.nextRemaining(remaining, false) : remaining;
+      updateTimer();
     }
     setTimeout(() => {
       if (remaining > 0) nextQ();
@@ -221,6 +233,8 @@
   }
 
   function endGame() {
+    if (ended) return;
+    ended = true;
     clearInterval(timerId);
     remaining = 0;
     updateTimer();
@@ -229,7 +243,8 @@
     document.getElementById('final-score').textContent = String(score);
     document.getElementById('final-detail').textContent = correctN + ' correct · ' + answered + ' answered';
     const isBest = M.setTimedBest(unitId, score);
-    document.getElementById('best-msg').textContent = isBest ? 'New best score!' : (best != null && score <= best ? 'Best remains ' + best : '');
+    document.getElementById('best-msg').textContent = isBest ? 'New best round!' : (best != null && score <= best ? 'Best remains ' + best : '');
+    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'timed'));
   }
 
   document.getElementById('btn-start').addEventListener('click', start);

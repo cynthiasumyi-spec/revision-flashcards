@@ -24,6 +24,7 @@
     </div>
     <div class="progress-bar" aria-hidden="true"><span id="prog"></span></div>
   </div>
+  <p class="hard-note" id="hard-note" hidden>Hard unlocks after you finish Easy Sentence Fill and Easy Missing Letters for this unit.</p>
   <div class="panel" id="game">
     <p class="hint-word" id="hint">Spell the word</p>
     <div class="letter-row" id="letters"></div>
@@ -36,13 +37,19 @@
   <div class="panel result-card" id="done" hidden>
     <h2>Round complete</h2>
     <p class="big" id="score-big">0</p>
+    <div id="badge-note" class="badge-note"></div>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary" id="again" href="#">Play again</a>
       <a class="btn btn-ghost" id="to-hub" href="#">Hub</a>
+      <a class="btn btn-ghost" href="../badges.html">Badges</a>
     </div>
   </div>
   <div class="empty-state" id="empty" hidden>
     <p>No letter items for this unit yet.</p>
+    <a href="index.html">Back to hub</a>
+  </div>
+  <div class="empty-state" id="locked" hidden>
+    <p id="locked-msg">This unit is locked.</p>
     <a href="index.html">Back to hub</a>
   </div>
 </main>
@@ -53,19 +60,49 @@
 <script src="data/dictation3.js"></script>
 <script src="data/registry.js"></script>
 <script src="mastery.js"></script>
+<script src="badges.js"></script>
 <script src="common.js"></script>
 <script>
 (function () {
   const C = window.PracticeCommon;
   const M = window.Mastery;
+  const B = window.Badges;
   const { id: unitId, pack } = C.loadUnit();
   document.getElementById('back-hub').href = C.hubLink(unitId);
   document.getElementById('to-hub').href = C.hubLink(unitId);
   document.getElementById('again').href = C.practiceLink('letters.html', unitId);
-  document.getElementById('sub').textContent = (pack && pack.title) || '';
+  document.getElementById('sub').textContent = (pack && pack.title) ? (pack.title + ' · full phrases') : 'Full phrases';
+
+  if (B && !B.unitUnlocked(unitId)) {
+    document.getElementById('game').hidden = true;
+    document.querySelector('.toolbar').hidden = true;
+    document.getElementById('locked').hidden = false;
+    document.getElementById('locked-msg').textContent = B.lockReason(unitId);
+    return;
+  }
+
+  function syncHardLock() {
+    const open = !B || B.hardUnlocked(unitId);
+    const btn = document.getElementById('diff-hard');
+    btn.classList.toggle('is-locked', !open);
+    btn.setAttribute('aria-disabled', open ? 'false' : 'true');
+    document.getElementById('hard-note').hidden = open;
+  }
+
+  function loadLetterItems() {
+    const list = (pack && pack.missingLetters) ? pack.missingLetters.slice() : [];
+    const focus = new URLSearchParams(location.search).get('focus');
+    if (!focus) return C.shuffle(list);
+    list.sort(function (a, b) {
+      if (a.wordKey === focus) return -1;
+      if (b.wordKey === focus) return 1;
+      return 0;
+    });
+    return list;
+  }
 
   let mode = 'easy';
-  let items = (pack && pack.missingLetters) ? C.shuffle(pack.missingLetters.slice()) : [];
+  let items = loadLetterItems();
   if (!items.length) {
     document.getElementById('game').hidden = true;
     document.getElementById('empty').hidden = false;
@@ -83,14 +120,17 @@
   const btnNext = document.getElementById('btn-next');
 
   document.getElementById('diff-easy').addEventListener('click', () => setMode('easy'));
-  document.getElementById('diff-hard').addEventListener('click', () => setMode('hard'));
+  document.getElementById('diff-hard').addEventListener('click', () => {
+    if (B && !B.hardUnlocked(unitId)) return;
+    setMode('hard');
+  });
 
   function setMode(m) {
     mode = m;
     document.getElementById('diff-easy').classList.toggle('is-on', m === 'easy');
     document.getElementById('diff-hard').classList.toggle('is-on', m === 'hard');
     // restart round with new masks
-    items = C.shuffle((pack.missingLetters || []).slice());
+    items = loadLetterItems();
     idx = 0;
     correctCount = 0;
     document.getElementById('done').hidden = true;
@@ -99,8 +139,7 @@
   }
 
   function buildPattern(item) {
-    if (mode === 'easy' && item.pattern) return item.pattern;
-    return C.maskWord(item.word, mode);
+    return C.maskPhrase(item.word, mode);
   }
 
   function render() {
@@ -114,16 +153,20 @@
     const item = items[idx];
     document.getElementById('q-num').textContent = (idx + 1) + ' / ' + items.length;
     document.getElementById('prog').style.width = ((idx / items.length) * 100) + '%';
-    document.getElementById('hint').textContent = 'Fill the blanks · ' + item.word.length + ' letters';
+    const meta = (pack.words || []).find(w => w.key === item.wordKey);
+    document.getElementById('hint').textContent = meta && meta.zh
+      ? ('Spell the phrase · ' + meta.zh)
+      : 'Spell the phrase';
 
     const pattern = buildPattern(item);
     const slots = C.patternToSlots(item.word, pattern);
     lettersEl.innerHTML = '';
     slots.forEach((s, si) => {
       const wrap = document.createElement('div');
-      wrap.className = 'letter-slot' + (s.type === 'show' ? ' show' : '');
+      const space = s.type === 'show' && s.char === ' ';
+      wrap.className = 'letter-slot' + (s.type === 'show' ? ' show' : '') + (space ? ' is-space' : '');
       if (s.type === 'show') {
-        wrap.textContent = s.char;
+        wrap.textContent = space ? '' : s.char;
       } else {
         const inp = document.createElement('input');
         inp.type = 'text';
@@ -191,11 +234,14 @@
       document.getElementById('game').hidden = true;
       document.getElementById('done').hidden = false;
       document.getElementById('score-big').textContent = correctCount + ' / ' + items.length;
+      if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'letters', mode));
+      syncHardLock();
       return;
     }
     render();
   });
 
+  syncHardLock();
   render();
 })();
 </script>

@@ -20,6 +20,7 @@
         <a href="#packs">Packs</a>
         <a href="#how">How it works</a>
         <a href="practice/index.html">Practice</a>
+        <a href="badges.html" id="nav-badges">Badges</a>
         <a class="nav-action" href="#start">Start</a>
       </nav>
     </div>
@@ -100,6 +101,7 @@
             <h2 class="today-home-title" id="today-title">Review progress</h2>
             <p class="today-home-lead"><span id="today-home-count">0</span> words ready · open Practice to start</p>
             <a class="btn btn-primary" href="practice/index.html">Practice hub</a>
+            <a class="btn badges-entry" id="badges-entry" href="badges.html">Badges</a>
           </div>
           <div class="review-progress-list" id="review-progress" aria-label="Mastery by unit"></div>
         </div>
@@ -163,6 +165,7 @@
         <a href="unit1/index.html">Unit 1</a>
         <a href="dictation3/index.html">Dictation 3</a>
         <a href="practice/index.html">Practice</a>
+        <a href="badges.html">Badges</a>
         <a href="watch/index.html">Watch mode</a>
         <a href="#top">Back to top</a>
       </div>
@@ -201,6 +204,7 @@
   <script src="practice/data/dictation3.js"></script>
   <script src="practice/data/registry.js"></script>
   <script src="practice/mastery.js"></script>
+  <script src="practice/badges.js"></script>
   <script>
   (function () {
     try {
@@ -226,14 +230,16 @@
           else if (w.state === 'mastered') mastered += 1;
         });
         var pct = total ? Math.round((mastered / total) * 100) : 0;
-        var locked = !u.ready || !total;
+        var practiceLocked = window.Badges && !window.Badges.unitUnlocked(u.id);
+        var locked = !u.ready || !total || practiceLocked;
+        var pctLabel = (!total) ? 'Soon' : (practiceLocked ? 'Locked' : (pct + '%'));
         var row = document.createElement('a');
-        row.href = locked ? 'practice/index.html' : ('practice/index.html?unit=' + encodeURIComponent(u.id));
+        row.href = 'practice/index.html?unit=' + encodeURIComponent(u.id);
         row.className = 'review-row tone-' + (tones[u.tone] || 'sky') + (locked ? ' is-locked' : '');
         row.innerHTML =
           '<div class="review-row-top">' +
             '<span class="review-label">' + u.label + '</span>' +
-            '<span class="review-pct">' + (locked && !total ? 'Soon' : (pct + '%')) + '</span>' +
+            '<span class="review-pct">' + pctLabel + '</span>' +
           '</div>' +
           '<div class="review-track" aria-hidden="true"><span class="review-fill" style="width:' + (locked ? 0 : pct) + '%"></span></div>';
         box.appendChild(row);

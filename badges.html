@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Badges · English Revision</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">English Revision</a>
+      <nav class="nav-plain" aria-label="Primary">
+        <a href="index.html#packs">Packs</a>
+        <a href="practice/index.html">Practice</a>
+        <a href="badges.html">Badges</a>
+        <a class="nav-action" href="index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+  <main class="badge-main">
+    <h1>Badges</h1>
+    <p class="badge-lead">Badges unlock when you finish practice. This page does not keep a score.</p>
+    <p class="badge-count" id="badge-count">0 earned</p>
+    <div class="badge-grid" id="badge-grid" aria-live="polite"></div>
+    <p class="badge-credit">Illustrations of people from いらすとや:
+      <a href="https://www.irasutoya.com/2013/11/blog-post_508.html">schoolboy</a>,
+      <a href="https://www.irasutoya.com/2014/09/blog-post_58.html">Unit 1 award</a>,
+      <a href="https://www.irasutoya.com/2012/11/blog-post_6715.html">Unit 2 first place</a>,
+      <a href="https://www.irasutoya.com/2013/09/blog-post_3570.html">Unit 3 trophy</a>,
+      <a href="https://www.irasutoya.com/2013/09/blog-post_4255.html">Unit 4 cheer</a>,
+      <a href="https://www.irasutoya.com/2013/02/blog-post_4647.html">Dictation 3 certificate</a>,
+      <a href="https://www.irasutoya.com/2013/01/blog-post_2739.html">English study</a>,
+      <a href="https://www.irasutoya.com/2017/07/blog-post_978.html">card game</a>,
+      <a href="https://www.irasutoya.com/2012/12/blog-post_271.html">race</a>,
+      <a href="https://www.irasutoya.com/2020/01/blog-post_69.html">ready to study</a>,
+      <a href="https://www.irasutoya.com/2017/09/blog-post_494.html">happy with a test</a>.
+    </p>
+  </main>
+  <script src="practice/badges.js"></script>
+  <script>
+  (function () {
+    var B = window.Badges;
+    var list = B.listWithStatus();
+    var earned = list.filter(function (b) { return b.earned; }).length;
+    document.getElementById('badge-count').textContent = earned + ' of ' + list.length + ' earned';
+    var grid = document.getElementById('badge-grid');
+    list.forEach(function (b) {
+      var card = document.createElement('article');
+      card.className = 'badge-card ' + (b.earned ? 'is-earned' : 'is-locked');
+      card.title = b.detail;
+      var art = document.createElement('div');
+      art.className = 'badge-art';
+      var img = document.createElement('img');
+      img.src = b.earned ? b.image : b.image.replace(/\.png$/, '-locked.png');
+      img.alt = '';
+      art.appendChild(img);
+      var name = document.createElement('h2');
+      name.className = 'badge-name';
+      name.textContent = b.title;
+      var english = document.createElement('p');
+      english.className = 'badge-english';
+      english.textContent = b.english;
+      card.appendChild(art);
+      card.appendChild(name);
+      card.appendChild(english);
+      if (b.unitLabel) {
+        var unit = document.createElement('p');
+        unit.className = 'badge-unit';
+        unit.textContent = b.unitLabel;
+        card.appendChild(unit);
+      }
+      var date = document.createElement('p');
+      date.className = 'badge-date';
+      date.textContent = b.earned ? ('Earned ' + b.earnedLabel) : 'Locked';
+      card.appendChild(date);
+      grid.appendChild(card);
+    });
+  })();
+  </script>
+</body>
+</html>

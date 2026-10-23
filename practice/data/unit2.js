@@ -215,16 +215,16 @@ window.PRACTICE_UNIT2 = {
   ],
 
   missingLetters: [
-    { id: "u2-m1", wordKey: "unit2:drought", word: "drought", pattern: "dr__ght", audio: "../unit2/audio/audio_01.mp3" },
-    { id: "u2-m2", wordKey: "unit2:earthquake", word: "earthquake", pattern: "e_rthq_ake", audio: "../unit2/audio/audio_02.mp3" },
-    { id: "u2-m3", wordKey: "unit2:flood", word: "flood", pattern: "fl__d", audio: "../unit2/audio/audio_03.mp3" },
-    { id: "u2-m4", wordKey: "unit2:landslip", word: "landslip", pattern: "l_ndsl_p", audio: "../unit2/audio/audio_04.mp3" },
-    { id: "u2-m5", wordKey: "unit2:tsunami", word: "tsunami", pattern: "ts_n_mi", audio: "../unit2/audio/audio_05.mp3" },
-    { id: "u2-m6", wordKey: "unit2:typhoon", word: "typhoon", pattern: "typh__n", audio: "../unit2/audio/audio_06.mp3" },
-    { id: "u2-m7", wordKey: "unit2:block", word: "block", pattern: "bl_ck", audio: "../unit2/audio/audio_07.mp3" },
-    { id: "u2-m8", wordKey: "unit2:damage", word: "damage", pattern: "d_m_ge", audio: "../unit2/audio/audio_08.mp3" },
-    { id: "u2-m9", wordKey: "unit2:destroy", word: "destroy", pattern: "d_str_y", audio: "../unit2/audio/audio_09.mp3" },
-    { id: "u2-m10", wordKey: "unit2:injure", word: "injure", pattern: "inj_re", audio: "../unit2/audio/audio_10.mp3" },
+    { id: "u2-m1", wordKey: "unit2:drought", word: "a drought", audio: "../unit2/audio/audio_01.mp3" },
+    { id: "u2-m2", wordKey: "unit2:earthquake", word: "an earthquake", audio: "../unit2/audio/audio_02.mp3" },
+    { id: "u2-m3", wordKey: "unit2:flood", word: "a flood", audio: "../unit2/audio/audio_03.mp3" },
+    { id: "u2-m4", wordKey: "unit2:landslip", word: "a landslip", audio: "../unit2/audio/audio_04.mp3" },
+    { id: "u2-m5", wordKey: "unit2:tsunami", word: "a tsunami", audio: "../unit2/audio/audio_05.mp3" },
+    { id: "u2-m6", wordKey: "unit2:typhoon", word: "a typhoon", audio: "../unit2/audio/audio_06.mp3" },
+    { id: "u2-m7", wordKey: "unit2:block", word: "block roads", audio: "../unit2/audio/audio_07.mp3" },
+    { id: "u2-m8", wordKey: "unit2:damage", word: "damage crops", audio: "../unit2/audio/audio_08.mp3" },
+    { id: "u2-m9", wordKey: "unit2:destroy", word: "destroy buildings", audio: "../unit2/audio/audio_09.mp3" },
+    { id: "u2-m10", wordKey: "unit2:injure", word: "injure people", audio: "../unit2/audio/audio_10.mp3" },
   ],
 
   matching: [

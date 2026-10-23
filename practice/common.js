@@ -45,22 +45,35 @@ window.PracticeCommon = (function () {
       .replace(/"/g, '&quot;');
   }
 
-  /** Build easy/hard masks from a word if pattern not provided */
-  function maskWord(word, mode) {
+  /**
+   * Mask a full phrase. Spaces and punctuation stay visible.
+   * Easy hides every 3rd letter (stable). Hard hides about half, shuffled.
+   */
+  function maskPhrase(phrase, mode, shuffleFn) {
+    const word = String(phrase || '');
     const chars = word.split('');
-    const letters = chars.map((c, i) => ({ c, i, isLetter: /[a-zA-Z]/.test(c) }));
-    const letterIdx = letters.filter(x => x.isLetter).map(x => x.i);
+    const letterIdx = [];
+    chars.forEach(function (c, i) {
+      if (/[a-zA-Z]/.test(c)) letterIdx.push(i);
+    });
     if (!letterIdx.length) return word;
-    let hideCount;
-    if (mode === 'hard') {
-      hideCount = Math.max(2, Math.ceil(letterIdx.length / 2));
-    } else {
-      hideCount = Math.min(2, Math.max(1, Math.floor(letterIdx.length / 3)));
-    }
-    const picks = shuffle(letterIdx).slice(0, hideCount);
     const hide = {};
-    picks.forEach(i => { hide[i] = true; });
-    return chars.map((c, i) => (hide[i] ? '_' : c)).join('');
+    if (mode === 'hard') {
+      const mix = typeof shuffleFn === 'function' ? shuffleFn(letterIdx.slice()) : shuffle(letterIdx);
+      const hideCount = Math.max(2, Math.ceil(letterIdx.length / 2));
+      mix.slice(0, hideCount).forEach(function (i) { hide[i] = true; });
+    } else {
+      letterIdx.forEach(function (idx, n) {
+        if (n % 3 === 1) hide[idx] = true;
+      });
+      if (!Object.keys(hide).length) hide[letterIdx[0]] = true;
+    }
+    return chars.map(function (c, i) { return hide[i] ? '_' : c; }).join('');
+  }
+
+  /** @deprecated use maskPhrase so phrases keep spaces */
+  function maskWord(word, mode) {
+    return maskPhrase(word, mode);
   }
 
   function patternToSlots(word, pattern) {
@@ -93,6 +106,6 @@ window.PracticeCommon = (function () {
 
   return {
     shuffle, unitParam, loadUnit, hubLink, practiceLink,
-    playAudio, escapeHtml, maskWord, patternToSlots, toast
+    playAudio, escapeHtml, maskWord, maskPhrase, patternToSlots, toast
   };
 })();

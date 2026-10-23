@@ -165,11 +165,11 @@ window.PRACTICE_UNIT3 = {
     {
       id: "u3-h3",
       wordKey: "unit3:mix",
-      sentence: "When the butter is soft, ______ it with the sugar in a bowl so that the cream is smooth and even.",
+      sentence: "When the flour and cocoa are in the bowl, ______ them until they are evenly blended.",
       blank: '______',
       answer: "mix",
       accept: ["mix"],
-      explain: "Combining butter and sugar evenly = mix (\u6df7\u5408)."
+      explain: "Flour and cocoa blended evenly, with no whisk, means mix (\u6df7\u5408)."
     },
     {
       id: "u3-h4",
@@ -183,7 +183,7 @@ window.PRACTICE_UNIT3 = {
     {
       id: "u3-h5",
       wordKey: "unit3:spread",
-      sentence: "Before you toast the bread, ______ a little jam on it with a knife so that it tastes sweet.",
+      sentence: "Before you toast the bread, ______ a thin layer of jam on it with a knife so that it tastes sweet.",
       blank: '______',
       answer: "spread",
       accept: ["spread"],
@@ -192,7 +192,7 @@ window.PRACTICE_UNIT3 = {
     {
       id: "u3-h6",
       wordKey: "unit3:sprinkle",
-      sentence: "When the pizza comes out of the oven, ______ grated cheese lightly on top so that it melts nicely.",
+      sentence: "When the pizza is on the plate, ______ grated cheese by scattering it lightly on top so that it melts nicely.",
       blank: '______',
       answer: "sprinkle",
       accept: ["sprinkle"],
@@ -255,18 +255,18 @@ window.PRACTICE_UNIT3 = {
   ],
 
   missingLetters: [
-    { id: "u3-m1", wordKey: "unit3:beat", word: "beat", pattern: "b__t", audio: "../unit3/audio/audio_01.mp3" },
-    { id: "u3-m2", wordKey: "unit3:chop", word: "chop", pattern: "ch_p", audio: "../unit3/audio/audio_02.mp3" },
-    { id: "u3-m3", wordKey: "unit3:mix", word: "mix", pattern: "m_x", audio: "../unit3/audio/audio_03.mp3" },
-    { id: "u3-m4", wordKey: "unit3:pour", word: "pour", pattern: "p__r", audio: "../unit3/audio/audio_04.mp3" },
-    { id: "u3-m5", wordKey: "unit3:spread", word: "spread", pattern: "spr__d", audio: "../unit3/audio/audio_05.mp3" },
-    { id: "u3-m6", wordKey: "unit3:sprinkle", word: "sprinkle", pattern: "spr_nkle", audio: "../unit3/audio/audio_06.mp3" },
-    { id: "u3-m7", wordKey: "unit3:stir", word: "stir", pattern: "st_r", audio: "../unit3/audio/audio_07.mp3" },
-    { id: "u3-m8", wordKey: "unit3:peel", word: "peel", pattern: "p__l", audio: "../unit3/audio/audio_08.mp3" },
-    { id: "u3-m9", wordKey: "unit3:bake", word: "bake", pattern: "b_ke", audio: "../unit3/audio/audio_09.mp3" },
-    { id: "u3-m10", wordKey: "unit3:boil", word: "boil", pattern: "b__l", audio: "../unit3/audio/audio_10.mp3" },
-    { id: "u3-m11", wordKey: "unit3:fry", word: "fry", pattern: "f_y", audio: "../unit3/audio/audio_11.mp3" },
-    { id: "u3-m12", wordKey: "unit3:steam", word: "steam", pattern: "st__m", audio: "../unit3/audio/audio_12.mp3" },
+    { id: "u3-m1", wordKey: "unit3:beat", word: "beat", audio: "../unit3/audio/audio_01.mp3" },
+    { id: "u3-m2", wordKey: "unit3:chop", word: "chop", audio: "../unit3/audio/audio_02.mp3" },
+    { id: "u3-m3", wordKey: "unit3:mix", word: "mix", audio: "../unit3/audio/audio_03.mp3" },
+    { id: "u3-m4", wordKey: "unit3:pour", word: "pour", audio: "../unit3/audio/audio_04.mp3" },
+    { id: "u3-m5", wordKey: "unit3:spread", word: "spread", audio: "../unit3/audio/audio_05.mp3" },
+    { id: "u3-m6", wordKey: "unit3:sprinkle", word: "sprinkle", audio: "../unit3/audio/audio_06.mp3" },
+    { id: "u3-m7", wordKey: "unit3:stir", word: "stir", audio: "../unit3/audio/audio_07.mp3" },
+    { id: "u3-m8", wordKey: "unit3:peel", word: "peel", audio: "../unit3/audio/audio_08.mp3" },
+    { id: "u3-m9", wordKey: "unit3:bake", word: "bake", audio: "../unit3/audio/audio_09.mp3" },
+    { id: "u3-m10", wordKey: "unit3:boil", word: "boil", audio: "../unit3/audio/audio_10.mp3" },
+    { id: "u3-m11", wordKey: "unit3:fry", word: "fry", audio: "../unit3/audio/audio_11.mp3" },
+    { id: "u3-m12", wordKey: "unit3:steam", word: "steam", audio: "../unit3/audio/audio_12.mp3" },
   ],
 
   matching: [
