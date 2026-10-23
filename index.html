@@ -4,271 +4,262 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Primary 6 English Flashcards</title>
-  <meta name="description" content="Hong Kong Primary 6 English vocabulary flashcards — tap a pack, hear the word, read the example." />
+  <meta name="description" content="Hong Kong Primary 6 English vocabulary flashcards. open a pack, hear the word, read the bilingual example." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&family=Red+Hat+Text:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
+  <a class="sr-only skip" href="#packs">Skip to packs</a>
+
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#top">P6 Flashcards</a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
-        <span></span>
-      </button>
-      <ul class="nav-links" id="primary-nav">
-        <li><a href="#packs">Packs</a></li>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#start">Start</a></li>
-      </ul>
+      <nav class="nav-plain" aria-label="Primary">
+        <a href="#packs">Packs</a>
+        <a href="#how">How it works</a>
+        <a class="nav-action" href="#start">Start</a>
+      </nav>
     </div>
   </header>
 
   <main id="top">
-    <!-- Chapter 1: Hero waterline -->
+    <!-- Hero: tabbed folder stack on navy desk -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-half hero-half-top" aria-hidden="true"></div>
-      <div class="hero-half hero-half-bot" aria-hidden="true"></div>
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <h1 class="hero-title" id="hero-title">
-            <span class="line line-a"><span>P6</span></span>
-            <span class="line line-b"><span>Cards</span></span>
-          </h1>
-          <p class="hero-support">
-            Primary 6 English vocabulary flashcards for Hong Kong. Tap a pack, hear the word, read the bilingual example.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#packs">Open packs</a>
-            <a class="btn btn-ghost" href="#how">How it works</a>
-          </div>
-        </div>
-        <aside class="hero-aside">
-          <figure class="hero-cover">
-            <img src="covers/unit1.jpg" alt="Unit 1 cover illustration for For a good cause" width="800" height="600" decoding="async" />
-          </figure>
-          <p class="hero-live" id="hero-live">
-            <strong><span class="nums">61</span> words · <span class="nums">5</span> packs</strong>
-            Real syllabus cards with audio and Traditional Chinese glosses.
-          </p>
-        </aside>
-      </div>
-    </section>
+      <h1 class="hero-title" id="hero-title">P6 flashcards</h1>
+      <p class="hero-support">
+        Hong Kong Primary 6 vocabulary. Open a pack, hear the word, read the bilingual example.
+      </p>
 
-    <!-- Chapter 2: Packs as poster list + live flipper -->
-    <section class="chapter packs" id="packs" aria-labelledby="packs-title">
-      <div class="packs-layout">
-        <div class="packs-main reveal">
-          <h2 class="chapter-head" id="packs-title">The packs</h2>
-          <p class="chapter-lead">Five coloured piles on the desk. Pick one and start revising.</p>
-          <div class="cover-strip" aria-hidden="true">
-            <img src="covers/unit1.jpg" alt="" width="200" height="200" loading="lazy" />
-            <img src="covers/unit2.jpg" alt="" width="200" height="200" loading="lazy" />
-            <img src="covers/unit3.jpg" alt="" width="200" height="200" loading="lazy" />
-            <img src="covers/unit4.jpg" alt="" width="200" height="200" loading="lazy" />
-            <img src="covers/dictation3.jpg" alt="" width="200" height="200" loading="lazy" />
-          </div>
-          <nav class="poster-list reveal-delay-1" aria-label="Revision packs">
-          <a href="unit1/index.html" class="is-active"
-             data-cover="covers/unit1.jpg"
-             data-name="Unit 1 · For a good cause"
-             data-count="10"
-             data-alt="Unit 1 cover: For a good cause">
-            <span>Good cause</span>
-            <span class="detail nums">10 words</span>
-          </a>
-          <a href="unit2/index.html"
-             data-cover="covers/unit2.jpg"
-             data-name="Unit 2 · Lend a helping hand"
-             data-count="10"
-             data-alt="Unit 2 cover: Lend a helping hand">
-            <span>Helping hand</span>
-            <span class="detail nums">10 words</span>
-          </a>
-          <a href="unit3/index.html"
-             data-cover="covers/unit3.jpg"
-             data-name="Unit 3 · Junior Super Chef"
-             data-count="12"
-             data-alt="Unit 3 cover: Junior Super Chef">
-            <span>Super chef</span>
-            <span class="detail nums">12 words</span>
-          </a>
-          <a href="unit4/index.html"
-             data-cover="covers/unit4.jpg"
-             data-name="Unit 4 · Film magic"
-             data-count="14"
-             data-alt="Unit 4 cover: Film magic">
-            <span>Film magic</span>
-            <span class="detail nums">14 words</span>
-          </a>
-          <a href="dictation3/index.html"
-             data-cover="covers/dictation3.jpg"
-             data-name="Dictation 3 · Films and similes"
-             data-count="15"
-             data-alt="Dictation 3 cover">
-            <span>Dictation 3</span>
-            <span class="detail nums">15 cards</span>
-          </a>
-          </nav>
-        </div>
-        <div class="packs-stage-wrap reveal reveal-delay-2">
-          <div class="pack-stage" id="pack-stage">
-            <img id="pack-cover" src="covers/unit1.jpg" alt="Unit 1 cover: For a good cause" width="800" height="600" />
-            <p class="pack-meta" id="pack-meta">
+      <div class="folder-stack" id="folder-stack" role="list" aria-label="Revision packs as folders">
+        <a class="folder f5" role="listitem" href="dictation3/index.html"
+           data-cover="covers/dictation3.jpg" data-name="Dictation 3 · Films and similes" data-count="15" data-unit="cards"
+           data-alt="Dictation 3 cover" data-tab="Dictation 3">
+          <span class="folder-tab">Dictation 3</span>
+        </a>
+        <a class="folder f4" role="listitem" href="unit4/index.html"
+           data-cover="covers/unit4.jpg" data-name="Unit 4 · Film magic" data-count="14" data-unit="words"
+           data-alt="Unit 4 cover: Film magic" data-tab="Unit 4">
+          <span class="folder-tab">Unit 4</span>
+        </a>
+        <a class="folder f3" role="listitem" href="unit3/index.html"
+           data-cover="covers/unit3.jpg" data-name="Unit 3 · Junior Super Chef" data-count="12" data-unit="words"
+           data-alt="Unit 3 cover: Junior Super Chef" data-tab="Unit 3">
+          <span class="folder-tab">Unit 3</span>
+        </a>
+        <a class="folder f2" role="listitem" href="unit2/index.html"
+           data-cover="covers/unit2.jpg" data-name="Unit 2 · Lend a helping hand" data-count="10" data-unit="words"
+           data-alt="Unit 2 cover: Lend a helping hand" data-tab="Unit 2">
+          <span class="folder-tab">Unit 2</span>
+        </a>
+        <div class="folder f1 is-front" role="listitem" id="front-folder">
+          <span class="folder-tab">Unit 1</span>
+          <div class="folder-open">
+            <figure class="folder-cover">
+              <img id="pack-cover" src="covers/unit1.jpg" alt="Unit 1 cover: For a good cause" width="900" height="680" decoding="async" />
+            </figure>
+            <p class="folder-meta" id="pack-meta">
               <strong>Unit 1 · For a good cause</strong>
-              <span class="nums">10</span> words in this pack · <span class="nums">61</span> words on this site
+              <span><span class="nums">10</span> words in this pack · <span class="nums">61</span> words on this site</span>
             </p>
+            <a class="btn btn-primary folder-cta" href="unit1/index.html">Open Unit 1</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Chapter 3: How it works -->
-    <section class="chapter how" id="how" aria-labelledby="how-title">
-      <div class="how-intro reveal">
-        <h2 class="chapter-head" id="how-title">Hear. See. Read.</h2>
-        <p class="reveal reveal-delay-1">
-          Open any pack. Each card has a speaker for pronunciation, an illustration you can enlarge, and English plus Traditional Chinese examples.
-        </p>
-      </div>
-      <div class="accordion reveal reveal-delay-2" id="accordion" role="list">
-        <button type="button" class="acc-panel is-open" role="listitem" aria-expanded="true" data-panel="0">
-          <span class="acc-name">Hear</span>
-          <span class="acc-body">Tap Play on a card to hear the word. Practise saying it aloud with the syllable breaks.</span>
-          <span class="acc-art">
-            <img src="covers/unit4.jpg" alt="Film magic unit illustration" width="400" height="400" />
-          </span>
-        </button>
-        <button type="button" class="acc-panel" role="listitem" aria-expanded="false" data-panel="1">
-          <span class="acc-name">See</span>
-          <span class="acc-body">Tap the illustration to enlarge it. Cartoon art helps the meaning stick for Primary 6.</span>
-          <span class="acc-art">
-            <img src="unit3/thumb_01.jpg" alt="Cooking verb card illustration" width="400" height="400" />
-          </span>
-        </button>
-        <button type="button" class="acc-panel" role="listitem" aria-expanded="false" data-panel="2">
-          <span class="acc-name">Read</span>
-          <span class="acc-body">Read a textbook example and a harder Form 1 example, each with a Traditional Chinese gloss.</span>
-          <span class="acc-art">
-            <img src="unit2/thumb_01.png" alt="Natural disaster card illustration" width="400" height="400" />
-          </span>
-        </button>
+    <!-- List: printed catalogue sheet + Class News pack cards -->
+    <section class="section packs" id="packs" aria-labelledby="packs-title">
+      <div class="packs-field">
+        <div class="sheet reveal">
+          <h2 class="sheet-title" id="packs-title">The packs</h2>
+          <p class="sheet-note">Five paper sets on the desk. Tap a card to revise.</p>
+
+          <div class="pack-grid" id="pack-index">
+            <a class="pack-card tone-coral is-active reveal reveal-delay-1" href="unit1/index.html"
+               data-cover="covers/unit1.jpg" data-name="Unit 1 · For a good cause" data-count="10" data-unit="words"
+               data-alt="Unit 1 cover: For a good cause" data-tab="Unit 1">
+              <div class="pack-cover"><img src="covers/unit1.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+              <div class="pack-body">
+                <h3>For a good cause</h3>
+                <p>Charity verbs for Unit 1. adopt a pet, donate money, walkathon.</p>
+                <p class="pack-tags"><span class="tag">Unit 1</span><span class="tag nums">10 words</span></p>
+              </div>
+            </a>
+            <a class="pack-card tone-green reveal reveal-delay-2" href="unit2/index.html"
+               data-cover="covers/unit2.jpg" data-name="Unit 2 · Lend a helping hand" data-count="10" data-unit="words"
+               data-alt="Unit 2 cover: Lend a helping hand" data-tab="Unit 2">
+              <div class="pack-cover"><img src="covers/unit2.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+              <div class="pack-body">
+                <h3>Lend a helping hand</h3>
+                <p>Natural disasters and how we help. drought, flood, rescue.</p>
+                <p class="pack-tags"><span class="tag">Unit 2</span><span class="tag nums">10 words</span></p>
+              </div>
+            </a>
+            <a class="pack-card tone-sky reveal reveal-delay-3" href="unit3/index.html"
+               data-cover="covers/unit3.jpg" data-name="Unit 3 · Junior Super Chef" data-count="12" data-unit="words"
+               data-alt="Unit 3 cover: Junior Super Chef" data-tab="Unit 3">
+              <div class="pack-cover"><img src="covers/unit3.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+              <div class="pack-body">
+                <h3>Junior Super Chef</h3>
+                <p>Kitchen verbs. beat, grate, simmer, and more for cooking class.</p>
+                <p class="pack-tags"><span class="tag">Unit 3</span><span class="tag nums">12 words</span></p>
+              </div>
+            </a>
+            <a class="pack-card tone-sunny reveal reveal-delay-4" href="unit4/index.html"
+               data-cover="covers/unit4.jpg" data-name="Unit 4 · Film magic" data-count="14" data-unit="words"
+               data-alt="Unit 4 cover: Film magic" data-tab="Unit 4">
+              <div class="pack-cover"><img src="covers/unit4.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+              <div class="pack-body">
+                <h3>Film magic</h3>
+                <p>Genres and cinema words. action film, comedy, fantasy, musical.</p>
+                <p class="pack-tags"><span class="tag">Unit 4</span><span class="tag nums">14 words</span></p>
+              </div>
+            </a>
+            <a class="pack-card tone-pink reveal reveal-delay-5" href="dictation3/index.html"
+               data-cover="covers/dictation3.jpg" data-name="Dictation 3 · Films and similes" data-count="15" data-unit="cards"
+               data-alt="Dictation 3 cover" data-tab="Dictation 3">
+              <div class="pack-cover"><img src="covers/dictation3.jpg" alt="" width="640" height="480" loading="lazy" /></div>
+              <div class="pack-body">
+                <h3>Dictation 3</h3>
+                <p>Film genres plus similes. blind as a bat, busy as a bee.</p>
+                <p class="pack-tags"><span class="tag">Dictation</span><span class="tag nums">15 cards</span></p>
+              </div>
+            </a>
+          </div>
+
+          <p class="sheet-foot nums reveal">61 words · 5 packs · English UI · Traditional Chinese glosses</p>
+        </div>
       </div>
     </section>
 
-    <!-- Chapter 4: CTA -->
-    <a class="cta-band" id="start" href="unit1/index.html">
-      <div class="cta-top">
-        <p class="cta-note">Open Unit 1, or jump back to any pack above.</p>
-        <svg class="cta-arrow" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3">
-          <path d="M12 36 L36 12 M18 12 H36 V30" />
-        </svg>
+    <!-- How it works: three classroom colour cards (fits page frame) -->
+    <section class="section how" id="how" aria-labelledby="how-title">
+      <div class="how-wrap reveal">
+        <h2 class="how-title" id="how-title">Hear. See. Read.</h2>
+        <p class="how-lead">Open any pack. Each card has audio, a picture you can enlarge, and bilingual examples.</p>
+        <div class="how-grid">
+          <article class="how-card tone-sky reveal reveal-delay-1">
+            <div class="how-art"><img src="covers/unit4.jpg" alt="Film magic pack illustration" width="400" height="400" loading="lazy" /></div>
+            <div class="how-body">
+              <h3>Hear it</h3>
+              <p>Tap Play on a card. Practise the word aloud with the syllable breaks.</p>
+            </div>
+          </article>
+          <article class="how-card tone-sunny reveal reveal-delay-2">
+            <div class="how-art"><img src="unit3/thumb_01.jpg" alt="Cooking verb card illustration" width="400" height="400" loading="lazy" /></div>
+            <div class="how-body">
+              <h3>See it</h3>
+              <p>Tap the illustration to enlarge. Cute art helps the meaning stick.</p>
+            </div>
+          </article>
+          <article class="how-card tone-pink reveal reveal-delay-3">
+            <div class="how-art"><img src="unit1/thumb_01.jpg" alt="Adopt a pet card illustration" width="400" height="400" loading="lazy" /></div>
+            <div class="how-body">
+              <h3>Read it</h3>
+              <p>Textbook and Form 1 examples, each with a Traditional Chinese gloss.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <span class="cta-word">Start</span>
-    </a>
+    </section>
+
+    <!-- CTA: reply card on coral field -->
+    <section class="section cta" id="start" aria-labelledby="cta-title">
+      <div class="cta-inner">
+      <p class="cta-aside reveal">Sixty-one real syllabus words with audio. Open Unit 1 and start with the first card.</p>
+      <div class="reply-card reveal reveal-delay-1">
+        <h2 id="cta-title">Start Unit 1</h2>
+        <p>For a good cause. ten charity verbs with examples and Traditional Chinese glosses.</p>
+        <a class="btn btn-ink" href="unit1/index.html">Open the pack</a>
+      </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-top">
-      <p>Primary 6 English Flashcards for Hong Kong students. English UI with Traditional Chinese glosses. For learning and revision only.</p>
-      <a href="#top">Back to top</a>
-    </div>
-    <p class="footer-display"><a href="#packs"><span class="nums">61</span> words</a></p>
-    <div class="footer-meta">
-      <span><a href="#packs">Packs</a> · <a href="unit1/index.html">Unit 1</a> · <a href="dictation3/index.html">Dictation 3</a></span>
-      <span>Illustrations and audio owned by this project</span>
-      <span>Hong Kong · 2026</span>
+    <div class="postcard reveal">
+      <div class="postcard-left">
+        <p class="postcard-sign">Keep practising</p>
+        <p>Primary 6 English Flashcards for Hong Kong students. English UI with Traditional Chinese glosses. For learning and revision only.</p>
+      </div>
+      <div class="postcard-right">
+        <figure class="stamp">
+          <img src="covers/unit1.jpg" alt="" width="120" height="160" loading="lazy" />
+        </figure>
+        <a href="#packs">The packs</a>
+        <a href="unit1/index.html">Unit 1</a>
+        <a href="dictation3/index.html">Dictation 3</a>
+        <a href="#top">Back to top</a>
+      </div>
+      <p class="imprint">Hong Kong · <span class="nums">61</span> words · Illustrations and audio owned by this project · 2026</p>
     </div>
   </footer>
 
   <script>
-    (function () {
-      var toggle = document.querySelector(".nav-toggle");
-      var nav = document.getElementById("primary-nav");
-      if (toggle && nav) {
-        toggle.addEventListener("click", function () {
-          var open = nav.classList.toggle("open");
-          toggle.setAttribute("aria-expanded", open ? "true" : "false");
-          toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-        });
-        nav.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            nav.classList.remove("open");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.setAttribute("aria-label", "Open menu");
+  (function () {
+    var TOTAL = 61;
+    var cover = document.getElementById("pack-cover");
+    var meta = document.getElementById("pack-meta");
+    var frontTab = document.querySelector("#front-folder .folder-tab");
+    var frontCta = document.querySelector(".folder-cta");
+    var folders = document.querySelectorAll(".folder[data-cover]");
+    var cards = document.querySelectorAll(".pack-card");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function showPack(el) {
+      if (!cover || !meta || !el) return;
+      var c = el.getAttribute("data-cover");
+      var name = el.getAttribute("data-name");
+      var count = el.getAttribute("data-count");
+      var unit = el.getAttribute("data-unit") || "words";
+      var alt = el.getAttribute("data-alt") || "";
+      var tab = el.getAttribute("data-tab") || "Pack";
+      cover.src = c;
+      cover.alt = alt;
+      meta.innerHTML =
+        "<strong>" + name + "</strong>" +
+        "<span><span class=\"nums\">" + count + "</span> " + unit +
+        " in this pack · <span class=\"nums\">" + TOTAL + "</span> words on this site</span>";
+      if (frontTab) frontTab.textContent = tab;
+      if (frontCta) {
+        frontCta.href = el.getAttribute("href");
+        frontCta.textContent = "Open " + tab;
+      }
+      cards.forEach(function (a) { a.classList.toggle("is-active", a === el || a.getAttribute("data-cover") === c); });
+      folders.forEach(function (a) { a.classList.toggle("is-dim", a !== el); });
+    }
+
+    folders.forEach(function (el) {
+      el.addEventListener("mouseenter", function () { showPack(el); });
+      el.addEventListener("focus", function () { showPack(el); });
+    });
+    cards.forEach(function (el) {
+      el.addEventListener("mouseenter", function () { showPack(el); });
+      el.addEventListener("focus", function () { showPack(el); });
+    });
+
+    /* Entrances */
+    function markIn(el) { el.classList.add("is-in"); }
+    var hero = document.querySelector(".hero");
+    if (reduce) {
+      if (hero) markIn(hero);
+      document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
+    } else {
+      requestAnimationFrame(function () { if (hero) markIn(hero); });
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { markIn(e.target); io.unobserve(e.target); }
           });
-        });
-      }
-
-      /* Pack flipper — live thing */
-      var cover = document.getElementById("pack-cover");
-      var meta = document.getElementById("pack-meta");
-      var links = document.querySelectorAll(".poster-list a");
-      var TOTAL = 61;
-
-      function showPack(link) {
-        if (!cover || !meta || !link) return;
-        links.forEach(function (a) { a.classList.remove("is-active"); });
-        link.classList.add("is-active");
-        cover.src = link.getAttribute("data-cover");
-        cover.alt = link.getAttribute("data-alt") || "";
-        var count = link.getAttribute("data-count");
-        var name = link.getAttribute("data-name");
-        var unit = count === "15" ? "cards" : "words";
-        meta.innerHTML =
-          "<strong>" + name + "</strong>" +
-          '<span class="nums">' + count + "</span> " + unit + " in this pack · " +
-          '<span class="nums">' + TOTAL + "</span> words on this site";
-      }
-
-      links.forEach(function (link) {
-        link.addEventListener("mouseenter", function () { showPack(link); });
-        link.addEventListener("focus", function () { showPack(link); });
-      });
-
-      /* Accordion */
-      var panels = document.querySelectorAll(".acc-panel");
-      panels.forEach(function (panel) {
-        panel.addEventListener("click", function () {
-          panels.forEach(function (p) {
-            p.classList.remove("is-open");
-            p.setAttribute("aria-expanded", "false");
-          });
-          panel.classList.add("is-open");
-          panel.setAttribute("aria-expanded", "true");
-        });
-      });
-
-      /* Motion: hero in + scroll reveals */
-      var hero = document.querySelector(".hero");
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      function activateHero() {
-        if (hero) hero.classList.add("is-in");
-      }
-      if (reduce) {
-        activateHero();
-        document.querySelectorAll(".reveal, .packs, .how, .cta-band, .site-footer").forEach(function (el) { el.classList.add("is-in"); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal, .section, .site-footer").forEach(function (el) { io.observe(el); });
       } else {
-        requestAnimationFrame(activateHero);
-        var markIn = function (el) { el.classList.add("is-in"); };
-        if ("IntersectionObserver" in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                markIn(entry.target);
-                io.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.12 });
-          document.querySelectorAll(".reveal, .packs, .how, .cta-band, .site-footer").forEach(function (el) {
-            io.observe(el);
-          });
-        } else {
-          document.querySelectorAll(".reveal, .packs, .how, .cta-band, .site-footer").forEach(markIn);
-        }
+        document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
       }
-    })();
+    }
+  })();
   </script>
 </body>
 </html>
