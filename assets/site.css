@@ -841,3 +841,124 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .tone-green .pack-open { color: var(--navy); }
 .tone-green .pack-open:hover { background: var(--sunny); color: var(--navy); }
+
+
+/* —— Review progress (homepage) —— */
+.today-home {
+  padding: 0 var(--margin) 0.5rem;
+  margin-top: -0.5rem;
+}
+.today-home-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+.today-home-card,
+.today-progress-card {
+  background: var(--white, #fff);
+  border-radius: 22px;
+  padding: 1.15rem 1.25rem 1.25rem;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.today-progress-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1.15rem;
+}
+.today-progress-head .today-home-title {
+  flex: 1 0 100%;
+}
+.today-home-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 650;
+  color: var(--navy);
+  flex: 0 0 auto;
+}
+.today-home-lead {
+  margin: 0;
+  flex: 1 1 12rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+.today-home-lead #today-home-count {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--coral);
+  font-size: 1.15rem;
+}
+.today-home .btn { flex: 0 0 auto; border-radius: 999px; }
+
+.review-progress-list {
+  display: grid;
+  gap: 0.65rem;
+}
+.review-row {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--cream, #fcf0d8);
+  border-radius: 18px;
+  padding: 0.75rem 0.9rem;
+  transition: transform 140ms ease;
+}
+.review-row:active { transform: scale(0.99); }
+.review-row.is-locked { opacity: 0.55; filter: saturate(0.6); }
+.review-row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.review-label {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 0.98rem;
+  color: #243c6c;
+}
+.review-pct {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #243c6c;
+}
+.review-row.is-locked .review-label,
+.review-row.is-locked .review-pct {
+  color: #243c6c;
+  opacity: 0.55;
+}
+.review-track {
+  height: 12px;
+  background: rgba(36, 60, 108, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.review-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--coral);
+  width: 0;
+  transition: width 280ms ease;
+}
+.review-row.tone-sunny .review-fill { background: var(--sunny, #fcc03c); }
+.review-row.tone-green .review-fill { background: var(--green, #009c48); }
+.review-row.tone-sky .review-fill { background: var(--sky, #84c0e4); }
+.review-row.tone-coral .review-fill { background: var(--coral, #fc903c); }
+.review-row.tone-pink .review-fill { background: var(--pink, #f0909c); }
+/* review-meta removed — kids only see label + % + bar */
+
+.hero.hero-simple .hero-support-zh {
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", var(--font-text);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 0.9rem + 1.2vw, 1.55rem);
+  letter-spacing: 0.12em;
+  color: var(--cream, #fcf0d8);
+  opacity: 0.95;
+}

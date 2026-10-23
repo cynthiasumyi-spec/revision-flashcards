@@ -1,0 +1,302 @@
+/**
+ * Unit 4 · Film magic — practice data
+ * Vocab from unit4/index.html CARDS
+ */
+window.PRACTICE_UNIT4 = {
+  id: "unit4",
+  title: "Unit 4 · Film magic",
+  words: [
+    { key: "unit4:action", form: "noun", en: "an action film", zh: "動作片", audio: "../unit4/audio/audio_01.mp3", img: "../unit4/thumb_01.png" },
+    { key: "unit4:comedy", form: "noun", en: "a comedy", zh: "喜劇", audio: "../unit4/audio/audio_02.mp3", img: "../unit4/thumb_02.png" },
+    { key: "unit4:fantasy", form: "noun", en: "a fantasy film", zh: "奇幻片", audio: "../unit4/audio/audio_03.mp3", img: "../unit4/thumb_03.png" },
+    { key: "unit4:horror", form: "noun", en: "a horror film", zh: "恐怖片", audio: "../unit4/audio/audio_04.mp3", img: "../unit4/thumb_04.png" },
+    { key: "unit4:musical", form: "noun", en: "a musical", zh: "音樂劇／歌舞片", audio: "../unit4/audio/audio_05.mp3", img: "../unit4/thumb_05.png" },
+    { key: "unit4:scifi", form: "noun", en: "a science fiction film", zh: "科幻片", audio: "../unit4/audio/audio_06.mp3", img: "../unit4/thumb_06.jpg" },
+    { key: "unit4:cruel", form: "adjective", en: "cruel", zh: "殘忍的", audio: "../unit4/audio/audio_07.mp3", img: "../unit4/thumb_07.jpg" },
+    { key: "unit4:curious", form: "adjective", en: "curious", zh: "好奇的", audio: "../unit4/audio/audio_08.mp3", img: "../unit4/thumb_08.png" },
+    { key: "unit4:lonely", form: "adjective", en: "lonely", zh: "寂寞的", audio: "../unit4/audio/audio_09.mp3", img: "../unit4/thumb_09.png" },
+    { key: "unit4:obedient", form: "adjective", en: "obedient", zh: "聽話的", audio: "../unit4/audio/audio_10.mp3", img: "../unit4/thumb_10.jpg" },
+    { key: "unit4:selfish", form: "adjective", en: "selfish", zh: "自私的", audio: "../unit4/audio/audio_11.mp3", img: "../unit4/thumb_11.jpg" },
+    { key: "unit4:timid", form: "adjective", en: "timid", zh: "膽小的", audio: "../unit4/audio/audio_12.mp3", img: "../unit4/thumb_12.png" },
+    { key: "unit4:wicked", form: "adjective", en: "wicked", zh: "邪惡的", audio: "../unit4/audio/audio_13.mp3", img: "../unit4/thumb_13.png" },
+    { key: "unit4:wise", form: "adjective", en: "wise", zh: "明智的／有智慧的", audio: "../unit4/audio/audio_14.mp3", img: "../unit4/thumb_14.png" },
+  ],
+
+  fillIn: [
+    {
+      id: "u4-f1",
+      wordKey: "unit4:action",
+      sentence: "Tom loves watching ______ with fast fights.",
+      blank: '______',
+      options: ["an action film", "a comedy", "a fantasy film", "a horror film"],
+      answer: "an action film",
+      accept: ["an action film"]
+    },
+    {
+      id: "u4-f2",
+      wordKey: "unit4:comedy",
+      sentence: "We laughed a lot at ______ last night.",
+      blank: '______',
+      options: ["a comedy", "an action film", "a fantasy film", "a horror film"],
+      answer: "a comedy",
+      accept: ["a comedy"]
+    },
+    {
+      id: "u4-f3",
+      wordKey: "unit4:fantasy",
+      sentence: "The dragon appears in ______.",
+      blank: '______',
+      options: ["a fantasy film", "an action film", "a comedy", "a horror film"],
+      answer: "a fantasy film",
+      accept: ["a fantasy film"]
+    },
+    {
+      id: "u4-f4",
+      wordKey: "unit4:horror",
+      sentence: "She closes her eyes during ______.",
+      blank: '______',
+      options: ["a horror film", "an action film", "a comedy", "a fantasy film"],
+      answer: "a horror film",
+      accept: ["a horror film"]
+    },
+    {
+      id: "u4-f5",
+      wordKey: "unit4:musical",
+      sentence: "The actors sing and dance in ______.",
+      blank: '______',
+      options: ["a musical", "an action film", "a comedy", "a fantasy film"],
+      answer: "a musical",
+      accept: ["a musical"]
+    },
+    {
+      id: "u4-f6",
+      wordKey: "unit4:scifi",
+      sentence: "Robots travel in space in ______.",
+      blank: '______',
+      options: ["a science fiction film", "an action film", "a comedy", "a fantasy film"],
+      answer: "a science fiction film",
+      accept: ["a science fiction film"]
+    },
+    {
+      id: "u4-f7",
+      wordKey: "unit4:cruel",
+      sentence: "The villain in the story is ______.",
+      blank: '______',
+      options: ["cruel", "an action film", "a comedy", "a fantasy film"],
+      answer: "cruel",
+      accept: ["cruel"]
+    },
+    {
+      id: "u4-f8",
+      wordKey: "unit4:curious",
+      sentence: "The little boy is ______ about magic.",
+      blank: '______',
+      options: ["curious", "an action film", "a comedy", "a fantasy film"],
+      answer: "curious",
+      accept: ["curious"]
+    },
+    {
+      id: "u4-f9",
+      wordKey: "unit4:lonely",
+      sentence: "The lost puppy looks ______.",
+      blank: '______',
+      options: ["lonely", "an action film", "a comedy", "a fantasy film"],
+      answer: "lonely",
+      accept: ["lonely"]
+    },
+    {
+      id: "u4-f10",
+      wordKey: "unit4:obedient",
+      sentence: "The dog is ______ and sits when told.",
+      blank: '______',
+      options: ["obedient", "an action film", "a comedy", "a fantasy film"],
+      answer: "obedient",
+      accept: ["obedient"]
+    },
+    {
+      id: "u4-f11",
+      wordKey: "unit4:selfish",
+      sentence: "A ______ person only thinks of himself.",
+      blank: '______',
+      options: ["selfish", "an action film", "a comedy", "a fantasy film"],
+      answer: "selfish",
+      accept: ["selfish"]
+    },
+    {
+      id: "u4-f12",
+      wordKey: "unit4:timid",
+      sentence: "The ______ rabbit hides behind a tree.",
+      blank: '______',
+      options: ["timid", "an action film", "a comedy", "a fantasy film"],
+      answer: "timid",
+      accept: ["timid"]
+    },
+    {
+      id: "u4-f13",
+      wordKey: "unit4:wicked",
+      sentence: "The ______ witch plans a bad spell.",
+      blank: '______',
+      options: ["wicked", "an action film", "a comedy", "a fantasy film"],
+      answer: "wicked",
+      accept: ["wicked"]
+    },
+    {
+      id: "u4-f14",
+      wordKey: "unit4:wise",
+      sentence: "The ______ king gives good advice.",
+      blank: '______',
+      options: ["wise", "an action film", "a comedy", "a fantasy film"],
+      answer: "wise",
+      accept: ["wise"]
+    },
+  ],
+
+  fillInHard: [
+    {
+      id: "u4-h1",
+      wordKey: "unit4:action",
+      sentence: "Although the plot is simple, so many viewers who like excitement still choose ______ at the weekend.",
+      blank: '______',
+      answer: "an action film",
+      accept: ["an action film"]
+    },
+    {
+      id: "u4-h2",
+      wordKey: "unit4:comedy",
+      sentence: "Although school was hard that day, we watched ______ which made everyone laugh so much.",
+      blank: '______',
+      answer: "a comedy",
+      accept: ["a comedy"]
+    },
+    {
+      id: "u4-h3",
+      wordKey: "unit4:fantasy",
+      sentence: "The review says the kingdom which has talking animals belongs in ______ rather than a real-life story.",
+      blank: '______',
+      answer: "a fantasy film",
+      accept: ["a fantasy film"]
+    },
+    {
+      id: "u4-h4",
+      wordKey: "unit4:horror",
+      sentence: "Although Mum prefers gentle stories, my brother who loves scary scenes still picks ______.",
+      blank: '______',
+      answer: "a horror film",
+      accept: ["a horror film"]
+    },
+    {
+      id: "u4-h5",
+      wordKey: "unit4:musical",
+      sentence: "The show which is full of songs and dances is ______ that our class wants to see again.",
+      blank: '______',
+      answer: "a musical",
+      accept: ["a musical"]
+    },
+    {
+      id: "u4-h6",
+      wordKey: "unit4:scifi",
+      sentence: "Although the effects look new, the story which is about space travel is still ______ at heart.",
+      blank: '______',
+      answer: "a science fiction film",
+      accept: ["a science fiction film"]
+    },
+    {
+      id: "u4-h7",
+      wordKey: "unit4:cruel",
+      sentence: "The king who punishes the villagers without reason is so ______ that nobody trusts him.",
+      blank: '______',
+      answer: "cruel",
+      accept: ["cruel"]
+    },
+    {
+      id: "u4-h8",
+      wordKey: "unit4:curious",
+      sentence: "The girl who asks so many questions about the castle is ______, which helps her solve the mystery.",
+      blank: '______',
+      answer: "curious",
+      accept: ["curious"]
+    },
+    {
+      id: "u4-h9",
+      wordKey: "unit4:lonely",
+      sentence: "Although he lives in a busy city, the hero who has no friends still feels ______.",
+      blank: '______',
+      answer: "lonely",
+      accept: ["lonely"]
+    },
+    {
+      id: "u4-h10",
+      wordKey: "unit4:obedient",
+      sentence: "The puppy which always listens to its owner is ______, so it learns tricks quickly.",
+      blank: '______',
+      answer: "obedient",
+      accept: ["obedient"]
+    },
+    {
+      id: "u4-h11",
+      wordKey: "unit4:selfish",
+      sentence: "Although she has so much food, the princess who will not share is ______.",
+      blank: '______',
+      answer: "selfish",
+      accept: ["selfish"]
+    },
+    {
+      id: "u4-h12",
+      wordKey: "unit4:timid",
+      sentence: "The rabbit which hides from every noise is ______, although its friends are brave.",
+      blank: '______',
+      answer: "timid",
+      accept: ["timid"]
+    },
+    {
+      id: "u4-h13",
+      wordKey: "unit4:wicked",
+      sentence: "The queen who casts dark spells is ______, which makes the village live in fear.",
+      blank: '______',
+      answer: "wicked",
+      accept: ["wicked"]
+    },
+    {
+      id: "u4-h14",
+      wordKey: "unit4:wise",
+      sentence: "The old man who gives careful advice is ______, although he speaks softly.",
+      blank: '______',
+      answer: "wise",
+      accept: ["wise"]
+    },
+  ],
+
+  missingLetters: [
+    { id: "u4-m1", wordKey: "unit4:action", word: "action", pattern: "act_on", audio: "../unit4/audio/audio_01.mp3" },
+    { id: "u4-m2", wordKey: "unit4:comedy", word: "comedy", pattern: "c_m_dy", audio: "../unit4/audio/audio_02.mp3" },
+    { id: "u4-m3", wordKey: "unit4:fantasy", word: "fantasy", pattern: "f_nt_sy", audio: "../unit4/audio/audio_03.mp3" },
+    { id: "u4-m4", wordKey: "unit4:horror", word: "horror", pattern: "h_rr_r", audio: "../unit4/audio/audio_04.mp3" },
+    { id: "u4-m5", wordKey: "unit4:musical", word: "musical", pattern: "m_s_cal", audio: "../unit4/audio/audio_05.mp3" },
+    { id: "u4-m6", wordKey: "unit4:scifi", word: "fiction", pattern: "f_ct_on", audio: "../unit4/audio/audio_06.mp3" },
+    { id: "u4-m7", wordKey: "unit4:cruel", word: "cruel", pattern: "cr__l", audio: "../unit4/audio/audio_07.mp3" },
+    { id: "u4-m8", wordKey: "unit4:curious", word: "curious", pattern: "c_r_ous", audio: "../unit4/audio/audio_08.mp3" },
+    { id: "u4-m9", wordKey: "unit4:lonely", word: "lonely", pattern: "l_n_ly", audio: "../unit4/audio/audio_09.mp3" },
+    { id: "u4-m10", wordKey: "unit4:obedient", word: "obedient", pattern: "ob_d_ent", audio: "../unit4/audio/audio_10.mp3" },
+    { id: "u4-m11", wordKey: "unit4:selfish", word: "selfish", pattern: "s_lf_sh", audio: "../unit4/audio/audio_11.mp3" },
+    { id: "u4-m12", wordKey: "unit4:timid", word: "timid", pattern: "t_m_d", audio: "../unit4/audio/audio_12.mp3" },
+    { id: "u4-m13", wordKey: "unit4:wicked", word: "wicked", pattern: "w_ck_d", audio: "../unit4/audio/audio_13.mp3" },
+    { id: "u4-m14", wordKey: "unit4:wise", word: "wise", pattern: "w_se", audio: "../unit4/audio/audio_14.mp3" },
+  ],
+
+  matching: [
+    { id: "u4-k1", wordKey: "unit4:action", en: "an action film", zh: "動作片", img: "../unit4/thumb_01.png" },
+    { id: "u4-k2", wordKey: "unit4:comedy", en: "a comedy", zh: "喜劇", img: "../unit4/thumb_02.png" },
+    { id: "u4-k3", wordKey: "unit4:fantasy", en: "a fantasy film", zh: "奇幻片", img: "../unit4/thumb_03.png" },
+    { id: "u4-k4", wordKey: "unit4:horror", en: "a horror film", zh: "恐怖片", img: "../unit4/thumb_04.png" },
+    { id: "u4-k5", wordKey: "unit4:musical", en: "a musical", zh: "音樂劇／歌舞片", img: "../unit4/thumb_05.png" },
+    { id: "u4-k6", wordKey: "unit4:scifi", en: "a science fiction film", zh: "科幻片", img: "../unit4/thumb_06.jpg" },
+    { id: "u4-k7", wordKey: "unit4:cruel", en: "cruel", zh: "殘忍的", img: "../unit4/thumb_07.jpg" },
+    { id: "u4-k8", wordKey: "unit4:curious", en: "curious", zh: "好奇的", img: "../unit4/thumb_08.png" },
+    { id: "u4-k9", wordKey: "unit4:lonely", en: "lonely", zh: "寂寞的", img: "../unit4/thumb_09.png" },
+    { id: "u4-k10", wordKey: "unit4:obedient", en: "obedient", zh: "聽話的", img: "../unit4/thumb_10.jpg" },
+    { id: "u4-k11", wordKey: "unit4:selfish", en: "selfish", zh: "自私的", img: "../unit4/thumb_11.jpg" },
+    { id: "u4-k12", wordKey: "unit4:timid", en: "timid", zh: "膽小的", img: "../unit4/thumb_12.png" },
+    { id: "u4-k13", wordKey: "unit4:wicked", en: "wicked", zh: "邪惡的", img: "../unit4/thumb_13.png" },
+    { id: "u4-k14", wordKey: "unit4:wise", en: "wise", zh: "明智的／有智慧的", img: "../unit4/thumb_14.png" },
+  ]
+};
