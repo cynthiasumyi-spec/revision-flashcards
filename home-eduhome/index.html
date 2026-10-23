@@ -44,7 +44,18 @@
       z-index: 50;
       height: var(--nav-h);
       background: var(--cream);
-      border-bottom: 3px solid var(--coral);
+      border-bottom: 0;
+      box-shadow: none;
+      margin-bottom: 8px;
+    }
+    /* Solid coral color block under nav (not a stroke/frame) */
+    .topbar::after {
+      content: "";
+      display: block;
+      height: 8px;
+      background: var(--coral);
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
     }
     .topbar-inner {
       max-width: var(--max);
@@ -101,8 +112,8 @@
     }
     .nav-toggle {
       display: none;
-      border: 2px solid var(--navy);
-      background: var(--white);
+      border: 0;
+      background: var(--navy);
       border-radius: 12px;
       width: 42px;
       height: 42px;
@@ -115,7 +126,7 @@
       display: block;
       width: 18px;
       height: 2px;
-      background: var(--navy);
+      background: var(--cream);
       position: relative;
     }
     .nav-toggle span::before,
@@ -125,7 +136,7 @@
       left: 0;
       width: 18px;
       height: 2px;
-      background: var(--navy);
+      background: var(--cream);
     }
     .nav-toggle span::before { top: -6px; }
     .nav-toggle span::after { top: 6px; }
@@ -189,7 +200,7 @@
       font-size: 1rem;
       border-radius: 999px;
       padding: 13px 24px;
-      border: 3px solid transparent;
+      border: 0;
       cursor: pointer;
       box-shadow: none;
       transition: transform 0.12s;
@@ -198,22 +209,19 @@
     .btn-primary {
       background: var(--coral);
       color: var(--white);
-      border-color: var(--coral);
     }
     .btn-primary:hover,
     .btn-primary:focus-visible {
       background: #e87828;
-      border-color: #e87828;
       outline: none;
     }
     .btn-ghost {
-      background: transparent;
-      color: var(--cream);
-      border-color: var(--cream);
+      background: var(--cream);
+      color: var(--navy);
     }
     .btn-ghost:hover,
     .btn-ghost:focus-visible {
-      background: var(--cream);
+      background: var(--sunny);
       color: var(--navy);
       outline: none;
     }
@@ -350,59 +358,76 @@
     #units { background: var(--cream); }
     .units-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 920px;
+      margin: 0 auto;
     }
     a.unit-card {
       display: flex;
       flex-direction: column;
       text-decoration: none;
-      background: var(--white);
-      border: 4px solid var(--navy);
-      border-radius: var(--radius);
+      background: var(--cream-card);
+      border: 0;
+      border-radius: 14px;
       overflow: hidden;
       box-shadow: none;
       min-height: 100%;
       transition: transform 0.12s;
+      position: relative;
     }
     a.unit-card:active { transform: scale(0.99); }
     a.unit-card:focus-visible { outline: 3px solid var(--sunny); outline-offset: 2px; }
-    a.unit-card.accent-coral { border-color: var(--coral); }
-    a.unit-card.accent-sky { border-color: var(--sky); }
-    a.unit-card.accent-green { border-color: var(--green); }
-    a.unit-card.accent-sunny { border-color: var(--sunny); }
-    a.unit-card.accent-pink { border-color: var(--pink); }
+    /* Accent = solid color block strip (not outlined box) */
+    a.unit-card::before {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 100%;
+      flex-shrink: 0;
+      background: var(--navy);
+    }
+    a.unit-card.accent-coral::before { background: var(--coral); }
+    a.unit-card.accent-sky::before { background: var(--sky); }
+    a.unit-card.accent-green::before { background: var(--green); }
+    a.unit-card.accent-sunny::before { background: var(--sunny); }
+    a.unit-card.accent-pink::before { background: var(--pink); }
 
     .unit-cover {
-      aspect-ratio: 16 / 10;
-      background: var(--cream-card);
+      aspect-ratio: 16 / 9;
+      height: 120px;
+      background: var(--cream);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .unit-cover img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: var(--cream);
       box-shadow: none;
     }
     .unit-body {
-      padding: 16px 16px 18px;
+      padding: 10px 12px 12px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       flex: 1;
       background: var(--cream-card);
     }
     .unit-body h3 {
       margin: 0;
-      font-size: 1.05rem;
+      font-size: 0.92rem;
       font-weight: 800;
-      line-height: 1.3;
+      line-height: 1.25;
       color: var(--navy);
     }
     .unit-body p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.78rem;
       line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -481,7 +506,7 @@
     #about .section-head p { color: var(--navy); }
     .about-card {
       background: var(--white);
-      border: 4px solid var(--navy);
+      border: 0;
       border-radius: var(--radius);
       padding: 28px 24px;
       max-width: 720px;
@@ -496,22 +521,6 @@
     }
 
     /* —— Quiz placeholder —— */
-    #quiz {
-      padding: 28px 20px 12px;
-      background: var(--cream);
-    }
-    .quiz-note {
-      max-width: var(--max);
-      margin: 0 auto;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 600;
-      border: 3px dashed var(--pink);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      background: var(--cream-card);
-    }
 
     /* —— Footer —— */
     .site-footer {
@@ -529,6 +538,9 @@
     .site-footer p:last-child { margin-bottom: 0; opacity: 0.9; }
 
     /* —— Responsive —— */
+    @media (max-width: 900px) {
+      .units-grid { grid-template-columns: 1fr 1fr; max-width: 640px; }
+    }
     @media (max-width: 820px) {
       .hero-inner { grid-template-columns: 1fr; gap: 24px; }
       .hero-panel { max-width: 440px; }
@@ -547,7 +559,8 @@
         flex-direction: column;
         align-items: stretch;
         background: var(--cream);
-        border-bottom: 3px solid var(--coral);
+        border-bottom: 0;
+        box-shadow: none;
         padding: 8px 12px 14px;
         gap: 4px;
       }
@@ -576,7 +589,6 @@
       <ul class="nav-links" id="primary-nav">
         <li><a href="#units">單元</a></li>
         <li><a href="#features">溫習</a></li>
-        <li><a href="#about">關於</a></li>
       </ul>
     </div>
   </header>
@@ -708,24 +720,7 @@
       </div>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="section-inner">
-        <div class="section-head">
-          <span class="label">ABOUT</span>
-          <h2 id="about-title">關於本站</h2>
-        </div>
-        <div class="about-card">
-          <p>
-            「小六英文生字卡」為靜態溫習網站，整理小六英文單元詞彙與默書內容，
-            供同學課前預習與課後複習使用。內容以書面語呈現，適合自學與家長陪同溫習。
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <section id="quiz" aria-label="測驗預留區">
-      <p class="quiz-note">測驗功能稍後推出 · Quiz coming soon</p>
-    </section>
   </main>
 
   <footer class="site-footer">
