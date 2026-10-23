@@ -6,32 +6,39 @@
   <meta name="format-detection" content="telephone=no" />
   <title>Dictation 3 生字卡</title>
   <style>
-    :root {
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --ink: #1a2332;
-      --muted: #5b6b7c;
-      --accent: #2f6fed;
-      --accent-soft: #e8f0ff;
-      --shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
-      --radius: 18px;
+:root {
+      --bg: #fcf0d8;
+      --cream: #fcf0d8;
+      --navy: #243c6c;
+      --white: #ffffff;
+      --coral: #fc903c;
+      --green: #009c48;
+      --sky: #84c0e4;
+      --sunny: #fcc03c;
+      --pink: #f0909c;
+      --muted: #5a6570;
+      --radius: 22px;
     }
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0;
-      background: var(--bg); color: var(--ink);
+      background: var(--bg); color: var(--navy);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
         "Noto Sans TC", "Microsoft JhengHei", sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
     header {
       position: sticky; top: 0; z-index: 10;
-      background: rgba(244, 247, 251, 0.92);
+      background: rgba(252, 240, 216, 0.96);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(26, 35, 50, 0.06);
+      border-bottom: 3px solid var(--coral);
       padding: 14px 16px 12px;
     }
-    h1 { margin: 0; font-size: 1.35rem; font-weight: 700; }
+    .back {
+      display: inline-block; color: var(--coral); text-decoration: none;
+      font-weight: 700; font-size: 0.92rem; margin-bottom: 6px;
+    }
+    h1 { margin: 0; font-size: 1.35rem; font-weight: 800; color: var(--navy); }
     .sub { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
     .hint {
       max-width: 720px; margin: 10px auto 0; padding: 0 20px;
@@ -43,36 +50,47 @@
       max-width: 720px; margin: 0 auto;
     }
     @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+    /* Canva Class News: solid fills, rounded, NO outer stroke / shadow */
     .card {
-      background: var(--card); border-radius: var(--radius);
-      box-shadow: var(--shadow); overflow: hidden;
-      border: 1px solid rgba(26, 35, 50, 0.05);
+      border-radius: var(--radius);
+      box-shadow: none; border: 0; outline: none; overflow: hidden;
       display: flex; flex-direction: column;
+      color: var(--white);
     }
+    .card.fill-coral { background: var(--coral); color: var(--white); }
+    .card.fill-green { background: var(--green); color: var(--white); }
+    .card.fill-navy  { background: var(--navy);  color: var(--white); }
+    .card.fill-sky   { background: var(--sky);   color: var(--navy); }
+    .card.fill-sunny { background: var(--sunny); color: var(--navy); }
+    .card.fill-pink  { background: var(--pink);  color: var(--white); }
     .img-wrap {
-      position: relative; width: 100%; background: #eef2f7;
+      position: relative; width: 100%;
+      background: rgba(255,255,255,0.18);
       aspect-ratio: 3 / 4; overflow: hidden; cursor: zoom-in;
+    }
+    .fill-sky .img-wrap, .fill-sunny .img-wrap {
+      background: rgba(36,60,108,0.10);
     }
     .img-wrap img {
       display: block; width: 100%; height: 100%;
-      object-fit: contain; background: #fff;
+      object-fit: contain; background: var(--white);
       user-select: none; -webkit-user-drag: none;
+      box-shadow: none;
     }
     .speaker {
       position: absolute; right: 12px; bottom: 12px;
       width: 56px; height: 56px; border-radius: 50%; border: 0;
-      background: var(--accent); color: #fff; font-size: 1.55rem;
-      box-shadow: 0 6px 16px rgba(47, 111, 237, 0.35);
+      background: rgba(255,255,255,0.95); color: var(--navy); font-size: 1.55rem;
+      box-shadow: none !important;
       display: grid; place-items: center; cursor: pointer; z-index: 2;
+    }
+    .fill-sky .speaker, .fill-sunny .speaker {
+      background: var(--navy); color: var(--white);
     }
     .speaker:active { transform: scale(0.94); }
     .card.playing .speaker {
-      background: #1f54c9;
-      animation: pulse 0.9s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(47, 111, 237, 0.45); }
-      50% { box-shadow: 0 0 0 10px rgba(47, 111, 237, 0); }
+      outline: 3px solid var(--sunny); outline-offset: 2px;
+      animation: none; box-shadow: none !important;
     }
     .meta {
       display: flex; align-items: center; gap: 10px;
@@ -80,16 +98,18 @@
     }
     .num {
       flex: 0 0 auto; min-width: 34px; height: 34px; border-radius: 10px;
-      background: var(--accent-soft); color: var(--accent);
-      font-weight: 700; font-size: 0.95rem;
+      background: rgba(255,255,255,0.28); color: inherit;
+      font-weight: 800; font-size: 0.95rem;
       display: grid; place-items: center;
     }
-    .label { font-size: 1.05rem; font-weight: 600; line-height: 1.35; }
+    .fill-sky .num, .fill-sunny .num {
+      background: rgba(36,60,108,0.14); color: var(--navy);
+    }
+    .label { font-size: 1.05rem; font-weight: 700; line-height: 1.35; color: inherit; }
 
-    /* Lightbox */
     .lightbox {
       position: fixed; inset: 0; z-index: 100;
-      background: rgba(10, 16, 28, 0.92);
+      background: rgba(36, 60, 108, 0.92);
       display: none; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
@@ -98,7 +118,7 @@
     .lightbox img {
       max-width: 100%; max-height: calc(100vh - 88px);
       width: auto; height: auto; object-fit: contain;
-      border-radius: 12px; background: #fff;
+      border-radius: 16px; background: var(--white); box-shadow: none;
     }
     .lb-bar {
       display: flex; gap: 12px; align-items: center; justify-content: center;
@@ -106,20 +126,20 @@
     }
     .lb-btn {
       appearance: none; border: 0; border-radius: 999px;
-      padding: 12px 18px; font-size: 1rem; font-weight: 600;
-      cursor: pointer; color: #fff;
+      padding: 12px 18px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; color: var(--white); box-shadow: none;
     }
-    .lb-close { background: #5b6b7c; }
-    .lb-play { background: var(--accent); }
+    .lb-close { background: var(--navy); }
+    .lb-play { background: var(--coral); }
   </style>
 </head>
 <body>
   <header>
-    <a class="back" href="../index.html" style="display:inline-block;color:var(--accent);text-decoration:none;font-weight:600;font-size:0.92rem;margin-bottom:6px;">← 返回目錄</a>
+    <a class="back" href="../index.html">← 返回目錄</a>
     <h1>Dictation 3 生字卡</h1>
     <p class="sub">點圖放大完整字卡 · 點 🔊 聽讀音</p>
   </header>
-  <p class="hint">提示：點圖片可看全圖；聽讀音請按藍色喇叭。</p>
+  <p class="hint">提示：點圖片可看全圖；聽讀音請按喇叭。卡片為實色圓角，無外框。</p>
   <main class="grid" id="grid"></main>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="完整字卡">
@@ -149,6 +169,7 @@
       { n: 15, img: "card_15_hungry_as_wolf.png",audio: "audio/audio_15.mp3", label: "as hungry as a wolf" }
     ];
 
+    const FILLS = ["fill-coral","fill-green","fill-navy","fill-sky","fill-sunny","fill-pink"];
     const grid = document.getElementById("grid");
     const lightbox = document.getElementById("lightbox");
     const lbImg = document.getElementById("lb-img");
@@ -224,7 +245,7 @@
 
     CARDS.forEach((card) => {
       const article = document.createElement("article");
-      article.className = "card";
+      article.className = "card " + FILLS[(card.n - 1) % FILLS.length];
 
       const imgWrap = document.createElement("div");
       imgWrap.className = "img-wrap";
