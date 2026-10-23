@@ -27,8 +27,12 @@ test('homepage header is Revision and Practice only', () => {
 test('packs are a swipe carousel, not a grid', () => {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /class="pack-track"/);
-  assert.match(html, /id="pack-prev"/);
-  assert.match(html, /id="pack-next"/);
+  assert.match(html, /id="pack-status"/);
+  assert.doesNotMatch(html, /id="pack-prev"/);
+  assert.doesNotMatch(html, /id="pack-next"/);
+  assert.doesNotMatch(html, />Previous</);
+  assert.doesNotMatch(html, />Next</);
+  assert.doesNotMatch(html, /61 words/);
   assert.doesNotMatch(html, /pack-grid/);
   assert.equal((html.match(/class="pack-card/g) || []).length, 5);
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
