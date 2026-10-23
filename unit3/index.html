@@ -7,88 +7,111 @@
 <title>Unit 3 Junior Super Chef</title>
 <style>
 :root {
-  --bg:#f4f7fb; --card:#fff; --ink:#1a2332; --muted:#5b6b7c;
-  --accent:#f4a261; --accent-soft:color-mix(in srgb, #f4a261 22%, white);
-  --coral:#FF6B4A; --teal:#01383b; --box:#e6f5f3;
-  --radius:18px;
-  --illust:168px; /* mid between small (~100) and large (~240) */
+  --bg:#fcf0d8; --cream:#fcf0d8; --navy:#243c6c; --white:#ffffff;
+  --coral:#fc903c; --green:#009c48; --sky:#84c0e4; --sunny:#fcc03c; --pink:#f0909c;
+  --muted:#5a6570; --hl:#fcc03c; --radius:22px;
+  --illust:168px;
 }
 * { box-sizing:border-box; }
 html,body {
-  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  margin:0; padding:0; background:var(--bg); color:var(--navy);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
   -webkit-tap-highlight-color:transparent;
 }
 header {
   position:sticky; top:0; z-index:10;
-  background:rgba(244,247,251,.94);
+  background:rgba(252,240,216,.96);
   backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(26,35,50,.06);
+  border-bottom:3px solid var(--coral);
   padding:14px 16px 12px;
 }
-.back { display:inline-block; color:var(--accent); text-decoration:none; font-weight:600; font-size:.92rem; margin-bottom:6px; }
-h1 { margin:0; font-size:1.28rem; font-weight:700; }
+.back { display:inline-block; color:var(--coral); text-decoration:none; font-weight:700; font-size:.92rem; margin-bottom:6px; }
+h1 { margin:0; font-size:1.28rem; font-weight:800; color:var(--navy); }
 .sub { margin:4px 0 0; color:var(--muted); font-size:.9rem; }
 .hint { max-width:720px; margin:10px auto 0; padding:0 16px; color:var(--muted); font-size:.88rem; }
 .list {
   max-width:720px; margin:0 auto;
   padding:12px 16px calc(32px + env(safe-area-inset-bottom,0px));
-  display:flex; flex-direction:column; gap:14px;
+  display:flex; flex-direction:column; gap:16px;
 }
+/* Canva Class News: solid fills, rounded, NO outer stroke */
 .card {
-  background:var(--card); border-radius:var(--radius);
-  box-shadow:none; border:1px solid rgba(26,35,50,.08);
+  border-radius:var(--radius);
+  box-shadow:none; border:0; outline:none;
   padding:16px 16px 14px; position:relative;
+  color:var(--white);
 }
-.card.playing { outline:2px solid var(--accent); }
+.card.fill-coral { background:var(--coral); color:var(--white); }
+.card.fill-green { background:var(--green); color:var(--white); }
+.card.fill-navy  { background:var(--navy);  color:var(--white); }
+.card.fill-sky   { background:var(--sky);   color:var(--navy); }
+.card.fill-sunny { background:var(--sunny); color:var(--navy); }
+.card.fill-pink  { background:var(--pink);  color:var(--white); }
+.card.playing { outline:none; }
 .top { display:flex; gap:14px; align-items:flex-start; }
 .illust {
   flex:0 0 var(--illust); width:var(--illust); height:var(--illust);
-  border-radius:14px; background:#fff; overflow:hidden;
-  border:1px solid rgba(26,35,50,.08); box-shadow:none;
+  border-radius:14px; background:var(--white); overflow:hidden;
+  border:0; box-shadow:none; cursor:zoom-in;
 }
 .illust img {
-  width:100%; height:100%; object-fit:contain; background:#fff;
+  width:100%; height:100%; object-fit:contain; background:var(--white);
   display:block; box-shadow:none; filter:none;
 }
 .main { flex:1; min-width:0; padding-right:56px; }
 .num {
   display:inline-grid; place-items:center;
   min-width:28px; height:28px; padding:0 8px; border-radius:8px;
-  background:var(--accent-soft); color:var(--accent);
-  font-weight:700; font-size:.85rem; margin-bottom:6px;
+  background:rgba(255,255,255,.28); color:inherit;
+  font-weight:800; font-size:.85rem; margin-bottom:6px;
+}
+.fill-sky .num, .fill-sunny .num {
+  background:rgba(36,60,108,.14); color:var(--navy);
 }
 .syllables {
-  font-size:1.5rem; font-weight:800; color:var(--teal);
+  font-size:1.5rem; font-weight:800; color:inherit;
   line-height:1.25; margin:0 0 6px; word-break:break-word;
 }
 .zh {
-  font-size:1.02rem; font-weight:700; color:var(--coral);
-  margin:0 0 4px; line-height:1.35;
+  font-size:1.02rem; font-weight:700; color:inherit;
+  margin:0 0 4px; line-height:1.35; opacity:.95;
 }
 .speaker {
   position:absolute; top:14px; right:14px;
   width:52px; height:52px; border-radius:50%; border:0;
-  background:var(--accent); color:#fff; font-size:1.45rem;
+  background:rgba(255,255,255,.95); color:var(--navy); font-size:1.45rem;
   box-shadow:none !important; filter:none !important; text-shadow:none;
   display:grid; place-items:center; cursor:pointer; z-index:3; line-height:1;
 }
+.fill-sky .speaker, .fill-sunny .speaker {
+  background:var(--navy); color:var(--white);
+}
 .speaker:active { transform:scale(.94); }
 .card.playing .speaker {
-  outline:3px solid color-mix(in srgb, var(--accent) 40%, white);
+  outline:3px solid var(--sunny); outline-offset:2px;
   box-shadow:none !important; animation:none; filter:none;
 }
+/* 例句: solid inset panels, no stroke */
 .ex {
-  background:var(--box); border:1.5px solid color-mix(in srgb, var(--accent) 45%, white);
-  border-radius:14px; padding:12px; margin-top:10px;
+  background:rgba(255,255,255,.22);
+  border:0; border-radius:14px; padding:12px; margin-top:10px;
+}
+.fill-sky .ex, .fill-sunny .ex {
+  background:rgba(36,60,108,.12);
 }
 .ex-label {
-  display:inline-block; font-size:.78rem; font-weight:700; color:#fff;
-  background:var(--accent); border-radius:999px; padding:3px 10px; margin-bottom:6px;
+  display:inline-block; font-size:.78rem; font-weight:800; color:inherit;
+  background:rgba(255,255,255,.32); border-radius:999px; padding:3px 10px; margin-bottom:6px;
 }
-.ex-en { font-size:.98rem; line-height:1.45; color:var(--teal); margin:0 0 4px; }
-.ex-zh { font-size:.9rem; line-height:1.4; color:var(--muted); margin:0; }
-.hl { color:var(--coral); font-weight:700; }
+.fill-sky .ex-label, .fill-sunny .ex-label {
+  background:var(--navy); color:var(--white);
+}
+.ex-en { font-size:.98rem; line-height:1.45; color:inherit; margin:0 0 4px; }
+.ex-zh { font-size:.9rem; line-height:1.4; color:inherit; opacity:.88; margin:0; }
+/* Vocab highlight: sunny on dark fills; coral on light fills */
+.hl { color:var(--hl); font-weight:800; }
+.fill-sunny .hl, .fill-sky .hl { color:var(--coral); }
+.fill-coral .hl { color:var(--sunny); }
 @media (min-width:640px) {
   :root { --illust:196px; }
   .syllables { font-size:1.7rem; }
@@ -96,6 +119,31 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
 @media (max-width:380px) {
   :root { --illust:140px; }
 }
+/* Lightbox */
+.lightbox {
+  position:fixed; inset:0; z-index:100;
+  background:rgba(36,60,108,.92);
+  display:none; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:12px; padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));
+}
+.lightbox.open { display:flex; }
+.lightbox img {
+  max-width:100%; max-height:calc(100vh - 88px);
+  width:auto; height:auto; object-fit:contain;
+  border-radius:16px; background:var(--white); box-shadow:none;
+}
+.lb-bar {
+  display:flex; gap:12px; align-items:center; justify-content:center;
+  margin-top:12px; width:100%; max-width:480px;
+}
+.lb-btn {
+  appearance:none; border:0; border-radius:999px;
+  padding:12px 18px; font-size:1rem; font-weight:700;
+  cursor:pointer; color:var(--white); box-shadow:none;
+}
+.lb-close { background:var(--navy); }
+.lb-play { background:var(--coral); }
 </style>
 </head>
 <body>
@@ -104,12 +152,42 @@ h1 { margin:0; font-size:1.28rem; font-weight:700; }
   <h1>Unit 3 Junior Super Chef</h1>
   <p class="sub">共 12 個生字／詞語 · Primary 6 例句 + 中一進階例句</p>
 </header>
-<p class="hint">點喇叭聽讀音；插圖大小取中間值，無陰影。</p>
+<p class="hint">點喇叭聽讀音；點插圖可放大；插圖大小取中間值，無陰影、無外框。</p>
 <div class="list" id="list"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="放大插圖">
+  <img id="lb-img" alt="" />
+  <div class="lb-bar">
+    <button type="button" class="lb-btn lb-play" id="lb-play">🔊 聽讀音</button>
+    <button type="button" class="lb-btn lb-close" id="lb-close">關閉</button>
+  </div>
+</div>
 <script>
 const CARDS = [{"n": 1, "en": "beat", "syllables": "beat", "zh": "攪打", "pos": "動詞 v.", "ex_en": "Mum uses a whisk to beat the eggs.", "ex_zh": "媽媽用打蛋器攪打雞蛋。", "adv_en": "Before she pours the mixture, Mum must beat the eggs until they look pale.", "adv_zh": "在倒入混合物之前，媽媽必須把雞蛋攪打至顏色變淺。", "highlight": "beat", "audio": "audio/audio_01.mp3", "img": "thumb_01.jpg", "art_source": "generated"}, {"n": 2, "en": "chop", "syllables": "chop", "zh": "切碎", "pos": "動詞 v.", "ex_en": "Dad uses a knife to chop the pepper.", "ex_zh": "爸爸用刀把辣椒切碎。", "adv_en": "When you chop vegetables, keep your fingers away from the sharp knife.", "adv_zh": "當你切碎蔬菜時，手指要遠離鋒利的刀。", "highlight": "chop", "audio": "audio/audio_02.mp3", "img": "thumb_02.png", "art_source": "irasutoya:https://www.irasutoya.com/2015/02/blog-post_364.html"}, {"n": 3, "en": "mix", "syllables": "mix", "zh": "混合", "pos": "動詞 v.", "ex_en": "She uses a spoon to mix the ingredients.", "ex_zh": "她用勺子把材料混合。", "adv_en": "After you add the flour, mix everything gently so the cake stays soft.", "adv_zh": "加入麵粉後，輕輕混合所有材料，蛋糕才會保持鬆軟。", "highlight": "mix", "audio": "audio/audio_03.mp3", "img": "thumb_03.png", "art_source": "irasutoya:https://www.irasutoya.com/2016/08/blog-post_95.html"}, {"n": 4, "en": "pour", "syllables": "pour", "zh": "倒入", "pos": "動詞 v.", "ex_en": "He can pour the milk into the bowl.", "ex_zh": "他可以把牛奶倒進碗裡。", "adv_en": "If you pour too quickly, the milk may spill on the table.", "adv_zh": "如果你倒得太快，牛奶可能會灑在桌上。", "highlight": "pour", "audio": "audio/audio_04.mp3", "img": "thumb_04.jpg", "art_source": "generated"}, {"n": 5, "en": "spread", "syllables": "spread", "zh": "塗抹", "pos": "動詞 v.", "ex_en": "I spread butter on the toast.", "ex_zh": "我在吐司上塗抹牛油。", "adv_en": "Although the toast is hot, she carefully spreads butter on it.", "adv_zh": "雖然吐司很燙，她仍小心地在上面塗抹牛油。", "highlight": "spread", "audio": "audio/audio_05.mp3", "img": "thumb_05.jpg", "art_source": "generated"}, {"n": 6, "en": "sprinkle", "syllables": "sprin-kle", "zh": "灑上", "pos": "動詞 v.", "ex_en": "Please sprinkle some salt on the meat.", "ex_zh": "請在肉上灑上一些鹽。", "adv_en": "Before cooking, sprinkle a little salt which makes the meat taste better.", "adv_zh": "烹調前灑上一點鹽，能讓肉的味道更好。", "highlight": "sprinkle", "audio": "audio/audio_06.mp3", "img": "thumb_06.jpg", "art_source": "generated"}, {"n": 7, "en": "stir", "syllables": "stir", "zh": "攪拌", "pos": "動詞 v.", "ex_en": "He uses a spoon to stir the soup.", "ex_zh": "他用勺子攪拌湯。", "adv_en": "You should stir the soup often so it does not stick to the pot.", "adv_zh": "你應該時常攪拌湯，免得粘在鍋底。", "highlight": "stir", "audio": "audio/audio_07.mp3", "img": "thumb_07.jpg", "art_source": "generated"}, {"n": 8, "en": "peel", "syllables": "peel", "zh": "削皮", "pos": "動詞 v.", "ex_en": "She uses a peeler to peel the potato.", "ex_zh": "她用削皮器給馬鈴薯削皮。", "adv_en": "After you peel the potato, wash it before you chop it.", "adv_zh": "給馬鈴薯削皮後，先洗乾淨再切。", "highlight": "peel", "audio": "audio/audio_08.mp3", "img": "thumb_08.png", "art_source": "irasutoya:https://www.irasutoya.com/2017/03/blog-post_426.html"}, {"n": 9, "en": "bake", "syllables": "bake", "zh": "烘烤", "pos": "動詞 v.", "ex_en": "Mum puts the tray in to bake cookies.", "ex_zh": "媽媽把烤盤推進去烘烤曲奇。", "adv_en": "When you bake cookies, wait until they turn golden brown.", "adv_zh": "烘烤曲奇時，要等到它們變成金黃色。", "highlight": "bake", "audio": "audio/audio_09.mp3", "img": "thumb_09.jpg", "art_source": "generated"}, {"n": 10, "en": "boil", "syllables": "boil", "zh": "煮沸", "pos": "動詞 v.", "ex_en": "The water starts to boil in the pot.", "ex_zh": "鍋裡的水開始煮沸。", "adv_en": "After the water begins to boil, you can put the noodles into the pot.", "adv_zh": "水開始煮沸後，你就可以把麵放進鍋裡。", "highlight": "boil", "audio": "audio/audio_10.mp3", "img": "thumb_10.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/12/blog-post_53.html"}, {"n": 11, "en": "fry", "syllables": "fry", "zh": "煎／炒", "pos": "動詞 v.", "ex_en": "Dad uses a pan to fry the eggs.", "ex_zh": "爸爸用平底鍋煎蛋。", "adv_en": "If you fry food on high heat, turn it carefully with a spatula.", "adv_zh": "如果你用大火煎食物，要用鑊鏟小心地翻動。", "highlight": "fry", "audio": "audio/audio_11.mp3", "img": "thumb_11.png", "art_source": "irasutoya:https://www.irasutoya.com/2015/01/blog-post_72.html"}, {"n": 12, "en": "steam", "syllables": "steam", "zh": "蒸", "pos": "動詞 v.", "ex_en": "We steam the vegetables in the steamer.", "ex_zh": "我們用蒸籠蒸蔬菜。", "adv_en": "Because steaming keeps more vitamins, many people steam vegetables for dinner.", "adv_zh": "因為蒸能保留更多維生素，很多人用蒸的方式做晚餐蔬菜。", "highlight": "steam", "audio": "audio/audio_12.mp3", "img": "thumb_12.jpg", "art_source": "generated"}];
 const list = document.getElementById('list');
+const FILLS = ['fill-coral','fill-green','fill-navy','fill-sky','fill-sunny','fill-pink'];
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbPlay = document.getElementById('lb-play');
+const lbClose = document.getElementById('lb-close');
 let currentAudio = null;
+let activeCard = null;
+
+function openLightbox(card, article) {
+  activeCard = { card, article };
+  lbImg.src = card.img;
+  lbImg.alt = card.en;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  activeCard = null;
+}
+if (lbClose) lbClose.addEventListener('click', closeLightbox);
+if (lightbox) lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+if (lbPlay) lbPlay.addEventListener('click', () => { if (activeCard) playCard(activeCard.card, activeCard.article); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 function hl(text, target) {
   if (!target) return text;
@@ -130,7 +208,7 @@ function playCard(card, article) {
 
 CARDS.forEach(card => {
   const article = document.createElement('article');
-  article.className = 'card';
+  article.className = 'card ' + FILLS[(card.n - 1) % FILLS.length];
 
   const speaker = document.createElement('button');
   speaker.type = 'button';
@@ -149,6 +227,13 @@ CARDS.forEach(card => {
     const img = document.createElement('img');
     img.src = card.img; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
     wrap.appendChild(img);
+    wrap.setAttribute('role', 'button');
+    wrap.setAttribute('tabindex', '0');
+    wrap.setAttribute('aria-label', '放大：' + card.en);
+    wrap.addEventListener('click', e => { e.stopPropagation(); openLightbox(card, article); });
+    wrap.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openLightbox(card, article); }
+    });
     top.appendChild(wrap);
   }
 
