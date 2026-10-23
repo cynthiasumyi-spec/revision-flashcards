@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="format-detection" content="telephone=no" />
-  <title>Dictation 3 生字卡</title>
+  <title>Dictation 3 Flashcards</title>
   <style>
 :root {
       --bg: #fcf0d8;
@@ -141,18 +141,18 @@
 </head>
 <body>
   <header>
-    <a class="back" href="../index.html">← 返回目錄</a>
-    <h1>Dictation 3 生字卡</h1>
-    <p class="sub">點圖放大完整字卡 · 點 🔊 聽讀音</p>
+    <a class="back" href="../index.html">← Back to home</a>
+    <h1>Dictation 3 Flashcards</h1>
+    <p class="sub">Tap a card to enlarge · Tap 🔊 for audio</p>
   </header>
-  <p class="hint">提示：點圖片可看全圖；聽讀音請按喇叭。卡片為實色圓角，無外框。</p>
+  <p class="hint">Tip: tap a picture for the full card; tap the speaker for audio. Solid rounded cards, no frame.</p>
   <main class="grid" id="grid"></main>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="完整字卡">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full flashcard">
     <img id="lb-img" alt="" />
     <div class="lb-bar">
-      <button type="button" class="lb-btn lb-play" id="lb-play">🔊 聽讀音</button>
-      <button type="button" class="lb-btn lb-close" id="lb-close">關閉</button>
+      <button type="button" class="lb-btn lb-play" id="lb-play">🔊 Play audio</button>
+      <button type="button" class="lb-btn lb-close" id="lb-close">Close</button>
     </div>
   </div>
 
@@ -257,7 +257,7 @@
       imgWrap.className = "img-wrap";
       imgWrap.setAttribute("role", "button");
       imgWrap.setAttribute("tabindex", "0");
-      imgWrap.setAttribute("aria-label", "放大：" + card.label);
+      imgWrap.setAttribute("aria-label", "Enlarge: " + card.label);
 
       const img = document.createElement("img");
       img.src = card.img;
@@ -268,7 +268,7 @@
       const speaker = document.createElement("button");
       speaker.type = "button";
       speaker.className = "speaker";
-      speaker.setAttribute("aria-label", "播放：" + card.label);
+      speaker.setAttribute("aria-label", "Play: " + card.label);
       speaker.textContent = "🔊";
       speaker.addEventListener("click", (e) => {
         e.stopPropagation();
