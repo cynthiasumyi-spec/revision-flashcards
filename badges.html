@@ -51,7 +51,7 @@
       var art = document.createElement('div');
       art.className = 'badge-art';
       var img = document.createElement('img');
-      img.src = b.image;
+      img.src = b.earned ? b.image : b.image.replace(/\.png$/, '-locked.png');
       img.alt = '';
       art.appendChild(img);
       var name = document.createElement('h2');

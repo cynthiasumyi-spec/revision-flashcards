@@ -189,6 +189,14 @@ test('a newly earned badge carries its English title and medal path', () => {
   assert.equal(locked.earned, false);
   assert.equal(locked.english, 'Match Master');
   assert.equal(locked.image, 'assets/badges/match-master.png');
+  const fs = require('fs');
+  const path = require('path');
+  window.Badges.catalog().forEach(b => {
+    const color = path.join(__dirname, '..', b.image);
+    const gray = color.replace(/\.png$/, '-locked.png');
+    assert.equal(fs.existsSync(color), true);
+    assert.equal(fs.existsSync(gray), true);
+  });
 });
 
 test('mastery wrong then three corrects clears 需要重溫 for that unit', () => {
