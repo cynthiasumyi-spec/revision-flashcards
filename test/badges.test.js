@@ -56,30 +56,36 @@ test('hard fill counts as the fill core, not as easy', () => {
   assert.equal(window.Badges.hardUnlocked('unit1'), false);
 });
 
-test('unit 1 is open and later units wait for the previous core', () => {
+test('unit 1 and dictation 3 are open and later units wait for the previous core', () => {
   const { window } = setup();
   assert.equal(window.Badges.unitUnlocked('unit1'), true);
+  assert.equal(window.Badges.unitUnlocked('dictation3'), true);
+  assert.equal(window.Badges.lockReason('dictation3'), '');
   assert.equal(window.Badges.unitUnlocked('unit2'), false);
-  assert.equal(window.Badges.unitUnlocked('dictation3'), false);
   window.Badges.recordSession('unit1', 'fill', 'easy');
   window.Badges.recordSession('unit1', 'letters', 'easy');
   window.Badges.recordSession('unit1', 'match');
   assert.equal(window.Badges.unitUnlocked('unit2'), true);
   assert.equal(window.Badges.unitUnlocked('unit3'), false);
+  assert.equal(window.Badges.unitUnlocked('dictation3'), true);
 });
 
-test('dictation 3 opens only after unit 4 core', () => {
+test('units 2 to 4 stay gated and dictation 3 stays open', () => {
   const { window } = setup();
-  ['unit1', 'unit2', 'unit3'].forEach(id => {
+  assert.equal(window.Badges.unitUnlocked('dictation3'), true);
+  assert.equal(window.Badges.unitUnlocked('unit4'), false);
+  ['unit1', 'unit2'].forEach(id => {
     window.Badges.recordSession(id, 'fill', 'easy');
     window.Badges.recordSession(id, 'letters', 'easy');
     window.Badges.recordSession(id, 'match');
   });
+  assert.equal(window.Badges.unitUnlocked('unit3'), true);
+  assert.equal(window.Badges.unitUnlocked('unit4'), false);
+  assert.equal(window.Badges.unitUnlocked('dictation3'), true);
+  window.Badges.recordSession('unit3', 'fill', 'easy');
+  window.Badges.recordSession('unit3', 'letters', 'easy');
+  window.Badges.recordSession('unit3', 'match');
   assert.equal(window.Badges.unitUnlocked('unit4'), true);
-  assert.equal(window.Badges.unitUnlocked('dictation3'), false);
-  window.Badges.recordSession('unit4', 'fill', 'hard');
-  window.Badges.recordSession('unit4', 'letters', 'easy');
-  window.Badges.recordSession('unit4', 'match');
   assert.equal(window.Badges.unitUnlocked('dictation3'), true);
 });
 

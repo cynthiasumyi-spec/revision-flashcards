@@ -1,3 +1,9 @@
 Practice quiz icons (fill/letters/match/timed.svg)
 Original two-tone flat SVGs for P6 Revision Tools (2026).
 Palette: navy #243c6c + sunny/sky/pink/coral accents.
+
+Feedback cats (feedback-ok.png, feedback-bad.png)
+いらすとや「マルとバツを出す猫のキャラクター」
+https://www.irasutoya.com/2017/12/blog-post_89.html
+feedback-ok.png is the smiling cat with a circle.
+feedback-bad.png is the angry cat with a cross.

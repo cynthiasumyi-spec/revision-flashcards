@@ -57,6 +57,25 @@ test('timed answers never subtract seconds', () => {
   assert.equal(window.TimedLogic.nextRemaining(40, true), 40);
 });
 
+test('correct and wrong feedback uses the irasutoya cats', () => {
+  const root = path.join(__dirname, '..');
+  ['feedback-ok.png', 'feedback-bad.png'].forEach(name => {
+    const file = path.join(root, 'practice/icons', name);
+    const buf = fs.readFileSync(file);
+    assert.ok(buf.length > 1000);
+    assert.equal(buf[0], 0x89);
+    assert.equal(buf[1], 0x50);
+    assert.equal(buf[2], 0x4e);
+    assert.equal(buf[3], 0x47);
+  });
+  const pages = ['practice/fill.html', 'practice/letters.html', 'practice/timed.html', 'practice/common.js'];
+  const joined = pages.map(rel => fs.readFileSync(path.join(root, rel), 'utf8')).join('\n');
+  assert.match(joined, /icons\/feedback-ok\.png/);
+  assert.match(joined, /icons\/feedback-bad\.png/);
+  assert.equal(joined.includes('太棒了'), false);
+  assert.equal(joined.includes('好棒'), false);
+});
+
 test('timed page has no penalty control', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'practice/timed.html'), 'utf8');
   assert.equal(/time penalty/i.test(html), false);
