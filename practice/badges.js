@@ -54,13 +54,18 @@ window.Badges = (function () {
 
   /*
    * Badge art is original いらすとや clipart of people, saved locally (not generated).
+   * Locked files are a flat gray fill of that same figure’s outline.
    * First Steps: https://www.irasutoya.com/2013/11/blog-post_508.html
-   * Unit Completer: https://www.irasutoya.com/2014/09/blog-post_58.html
    * Phrase Speller: https://www.irasutoya.com/2013/01/blog-post_2739.html
    * Match Master: https://www.irasutoya.com/2017/07/blog-post_978.html
    * Timed Hero: https://www.irasutoya.com/2012/12/blog-post_271.html
    * Hard Challenger: https://www.irasutoya.com/2020/01/blog-post_69.html
    * Review Slayer: https://www.irasutoya.com/2017/09/blog-post_494.html
+   * Unit 1 completer: https://www.irasutoya.com/2014/09/blog-post_58.html
+   * Unit 2 completer: https://www.irasutoya.com/2012/11/blog-post_6715.html
+   * Unit 3 completer: https://www.irasutoya.com/2012/11/blog-post_3201.html
+   * Unit 4 completer: https://www.irasutoya.com/2013/09/blog-post_4255.html
+   * Dictation 3 completer: https://www.irasutoya.com/2013/02/blog-post_4647.html
    */
   function catalog() {
     const globals = [
@@ -71,12 +76,19 @@ window.Badges = (function () {
       { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.' },
       { id: 'review-clear', title: '錯題殺手', english: 'Review Slayer', image: 'assets/badges/review-slayer.png', detail: 'Clear every 需要重溫 word in one unit.' }
     ];
+    const unitArt = {
+      unit1: 'assets/badges/unit-completer-unit1.png',
+      unit2: 'assets/badges/unit-completer-unit2.png',
+      unit3: 'assets/badges/unit-completer-unit3.png',
+      unit4: 'assets/badges/unit-completer-unit4.png',
+      dictation3: 'assets/badges/unit-completer-dictation3.png'
+    };
     const units = ORDER.map(function (u) {
       return {
         id: 'unit-done:' + u.id,
         title: 'Unit 完成者',
         english: 'Unit Completer',
-        image: 'assets/badges/unit-completer.png',
+        image: unitArt[u.id],
         unitLabel: u.label,
         detail: u.label + ' · finish Sentence Fill, Missing Letters, and Memory Match.'
       };

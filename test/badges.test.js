@@ -170,9 +170,13 @@ test('catalog lists five unit badges and no streak badge', () => {
     if (english[b.id]) assert.equal(b.english, english[b.id]);
     if (b.id.indexOf('unit-done:') === 0) {
       assert.equal(b.english, 'Unit Completer');
-      assert.equal(b.image, 'assets/badges/unit-completer.png');
+      assert.match(b.image, /^assets\/badges\/unit-completer-[a-z0-9]+\.png$/);
     }
   });
+  const unitImages = window.Badges.catalog()
+    .filter(b => b.id.indexOf('unit-done:') === 0)
+    .map(b => b.image);
+  assert.equal(new Set(unitImages).size, 5);
 });
 
 test('a newly earned badge carries its English title and medal path', () => {
