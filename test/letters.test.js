@@ -49,3 +49,86 @@ test('missing letters use each unit phrase, not a single keyword', () => {
   const walk = window.PRACTICE_UNIT1.missingLetters.find(i => i.wordKey === 'unit1:walkathon');
   assert.equal(walk.word, 'go on a walkathon');
 });
+
+function slotText(slot) {
+  return slot.type === 'show' ? slot.char : slot.answer;
+}
+
+function flattenGroups(groups) {
+  return groups.map(g => g.slots.map(slotText).join('') + (g.trail === 'space' ? ' ' : '')).join('');
+}
+
+test('letter groups keep each English word intact and wrap at spaces, slashes, and punctuation', () => {
+  const { window } = loadScripts([
+    'practice/data/unit1.js',
+    'practice/data/unit2.js',
+    'practice/data/unit3.js',
+    'practice/data/unit4.js',
+    'practice/data/dictation3.js',
+    'practice/common.js'
+  ]);
+  const C = window.PracticeCommon;
+  const packs = [
+    window.PRACTICE_UNIT1,
+    window.PRACTICE_UNIT2,
+    window.PRACTICE_UNIT3,
+    window.PRACTICE_UNIT4,
+    window.PRACTICE_DICTATION3
+  ];
+  const raffleSlots = C.patternToSlots('buy/sell raffle tickets', 'buy/sell raffle tickets');
+  const raffleGroups = C.groupLetterSlots(raffleSlots);
+  assert.deepEqual([...raffleGroups].map(g => g.slots.map(slotText).join('') + (g.trail === 'space' ? ' ' : '')), [
+    'buy/',
+    'sell ',
+    'raffle ',
+    'tickets'
+  ]);
+  const fair = C.groupLetterSlots(C.patternToSlots(
+    'take part in a fund-raising fair',
+    'take part in a fund-raising fair'
+  ));
+  assert.deepEqual([...fair].map(g => g.slots.map(slotText).join('')), [
+    'take', 'part', 'in', 'a', 'fund-', 'raising', 'fair'
+  ]);
+
+  packs.forEach(pack => {
+    pack.missingLetters.forEach(item => {
+      ['easy', 'hard'].forEach(mode => {
+        const mask = C.maskPhrase(item.word, mode, arr => arr.slice());
+        const groups = C.groupLetterSlots(C.patternToSlots(item.word, mask));
+        assert.equal(flattenGroups(groups), item.word, item.wordKey + ' ' + mode);
+        const wordTexts = [...groups]
+          .filter(g => g.kind === 'word')
+          .map(g => g.slots.map(slotText).join(''));
+        const groupRuns = wordTexts.map(text => {
+          assert.equal(text.includes(' '), false, text);
+          const parts = text.match(/[A-Za-z]+/g) || [];
+          assert.ok(parts.length <= 1, text);
+          return parts[0] || '';
+        }).filter(Boolean);
+        assert.deepEqual(groupRuns, [...(item.word.match(/[A-Za-z]+/g) || [])], item.word);
+      });
+    });
+  });
+});
+
+test('missing letters render wraps between words, not inside them', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const root = path.join(__dirname, '..');
+  const html = fs.readFileSync(path.join(root, 'practice/letters.html'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'practice/practice.css'), 'utf8');
+  assert.match(html, /groupLetterSlots/);
+  assert.match(html, /letter-word/);
+  assert.doesNotMatch(html, /lettersEl\.appendChild\(wrap\)/);
+  const wordRule = css.slice(css.indexOf('.letter-word {'), css.indexOf('.letter-word.is-spaced'));
+  assert.match(wordRule, /flex-wrap:\s*nowrap/);
+  assert.match(wordRule, /white-space:\s*nowrap/);
+  const rowRule = css.slice(css.indexOf('.letter-row {'), css.indexOf('.letter-word {'));
+  assert.doesNotMatch(rowRule, /display:\s*flex/);
+  assert.match(css, /overflow-wrap:\s*normal/);
+  const unitCss = fs.readFileSync(path.join(root, 'assets/unit.css'), 'utf8');
+  const syllables = unitCss.slice(unitCss.indexOf('.syllables {'), unitCss.indexOf('.zh {'));
+  assert.doesNotMatch(syllables, /overflow-wrap:\s*anywhere/);
+  assert.match(syllables, /overflow-wrap:\s*normal/);
+});

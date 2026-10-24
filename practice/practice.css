@@ -374,6 +374,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-weight: 600;
   line-height: 1.7;
   margin: 0 0 1.1rem;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
 }
 .blank-slot {
   display: inline-flex;
@@ -462,12 +465,20 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .bank-chip {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  max-width: 100%;
   padding: 0.55rem 1rem;
   border-radius: var(--pill);
   background: var(--cream);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
   cursor: grab;
   user-select: none;
   touch-action: manipulation;
@@ -531,15 +542,32 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   padding: 0.55rem 0.9rem;
 }
 .letter-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  text-align: center;
   margin: 0.5rem 0 1rem;
   white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
   max-width: 100%;
   padding: 0.15rem 0.1rem;
+  line-height: 1;
+}
+/* One English word (or word + trailing / or punctuation). Never wraps inside. */
+.letter-word {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-break: keep-all;
+  gap: 0.28rem;
+  max-width: 100%;
+  margin: 0.22rem 0;
+}
+.letter-word.is-spaced {
+  margin-right: 0.55rem;
 }
 .letter-slot.is-space {
   width: 0.55rem;
@@ -724,6 +752,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   text-align: center;
   line-height: 1.2;
   padding: 0.25rem 0.2rem;
+  max-width: 100%;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
 }
 .mcard-front.face-zh {
   background: var(--sky);
