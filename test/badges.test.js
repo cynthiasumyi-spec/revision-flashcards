@@ -20,6 +20,23 @@ test('storage has no score fields', () => {
   assert.equal(Object.prototype.hasOwnProperty.call(data, 'unitScores'), false);
 });
 
+test('review progress rises with each finished practice, not with mastered words', () => {
+  const { window } = setup();
+  assert.equal(window.Badges.practiceProgress('unit1'), 0);
+  window.Badges.recordSession('unit1', 'fill', 'easy');
+  assert.equal(window.Badges.practiceProgress('unit1'), 17);
+  window.Badges.recordSession('unit1', 'fill', 'easy');
+  assert.equal(window.Badges.practiceProgress('unit1'), 17);
+  window.Badges.recordSession('unit1', 'letters', 'hard');
+  window.Badges.recordSession('unit1', 'match');
+  assert.equal(window.Badges.practiceProgress('unit1'), 50);
+  window.Badges.recordSession('unit1', 'fill', 'hard');
+  window.Badges.recordSession('unit1', 'letters', 'easy');
+  window.Badges.recordSession('unit1', 'timed');
+  assert.equal(window.Badges.practiceProgress('unit1'), 100);
+  assert.equal(window.Badges.practiceProgress('unit2'), 0);
+});
+
 test('起步新手 unlocks after any one finished session', () => {
   const { window } = setup();
   assert.equal(window.Badges.isEarned('starter'), false);

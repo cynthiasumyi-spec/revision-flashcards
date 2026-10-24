@@ -78,6 +78,8 @@ test('homepage keeps review words inside Review progress, and badges skip Locked
   assert.match(home, /id="needs-review"/);
   assert.match(home, /id="review-progress"/);
   assert.match(home, /appendWords/);
+  assert.match(home, /practiceProgress/);
+  assert.doesNotMatch(home, /mastered \/ total/);
   assert.match(home, /assets\/review-list\.js/);
   assert.doesNotMatch(home, /needs-review-title/);
   assert.doesNotMatch(hub, /id="needs-review"/);
