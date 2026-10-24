@@ -70,21 +70,24 @@ test('every badge states exactly how to unlock it', () => {
   });
 });
 
-test('homepage, practice hub, and badges page expose the review list and how-to', () => {
+test('homepage keeps review words inside Review progress, and badges skip Locked and unit lines', () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const hub = fs.readFileSync(path.join(root, 'practice/index.html'), 'utf8');
   const badges = fs.readFileSync(path.join(root, 'badges.html'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
   assert.match(home, /id="needs-review"/);
-  assert.match(home, /Needs review/);
-  assert.match(home, /需要重溫/);
+  assert.match(home, /id="review-progress"/);
+  assert.match(home, /appendWords/);
   assert.match(home, /assets\/review-list\.js/);
-  assert.match(hub, /id="needs-review"/);
-  assert.match(hub, /review-list\.js/);
+  assert.doesNotMatch(home, /needs-review-title/);
+  assert.doesNotMatch(hub, /id="needs-review"/);
+  assert.doesNotMatch(hub, /review-list\.js/);
   assert.match(badges, /badge-how/);
   assert.match(badges, /b\.detail/);
   assert.match(badges, /index\.html#needs-review/);
   assert.match(badges, /Needs review 需要重溫/);
+  assert.doesNotMatch(badges, /badge-unit/);
+  assert.doesNotMatch(badges, /'Locked'/);
   const how = css.slice(css.indexOf('.badge-how {'), css.indexOf('.badge-how a'));
   assert.match(how, /color:\s*var\(--navy\)/);
   assert.doesNotMatch(how, /border:\s*[1-9]/);

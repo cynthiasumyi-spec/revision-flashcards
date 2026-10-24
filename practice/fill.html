@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="practice.css?v=3"/>
+<link rel="stylesheet" href="practice.css?v=4"/>
 </head>
 <body>
 <header class="prac-header">
@@ -29,7 +29,15 @@
     <p class="section-label" id="bank-label">Word bank · drag into the blank</p>
     <div class="word-bank" id="bank"></div>
     <p class="sentence" id="sentence"></p>
-    <p class="hard-meaning" id="hard-meaning" hidden></p>
+    <div class="think-row">
+      <button type="button" class="think-tip" id="think-tip" aria-expanded="false" aria-controls="think-panel">
+        <svg class="think-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 2.2a6.3 6.3 0 0 0-3.4 11.6c.5.35.8.9.8 1.5V16.6h5.2v-1.3c0-.6.3-1.15.8-1.5A6.3 6.3 0 0 0 12 2.2zm-1.6 16.2h3.2v1.15a1.6 1.6 0 0 1-3.2 0V18.4z"/>
+        </svg>
+        <span>Tip</span>
+      </button>
+      <p class="think-panel" id="think-panel" hidden></p>
+    </div>
     <div class="btn-row">
       <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
       <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
@@ -66,6 +74,7 @@
 <script src="mastery.js"></script>
 <script src="badges.js"></script>
 <script src="common.js"></script>
+<script src="think.js"></script>
 <script>
 (function () {
   const C = window.PracticeCommon;
@@ -212,13 +221,12 @@
     updateModeChrome();
 
     const item = items[idx];
-    const meaningEl = document.getElementById('hard-meaning');
-    if (meaningEl) {
-      const meta = mode === 'easy'
-        ? (pack.words || []).find(function (w) { return w.key === item.wordKey; })
-        : null;
-      meaningEl.hidden = !meta;
-      meaningEl.textContent = meta ? ('Meaning: ' + meta.zh) : '';
+    const thinkBtn = document.getElementById('think-tip');
+    const thinkPanel = document.getElementById('think-panel');
+    if (thinkBtn && thinkPanel && window.FillThink) {
+      thinkPanel.textContent = window.FillThink.tip(item);
+      thinkPanel.hidden = true;
+      thinkBtn.setAttribute('aria-expanded', 'false');
     }
     document.getElementById('q-num').textContent = (idx + 1) + ' / ' + items.length;
     document.getElementById('prog').style.width = ((idx / items.length) * 100) + '%';
@@ -341,7 +349,11 @@
       if (slotRef.el) slotRef.el.classList.add('filled', 'is-correct');
     } else {
       M.markWrong(item.wordKey);
-      const explain = item.explain || '';
+      const explain = String(item.explain || '')
+        .replace(/\s*[（(][^)）]*[)）]/g, '')
+        .replace(/[\u4e00-\u9fff]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
       C.showFeedback(toast, 'bad', function (body) {
         const title = document.createElement('div');
         title.className = 'toast-title';
@@ -393,6 +405,16 @@
     }
     render();
   });
+
+  const thinkBtn = document.getElementById('think-tip');
+  const thinkPanel = document.getElementById('think-panel');
+  if (thinkBtn && thinkPanel) {
+    thinkBtn.addEventListener('click', function () {
+      const open = thinkPanel.hidden;
+      thinkPanel.hidden = !open;
+      thinkBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
 
   syncHardLock();
   if (new URLSearchParams(location.search).get('diff') === 'hard' && (!B || B.hardUnlocked(unitId, 'fill'))) {

@@ -36,42 +36,58 @@ window.ReviewList = (function () {
     return out;
   }
 
+  var EMPTY = 'No words to review yet. After you practise, words that still need work will show up here.';
+
+  function wordList(words, embedded) {
+    var list = document.createElement('ul');
+    list.className = 'review-word-list' + (embedded ? ' is-embedded' : '');
+    words.forEach(function (word) {
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      link.className = 'review-word';
+      link.href = word.href;
+      var en = document.createElement('span');
+      en.className = 'review-word-en';
+      en.textContent = word.en;
+      var zh = document.createElement('span');
+      zh.className = 'review-word-zh';
+      zh.textContent = word.zh;
+      link.appendChild(en);
+      link.appendChild(zh);
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    return list;
+  }
+
   function render(el, grouped) {
     if (!el) return;
     while (el.firstChild) el.removeChild(el.firstChild);
     if (!grouped || !grouped.length) {
-      var empty = document.createElement('p');
-      empty.className = 'review-empty';
-      empty.textContent = 'No words to review yet. After you practise, words that still need work will show up here.';
-      el.appendChild(empty);
+      appendEmpty(el);
       return;
     }
     grouped.forEach(function (group) {
       var heading = document.createElement('h3');
       heading.className = 'review-unit';
       heading.textContent = group.label;
-      var list = document.createElement('ul');
-      list.className = 'review-word-list';
-      group.words.forEach(function (word) {
-        var item = document.createElement('li');
-        var link = document.createElement('a');
-        link.className = 'review-word';
-        link.href = word.href;
-        var en = document.createElement('span');
-        en.className = 'review-word-en';
-        en.textContent = word.en;
-        var zh = document.createElement('span');
-        zh.className = 'review-word-zh';
-        zh.textContent = word.zh;
-        link.appendChild(en);
-        link.appendChild(zh);
-        item.appendChild(link);
-        list.appendChild(item);
-      });
       el.appendChild(heading);
-      el.appendChild(list);
+      el.appendChild(wordList(group.words, false));
     });
   }
 
-  return { groups: groups, render: render };
+  function appendWords(el, words) {
+    if (!el || !words || !words.length) return;
+    el.appendChild(wordList(words, true));
+  }
+
+  function appendEmpty(el) {
+    if (!el) return;
+    var empty = document.createElement('p');
+    empty.className = 'review-empty';
+    empty.textContent = EMPTY;
+    el.appendChild(empty);
+  }
+
+  return { groups: groups, render: render, appendWords: appendWords, appendEmpty: appendEmpty };
 })();

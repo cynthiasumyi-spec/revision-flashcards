@@ -2,7 +2,18 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { loadPacks } = require('./helpers');
+const { loadPacks, loadScripts } = require('./helpers');
+
+function loadPacksWithThink() {
+  return loadScripts([
+    'practice/data/unit1.js',
+    'practice/data/unit2.js',
+    'practice/data/unit3.js',
+    'practice/data/unit4.js',
+    'practice/data/dictation3.js',
+    'practice/think.js'
+  ]);
+}
 
 function norm(s) {
   return String(s || '')
@@ -115,11 +126,30 @@ test('every fill item accepts one phrase and one clue', () => {
   assert.deepEqual(problems, []);
 });
 
-test('sentence fill shows Meaning on Easy and hides it on Hard', () => {
+test('sentence fill hides the Chinese gloss and offers a thinking tip', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'practice/fill.html'), 'utf8');
-  const block = html.slice(html.indexOf("getElementById('hard-meaning')"));
-  assert.match(block, /mode === 'easy'/);
-  assert.match(block, /Meaning: /);
-  assert.match(block, /meaningEl\.hidden = !meta/);
-  assert.doesNotMatch(block.slice(0, 700), /mode === 'hard'[\s\S]{0,180}Meaning:/);
+  assert.doesNotMatch(html, /Meaning:/);
+  assert.doesNotMatch(html, /hard-meaning/);
+  assert.match(html, /id="think-tip"/);
+  assert.match(html, /FillThink/);
+  const { window } = loadPacksWithThink();
+  const packs = [
+    window.PRACTICE_UNIT1,
+    window.PRACTICE_UNIT2,
+    window.PRACTICE_UNIT3,
+    window.PRACTICE_UNIT4,
+    window.PRACTICE_DICTATION3
+  ];
+  const problems = [];
+  packs.forEach(pack => {
+    ['fillIn', 'fillInHard'].forEach(bucket => {
+      (pack[bucket] || []).forEach(item => {
+        const tip = window.FillThink.tip(item);
+        if (!tip || tip.length < 12) problems.push(item.id + ' has no tip');
+        if (/[\u4e00-\u9fff]/.test(tip)) problems.push(item.id + ' tip has Chinese');
+        if (tip.toLowerCase().includes(norm(item.answer))) problems.push(item.id + ' tip gives the answer');
+      });
+    });
+  });
+  assert.deepEqual(problems, []);
 });

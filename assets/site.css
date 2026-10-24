@@ -1160,14 +1160,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .review-row {
   display: block;
-  text-decoration: none;
   color: inherit;
   background: var(--cream, #fcf0d8);
   border-radius: 14px;
   padding: 0.55rem 0.75rem;
-  transition: transform 140ms ease;
 }
-.review-row:active { transform: scale(0.99); }
+.review-row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.review-row-link:active { transform: scale(0.99); }
 .review-row.is-locked { opacity: 0.55; filter: saturate(0.6); }
 .review-row-top {
   display: flex;
