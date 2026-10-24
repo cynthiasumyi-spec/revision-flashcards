@@ -653,6 +653,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   margin-top: 1rem;
 }
 .daily-actions .btn { width: auto; }
+#daily-play { gap: 0.4rem; white-space: nowrap; }
+.daily-speaker {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
+  display: block;
+}
 .daily-open {
   background: var(--navy);
   color: var(--cream);
@@ -883,7 +890,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   }
   .cta { min-height: 0; }
   .daily-card { grid-template-columns: 1fr; }
-  .daily-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .daily-actions { display: grid; grid-template-columns: 1fr; }
   .daily-actions .btn,
   .daily-continue .btn { width: 100%; }
   .cta-aside { padding-bottom: 0; order: 1; }
