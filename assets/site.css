@@ -590,7 +590,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   margin: 0 auto;
   background: var(--cream);
   color: var(--navy);
-  border: 5px solid var(--navy);
+  border: 0;
+  box-shadow: none;
   border-radius: 28px;
   padding: clamp(1.1rem, 3vw, 1.6rem);
   display: grid;
@@ -668,6 +669,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .daily-open:hover { background: var(--coral); color: var(--navy); }
 .daily-continue {
   background: var(--white);
+  border: 0;
+  box-shadow: none;
   border-radius: 22px;
   padding: 1rem 1.05rem 1.15rem;
   display: flex;
