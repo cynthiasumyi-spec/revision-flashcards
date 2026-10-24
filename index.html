@@ -361,16 +361,8 @@
         : [];
       R.listUnits().forEach(function (u) {
         var pack = R.getUnit(u.id);
-        var wordKeys = (pack && pack.words) ? pack.words.map(function (w) { return w.key; }) : [];
-        var total = wordKeys.length;
-        var neu = 0, review = 0, mastered = 0;
-        wordKeys.forEach(function (k) {
-          var w = M.load().words[k];
-          if (!w || w.state === 'new') neu += 1;
-          else if (w.state === 'review') review += 1;
-          else if (w.state === 'mastered') mastered += 1;
-        });
-        var pct = total ? Math.round((mastered / total) * 100) : 0;
+        var total = (pack && pack.words) ? pack.words.length : 0;
+        var pct = window.Badges ? window.Badges.practiceProgress(u.id) : 0;
         var practiceLocked = window.Badges && !window.Badges.unitUnlocked(u.id);
         var locked = !u.ready || !total || practiceLocked;
         var pctLabel = (!total) ? 'Soon' : (practiceLocked ? 'Locked' : (pct + '%'));

@@ -191,6 +191,17 @@ window.Badges = (function () {
     return coreCompleteFrom(load().units[unitId]);
   }
 
+  var PRACTICE_FLAGS = ['fillEasy', 'fillHard', 'lettersEasy', 'lettersHard', 'match', 'timed'];
+
+  function practiceProgress(unitId) {
+    var st = load().units[unitId] || {};
+    var done = 0;
+    PRACTICE_FLAGS.forEach(function (key) {
+      if (st[key]) done += 1;
+    });
+    return Math.round((done / PRACTICE_FLAGS.length) * 100);
+  }
+
   function hardUnlocked(unitId, activity) {
     const st = load().units[unitId];
     if (!st) return false;
@@ -287,6 +298,7 @@ window.Badges = (function () {
     isEarned: isEarned,
     getEarned: getEarned,
     coreComplete: coreComplete,
+    practiceProgress: practiceProgress,
     hardUnlocked: hardUnlocked,
     unitUnlocked: unitUnlocked,
     lockReason: lockReason,
