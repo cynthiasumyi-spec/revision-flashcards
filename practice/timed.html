@@ -244,7 +244,7 @@
     document.getElementById('final-detail').textContent = correctN + ' correct · ' + answered + ' answered';
     const isBest = M.setTimedBest(unitId, score);
     document.getElementById('best-msg').textContent = isBest ? 'New best round!' : (best != null && score <= best ? 'Best remains ' + best : '');
-    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'timed'));
+    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'timed', null, { correct: correctN, total: answered }));
   }
 
   document.getElementById('btn-start').addEventListener('click', start);

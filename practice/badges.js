@@ -1,6 +1,6 @@
 /**
  * Completion badges. localStorage key p6-flash-badges-v1.
- * Earned only from finished practice sessions and cleared review words.
+ * Earned from finished practice sessions. Cross-unit badges use Units 1–4 only.
  * No points, totals, or streaks.
  */
 window.Badges = (function () {
@@ -60,7 +60,6 @@ window.Badges = (function () {
    * Match Master: https://www.irasutoya.com/2017/07/blog-post_978.html
    * Timed Hero: https://www.irasutoya.com/2012/12/blog-post_271.html
    * Hard Challenger: https://www.irasutoya.com/2020/01/blog-post_69.html
-   * Review Slayer: https://www.irasutoya.com/2017/09/blog-post_494.html
    * Unit 1 completer: https://www.irasutoya.com/2014/09/blog-post_58.html
    * Unit 2 completer: https://www.irasutoya.com/2012/11/blog-post_6715.html
    * Unit 3 completer: https://www.irasutoya.com/2013/09/blog-post_3570.html
@@ -70,11 +69,10 @@ window.Badges = (function () {
   function catalog() {
     const globals = [
       { id: 'starter', title: '起步新手', english: 'First Steps', image: 'assets/badges/first-steps.png', detail: 'Finish any one practice session.' },
-      { id: 'letters-phrase', title: '詞組拼寫手', english: 'Phrase Speller', image: 'assets/badges/phrase-speller.png', detail: 'Finish Missing Letters for one unit.' },
-      { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish one Memory Match (six cards).' },
-      { id: 'timed-brave', title: '限時勇者', english: 'Timed Hero', image: 'assets/badges/timed-hero.png', detail: 'Finish one Timed Challenge.' },
-      { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.' },
-      { id: 'review-clear', title: '錯題殺手', english: 'Review Slayer', image: 'assets/badges/review-slayer.png', detail: 'Clear every 需要重溫 word in one unit.' }
+      { id: 'letters-phrase', title: '詞組拼寫手', english: 'Phrase Speller', image: 'assets/badges/phrase-speller.png', detail: 'Finish Missing Letters Easy for Unit 1, Unit 2, Unit 3, and Unit 4, with every answer correct.' },
+      { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish Memory Match once for Unit 1, Unit 2, Unit 3, and Unit 4.' },
+      { id: 'timed-brave', title: '限時勇者', english: 'Timed Hero', image: 'assets/badges/timed-hero.png', detail: 'Finish Timed Challenge once for Unit 1, Unit 2, Unit 3, and Unit 4.' },
+      { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Sentence Fill Hard and Missing Letters Hard for Unit 1, Unit 2, Unit 3, and Unit 4, with at least 90% correct in each session.' }
     ];
     const unitArt = {
       unit1: 'assets/badges/unit-completer-unit1.png',
@@ -125,20 +123,60 @@ window.Badges = (function () {
     return !!((st.fillEasy || st.fillHard) && (st.lettersEasy || st.lettersHard) && st.match);
   }
 
-  function recordSession(unitId, activity, difficulty) {
+  var CROSS_UNITS = ['unit1', 'unit2', 'unit3', 'unit4'];
+
+  function sessionRatio(stats) {
+    if (!stats || !(stats.total > 0)) return null;
+    var correct = Number(stats.correct);
+    var total = Number(stats.total);
+    if (!isFinite(correct) || !isFinite(total) || total <= 0) return null;
+    if (correct < 0) correct = 0;
+    if (correct > total) correct = total;
+    return correct / total;
+  }
+
+  function meets(ratio, need) {
+    return typeof ratio === 'number' && ratio + 1e-9 >= need;
+  }
+
+  function rememberBest(st, key, ratio) {
+    if (ratio == null) return;
+    if (typeof st[key] !== 'number' || ratio > st[key]) st[key] = ratio;
+  }
+
+  function crossUnit(data, pred) {
+    return CROSS_UNITS.every(function (id) {
+      return pred(data.units[id] || {});
+    });
+  }
+
+  function recordSession(unitId, activity, difficulty, stats) {
     const data = load();
     const st = unitState(data, unitId);
     const hard = difficulty === 'hard';
+    const ratio = sessionRatio(stats);
     if (activity === 'fill') {
-      if (hard) st.fillHard = true;
-      else st.fillEasy = true;
+      if (hard) {
+        st.fillHard = true;
+        rememberBest(st, 'fillHardBest', ratio);
+      } else {
+        st.fillEasy = true;
+        rememberBest(st, 'fillEasyBest', ratio);
+      }
     } else if (activity === 'letters') {
-      if (hard) st.lettersHard = true;
-      else st.lettersEasy = true;
+      if (hard) {
+        st.lettersHard = true;
+        rememberBest(st, 'lettersHardBest', ratio);
+      } else {
+        st.lettersEasy = true;
+        rememberBest(st, 'lettersEasyBest', ratio);
+      }
     } else if (activity === 'match') {
       st.match = true;
+      rememberBest(st, 'matchBest', ratio);
     } else if (activity === 'timed') {
       st.timed = true;
+      rememberBest(st, 'timedBest', ratio);
     }
 
     const fresh = [];
@@ -146,37 +184,23 @@ window.Badges = (function () {
       if (badge) fresh.push(badge);
     }
     take(award(data, 'starter'));
-    if (activity === 'letters') take(award(data, 'letters-phrase'));
-    if (activity === 'match') take(award(data, 'match-pro'));
-    if (activity === 'timed') take(award(data, 'timed-brave'));
-    if (hard && (activity === 'fill' || activity === 'letters')) {
+    if (crossUnit(data, function (unit) { return meets(unit.lettersEasyBest, 1); })) {
+      take(award(data, 'letters-phrase'));
+    }
+    if (crossUnit(data, function (unit) { return !!unit.match; })) {
+      take(award(data, 'match-pro'));
+    }
+    if (crossUnit(data, function (unit) { return !!unit.timed; })) {
+      take(award(data, 'timed-brave'));
+    }
+    if (crossUnit(data, function (unit) {
+      return meets(unit.fillHardBest, 0.9) && meets(unit.lettersHardBest, 0.9);
+    })) {
       take(award(data, 'hard-challenger'));
     }
     if (coreCompleteFrom(st)) take(award(data, 'unit-done:' + unitId));
     save(data);
     return { newBadges: fresh };
-  }
-
-  function noteReview(unitId, records) {
-    const list = records || [];
-    const needs = list.filter(function (r) {
-      return r && r.state === 'review' && (r.wrong || 0) > 0;
-    });
-    const data = load();
-    if (needs.length > 0) {
-      data.hadReview[unitId] = true;
-      save(data);
-      return { awarded: false, newBadges: [] };
-    }
-    const cleared = list.some(function (r) {
-      return r && (r.wrong || 0) > 0 && r.state !== 'review';
-    });
-    if (data.hadReview[unitId] && cleared) {
-      const badge = award(data, 'review-clear');
-      save(data);
-      return { awarded: !!badge, newBadges: badge ? [badge] : [] };
-    }
-    return { awarded: false, newBadges: [] };
   }
 
   function isEarned(id) {
@@ -294,7 +318,6 @@ window.Badges = (function () {
     ORDER: ORDER,
     catalog: catalog,
     recordSession: recordSession,
-    noteReview: noteReview,
     isEarned: isEarned,
     getEarned: getEarned,
     coreComplete: coreComplete,

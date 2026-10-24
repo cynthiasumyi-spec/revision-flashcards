@@ -73,9 +73,10 @@ test('a locked badge avatar cannot be saved until that badge is earned', () => {
   assert.match(P.list().find(item => item.id === 'starter').lockLabel, /^$/);
   const opened = P.list().find(item => item.badgeId === 'starter');
   assert.equal(opened.lockLabel, '');
-  const stillLocked = P.list().find(item => item.id === 'review-clear');
-  assert.match(stillLocked.lockLabel, /Review Slayer/);
-  assert.match(stillLocked.lockLabel, /錯題殺手/);
+  const stillLocked = P.list().find(item => item.id === 'hard-challenger');
+  assert.match(stillLocked.lockLabel, /Hard Challenger/);
+  assert.match(stillLocked.lockLabel, /Hard 挑戰者/);
+  assert.equal(P.list().some(item => item.id === 'review-clear'), false);
   const saved = P.save({ nickname: 'Amy', avatar: 'starter' });
   assert.equal(saved.profile.avatar, 'starter');
   assert.equal(P.display().src, 'assets/badges/first-steps.png');
@@ -94,7 +95,6 @@ test('each badge maps to one avatar', () => {
     'match-pro',
     'timed-brave',
     'hard-challenger',
-    'review-clear',
     'unit-done:unit1',
     'unit-done:unit2',
     'unit-done:unit3',
