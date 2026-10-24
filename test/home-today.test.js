@@ -106,6 +106,8 @@ test('homepage drops the old blurb and the keep-practising footer', () => {
   assert.match(html, /Word of the day/);
   assert.match(html, /Continue last/);
   assert.match(html, /id="daily-play"/);
+  assert.match(html, /Play audio/);
+  assert.match(html, /class="daily-speaker"/);
   assert.match(html, /id="daily-open"/);
   assert.doesNotMatch(html, /Sixty-one real syllabus/);
   assert.doesNotMatch(html, /Keep practising/);
