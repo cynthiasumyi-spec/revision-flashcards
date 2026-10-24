@@ -97,6 +97,44 @@ window.PracticeCommon = (function () {
     return slots;
   }
 
+  function slotChar(slot) {
+    if (!slot) return '';
+    return slot.type === 'show' ? (slot.char || '') : (slot.answer || '');
+  }
+
+  /**
+   * Group letter slots into unbreakable words.
+   * A word is one run of letters. Spaces, "/" and other punctuation
+   * are wrap points, so a line may break between words or at those
+   * separators, never between the letters of one word.
+   * Slash and punctuation stay on the end of the word they follow
+   * ("buy/", "fund-") and the next letters start a new word.
+   * A following space is recorded as trail: 'space' (not its own slot).
+   */
+  function groupLetterSlots(slots) {
+    const groups = [];
+    let current = null;
+    function flush() {
+      if (current && current.slots.length) groups.push(current);
+      current = null;
+    }
+    (slots || []).forEach(function (slot) {
+      const ch = slotChar(slot);
+      if (ch === ' ') {
+        if (current && current.slots.length) {
+          current.trail = 'space';
+          flush();
+        }
+        return;
+      }
+      if (!current) current = { kind: 'word', slots: [], trail: 'none' };
+      current.slots.push(slot);
+      if (ch === '/' || !/[a-zA-Z]/.test(ch)) flush();
+    });
+    flush();
+    return groups;
+  }
+
   /**
    * Quiz feedback cats from いらすとや
    * https://www.irasutoya.com/2017/12/blog-post_89.html
@@ -135,6 +173,7 @@ window.PracticeCommon = (function () {
 
   return {
     shuffle, unitParam, loadUnit, hubLink, practiceLink,
-    playAudio, escapeHtml, maskWord, maskPhrase, patternToSlots, toast, showFeedback
+    playAudio, escapeHtml, maskWord, maskPhrase, patternToSlots, groupLetterSlots,
+    toast, showFeedback
   };
 })();
