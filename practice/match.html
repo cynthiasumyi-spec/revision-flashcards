@@ -214,7 +214,7 @@
     document.getElementById('final-msg').textContent = flips + ' flips';
     const isBest = M.setMatchBest(unitId, { ms, flips, at: Date.now() });
     document.getElementById('best-msg').textContent = isBest ? 'New best round!' : '';
-    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'match'));
+    if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'match', null, { correct: pairs.length, total: pairs.length }));
   }
 })();
 </script>

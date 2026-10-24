@@ -56,11 +56,11 @@ test('every badge states exactly how to unlock it', () => {
   const byId = {};
   window.Badges.catalog().forEach(b => { byId[b.id] = b.detail; });
   assert.equal(byId.starter, 'Finish any one practice session.');
-  assert.equal(byId['letters-phrase'], 'Finish Missing Letters for one unit.');
-  assert.equal(byId['match-pro'], 'Finish one Memory Match (six cards).');
-  assert.equal(byId['timed-brave'], 'Finish one Timed Challenge.');
-  assert.equal(byId['hard-challenger'], 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.');
-  assert.equal(byId['review-clear'], 'Clear every 需要重溫 word in one unit.');
+  assert.equal(byId['letters-phrase'], 'Finish Missing Letters Easy for Unit 1, Unit 2, Unit 3, and Unit 4, with every answer correct.');
+  assert.equal(byId['match-pro'], 'Finish Memory Match once for Unit 1, Unit 2, Unit 3, and Unit 4.');
+  assert.equal(byId['timed-brave'], 'Finish Timed Challenge once for Unit 1, Unit 2, Unit 3, and Unit 4.');
+  assert.equal(byId['hard-challenger'], 'Finish Sentence Fill Hard and Missing Letters Hard for Unit 1, Unit 2, Unit 3, and Unit 4, with at least 90% correct in each session.');
+  assert.equal(byId['review-clear'], undefined);
   ['unit1', 'unit2', 'unit3', 'unit4', 'dictation3'].forEach(id => {
     const label = id === 'dictation3' ? 'Dictation 3' : ('Unit ' + id.slice(-1));
     assert.equal(
@@ -70,24 +70,22 @@ test('every badge states exactly how to unlock it', () => {
   });
 });
 
-test('homepage keeps review words inside Review progress, and badges skip Locked and unit lines', () => {
+test('homepage keeps practice bars and hides the needs-review word list', () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const hub = fs.readFileSync(path.join(root, 'practice/index.html'), 'utf8');
   const badges = fs.readFileSync(path.join(root, 'badges.html'), 'utf8');
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
-  assert.match(home, /id="needs-review"/);
   assert.match(home, /id="review-progress"/);
-  assert.match(home, /appendWords/);
   assert.match(home, /practiceProgress/);
   assert.doesNotMatch(home, /mastered \/ total/);
-  assert.match(home, /assets\/review-list\.js/);
-  assert.doesNotMatch(home, /needs-review-title/);
+  assert.doesNotMatch(home, /review-list\.js/);
+  assert.doesNotMatch(home, /appendWords/);
+  assert.doesNotMatch(home, /id="needs-review"/);
   assert.doesNotMatch(hub, /id="needs-review"/);
-  assert.doesNotMatch(hub, /review-list\.js/);
   assert.match(badges, /badge-how/);
   assert.match(badges, /b\.detail/);
-  assert.match(badges, /index\.html#needs-review/);
-  assert.match(badges, /Needs review 需要重溫/);
+  assert.doesNotMatch(badges, /index\.html#needs-review/);
+  assert.doesNotMatch(badges, /review-clear/);
   assert.doesNotMatch(badges, /badge-unit/);
   assert.doesNotMatch(badges, /'Locked'/);
   const how = css.slice(css.indexOf('.badge-how {'), css.indexOf('.badge-how a'));

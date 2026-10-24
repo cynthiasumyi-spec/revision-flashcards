@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css?v=24" />
   <link rel="stylesheet" href="assets/profile.css?v=2" />
-  <link rel="stylesheet" href="assets/review-list.css?v=2" />
 </head>
 <body>
   <a class="sr-only skip" href="#packs">Skip to packs</a>
@@ -110,17 +109,17 @@
       </div>
     </section>
 
-    <!-- Review progress (mastery-driven across all units) -->
+    <!-- Review progress (finished practice sessions) -->
     <section class="section today-home" id="today" aria-labelledby="today-title">
       <div class="today-home-inner reveal">
-          <div class="today-home-card today-progress-card" id="needs-review">
+          <div class="today-home-card today-progress-card">
           <div class="today-progress-head">
             <h2 class="today-home-title" id="today-title">Review progress</h2>
             <p class="today-home-lead"><span id="today-home-count">0</span> words ready · open Practice to start</p>
             <a class="btn btn-primary" href="practice/index.html">Practice hub</a>
             <a class="btn badges-entry" id="badges-entry" href="badges.html">Badges</a>
           </div>
-          <div class="review-progress-list" id="review-progress" aria-label="Review progress and words that need review"></div>
+          <div class="review-progress-list" id="review-progress" aria-label="Review progress by unit"></div>
         </div>
       </div>
     </section>
@@ -302,7 +301,6 @@
   <script src="practice/badges.js"></script>
   <script src="assets/profile.js"></script>
   <script src="assets/home-today.js"></script>
-  <script src="assets/review-list.js"></script>
   <script>
   (function () {
     try {
@@ -356,9 +354,6 @@
       var tones = { sunny: 'sunny', green: 'green', sky: 'sky', coral: 'coral', pink: 'pink' };
       var box = document.getElementById('review-progress');
       if (!box || !R) return;
-      var reviewGroups = window.ReviewList
-        ? window.ReviewList.groups(R, M, { practicePage: 'practice/letters.html', cardPrefix: '' })
-        : [];
       R.listUnits().forEach(function (u) {
         var pack = R.getUnit(u.id);
         var total = (pack && pack.words) ? pack.words.length : 0;
@@ -366,7 +361,6 @@
         var practiceLocked = window.Badges && !window.Badges.unitUnlocked(u.id);
         var locked = !u.ready || !total || practiceLocked;
         var pctLabel = (!total) ? 'Soon' : (practiceLocked ? 'Locked' : (pct + '%'));
-        var groupedWords = (reviewGroups.filter(function (g) { return g.id === u.id; })[0] || { words: [] }).words;
         var row = document.createElement('div');
         row.className = 'review-row tone-' + (tones[u.tone] || 'sky') + (locked ? ' is-locked' : '');
         var link = document.createElement('a');
@@ -379,10 +373,8 @@
           '</div>' +
           '<div class="review-track" aria-hidden="true"><span class="review-fill" style="width:' + (locked ? 0 : pct) + '%"></span></div>';
         row.appendChild(link);
-        if (window.ReviewList) window.ReviewList.appendWords(row, groupedWords);
         box.appendChild(row);
       });
-      if (window.ReviewList && !reviewGroups.length) window.ReviewList.appendEmpty(box);
     } catch (e) {}
   })();
   </script>

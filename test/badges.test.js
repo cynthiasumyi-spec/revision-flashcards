@@ -124,48 +124,67 @@ test('easy unlocks hard for that same practice only', () => {
   assert.equal(window.Badges.hardUnlocked('unit2', 'fill'), false);
 });
 
-test('phrase, match, timed, and hard badges unlock once', () => {
-  const { window } = setup();
-  window.Badges.recordSession('unit2', 'letters', 'easy');
+test('phrase speller needs Missing Letters Easy at 100% for units 1 to 4', () => {
+  const { window, localStorage } = setup();
+  ['unit1', 'unit2', 'unit3'].forEach(id => {
+    window.Badges.recordSession(id, 'letters', 'easy', { correct: 10, total: 10 });
+  });
+  window.Badges.recordSession('unit4', 'letters', 'easy', { correct: 9, total: 10 });
+  assert.equal(window.Badges.isEarned('letters-phrase'), false);
+  window.Badges.recordSession('dictation3', 'letters', 'easy', { correct: 10, total: 10 });
+  assert.equal(window.Badges.isEarned('letters-phrase'), false);
+  window.Badges.recordSession('unit4', 'letters', 'easy', { correct: 8, total: 8 });
   assert.equal(window.Badges.isEarned('letters-phrase'), true);
-  window.Badges.recordSession('unit1', 'match');
+  const saved = JSON.parse(localStorage.getItem(window.Badges.KEY));
+  assert.equal(saved.units.unit4.lettersEasyBest, 1);
+  assert.ok(saved.units.unit4.lettersEasyBest > 0.9);
+});
+
+test('an earlier imperfect letters session can be upgraded', () => {
+  const { window, localStorage } = setup();
+  window.Badges.recordSession('unit1', 'letters', 'easy', { correct: 5, total: 10 });
+  let saved = JSON.parse(localStorage.getItem(window.Badges.KEY));
+  assert.equal(saved.units.unit1.lettersEasy, true);
+  assert.ok(saved.units.unit1.lettersEasyBest < 1);
+  window.Badges.recordSession('unit1', 'letters', 'easy', { correct: 4, total: 10 });
+  saved = JSON.parse(localStorage.getItem(window.Badges.KEY));
+  assert.equal(saved.units.unit1.lettersEasyBest, 0.5);
+});
+
+test('match master and timed hero need units 1 to 4, not dictation 3', () => {
+  const { window } = setup();
+  ['unit1', 'unit2', 'unit3'].forEach(id => window.Badges.recordSession(id, 'match'));
+  window.Badges.recordSession('dictation3', 'match');
+  assert.equal(window.Badges.isEarned('match-pro'), false);
+  window.Badges.recordSession('unit4', 'match');
   assert.equal(window.Badges.isEarned('match-pro'), true);
-  window.Badges.recordSession('unit1', 'timed');
+  ['unit1', 'unit2', 'unit3'].forEach(id => window.Badges.recordSession(id, 'timed', null, { correct: 3, total: 5 }));
+  assert.equal(window.Badges.isEarned('timed-brave'), false);
+  window.Badges.recordSession('unit4', 'timed', null, { correct: 1, total: 4 });
   assert.equal(window.Badges.isEarned('timed-brave'), true);
-  assert.equal(window.Badges.isEarned('hard-challenger'), false);
-  window.Badges.recordSession('unit3', 'letters', 'hard');
+});
+
+test('hard challenger needs fill hard and letters hard at 90% for units 1 to 4', () => {
+  const { window } = setup();
+  const units = ['unit1', 'unit2', 'unit3', 'unit4'];
+  units.forEach(id => {
+    window.Badges.recordSession(id, 'fill', 'hard', { correct: 9, total: 10 });
+    window.Badges.recordSession(id, 'letters', 'hard', { correct: 9, total: 10 });
+  });
+  window.Badges.recordSession('unit4', 'letters', 'hard', { correct: 8, total: 10 });
   assert.equal(window.Badges.isEarned('hard-challenger'), true);
-});
-
-test('hard fill also unlocks the hard challenger badge', () => {
-  const { window } = setup();
-  window.Badges.recordSession('unit4', 'fill', 'hard');
-  assert.equal(window.Badges.isEarned('hard-challenger'), true);
-});
-
-test('錯題殺手 only after missed words in one unit are cleared', () => {
-  const { window } = setup();
-  window.Badges.noteReview('unit1', []);
-  assert.equal(window.Badges.isEarned('review-clear'), false);
-  window.Badges.noteReview('unit1', [{ state: 'review', wrong: 1 }]);
-  assert.equal(window.Badges.isEarned('review-clear'), false);
-  window.Badges.noteReview('unit1', [
-    { state: 'mastered', wrong: 1 },
-    { state: 'review', wrong: 2 }
-  ]);
-  assert.equal(window.Badges.isEarned('review-clear'), false);
-  window.Badges.noteReview('unit1', [
-    { state: 'mastered', wrong: 1 },
-    { state: 'mastered', wrong: 2 }
-  ]);
-  assert.equal(window.Badges.isEarned('review-clear'), true);
-});
-
-test('a correct streak that never missed a word does not award 錯題殺手', () => {
-  const { window } = setup();
-  window.Badges.noteReview('unit1', [{ state: 'review', wrong: 0 }]);
-  window.Badges.noteReview('unit1', [{ state: 'mastered', wrong: 0 }]);
-  assert.equal(window.Badges.isEarned('review-clear'), false);
+  const fresh = setup();
+  ['unit1', 'unit2', 'unit3'].forEach(id => {
+    fresh.window.Badges.recordSession(id, 'fill', 'hard', { correct: 9, total: 10 });
+    fresh.window.Badges.recordSession(id, 'letters', 'hard', { correct: 9, total: 10 });
+  });
+  fresh.window.Badges.recordSession('unit4', 'fill', 'hard', { correct: 9, total: 10 });
+  fresh.window.Badges.recordSession('unit4', 'letters', 'hard', { correct: 89, total: 100 });
+  assert.equal(fresh.window.Badges.isEarned('hard-challenger'), false);
+  fresh.window.Badges.recordSession('unit4', 'letters', 'hard', { correct: 90, total: 100 });
+  assert.equal(fresh.window.Badges.isEarned('hard-challenger'), true);
+  fresh.window.Badges.recordSession('dictation3', 'fill', 'hard', { correct: 1, total: 10 });
+  assert.equal(fresh.window.Badges.isEarned('unit-done:dictation3'), false);
 });
 
 test('catalog lists five unit badges and no streak badge', () => {
@@ -177,7 +196,7 @@ test('catalog lists five unit badges and no streak badge', () => {
   assert.ok(ids.includes('match-pro'));
   assert.ok(ids.includes('timed-brave'));
   assert.ok(ids.includes('hard-challenger'));
-  assert.ok(ids.includes('review-clear'));
+  assert.equal(ids.includes('review-clear'), false);
   assert.equal(ids.some(id => /streak|連續/.test(id)), false);
   const titles = window.Badges.catalog().map(b => b.title);
   assert.ok(titles.includes('起步新手'));
@@ -185,15 +204,14 @@ test('catalog lists five unit badges and no streak badge', () => {
   assert.ok(titles.includes('配對高手'));
   assert.ok(titles.includes('限時勇者'));
   assert.ok(titles.includes('Hard 挑戰者'));
-  assert.ok(titles.includes('錯題殺手'));
+  assert.equal(titles.includes('錯題殺手'), false);
   assert.ok(titles.includes('Unit 完成者'));
   const english = {
     starter: 'First Steps',
     'letters-phrase': 'Phrase Speller',
     'match-pro': 'Match Master',
     'timed-brave': 'Timed Hero',
-    'hard-challenger': 'Hard Challenger',
-    'review-clear': 'Review Slayer'
+    'hard-challenger': 'Hard Challenger'
   };
   window.Badges.catalog().forEach(b => {
     assert.equal(typeof b.english, 'string');
@@ -235,14 +253,14 @@ test('a newly earned badge carries its English title and medal path', () => {
   });
 });
 
-test('mastery wrong then three corrects clears 需要重溫 for that unit', () => {
+test('mastery still tracks review words without awarding a badge', () => {
   const { window } = setup();
   const M = window.Mastery;
   M.markWrong('unit2:flood');
-  assert.equal(window.Badges.isEarned('review-clear'), false);
+  assert.equal(M.get('unit2:flood').state, 'review');
   M.markCorrect('unit2:flood');
   M.markCorrect('unit2:flood');
   M.markCorrect('unit2:flood');
   assert.equal(M.get('unit2:flood').state, 'mastered');
-  assert.equal(window.Badges.isEarned('review-clear'), true);
+  assert.equal(window.Badges.catalog().some(b => b.id === 'review-clear'), false);
 });

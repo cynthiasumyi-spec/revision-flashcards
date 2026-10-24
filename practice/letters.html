@@ -238,7 +238,7 @@
       document.getElementById('game').hidden = true;
       document.getElementById('done').hidden = false;
       document.getElementById('score-big').textContent = correctCount + ' / ' + items.length;
-      if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'letters', mode));
+      if (B) B.writeResult(document.getElementById('badge-note'), B.recordSession(unitId, 'letters', mode, { correct: correctCount, total: items.length }));
       syncHardLock();
       return;
     }

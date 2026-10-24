@@ -57,13 +57,6 @@
       var how = document.createElement('p');
       how.className = 'badge-how';
       how.textContent = b.detail;
-      if (b.id === 'review-clear') {
-        how.appendChild(document.createTextNode(' '));
-        var reviewLink = document.createElement('a');
-        reviewLink.href = 'index.html#needs-review';
-        reviewLink.textContent = 'Needs review 需要重溫';
-        how.appendChild(reviewLink);
-      }
       card.appendChild(how);
       if (b.earned) {
         var date = document.createElement('p');

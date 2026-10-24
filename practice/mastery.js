@@ -59,7 +59,6 @@ window.Mastery = (function () {
       w.state = 'review';
     }
     save(data);
-    notifyReview(wordKey);
     return Object.assign({}, w);
   }
 
@@ -72,21 +71,7 @@ window.Mastery = (function () {
     if (w.state === 'mastered') w.state = 'review';
     else if (w.state === 'new') w.state = 'review';
     save(data);
-    notifyReview(wordKey);
     return Object.assign({}, w);
-  }
-
-  function notifyReview(wordKey) {
-    if (!window.Badges || !wordKey) return;
-    const unitId = String(wordKey).split(':')[0];
-    const data = load();
-    const prefix = unitId + ':';
-    const records = Object.keys(data.words).filter(function (k) {
-      return k.indexOf(prefix) === 0;
-    }).map(function (k) {
-      return { state: data.words[k].state, wrong: data.words[k].wrong || 0 };
-    });
-    window.Badges.noteReview(unitId, records);
   }
 
   function summary(unitId) {
