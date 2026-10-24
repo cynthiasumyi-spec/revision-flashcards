@@ -71,7 +71,7 @@ window.Badges = (function () {
     const globals = [
       { id: 'starter', title: '起步新手', english: 'First Steps', image: 'assets/badges/first-steps.png', detail: 'Finish any one practice session.' },
       { id: 'letters-phrase', title: '詞組拼寫手', english: 'Phrase Speller', image: 'assets/badges/phrase-speller.png', detail: 'Finish Missing Letters for one unit.' },
-      { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish one Memory Match round of six cards.' },
+      { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish one Memory Match (six cards).' },
       { id: 'timed-brave', title: '限時勇者', english: 'Timed Hero', image: 'assets/badges/timed-hero.png', detail: 'Finish one Timed Challenge.' },
       { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Hard Sentence Fill or Hard Missing Letters for one unit.' },
       { id: 'review-clear', title: '錯題殺手', english: 'Review Slayer', image: 'assets/badges/review-slayer.png', detail: 'Clear every 需要重溫 word in one unit.' }
@@ -90,7 +90,7 @@ window.Badges = (function () {
         english: 'Unit Completer',
         image: unitArt[u.id],
         unitLabel: u.label,
-        detail: u.label + ' · finish Sentence Fill, Missing Letters, and Memory Match.'
+        detail: 'Finish Sentence Fill, Missing Letters, and Memory Match for ' + u.label + '.'
       };
     });
     return globals.concat(units);

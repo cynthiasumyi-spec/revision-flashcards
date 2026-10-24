@@ -516,14 +516,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .diff-toggle button.is-locked {
   opacity: 0.45;
 }
-.hard-meaning {
-  margin: 0.8rem 0 0;
-  text-align: center;
-  font-family: "Noto Sans TC", "PingFang TC", var(--font-text);
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--navy);
-}
 .hard-note {
   margin: 0.35rem 0 0.85rem;
   font-weight: 700;

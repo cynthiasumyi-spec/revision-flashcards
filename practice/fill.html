@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="practice.css?v=3"/>
+<link rel="stylesheet" href="practice.css?v=5"/>
 </head>
 <body>
 <header class="prac-header">
@@ -29,7 +29,6 @@
     <p class="section-label" id="bank-label">Word bank · drag into the blank</p>
     <div class="word-bank" id="bank"></div>
     <p class="sentence" id="sentence"></p>
-    <p class="hard-meaning" id="hard-meaning" hidden></p>
     <div class="btn-row">
       <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
       <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
@@ -212,14 +211,6 @@
     updateModeChrome();
 
     const item = items[idx];
-    const meaningEl = document.getElementById('hard-meaning');
-    if (meaningEl) {
-      const meta = mode === 'easy'
-        ? (pack.words || []).find(function (w) { return w.key === item.wordKey; })
-        : null;
-      meaningEl.hidden = !meta;
-      meaningEl.textContent = meta ? ('Meaning: ' + meta.zh) : '';
-    }
     document.getElementById('q-num').textContent = (idx + 1) + ' / ' + items.length;
     document.getElementById('prog').style.width = ((idx / items.length) * 100) + '%';
 
@@ -341,7 +332,11 @@
       if (slotRef.el) slotRef.el.classList.add('filled', 'is-correct');
     } else {
       M.markWrong(item.wordKey);
-      const explain = item.explain || '';
+      const explain = String(item.explain || '')
+        .replace(/\s*[（(][^)）]*[)）]/g, '')
+        .replace(/[\u4e00-\u9fff]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
       C.showFeedback(toast, 'bad', function (body) {
         const title = document.createElement('div');
         title.className = 'toast-title';

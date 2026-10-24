@@ -1160,14 +1160,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .review-row {
   display: block;
-  text-decoration: none;
   color: inherit;
   background: var(--cream, #fcf0d8);
   border-radius: 14px;
   padding: 0.55rem 0.75rem;
-  transition: transform 140ms ease;
 }
-.review-row:active { transform: scale(0.99); }
+.review-row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.review-row-link:active { transform: scale(0.99); }
 .review-row.is-locked { opacity: 0.55; filter: saturate(0.6); }
 .review-row-top {
   display: flex;
@@ -1242,7 +1245,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .badge-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
   gap: 1.75rem 0.85rem;
   justify-items: center;
 }
@@ -1250,7 +1253,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   background: none;
   padding: 0;
   width: 100%;
-  max-width: 11rem;
+  max-width: 16rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1298,6 +1301,20 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   font-size: 0.82rem;
   color: var(--muted);
 }
+.badge-how {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--navy);
+  text-align: center;
+}
+.badge-how a {
+  color: var(--coral);
+  font-weight: 800;
+  text-decoration: underline;
+}
+.badge-card.is-locked .badge-how { color: var(--navy); }
 .badge-card.is-locked .badge-name,
 .badge-card.is-locked .badge-english,
 .badge-card.is-locked .badge-unit {
