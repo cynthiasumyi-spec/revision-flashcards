@@ -1,5 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const { loadPacks } = require('./helpers');
 
 function norm(s) {
@@ -111,4 +113,13 @@ test('every fill item accepts one phrase and one clue', () => {
     });
   });
   assert.deepEqual(problems, []);
+});
+
+test('sentence fill shows Meaning on Easy and hides it on Hard', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'practice/fill.html'), 'utf8');
+  const block = html.slice(html.indexOf("getElementById('hard-meaning')"));
+  assert.match(block, /mode === 'easy'/);
+  assert.match(block, /Meaning: /);
+  assert.match(block, /meaningEl\.hidden = !meta/);
+  assert.doesNotMatch(block.slice(0, 700), /mode === 'hard'[\s\S]{0,180}Meaning:/);
 });

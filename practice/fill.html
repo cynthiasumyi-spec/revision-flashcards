@@ -214,14 +214,11 @@
     const item = items[idx];
     const meaningEl = document.getElementById('hard-meaning');
     if (meaningEl) {
-      if (mode === 'hard') {
-        const meta = (pack.words || []).find(function (w) { return w.key === item.wordKey; });
-        meaningEl.hidden = !meta;
-        meaningEl.textContent = meta ? ('Meaning: ' + meta.zh) : '';
-      } else {
-        meaningEl.hidden = true;
-        meaningEl.textContent = '';
-      }
+      const meta = mode === 'easy'
+        ? (pack.words || []).find(function (w) { return w.key === item.wordKey; })
+        : null;
+      meaningEl.hidden = !meta;
+      meaningEl.textContent = meta ? ('Meaning: ' + meta.zh) : '';
     }
     document.getElementById('q-num').textContent = (idx + 1) + ' / ' + items.length;
     document.getElementById('prog').style.width = ((idx / items.length) * 100) + '%';
