@@ -108,6 +108,14 @@ test('homepage drops the old blurb and the keep-practising footer', () => {
   assert.match(html, /id="daily-play"/);
   assert.match(html, /Play audio/);
   assert.match(html, /class="daily-speaker"/);
+  const css = fs.readFileSync(path.join(__dirname, '..', 'assets/site.css'), 'utf8');
+  const card = css.slice(css.indexOf('.daily-card {'), css.indexOf('.daily-kicker'));
+  const cont = css.slice(css.indexOf('.daily-continue {'), css.indexOf('.daily-continue-copy'));
+  assert.match(card, /border:\s*0/);
+  assert.match(card, /box-shadow:\s*none/);
+  assert.doesNotMatch(card, /border:\s*5px/);
+  assert.match(cont, /border:\s*0/);
+  assert.match(cont, /box-shadow:\s*none/);
   assert.match(html, /id="daily-open"/);
   assert.doesNotMatch(html, /Sixty-one real syllabus/);
   assert.doesNotMatch(html, /Keep practising/);
