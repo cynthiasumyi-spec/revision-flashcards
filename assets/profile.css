@@ -1,0 +1,233 @@
+/* Student nickname + avatar. Borderless, same pastel chips as the rest of the site. */
+
+.profile-slot { display: none; }
+.profile-slot.is-ready { display: block; }
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 0.15rem 0.75rem 0.15rem 0.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--white, #fff);
+  color: var(--navy, #243c6c);
+  box-shadow: none;
+}
+.profile-chip-avatar {
+  width: 36px;
+  height: 36px;
+  max-width: none;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  background: var(--sunny, #fcc03c);
+}
+.profile-chip-name {
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: 0.98rem;
+  max-width: 7.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profile-chip-edit {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted, #5a6570);
+}
+
+.topbar-inner { justify-content: flex-start; }
+.topbar-inner .profile-slot { margin-left: 0.65rem; }
+.topbar-inner .nav-plain { margin-left: auto; }
+
+.prac-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+.prac-header-top .back { margin-bottom: 0; }
+.prac-header .profile-chip {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white, #fff);
+}
+.prac-header .profile-chip-edit { color: rgba(255, 255, 255, 0.88); }
+.prac-header .profile-chip-avatar { background: var(--cream, #fcf0d8); }
+
+html.profile-open,
+html.profile-open body { overflow: hidden; }
+
+.profile-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: end center;
+}
+.profile-sheet[hidden] { display: none !important; }
+.profile-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(36, 60, 108, 0.55);
+}
+.profile-sheet-panel {
+  position: relative;
+  width: min(34rem, 100%);
+  max-height: min(92vh, 44rem);
+  overflow: auto;
+  background: var(--cream, #fcf0d8);
+  color: var(--navy, #243c6c);
+  border: 0;
+  border-radius: 28px 28px 0 0;
+  box-shadow: none;
+  padding: 1.2rem 1.1rem calc(1.15rem + env(safe-area-inset-bottom, 0px));
+}
+.profile-sheet-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0;
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: clamp(1.45rem, 1.2rem + 1vw, 1.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.profile-zh {
+  font-family: "Noto Sans TC", "PingFang TC", var(--font-text, sans-serif);
+  font-weight: 700;
+  font-size: 0.92em;
+}
+.profile-sheet-lead {
+  margin: 0.4rem 0 0.9rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.profile-field { display: block; }
+.profile-field-label,
+.profile-avatars-label {
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+}
+.profile-avatars-label { margin: 0.95rem 0 0.55rem; }
+.profile-field input {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--white, #fff);
+  color: var(--navy, #243c6c);
+  font: inherit;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+}
+.profile-error {
+  margin: 0.45rem 0 0;
+  font-weight: 800;
+  color: var(--navy, #243c6c);
+  background: var(--sunny, #fcc03c);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+}
+.profile-error[hidden] { display: none !important; }
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: 0.55rem;
+}
+.profile-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  min-height: 44px;
+  padding: 0.4rem 0.25rem 0.5rem;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  color: var(--navy, #243c6c);
+  box-shadow: none;
+}
+.profile-choice.is-on {
+  background: var(--white, #fff);
+  box-shadow: inset 0 0 0 3px var(--sunny, #fcc03c);
+}
+.profile-choice img {
+  width: 4.15rem;
+  height: 4.15rem;
+  max-width: none;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 16%;
+  background: var(--white, #fff);
+}
+.profile-choice-name,
+.profile-choice-gloss {
+  display: block;
+  text-align: center;
+  line-height: 1.25;
+}
+.profile-choice-name {
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: 0.82rem;
+}
+.profile-choice-gloss {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted, #5a6570);
+}
+button.profile-choice:disabled,
+.profile-choice.is-locked {
+  opacity: 1;
+  cursor: not-allowed;
+}
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+.profile-save,
+.profile-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.55rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: 1.02rem;
+}
+.profile-save { background: var(--coral, #fc903c); color: var(--navy, #243c6c); }
+.profile-cancel { background: transparent; color: var(--navy, #243c6c); }
+
+@media (min-width: 720px) {
+  .profile-sheet { place-items: center; padding: 1.25rem; }
+  .profile-sheet-panel { border-radius: 28px; }
+}
+
+@media (max-width: 820px) {
+  .topbar-inner { flex-wrap: wrap; }
+  .topbar-inner .nav-plain { flex: 0 0 auto; }
+  .topbar-inner .nav-jump { padding-left: 0.4rem; padding-right: 0.4rem; }
+  .topbar-inner .profile-slot.is-ready {
+    order: 3;
+    flex: 1 1 100%;
+    margin: 0.2rem 0 0;
+  }
+}
