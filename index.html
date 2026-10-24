@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=19" />
+  <link rel="stylesheet" href="assets/site.css?v=20" />
 </head>
 <body>
   <a class="sr-only skip" href="#packs">Skip to packs</a>
@@ -153,39 +153,31 @@
       </div>
     </section>
 
-    <section class="section cta" id="start" aria-labelledby="cta-title">
-      <div class="cta-inner">
-      <p class="cta-aside reveal">Sixty-one real syllabus words with audio. Open Unit 1 and start with the first card.</p>
-      <div class="reply-card reveal reveal-delay-1">
-        <h2 id="cta-title">Start Unit 1</h2>
-        <p>For a good cause. Ten charity verbs with examples and Traditional Chinese glosses.</p>
-        <a class="btn btn-ink" href="unit1/index.html">Open the pack</a>
-      </div>
+    <section class="section cta" id="daily" aria-labelledby="daily-title">
+      <div class="daily-card">
+        <div class="daily-word">
+          <p class="daily-kicker">Word of the day <span lang="zh-Hant">今日一字</span></p>
+          <div class="daily-word-row">
+            <img class="daily-img" id="daily-img" alt="" width="112" height="112" hidden />
+            <div>
+              <h2 id="daily-title" class="daily-en"></h2>
+              <p class="daily-zh" id="daily-zh" lang="zh-Hant"></p>
+              <p class="daily-unit" id="daily-unit"></p>
+            </div>
+          </div>
+          <div class="daily-actions">
+            <button type="button" class="btn btn-primary" id="daily-play">Play</button>
+            <a class="btn daily-open" id="daily-open" href="unit1/index.html#c1">Open this card</a>
+          </div>
+        </div>
+        <div class="daily-continue">
+          <p class="daily-kicker">Continue last <span lang="zh-Hant">繼續上次</span></p>
+          <p class="daily-continue-copy" id="daily-continue-copy">No card yet. Start with Unit 1.</p>
+          <a class="btn btn-primary" id="daily-resume" href="unit1/index.html#c1">Start Unit 1</a>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer class="site-footer">
-    <div class="postcard reveal">
-      <div class="postcard-left">
-        <p class="postcard-sign">Keep practising</p>
-        <p>English Revision for Hong Kong students. English UI with Traditional Chinese glosses. For learning and revision only.</p>
-      </div>
-      <div class="postcard-right">
-        <figure class="stamp">
-          <img src="covers/unit1.jpg" alt="" width="120" height="160" loading="lazy" />
-        </figure>
-        <a href="#packs">The packs</a>
-        <a href="unit1/index.html">Unit 1</a>
-        <a href="dictation3/index.html">Dictation 3</a>
-        <a href="practice/index.html">Practice</a>
-        <a href="badges.html">Badges</a>
-        <a href="watch/index.html">Watch mode</a>
-        <a href="#top">Back to top</a>
-      </div>
-      <p class="imprint">Hong Kong · <span class="nums">61</span> words · Illustrations and audio owned by this project · 2026</p>
-    </div>
-  </footer>
 
   <script>
   (function () {
@@ -194,7 +186,7 @@
     var hero = document.querySelector(".hero");
     if (reduce) {
       if (hero) markIn(hero);
-      document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
+      document.querySelectorAll(".reveal, .section").forEach(markIn);
     } else {
       requestAnimationFrame(function () { if (hero) markIn(hero); });
       if ("IntersectionObserver" in window) {
@@ -203,9 +195,9 @@
             if (e.isIntersecting) { markIn(e.target); io.unobserve(e.target); }
           });
         }, { threshold: 0.12 });
-        document.querySelectorAll(".reveal, .section, .site-footer").forEach(function (el) { io.observe(el); });
+        document.querySelectorAll(".reveal, .section").forEach(function (el) { io.observe(el); });
       } else {
-        document.querySelectorAll(".reveal, .section, .site-footer").forEach(markIn);
+        document.querySelectorAll(".reveal, .section").forEach(markIn);
       }
     }
 
@@ -302,11 +294,52 @@
   <script src="practice/data/registry.js"></script>
   <script src="practice/mastery.js"></script>
   <script src="practice/badges.js"></script>
+  <script src="assets/home-today.js"></script>
   <script>
   (function () {
     try {
-      var M = window.Mastery;
+      var H = window.HomeToday;
       var R = window.PracticeRegistry;
+      if (H && R) {
+        var words = H.syllabus(R);
+        var word = H.wordOfDay(words, new Date());
+        var title = document.getElementById('daily-title');
+        var zh = document.getElementById('daily-zh');
+        var unit = document.getElementById('daily-unit');
+        var open = document.getElementById('daily-open');
+        var img = document.getElementById('daily-img');
+        var play = document.getElementById('daily-play');
+        if (word && title && zh && unit && open) {
+          title.textContent = word.en;
+          zh.textContent = word.zh;
+          unit.textContent = word.label;
+          open.href = word.href;
+          if (img && word.img) {
+            img.src = word.img;
+            img.alt = '';
+            img.hidden = false;
+          }
+        }
+        if (play && word && word.audio) {
+          var clip = null;
+          play.addEventListener('click', function () {
+            if (clip) { clip.pause(); clip = null; }
+            clip = new Audio(word.audio);
+            clip.play().catch(function () {});
+          });
+        }
+        var last = H.loadLast();
+        var copy = document.getElementById('daily-continue-copy');
+        var resume = document.getElementById('daily-resume');
+        if (last && copy && resume) {
+          copy.textContent = 'You were on ' + last.en + '.';
+          resume.textContent = 'Resume';
+          resume.href = last.href;
+        }
+      }
+
+      var M = window.Mastery;
+      if (!M || !R) return;
       var keys = M.allKnownKeysFromRegistry();
       var list = M.suggestToday(keys, 20);
       var el = document.getElementById('today-home-count');
