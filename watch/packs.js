@@ -192,7 +192,7 @@ window.WATCH_PACKS = {
         "zh": "使人受傷",
         "pos": "動詞短語 v.",
         "audio": "../unit2/audio/audio_10.mp3",
-        "img": "../unit2/thumb_10.jpg"
+        "img": "../unit2/thumb_10.png"
       }
     ]
   },

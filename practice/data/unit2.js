@@ -15,7 +15,7 @@ window.PRACTICE_UNIT2 = {
     { key: "unit2:block", form: "verb", en: "block roads", zh: "堵塞道路", audio: "../unit2/audio/audio_07.mp3", img: "../unit2/thumb_07.png" },
     { key: "unit2:damage", form: "verb", en: "damage crops", zh: "損毀農作物", audio: "../unit2/audio/audio_08.mp3", img: "../unit2/thumb_08.png" },
     { key: "unit2:destroy", form: "verb", en: "destroy buildings", zh: "摧毀建築物", audio: "../unit2/audio/audio_09.mp3", img: "../unit2/thumb_09.jpg" },
-    { key: "unit2:injure", form: "verb", en: "injure people", zh: "使人受傷", audio: "../unit2/audio/audio_10.mp3", img: "../unit2/thumb_10.jpg" },
+    { key: "unit2:injure", form: "verb", en: "injure people", zh: "使人受傷", audio: "../unit2/audio/audio_10.mp3", img: "../unit2/thumb_10.png" },
   ],
 
   fillIn: [
@@ -237,6 +237,6 @@ window.PRACTICE_UNIT2 = {
     { id: "u2-k7", wordKey: "unit2:block", en: "block roads", zh: "堵塞道路", img: "../unit2/thumb_07.png" },
     { id: "u2-k8", wordKey: "unit2:damage", en: "damage crops", zh: "損毀農作物", img: "../unit2/thumb_08.png" },
     { id: "u2-k9", wordKey: "unit2:destroy", en: "destroy buildings", zh: "摧毀建築物", img: "../unit2/thumb_09.jpg" },
-    { id: "u2-k10", wordKey: "unit2:injure", en: "injure people", zh: "使人受傷", img: "../unit2/thumb_10.jpg" },
+    { id: "u2-k10", wordKey: "unit2:injure", en: "injure people", zh: "使人受傷", img: "../unit2/thumb_10.png" },
   ]
 };
