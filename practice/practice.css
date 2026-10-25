@@ -549,7 +549,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .letter-word {
   display: inline-flex;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -566,7 +566,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   height: clamp(2rem, 8.5vw, 2.6rem);
   flex: 0 0 auto;
   display: grid;
-  place-items: center;
+  align-items: end;
+  justify-items: center;
+  box-sizing: border-box;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1.05rem, 4.4vw, 1.35rem);
@@ -579,36 +581,46 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--navy);
   width: auto;
   min-width: 0.85rem;
-  padding: 0 0.05rem;
+  height: auto;
+  padding: 0 0.05rem 0.28rem;
+  border-bottom: 3px solid transparent;
 }
-/* Blank answer slots only: capsules */
+/* Empty and typed blanks: an underline, not a yellow capsule */
 .letter-slot:not(.show) {
-  border-radius: var(--pill);
-  background: var(--cream);
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 3px solid var(--navy);
+  padding-bottom: 0.12rem;
+}
+.letter-slot:not(.show):focus-within {
+  border-bottom-color: var(--coral);
 }
 .letter-slot input {
   width: 100%;
-  height: 100%;
+  height: 1.7rem;
   border: 0;
-  border-radius: var(--pill);
+  border-radius: 0;
   text-align: center;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1rem, 4.2vw, 1.25rem);
   text-transform: lowercase;
-  background: var(--sunny);
-  color: var(--ink);
+  background: transparent;
+  color: var(--navy);
   padding: 0;
+  box-shadow: none;
 }
-.letter-slot input:focus {
+.letter-slot input:focus,
+.letter-slot input:focus-visible {
   outline: none;
-  background: var(--coral);
-  color: var(--white);
+  background: transparent;
+  color: var(--navy);
 }
 .letter-slot.is-correct {
-  border-radius: var(--pill);
-  background: var(--sky);
+  border-radius: 0;
+  background: transparent;
   color: var(--navy);
+  border-bottom: 3px solid var(--green);
   width: clamp(1.65rem, 7.2vw, 2.2rem);
 }
 /* A space in the phrase: empty slot, wider than the gap inside a word. */
@@ -621,6 +633,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   padding: 0;
   background: transparent;
   border-radius: 0;
+  border-bottom: 0;
   vertical-align: middle;
   box-shadow: none;
 }
