@@ -120,10 +120,16 @@ test('missing letters render wraps between words, not inside them', () => {
   const css = fs.readFileSync(path.join(root, 'practice/practice.css'), 'utf8');
   assert.match(html, /groupLetterSlots/);
   assert.match(html, /letter-word/);
+  assert.match(html, /group\.trail === 'space'/);
+  assert.match(html, /letter-slot is-space/);
   assert.doesNotMatch(html, /lettersEl\.appendChild\(wrap\)/);
   const wordRule = css.slice(css.indexOf('.letter-word {'), css.indexOf('.letter-word.is-spaced'));
   assert.match(wordRule, /flex-wrap:\s*nowrap/);
   assert.match(wordRule, /white-space:\s*nowrap/);
+  assert.match(wordRule, /gap:\s*0\.08rem/);
+  const spaceRule = css.slice(css.indexOf('.letter-slot.is-space {'), css.indexOf('.letter-slot.is-space {') + 280);
+  assert.match(spaceRule, /width:\s*1\.5rem/);
+  assert.match(spaceRule, /background:\s*transparent/);
   const rowRule = css.slice(css.indexOf('.letter-row {'), css.indexOf('.letter-word {'));
   assert.doesNotMatch(rowRule, /display:\s*flex/);
   assert.match(css, /overflow-wrap:\s*normal/);
