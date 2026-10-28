@@ -665,20 +665,97 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .board,
 .board.board-ten {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
   width: 100%;
-  max-width: 720px;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .mcard {
   aspect-ratio: 3 / 4;
+  width: 100%;
+  height: auto;
   min-width: 0;
+  min-height: 0;
   max-width: 100%;
   perspective: 600px;
   cursor: pointer;
   border: 0;
   padding: 0;
   background: transparent;
+}
+/* Phone: five by two, card-shaped, all ten on one screen. */
+@media (max-width: 760px) {
+  body.match-fit {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  body.match-fit .prac-header {
+    flex: 0 0 auto;
+    padding: 0.45rem 0.4rem 0.5rem;
+  }
+  body.match-fit .prac-header h1 { font-size: 1.28rem; }
+  body.match-fit .prac-header .sub {
+    margin-top: 0.1rem;
+    font-size: 0.82rem;
+  }
+  body.match-fit .prac-header .howto {
+    margin-top: 0.22rem;
+    font-size: 0.74rem;
+    line-height: 1.25;
+  }
+  body.match-fit .wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0.35rem 0.35rem calc(0.4rem + env(safe-area-inset-bottom, 0px));
+    overflow: hidden;
+  }
+  body.match-fit .match-stats {
+    flex: 0 0 auto;
+    margin-bottom: 0.35rem;
+    gap: 0.35rem;
+  }
+  body.match-fit .match-tip {
+    flex: 0 0 auto;
+    margin-bottom: 0.35rem;
+  }
+  body.match-fit .board {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-width: none;
+    gap: 0.4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+  }
+  body.match-fit .mcard {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+  body.match-fit #done:not([hidden]) {
+    position: fixed;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: calc(0.6rem + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    max-height: 70dvh;
+    overflow: auto;
+  }
+}
+@media (min-width: 761px) {
+  body.match-fit .wrap {
+    max-width: 1180px;
+  }
 }
 .mcard-inner {
   position: relative;
