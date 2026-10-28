@@ -24,6 +24,59 @@ test('easy and hard masks keep spaces and punctuation', () => {
   assert.ok(shown.includes(' '));
 });
 
+test('articles and little conjunctions stay filled in on every pack', () => {
+  const { window } = loadScripts([
+    'practice/data/unit1.js',
+    'practice/data/unit2.js',
+    'practice/data/unit3.js',
+    'practice/data/unit4.js',
+    'practice/data/dictation3.js',
+    'practice/data/mixed.js',
+    'practice/common.js'
+  ]);
+  const shownWords = { a: 1, an: 1, the: 1, and: 1, or: 1, but: 1, nor: 1, as: 1 };
+  const packs = [
+    window.PRACTICE_UNIT1,
+    window.PRACTICE_UNIT2,
+    window.PRACTICE_UNIT3,
+    window.PRACTICE_UNIT4,
+    window.PRACTICE_DICTATION3,
+    window.PRACTICE_MIXED
+  ];
+  function tokens(mask, phrase) {
+    const parts = [];
+    let buf = '';
+    for (let i = 0; i < phrase.length; i++) {
+      if (!/[a-zA-Z]/.test(phrase[i])) {
+        if (buf) parts.push(buf);
+        buf = '';
+      } else {
+        buf += mask[i];
+      }
+    }
+    if (buf) parts.push(buf);
+    return parts;
+  }
+  packs.forEach(pack => {
+    pack.missingLetters.forEach(item => {
+      ['easy', 'hard'].forEach(mode => {
+        const mask = window.PracticeCommon.maskPhrase(item.word, mode, arr => arr.slice());
+        tokens(mask, item.word).forEach(token => {
+          const plain = token.replace(/_/g, '');
+          if (shownWords[plain.toLowerCase()] || shownWords[token.toLowerCase()]) {
+            assert.equal(token.includes('_'), false, item.word + ' ' + mode + ' ' + token);
+          }
+        });
+      });
+    });
+  });
+  const bee = window.PracticeCommon.maskPhrase('as busy as a bee', 'hard', arr => arr.slice());
+  assert.equal(bee.startsWith('as '), true);
+  assert.ok(bee.includes(' as '));
+  assert.equal(window.PracticeCommon.maskPhrase('a drought', 'hard', arr => arr.slice()).startsWith('a '), true);
+  assert.equal(window.PracticeCommon.maskPhrase('an action film', 'easy').startsWith('an '), true);
+});
+
 test('missing letters use each unit phrase, not a single keyword', () => {
   const { window } = loadPacks();
   const packs = [
