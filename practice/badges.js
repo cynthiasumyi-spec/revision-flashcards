@@ -198,7 +198,9 @@ window.Badges = (function () {
     })) {
       take(award(data, 'hard-challenger'));
     }
-    if (coreCompleteFrom(st)) take(award(data, 'unit-done:' + unitId));
+    if (ORDER.some(function (u) { return u.id === unitId; }) && coreCompleteFrom(st)) {
+      take(award(data, 'unit-done:' + unitId));
+    }
     save(data);
     return { newBadges: fresh };
   }
@@ -239,14 +241,14 @@ window.Badges = (function () {
   }
 
   function unitUnlocked(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3') return true;
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return true;
     const i = unitIndex(unitId);
     if (i <= 0) return false;
     return coreComplete(ORDER[i - 1].id);
   }
 
   function lockReason(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3') return '';
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return '';
     const i = unitIndex(unitId);
     if (i <= 0) return '';
     const prev = ORDER[i - 1];
