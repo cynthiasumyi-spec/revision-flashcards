@@ -4,13 +4,22 @@ const fs = require('fs');
 const path = require('path');
 const { loadScripts } = require('./helpers');
 
-test('each match round is exactly 3 pairs and 6 cards', () => {
+test('each match round is exactly 5 pairs and 10 cards', () => {
   const { window } = loadScripts(['practice/match-logic.js']);
   const pairs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => ({ id: 'p' + n }));
   const picked = window.MatchLogic.pickPairs(pairs, arr => arr.slice());
-  assert.equal(picked.length, 3);
-  assert.equal(window.MatchLogic.cardCount(picked), 6);
-  assert.equal(window.MatchLogic.ROUND_PAIRS, 3);
+  assert.equal(picked.length, 5);
+  assert.equal(window.MatchLogic.cardCount(picked), 10);
+  assert.equal(window.MatchLogic.ROUND_PAIRS, 5);
+  assert.deepEqual(picked.map(p => p.id), ['p1', 'p2', 'p3', 'p4', 'p5']);
+  const root = path.join(__dirname, '..');
+  const hub = fs.readFileSync(path.join(root, 'practice/index.html'), 'utf8');
+  const page = fs.readFileSync(path.join(root, 'practice/match.html'), 'utf8');
+  assert.match(hub, /10 cards · 5 pairs · word form shown/);
+  assert.equal(hub.includes('6 cards · 3 pairs'), false);
+  assert.match(page, /Ten cards, five pairs/);
+  assert.match(page, /board-ten/);
+  assert.equal(page.includes('board-six'), false);
 });
 
 test('a face-up card stays up, and a miss flips both down together', () => {

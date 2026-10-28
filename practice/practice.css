@@ -662,11 +662,17 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin-bottom: 0.85rem;
 }
 .board,
-.board.board-six {
+.board.board-ten {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.55rem;
-  max-width: 640px;
+  width: 100%;
+  max-width: 720px;
+}
+@media (min-width: 720px) {
+  .board.board-ten {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 }
 .mcard {
   aspect-ratio: 3 / 4;
