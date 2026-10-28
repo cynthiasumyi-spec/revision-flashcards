@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="practice.css?v=3"/>
+<link rel="stylesheet" href="practice.css?v=4"/>
 </head>
 <body>
 <header class="prac-header">
   <a class="back" href="#" id="back-hub">← Practice hub</a>
   <h1>Memory match</h1>
   <p class="sub" id="sub">Unit</p>
-  <p class="howto" id="howto">Six cards, three pairs. A card stays face-up. If the two cards do not match, both turn face-down together. Matched pairs stay face-up.</p>
+  <p class="howto" id="howto">Ten cards, five pairs. A card stays face-up. If the two cards do not match, both turn face-down together. Matched pairs stay face-up.</p>
 </header>
 <main class="wrap">
   <div class="match-stats">
@@ -23,7 +23,7 @@
     <span class="chip" id="best-chip" hidden>Best <span id="best">—</span></span>
   </div>
   <p class="match-tip" id="match-tip" hidden>Tip: one card is the English word · the other is the picture + Chinese.</p>
-  <div class="board board-six" id="board" aria-label="Matching board, six cards"></div>
+  <div class="board board-ten" id="board" aria-label="Matching board, ten cards"></div>
   <div class="panel result-card" id="done" hidden>
     <h2>All matched!</h2>
     <p class="big" id="final-time">0:00</p>
@@ -77,7 +77,7 @@
   }
 
   const pairs = ML.pickPairs((pack && pack.matching) ? pack.matching : [], C.shuffle);
-  if (ML.cardCount(pairs) !== 6) {
+  if (ML.cardCount(pairs) !== ML.ROUND_PAIRS * 2) {
     document.getElementById('board').hidden = true;
     document.getElementById('empty').hidden = false;
     return;

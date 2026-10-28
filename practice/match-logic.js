@@ -1,10 +1,10 @@
 /**
- * Memory match rules: 3 pairs (6 cards).
+ * Memory match rules: 5 pairs (10 cards).
  * A flipped card stays face-up. A miss turns both cards face-down together.
  * A match stays face-up.
  */
 window.MatchLogic = (function () {
-  const ROUND_PAIRS = 3;
+  const ROUND_PAIRS = 5;
 
   function pickPairs(matching, shuffleFn) {
     const list = (matching || []).slice();
