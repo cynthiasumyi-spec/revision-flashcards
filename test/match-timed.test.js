@@ -19,13 +19,16 @@ test('each match round is exactly 5 pairs and 10 cards', () => {
   assert.equal(hub.includes('6 cards · 3 pairs'), false);
   assert.match(page, /Ten cards, five pairs/);
   assert.match(page, /board-ten/);
-  assert.match(page, /practice\.css\?v=5/);
+  assert.match(page, /practice\.css\?v=6/);
   assert.match(page, /match-logic\.js\?v=2/);
+  assert.match(page, /class="match-fit"/);
   assert.equal(page.includes('board-six'), false);
   const css = fs.readFileSync(path.join(root, 'practice/practice.css'), 'utf8');
-  const boardRule = css.slice(css.indexOf('.board.board-ten {'), css.indexOf('.mcard {'));
+  const boardRule = css.slice(css.indexOf('.board.board-ten {'), css.indexOf('body.match-fit'));
+  assert.match(boardRule, /repeat\(5, minmax\(0, 1fr\)\)/);
   assert.match(boardRule, /repeat\(2, minmax\(0, 1fr\)\)/);
-  assert.equal(boardRule.includes('repeat(5'), false);
+  assert.match(css, /body\.match-fit[\s\S]*height:\s*100dvh/);
+  assert.match(css, /body\.match-fit[\s\S]*overflow:\s*hidden/);
 });
 
 test('a face-up card stays up, and a miss flips both down together', () => {
