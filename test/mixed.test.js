@@ -10,44 +10,68 @@ const PACKS = [
   'practice/data/unit3.js',
   'practice/data/unit4.js',
   'practice/data/dictation3.js',
+  'practice/data/mixed.js',
   'practice/data/registry.js'
 ];
 
-function packPrefix(key) {
-  return String(key || '').split(':')[0];
-}
-
-test('mixed topic samples every pack and keeps a normal round size', () => {
+test('mixed topic uses its own phrases, not a sample of the unit packs', () => {
   const { window } = loadScripts(PACKS);
   const R = window.PracticeRegistry;
   const ids = R.listUnits().map(u => u.id);
   assert.equal(ids.join(','), 'unit1,unit2,unit3,unit4,dictation3');
   const choices = R.practiceChoices();
-  assert.equal(choices[choices.length - 1].id, 'mixed');
   assert.equal(choices[choices.length - 1].label, 'Mixed topic');
 
   const mixed = R.getUnit('mixed');
+  assert.equal(mixed.id, 'mixed');
   assert.equal(mixed.title, 'Mixed topic');
   assert.equal(mixed.fillIn.length, 10);
   assert.equal(mixed.fillInHard.length, 10);
   assert.equal(mixed.missingLetters.length, 10);
-  assert.ok(mixed.matching.length >= 10);
-  assert.ok(mixed.words.length > 40);
+  assert.equal(mixed.matching.length, 10);
+  assert.equal(mixed.words.length, 10);
 
-  function sources(list, keyName) {
-    return new Set(list.map(item => packPrefix(item[keyName])));
-  }
-  assert.ok(sources(mixed.words, 'key').size === 5);
-  assert.ok(sources(mixed.matching, 'wordKey').size === 5);
-  const roundSources = new Set([
-    ...sources(mixed.fillIn, 'wordKey'),
-    ...sources(mixed.missingLetters, 'wordKey')
-  ]);
-  assert.ok(roundSources.size >= 2);
+  const keys = mixed.words.map(w => w.key);
+  keys.forEach(key => assert.match(key, /^mixed:/));
+  const unitPacks = ['PRACTICE_UNIT1', 'PRACTICE_UNIT2', 'PRACTICE_UNIT3', 'PRACTICE_UNIT4', 'PRACTICE_DICTATION3'];
+  const borrowed = [];
+  unitPacks.forEach(name => {
+    const pack = window[name];
+    ['fillIn', 'fillInHard'].forEach(field => {
+      (pack[field] || []).forEach(item => {
+        if (mixed.fillIn.concat(mixed.fillInHard).some(row => row.sentence === item.sentence)) borrowed.push(item.sentence);
+      });
+    });
+    (pack.words || []).forEach(word => {
+      if (keys.includes(word.key)) borrowed.push(word.key);
+    });
+  });
+  assert.equal(borrowed.length, 0);
 
-  const hub = fs.readFileSync(path.join(__dirname, '..', 'practice/index.html'), 'utf8');
-  assert.match(hub, /practiceChoices\(\)/);
-  assert.match(hub, /practice\.css\?v=7/);
+  const easyAnswers = mixed.fillIn.map(item => item.answer);
+  const hardAnswers = mixed.fillInHard.map(item => item.answer);
+  assert.equal(new Set(easyAnswers).size, 10);
+  assert.equal(new Set(hardAnswers).size, 10);
+  easyAnswers.forEach(answer => {
+    assert.equal(mixed.words.some(word => word.en === answer), true, answer);
+    assert.equal(mixed.fillInHard.some(item => item.answer === answer), true, answer);
+  });
+  mixed.missingLetters.forEach(item => {
+    assert.match(item.word, / /);
+    assert.equal(mixed.words.some(word => word.en === item.word && word.key === item.wordKey), true);
+  });
+  mixed.matching.forEach(item => {
+    assert.ok(item.form);
+    assert.ok(item.zh);
+    assert.ok(item.img);
+  });
+
+  const root = path.join(__dirname, '..');
+  ['practice/index.html', 'practice/fill.html', 'practice/letters.html', 'practice/match.html', 'practice/timed.html'].forEach(rel => {
+    const html = fs.readFileSync(path.join(root, rel), 'utf8');
+    assert.match(html, /data\/mixed\.js/);
+  });
+  assert.equal(fs.readFileSync(path.join(root, 'practice/data/registry.js'), 'utf8').includes('buildMixed'), false);
 });
 
 test('mixed practice stays open and does not unlock unit badges', () => {
