@@ -14,7 +14,7 @@ const PACKS = [
   'practice/data/registry.js'
 ];
 
-test('mixed topic uses its own phrases, not a sample of the unit packs', () => {
+test('mixed topic reuses unit phrases and writes new fill sentences', () => {
   const { window } = loadScripts(PACKS);
   const R = window.PracticeRegistry;
   const ids = R.listUnits().map(u => u.id);
@@ -32,21 +32,28 @@ test('mixed topic uses its own phrases, not a sample of the unit packs', () => {
   assert.equal(mixed.words.length, 10);
 
   const keys = mixed.words.map(w => w.key);
-  keys.forEach(key => assert.match(key, /^mixed:/));
+  keys.forEach(key => assert.equal(/^mixed:/.test(key), false, key));
   const unitPacks = ['PRACTICE_UNIT1', 'PRACTICE_UNIT2', 'PRACTICE_UNIT3', 'PRACTICE_UNIT4', 'PRACTICE_DICTATION3'];
-  const borrowed = [];
+  const knownWords = new Map();
+  const knownSentences = new Set();
   unitPacks.forEach(name => {
     const pack = window[name];
+    (pack.words || []).forEach(word => knownWords.set(word.key, word));
     ['fillIn', 'fillInHard'].forEach(field => {
-      (pack[field] || []).forEach(item => {
-        if (mixed.fillIn.concat(mixed.fillInHard).some(row => row.sentence === item.sentence)) borrowed.push(item.sentence);
-      });
-    });
-    (pack.words || []).forEach(word => {
-      if (keys.includes(word.key)) borrowed.push(word.key);
+      (pack[field] || []).forEach(item => knownSentences.add(item.sentence));
     });
   });
-  assert.equal(borrowed.length, 0);
+  mixed.words.forEach(word => {
+    const source = knownWords.get(word.key);
+    assert.ok(source, word.key);
+    assert.equal(word.en, source.en);
+    assert.equal(word.zh, source.zh);
+    assert.equal(word.form, source.form);
+  });
+  mixed.fillIn.concat(mixed.fillInHard).forEach(item => {
+    assert.equal(knownSentences.has(item.sentence), false, item.sentence);
+    assert.equal(knownWords.get(item.wordKey).en, item.answer);
+  });
 
   const easyAnswers = mixed.fillIn.map(item => item.answer);
   const hardAnswers = mixed.fillInHard.map(item => item.answer);
@@ -57,8 +64,9 @@ test('mixed topic uses its own phrases, not a sample of the unit packs', () => {
     assert.equal(mixed.fillInHard.some(item => item.answer === answer), true, answer);
   });
   mixed.missingLetters.forEach(item => {
-    assert.match(item.word, / /);
-    assert.equal(mixed.words.some(word => word.en === item.word && word.key === item.wordKey), true);
+    const source = knownWords.get(item.wordKey);
+    assert.equal(item.word, source.en);
+    if (source.en.includes(' ')) assert.match(item.word, / /);
   });
   mixed.matching.forEach(item => {
     assert.ok(item.form);

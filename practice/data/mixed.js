@@ -1,244 +1,243 @@
 /**
- * Mixed topic — original P.6 revision set.
- * Themes cross the course, but the phrases and sentence stems are not copied
- * from Unit 1–4 or Dictation 3.
- * Illustrations are existing irasutoya files already in the repo.
+ * Mixed topic — same vocabulary as Unit 1–4 and Dictation 3.
+ * Sentence Fill stems are new. Missing Letters, Match, and Timed
+ * reuse those phrases, glosses, and word keys.
  */
 window.PRACTICE_MIXED = {
   id: 'mixed',
   title: 'Mixed topic',
   words: [
-    { key: 'mixed:care-home', form: 'verb', en: 'call on the care home', zh: '探望護老院', img: '../unit1/thumb_10.png' },
-    { key: 'mixed:heatwave', form: 'noun', en: 'a heatwave', zh: '熱浪', img: '../unit2/thumb_01.png' },
-    { key: 'mixed:pouring-rain', form: 'noun', en: 'pouring rain', zh: '傾盆大雨', img: '../unit2/thumb_03.png' },
-    { key: 'mixed:simmer', form: 'verb', en: 'simmer the soup', zh: '用小火煲湯', img: '../unit3/thumb_10.png' },
-    { key: 'mixed:slice', form: 'verb', en: 'slice the carrots', zh: '把紅蘿蔔切片', img: '../unit3/thumb_02.png' },
-    { key: 'mixed:cartoon', form: 'noun', en: 'a cartoon', zh: '卡通片', img: '../dictation3/thumb_02.png' },
-    { key: 'mixed:quiet-mouse', form: 'idiom', en: 'as quiet as a mouse', zh: '安靜得像老鼠', img: '../dictation3/thumb_09.png' },
-    { key: 'mixed:left-out', form: 'verb', en: 'feel left out', zh: '感到被冷落', img: '../unit4/thumb_09.png' },
-    { key: 'mixed:wise-words', form: 'verb', en: 'share wise words', zh: '分享智慧的話', img: '../unit4/thumb_14.png' },
-    { key: 'mixed:bandage', form: 'verb', en: 'bandage a wound', zh: '包紮傷口', img: '../unit2/thumb_10.png' }
+    { key: 'unit1:elderly', form: 'verb', en: 'visit an elderly home', zh: '探訪安老院', img: '../unit1/thumb_10.png', audio: '../unit1/audio/audio_10.mp3' },
+    { key: 'unit1:donate', form: 'verb', en: 'donate money', zh: '捐錢', img: '../unit1/thumb_06.png', audio: '../unit1/audio/audio_06.mp3' },
+    { key: 'unit2:drought', form: 'noun', en: 'a drought', zh: '旱災', img: '../unit2/thumb_01.png', audio: '../unit2/audio/audio_01.mp3' },
+    { key: 'unit2:flood', form: 'noun', en: 'a flood', zh: '水災', img: '../unit2/thumb_03.png', audio: '../unit2/audio/audio_03.mp3' },
+    { key: 'unit3:mix', form: 'verb', en: 'mix', zh: '混合', img: '../unit3/thumb_03.png', audio: '../unit3/audio/audio_03.mp3' },
+    { key: 'unit3:boil', form: 'verb', en: 'boil', zh: '煮沸', img: '../unit3/thumb_10.png', audio: '../unit3/audio/audio_10.mp3' },
+    { key: 'unit4:comedy', form: 'noun', en: 'a comedy', zh: '喜劇', img: '../unit4/thumb_02.png', audio: '../unit4/audio/audio_02.mp3' },
+    { key: 'unit4:fantasy', form: 'noun', en: 'a fantasy film', zh: '奇幻片', img: '../unit4/thumb_03.png', audio: '../unit4/audio/audio_03.mp3' },
+    { key: 'unit4:lonely', form: 'adjective', en: 'lonely', zh: '寂寞的', img: '../unit4/thumb_09.png', audio: '../unit4/audio/audio_09.mp3' },
+    { key: 'dictation3:busy', form: 'idiom', en: 'as busy as a bee', zh: '像蜜蜂一樣忙碌', img: '../dictation3/thumb_12.png', audio: '../dictation3/audio/audio_12.mp3' }
   ],
 
   fillIn: [
     {
       id: 'mx-f1',
-      wordKey: 'mixed:care-home',
-      sentence: 'After school the class takes oranges to the place where grandparents live and they ______.',
+      wordKey: 'unit1:elderly',
+      sentence: 'On Sunday the scouts knock at the old people\'s residence and ______ with board games.',
       blank: '______',
-      options: ['call on the care home', 'simmer the soup', 'a cartoon', 'bandage a wound'],
-      answer: 'call on the care home',
-      accept: ['call on the care home'],
-      explain: 'Going to the place where grandparents live is to call on the care home (探望護老院).'
+      options: ['visit an elderly home', 'donate money', 'a comedy', 'boil'],
+      answer: 'visit an elderly home',
+      accept: ['visit an elderly home'],
+      explain: 'Knocking at the residence where older people live means you visit an elderly home (探訪安老院).'
     },
     {
       id: 'mx-f2',
-      wordKey: 'mixed:heatwave',
-      sentence: 'The playground is closed because the air is like an oven and there is ______.',
+      wordKey: 'unit1:donate',
+      sentence: 'Mum slides notes into the red tin by the supermarket checkout so she can ______ for the animal shelter.',
       blank: '______',
-      options: ['a heatwave', 'pouring rain', 'a cartoon', 'as quiet as a mouse'],
-      answer: 'a heatwave',
-      accept: ['a heatwave'],
-      explain: 'Air like an oven means a heatwave (熱浪), not rain.'
+      options: ['donate money', 'visit an elderly home', 'mix', 'a flood'],
+      answer: 'donate money',
+      accept: ['donate money'],
+      explain: 'Notes in the shelter tin means she will donate money (捐錢).'
     },
     {
       id: 'mx-f3',
-      wordKey: 'mixed:pouring-rain',
-      sentence: 'The picnic stops when water streams down the windows and there is ______.',
+      wordKey: 'unit2:drought',
+      sentence: 'The reservoir behind the village is almost empty, which shows there has been ______.',
       blank: '______',
-      options: ['pouring rain', 'a heatwave', 'slice the carrots', 'share wise words'],
-      answer: 'pouring rain',
-      accept: ['pouring rain'],
-      explain: 'Water streaming down the windows means pouring rain (傾盆大雨).'
+      options: ['a drought', 'a flood', 'a comedy', 'as busy as a bee'],
+      answer: 'a drought',
+      accept: ['a drought'],
+      explain: 'An almost empty reservoir shows a drought (旱災), not extra water.'
     },
     {
       id: 'mx-f4',
-      wordKey: 'mixed:simmer',
-      sentence: 'Turn the stove to low and ______ so the vegetables stay soft.',
+      wordKey: 'unit2:flood',
+      sentence: 'Brown water rushed through the market stalls and left the town in ______.',
       blank: '______',
-      options: ['simmer the soup', 'slice the carrots', 'call on the care home', 'feel left out'],
-      answer: 'simmer the soup',
-      accept: ['simmer the soup'],
-      explain: 'A low stove and soft vegetables mean you simmer the soup (用小火煲湯).'
+      options: ['a flood', 'a drought', 'a fantasy film', 'lonely'],
+      answer: 'a flood',
+      accept: ['a flood'],
+      explain: 'Water rushing through the stalls means a flood (水災).'
     },
     {
       id: 'mx-f5',
-      wordKey: 'mixed:slice',
-      sentence: 'Use a knife to cut the orange vegetables into thin rounds and ______.',
+      wordKey: 'unit3:mix',
+      sentence: 'The baker tips cocoa into the milk and must ______ them before the tray goes into the oven.',
       blank: '______',
-      options: ['slice the carrots', 'simmer the soup', 'bandage a wound', 'a cartoon'],
-      answer: 'slice the carrots',
-      accept: ['slice the carrots'],
-      explain: 'Thin rounds of the orange vegetable means you slice the carrots (把紅蘿蔔切片).'
+      options: ['mix', 'boil', 'donate money', 'a comedy'],
+      answer: 'mix',
+      accept: ['mix'],
+      explain: 'Cocoa and milk have to be joined together, so you mix (混合) them.'
     },
     {
       id: 'mx-f6',
-      wordKey: 'mixed:cartoon',
-      sentence: 'On Friday the class watches ______ about a cat that can talk.',
+      wordKey: 'unit3:boil',
+      sentence: 'The kettle on the camp stove starts to ______ before we make tea.',
       blank: '______',
-      options: ['a cartoon', 'pouring rain', 'a heatwave', 'as quiet as a mouse'],
-      answer: 'a cartoon',
-      accept: ['a cartoon'],
-      explain: 'A film about a talking cat is a cartoon (卡通片).'
+      options: ['boil', 'mix', 'a drought', 'visit an elderly home'],
+      answer: 'boil',
+      accept: ['boil'],
+      explain: 'A kettle heating for tea will boil (煮沸).'
     },
     {
       id: 'mx-f7',
-      wordKey: 'mixed:quiet-mouse',
-      sentence: 'In the library everyone must be ______ so the readers are not disturbed.',
+      wordKey: 'unit4:comedy',
+      sentence: 'The cinema poster promised silly hats and loud laughter, so we bought tickets for ______.',
       blank: '______',
-      options: ['as quiet as a mouse', 'feel left out', 'pouring rain', 'share wise words'],
-      answer: 'as quiet as a mouse',
-      accept: ['as quiet as a mouse'],
-      explain: 'A library needs silence, so people are as quiet as a mouse (安靜得像老鼠).'
+      options: ['a comedy', 'a fantasy film', 'a flood', 'as busy as a bee'],
+      answer: 'a comedy',
+      accept: ['a comedy'],
+      explain: 'Silly hats and loud laughter point to a comedy (喜劇).'
     },
     {
       id: 'mx-f8',
-      wordKey: 'mixed:left-out',
-      sentence: 'Nobody passes the ball to May, so she starts to ______.',
+      wordKey: 'unit4:fantasy',
+      sentence: 'A glowing map and a flying horse open the story of ______.',
       blank: '______',
-      options: ['feel left out', 'share wise words', 'bandage a wound', 'simmer the soup'],
-      answer: 'feel left out',
-      accept: ['feel left out'],
-      explain: 'When the team ignores May, she will feel left out (感到被冷落).'
+      options: ['a fantasy film', 'a comedy', 'lonely', 'boil'],
+      answer: 'a fantasy film',
+      accept: ['a fantasy film'],
+      explain: 'A glowing map and a flying horse belong in a fantasy film (奇幻片).'
     },
     {
       id: 'mx-f9',
-      wordKey: 'mixed:wise-words',
-      sentence: 'Grandfather sits with the children and likes to ______ when they ask for help.',
+      wordKey: 'unit4:lonely',
+      sentence: 'The new boy eats lunch by himself at the end of the bench and feels ______.',
       blank: '______',
-      options: ['share wise words', 'slice the carrots', 'a cartoon', 'call on the care home'],
-      answer: 'share wise words',
-      accept: ['share wise words'],
-      explain: 'Helpful advice from grandfather is to share wise words (分享智慧的話).'
+      options: ['lonely', 'as busy as a bee', 'mix', 'a drought'],
+      answer: 'lonely',
+      accept: ['lonely'],
+      explain: 'Eating alone at the end of the bench makes him feel lonely (寂寞的).'
     },
     {
       id: 'mx-f10',
-      wordKey: 'mixed:bandage',
-      sentence: 'Ken cuts his finger in class, so the monitor uses a clean cloth to ______.',
+      wordKey: 'dictation3:busy',
+      sentence: 'The nurse rushes between three wards with a full clipboard, so she is ______.',
       blank: '______',
-      options: ['bandage a wound', 'simmer the soup', 'feel left out', 'a heatwave'],
-      answer: 'bandage a wound',
-      accept: ['bandage a wound'],
-      explain: 'A clean cloth on a cut is to bandage a wound (包紮傷口).'
+      options: ['as busy as a bee', 'lonely', 'a comedy', 'donate money'],
+      answer: 'as busy as a bee',
+      accept: ['as busy as a bee'],
+      explain: 'Rushing between wards all morning means she is as busy as a bee (像蜜蜂一樣忙碌).'
     }
   ],
 
   fillInHard: [
     {
       id: 'mx-h1',
-      wordKey: 'mixed:care-home',
-      sentence: 'The home which looks after grandparents hopes that our class will ______ so that the residents have visitors before the holidays.',
+      wordKey: 'unit1:elderly',
+      sentence: 'The residence which welcomes school visitors asked our scouts to ______ so that the grandparents are not left without company on Sunday.',
       blank: '______',
-      answer: 'call on the care home',
-      accept: ['call on the care home'],
-      explain: 'Residents who need visitors want the class to call on the care home (探望護老院).'
+      answer: 'visit an elderly home',
+      accept: ['visit an elderly home'],
+      explain: 'Which names the residence, and the scouts visit an elderly home (探訪安老院) so the grandparents have company.'
     },
     {
       id: 'mx-h2',
-      wordKey: 'mixed:heatwave',
-      sentence: 'Although the children wanted to run outside, the teacher kept them in the hall because there was ______ and the playground felt like an oven.',
+      wordKey: 'unit1:donate',
+      sentence: 'The tin which sits by the supermarket checkout is there so that shoppers can ______ for the animal shelter.',
       blank: '______',
-      answer: 'a heatwave',
-      accept: ['a heatwave'],
-      explain: 'Although marks a contrast, and an oven-like playground is a heatwave (熱浪).'
+      answer: 'donate money',
+      accept: ['donate money'],
+      explain: 'Which points to the tin, and shoppers donate money (捐錢) for the shelter.'
     },
     {
       id: 'mx-h3',
-      wordKey: 'mixed:pouring-rain',
-      sentence: 'The match which was planned for the field had to stop so that nobody slipped when there was ______.',
+      wordKey: 'unit2:drought',
+      sentence: 'If the reservoir which supplies the village stays empty, farmers who need water will face ______.',
       blank: '______',
-      answer: 'pouring rain',
-      accept: ['pouring rain'],
-      explain: 'A field match stops for safety when there is pouring rain (傾盆大雨).'
+      answer: 'a drought',
+      accept: ['a drought'],
+      explain: 'If the reservoir stays empty, the farmers face a drought (旱災).'
     },
     {
       id: 'mx-h4',
-      wordKey: 'mixed:simmer',
-      sentence: 'After you have washed the pot, turn the heat down and ______ so that the vegetables do not burn.',
+      wordKey: 'unit2:flood',
+      sentence: 'Although the market stalls were tied down, brown water still caused ______ which closed the town for a day.',
       blank: '______',
-      answer: 'simmer the soup',
-      accept: ['simmer the soup'],
-      explain: 'Low heat after washing the pot means you simmer the soup (用小火煲湯).'
+      answer: 'a flood',
+      accept: ['a flood'],
+      explain: 'Although the stalls were tied down, the brown water was still a flood (水災).'
     },
     {
       id: 'mx-h5',
-      wordKey: 'mixed:slice',
-      sentence: 'The cook who is preparing lunch asks you to ______ before the orange vegetables go into the pot.',
+      wordKey: 'unit3:mix',
+      sentence: 'When cocoa has been tipped into the milk, ______ them before the cake which is waiting goes into the oven.',
       blank: '______',
-      answer: 'slice the carrots',
-      accept: ['slice the carrots'],
-      explain: 'The cook wants the orange vegetables cut, so you slice the carrots (把紅蘿蔔切片).'
+      answer: 'mix',
+      accept: ['mix'],
+      explain: 'When the cocoa is in the milk, you mix (混合) them before baking.'
     },
     {
       id: 'mx-h6',
-      wordKey: 'mixed:cartoon',
-      sentence: 'The film which the teacher chose for Friday is ______, and the cat in it can talk.',
+      wordKey: 'unit3:boil',
+      sentence: 'Before the campers make tea, they wait until the kettle on the stove starts to ______.',
       blank: '______',
-      answer: 'a cartoon',
-      accept: ['a cartoon'],
-      explain: 'Which points to the film, and a talking cat makes it a cartoon (卡通片).'
+      answer: 'boil',
+      accept: ['boil'],
+      explain: 'Before the tea, the kettle must boil (煮沸).'
     },
     {
       id: 'mx-h7',
-      wordKey: 'mixed:quiet-mouse',
-      sentence: 'Although the hall is full of pupils, everyone must be ______ so that the speaker can be heard.',
+      wordKey: 'unit4:comedy',
+      sentence: 'Because the poster which we saw promised silly hats, we chose ______ rather than a frightening story.',
       blank: '______',
-      answer: 'as quiet as a mouse',
-      accept: ['as quiet as a mouse'],
-      explain: 'Although the hall is full, the speaker still needs everyone as quiet as a mouse (安靜得像老鼠).'
+      answer: 'a comedy',
+      accept: ['a comedy'],
+      explain: 'Because the poster promised silly hats, the choice is a comedy (喜劇).'
     },
     {
       id: 'mx-h8',
-      wordKey: 'mixed:left-out',
-      sentence: 'The girl who watches from the side of the court starts to ______ because nobody passes her the ball.',
+      wordKey: 'unit4:fantasy',
+      sentence: 'The story which begins with a glowing map and a flying horse belongs in ______.',
       blank: '______',
-      answer: 'feel left out',
-      accept: ['feel left out'],
-      explain: 'Who watches from the side and is ignored will feel left out (感到被冷落).'
+      answer: 'a fantasy film',
+      accept: ['a fantasy film'],
+      explain: 'Which begins with a glowing map and a flying horse, so it is a fantasy film (奇幻片).'
     },
     {
       id: 'mx-h9',
-      wordKey: 'mixed:wise-words',
-      sentence: 'The grandfather who has read many stories likes to ______ whenever the children ask him for help.',
+      wordKey: 'unit4:lonely',
+      sentence: 'The boy who eats at the end of the bench, and who has just joined the class, feels ______ at lunch.',
       blank: '______',
-      answer: 'share wise words',
-      accept: ['share wise words'],
-      explain: 'A grandfather who helps with stories likes to share wise words (分享智慧的話).'
+      answer: 'lonely',
+      accept: ['lonely'],
+      explain: 'Who eats alone after just joining the class feels lonely (寂寞的).'
     },
     {
       id: 'mx-h10',
-      wordKey: 'mixed:bandage',
-      sentence: 'If a classmate cuts a finger during art, you should ______ before you call the office.',
+      wordKey: 'dictation3:busy',
+      sentence: 'The nurse who rushes between three wards with a full clipboard is ______ all morning.',
       blank: '______',
-      answer: 'bandage a wound',
-      accept: ['bandage a wound'],
-      explain: 'If introduces the cut, and the first help is to bandage a wound (包紮傷口).'
+      answer: 'as busy as a bee',
+      accept: ['as busy as a bee'],
+      explain: 'Who rushes between wards all morning is as busy as a bee (像蜜蜂一樣忙碌).'
     }
   ],
 
   missingLetters: [
-    { id: 'mx-m1', wordKey: 'mixed:care-home', word: 'call on the care home' },
-    { id: 'mx-m2', wordKey: 'mixed:heatwave', word: 'a heatwave' },
-    { id: 'mx-m3', wordKey: 'mixed:pouring-rain', word: 'pouring rain' },
-    { id: 'mx-m4', wordKey: 'mixed:simmer', word: 'simmer the soup' },
-    { id: 'mx-m5', wordKey: 'mixed:slice', word: 'slice the carrots' },
-    { id: 'mx-m6', wordKey: 'mixed:cartoon', word: 'a cartoon' },
-    { id: 'mx-m7', wordKey: 'mixed:quiet-mouse', word: 'as quiet as a mouse' },
-    { id: 'mx-m8', wordKey: 'mixed:left-out', word: 'feel left out' },
-    { id: 'mx-m9', wordKey: 'mixed:wise-words', word: 'share wise words' },
-    { id: 'mx-m10', wordKey: 'mixed:bandage', word: 'bandage a wound' }
+    { id: 'mx-m1', wordKey: 'unit1:elderly', word: 'visit an elderly home' },
+    { id: 'mx-m2', wordKey: 'unit1:donate', word: 'donate money' },
+    { id: 'mx-m3', wordKey: 'unit2:drought', word: 'a drought' },
+    { id: 'mx-m4', wordKey: 'unit2:flood', word: 'a flood' },
+    { id: 'mx-m5', wordKey: 'unit3:mix', word: 'mix' },
+    { id: 'mx-m6', wordKey: 'unit3:boil', word: 'boil' },
+    { id: 'mx-m7', wordKey: 'unit4:comedy', word: 'a comedy' },
+    { id: 'mx-m8', wordKey: 'unit4:fantasy', word: 'a fantasy film' },
+    { id: 'mx-m9', wordKey: 'unit4:lonely', word: 'lonely' },
+    { id: 'mx-m10', wordKey: 'dictation3:busy', word: 'as busy as a bee' }
   ],
 
   matching: [
-    { id: 'mx-k1', wordKey: 'mixed:care-home', en: 'call on the care home', zh: '探望護老院', form: 'verb', img: '../unit1/thumb_10.png' },
-    { id: 'mx-k2', wordKey: 'mixed:heatwave', en: 'a heatwave', zh: '熱浪', form: 'noun', img: '../unit2/thumb_01.png' },
-    { id: 'mx-k3', wordKey: 'mixed:pouring-rain', en: 'pouring rain', zh: '傾盆大雨', form: 'noun', img: '../unit2/thumb_03.png' },
-    { id: 'mx-k4', wordKey: 'mixed:simmer', en: 'simmer the soup', zh: '用小火煲湯', form: 'verb', img: '../unit3/thumb_10.png' },
-    { id: 'mx-k5', wordKey: 'mixed:slice', en: 'slice the carrots', zh: '把紅蘿蔔切片', form: 'verb', img: '../unit3/thumb_02.png' },
-    { id: 'mx-k6', wordKey: 'mixed:cartoon', en: 'a cartoon', zh: '卡通片', form: 'noun', img: '../dictation3/thumb_02.png' },
-    { id: 'mx-k7', wordKey: 'mixed:quiet-mouse', en: 'as quiet as a mouse', zh: '安靜得像老鼠', form: 'idiom', img: '../dictation3/thumb_09.png' },
-    { id: 'mx-k8', wordKey: 'mixed:left-out', en: 'feel left out', zh: '感到被冷落', form: 'verb', img: '../unit4/thumb_09.png' },
-    { id: 'mx-k9', wordKey: 'mixed:wise-words', en: 'share wise words', zh: '分享智慧的話', form: 'verb', img: '../unit4/thumb_14.png' },
-    { id: 'mx-k10', wordKey: 'mixed:bandage', en: 'bandage a wound', zh: '包紮傷口', form: 'verb', img: '../unit2/thumb_10.png' }
+    { id: 'mx-k1', wordKey: 'unit1:elderly', en: 'visit an elderly home', zh: '探訪安老院', form: 'verb', img: '../unit1/thumb_10.png' },
+    { id: 'mx-k2', wordKey: 'unit1:donate', en: 'donate money', zh: '捐錢', form: 'verb', img: '../unit1/thumb_06.png' },
+    { id: 'mx-k3', wordKey: 'unit2:drought', en: 'a drought', zh: '旱災', form: 'noun', img: '../unit2/thumb_01.png' },
+    { id: 'mx-k4', wordKey: 'unit2:flood', en: 'a flood', zh: '水災', form: 'noun', img: '../unit2/thumb_03.png' },
+    { id: 'mx-k5', wordKey: 'unit3:mix', en: 'mix', zh: '混合', form: 'verb', img: '../unit3/thumb_03.png' },
+    { id: 'mx-k6', wordKey: 'unit3:boil', en: 'boil', zh: '煮沸', form: 'verb', img: '../unit3/thumb_10.png' },
+    { id: 'mx-k7', wordKey: 'unit4:comedy', en: 'a comedy', zh: '喜劇', form: 'noun', img: '../unit4/thumb_02.png' },
+    { id: 'mx-k8', wordKey: 'unit4:fantasy', en: 'a fantasy film', zh: '奇幻片', form: 'noun', img: '../unit4/thumb_03.png' },
+    { id: 'mx-k9', wordKey: 'unit4:lonely', en: 'lonely', zh: '寂寞的', form: 'adjective', img: '../unit4/thumb_09.png' },
+    { id: 'mx-k10', wordKey: 'dictation3:busy', en: 'as busy as a bee', zh: '像蜜蜂一樣忙碌', form: 'idiom', img: '../dictation3/thumb_12.png' }
   ]
 };
