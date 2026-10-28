@@ -669,13 +669,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   width: 100%;
   max-width: 720px;
 }
-@media (min-width: 720px) {
-  .board.board-ten {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
 .mcard {
   aspect-ratio: 3 / 4;
+  min-width: 0;
+  max-width: 100%;
   perspective: 600px;
   cursor: pointer;
   border: 0;
