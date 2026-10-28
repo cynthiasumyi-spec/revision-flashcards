@@ -20,6 +20,7 @@ window.PracticeRegistry = (function () {
   ];
 
   function getUnit(id) {
+    if (id === 'mixed') return buildMixed();
     const fn = map[id];
     return fn ? fn() || null : null;
   }
@@ -32,10 +33,57 @@ window.PracticeRegistry = (function () {
     });
   }
 
+  const MIXED_ROUND = 10;
+  const SOURCE_IDS = meta.map(function (m) { return m.id; });
+
+  function gather(field) {
+    const out = [];
+    SOURCE_IDS.forEach(function (id) {
+      const pack = getUnit(id);
+      const list = pack && pack[field];
+      if (list && list.length) out.push.apply(out, list);
+    });
+    return out;
+  }
+
+  function sample(list, n) {
+    const copy = list.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = copy[i];
+      copy[i] = copy[j];
+      copy[j] = t;
+    }
+    return copy.slice(0, Math.min(n, copy.length));
+  }
+
+  function buildMixed() {
+    const fillHard = gather('fillInHard');
+    return {
+      id: 'mixed',
+      title: 'Mixed topic',
+      words: gather('words'),
+      fillIn: sample(gather('fillIn'), MIXED_ROUND),
+      fillInHard: fillHard.length ? sample(fillHard, MIXED_ROUND) : [],
+      missingLetters: sample(gather('missingLetters'), MIXED_ROUND),
+      matching: gather('matching')
+    };
+  }
+
+  function practiceChoices() {
+    return listUnits().concat([{
+      id: 'mixed',
+      label: 'Mixed topic',
+      tone: 'navy',
+      ready: true,
+      title: 'Mixed topic'
+    }]);
+  }
+
   function qsUnit() {
     const q = new URLSearchParams(location.search);
     return q.get('unit') || 'unit1';
   }
 
-  return { getUnit, listUnits, qsUnit, meta };
+  return { getUnit, listUnits, practiceChoices, qsUnit, meta };
 })();

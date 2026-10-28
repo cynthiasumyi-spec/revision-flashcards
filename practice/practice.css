@@ -157,6 +157,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .pill.tone-sky:not(.is-active) { background: color-mix(in srgb, var(--sky) 45%, #fff); }
 .pill.tone-coral:not(.is-active) { background: color-mix(in srgb, var(--coral) 42%, #fff); }
 .pill.tone-pink:not(.is-active) { background: color-mix(in srgb, var(--pink) 45%, #fff); }
+.pill.tone-navy:not(.is-active) { background: color-mix(in srgb, var(--navy) 16%, #fff); }
 .pill.is-locked { opacity: 0.58; filter: saturate(0.7); }
 .pill .badge {
   font-size: 0.68rem;

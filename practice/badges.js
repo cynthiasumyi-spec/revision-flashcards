@@ -60,6 +60,7 @@ window.Badges = (function () {
    * Match Master: https://www.irasutoya.com/2017/07/blog-post_978.html
    * Timed Hero: https://www.irasutoya.com/2012/12/blog-post_271.html
    * Hard Challenger: https://www.irasutoya.com/2020/01/blog-post_69.html
+   * All-rounder: https://www.irasutoya.com/2014/11/blog-post_364.html
    * Unit 1 completer: https://www.irasutoya.com/2014/09/blog-post_58.html
    * Unit 2 completer: https://www.irasutoya.com/2012/11/blog-post_6715.html
    * Unit 3 completer: https://www.irasutoya.com/2013/09/blog-post_3570.html
@@ -72,7 +73,8 @@ window.Badges = (function () {
       { id: 'letters-phrase', title: '詞組拼寫手', english: 'Phrase Speller', image: 'assets/badges/phrase-speller.png', detail: 'Finish Missing Letters Easy for Unit 1, Unit 2, Unit 3, and Unit 4, with every answer correct.' },
       { id: 'match-pro', title: '配對高手', english: 'Match Master', image: 'assets/badges/match-master.png', detail: 'Finish Memory Match once for Unit 1, Unit 2, Unit 3, and Unit 4.' },
       { id: 'timed-brave', title: '限時勇者', english: 'Timed Hero', image: 'assets/badges/timed-hero.png', detail: 'Finish Timed Challenge once for Unit 1, Unit 2, Unit 3, and Unit 4.' },
-      { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Sentence Fill Hard and Missing Letters Hard for Unit 1, Unit 2, Unit 3, and Unit 4, with at least 90% correct in each session.' }
+      { id: 'hard-challenger', title: 'Hard 挑戰者', english: 'Hard Challenger', image: 'assets/badges/hard-challenger.png', detail: 'Finish Sentence Fill Hard and Missing Letters Hard for Unit 1, Unit 2, Unit 3, and Unit 4, with at least 90% correct in each session.' },
+      { id: 'all-rounder', title: '全能練習生', english: 'All-rounder', image: 'assets/badges/all-rounder.png', detail: 'In Mixed topic, finish Sentence Fill, Missing Letters, Memory Match, and Timed Challenge once each.' }
     ];
     const unitArt = {
       unit1: 'assets/badges/unit-completer-unit1.png',
@@ -198,7 +200,12 @@ window.Badges = (function () {
     })) {
       take(award(data, 'hard-challenger'));
     }
-    if (coreCompleteFrom(st)) take(award(data, 'unit-done:' + unitId));
+    if (unitId === 'mixed' && (st.fillEasy || st.fillHard) && (st.lettersEasy || st.lettersHard) && st.match && st.timed) {
+      take(award(data, 'all-rounder'));
+    }
+    if (ORDER.some(function (u) { return u.id === unitId; }) && coreCompleteFrom(st)) {
+      take(award(data, 'unit-done:' + unitId));
+    }
     save(data);
     return { newBadges: fresh };
   }
@@ -239,14 +246,14 @@ window.Badges = (function () {
   }
 
   function unitUnlocked(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3') return true;
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return true;
     const i = unitIndex(unitId);
     if (i <= 0) return false;
     return coreComplete(ORDER[i - 1].id);
   }
 
   function lockReason(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3') return '';
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return '';
     const i = unitIndex(unitId);
     if (i <= 0) return '';
     const prev = ORDER[i - 1];

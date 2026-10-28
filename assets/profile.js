@@ -19,6 +19,7 @@ window.Profile = (function () {
     { id: 'match-pro', badgeId: 'match-pro', label: 'Match Master', zh: '配對高手', src: 'assets/badges/match-master.png' },
     { id: 'timed-brave', badgeId: 'timed-brave', label: 'Timed Hero', zh: '限時勇者', src: 'assets/badges/timed-hero.png' },
     { id: 'hard-challenger', badgeId: 'hard-challenger', label: 'Hard Challenger', zh: 'Hard 挑戰者', src: 'assets/badges/hard-challenger.png' },
+    { id: 'all-rounder', badgeId: 'all-rounder', label: 'All-rounder', zh: '全能練習生', src: 'assets/badges/all-rounder.png' },
     { id: 'unit1', badgeId: 'unit-done:unit1', label: 'Unit 1 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit1.png' },
     { id: 'unit2', badgeId: 'unit-done:unit2', label: 'Unit 2 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit2.png' },
     { id: 'unit3', badgeId: 'unit-done:unit3', label: 'Unit 3 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit3.png' },
