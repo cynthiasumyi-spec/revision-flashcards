@@ -57,13 +57,31 @@ test('mixed practice stays open and does not unlock unit badges', () => {
   assert.equal(window.Badges.unitUnlocked('unit2'), false);
   window.Badges.recordSession('mixed', 'match', null, { correct: 5, total: 5 });
   window.Badges.recordSession('mixed', 'letters', 'easy', { correct: 10, total: 10 });
-  window.Badges.recordSession('mixed', 'fill', 'easy', { correct: 10, total: 10 });
   window.Badges.recordSession('mixed', 'timed', null, { correct: 4, total: 4 });
-  assert.equal(window.Badges.isEarned('starter'), true);
+  assert.equal(window.Badges.isEarned('all-rounder'), false);
+  window.Badges.recordSession('mixed', 'fill', 'hard', { correct: 8, total: 10 });
+  assert.equal(window.Badges.isEarned('all-rounder'), true);
   assert.equal(window.Badges.isEarned('match-pro'), false);
-  assert.equal(window.Badges.isEarned('letters-phrase'), false);
   assert.equal(window.Badges.isEarned('unit-done:mixed'), false);
   assert.equal(window.Badges.unitUnlocked('unit2'), false);
-  assert.equal(window.Badges.hardUnlocked('unit1', 'letters'), false);
-  assert.equal(window.Badges.hardUnlocked('mixed', 'letters'), true);
+  const badge = window.Badges.catalog().find(b => b.id === 'all-rounder');
+  assert.equal(badge.english, 'All-rounder');
+  assert.equal(badge.title, '全能練習生');
+  assert.match(badge.detail, /Mixed topic/);
+  assert.match(badge.detail, /Sentence Fill/);
+  assert.match(badge.detail, /Missing Letters/);
+  assert.match(badge.detail, /Memory Match/);
+  assert.match(badge.detail, /Timed Challenge/);
+});
+
+test('unit practice does not earn All-rounder', () => {
+  const { window } = loadScripts(['practice/badges.js']);
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(id => {
+    window.Badges.recordSession(id, 'fill', 'easy');
+    window.Badges.recordSession(id, 'letters', 'easy');
+    window.Badges.recordSession(id, 'match');
+    window.Badges.recordSession(id, 'timed');
+  });
+  assert.equal(window.Badges.isEarned('all-rounder'), false);
+  assert.equal(window.Badges.isEarned('match-pro'), true);
 });
