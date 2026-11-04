@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=26"/>
+<link rel="stylesheet" href="grammar.css?v=27"/>
 </head>
 <body>
 <header class="prac-header">
@@ -25,14 +25,8 @@
     <div class="illust pink" style="max-width:180px;aspect-ratio:1.2">
       <img src="illust/u2_03_flood.png" alt=""/>
     </div>
-    <p class="section-label">Sentences</p>
-    <div class="join-plain" id="pair" aria-label="Sentences to join (display only)"></div>
-    <p class="section-label join-with-label">Join with</p>
+    <p class="prompt join-stem" id="stem"></p>
     <div class="choices join-choices" id="choices"></div>
-    <div class="join-result" id="result-wrap" hidden>
-      <p class="section-label" id="result-label">Joined sentence</p>
-      <div class="join-preview" id="preview" aria-live="polite"></div>
-    </div>
     <div class="btn-row join-actions">
       <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
       <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
@@ -462,10 +456,6 @@ const set3Data = {
 
   const qNum = document.getElementById("q-num");
   const dots = document.getElementById("dots");
-  const pair = document.getElementById("pair");
-  const preview = document.getElementById("preview");
-  const resultWrap = document.getElementById("result-wrap");
-  const resultLabel = document.getElementById("result-label");
   const choices = document.getElementById("choices");
   const btnCheck = document.getElementById("btn-check");
   const btnNext = document.getElementById("btn-next");
@@ -482,45 +472,32 @@ const set3Data = {
     });
   }
 
-  function renderPreview(val, mode) {
+  function renderStem(val, mode) {
     const item = items[idx];
+    const el = document.getElementById("stem");
     let html = "";
     const shownRaw = val || null;
     item.preview.forEach((p) => {
       if (p === "REL") {
-        let shown = "____";
+        let shown = "________";
         if (shownRaw) {
           if (item.fillMap && item.fillMap[shownRaw]) shown = item.fillMap[shownRaw];
           else shown = shownRaw;
         }
-        let cls = "rel";
+        let cls = "blank";
         if (shownRaw) {
-          if (mode === "ok") cls = "rel ok";
-          else if (mode === "soft") cls = "rel soft";
-          else cls = "rel filled";
+          if (mode === "ok") cls = "blank ok";
+          else if (mode === "soft") cls = "blank soft-answer";
+          else cls = "blank filled";
         }
         html += '<span class="' + cls + '">' + shown + "</span>";
       } else html += p;
     });
-    preview.innerHTML = html;
+    el.innerHTML = html;
   }
-
-  function showSoftJoin(val) {
-    resultWrap.hidden = false;
-    resultLabel.textContent = "Joined (preview)";
-    renderPreview(val);
-  }
-
-  function showFullJoin(val, mode) {
-    resultWrap.hidden = false;
-    resultLabel.textContent = "Joined sentence";
-    renderPreview(val, mode);
-  }
-
-  function hideJoin() {
-    resultWrap.hidden = true;
-    preview.innerHTML = "";
-  }
+  function showSoftJoin(val) { renderStem(val); }
+  function showFullJoin(val, mode) { renderStem(val, mode); }
+  function hideJoin() { renderStem(null); }
 
   function render() {
     const item = items[idx];
@@ -532,10 +509,7 @@ const set3Data = {
     btnCheck.disabled = true;
     btnClear.disabled = false;
     renderDots();
-    pair.innerHTML =
-      '<p class="join-line">A. ' + item.a + "</p>" +
-      '<p class="join-line">B. ' + item.b + "</p>";
-    hideJoin();
+    renderStem(null);
     choices.innerHTML = "";
     choiceOpts.forEach((opt) => {
       const btn = document.createElement("button");

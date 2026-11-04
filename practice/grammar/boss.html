@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=26"/>
+<link rel="stylesheet" href="grammar.css?v=27"/>
 </head>
 <body>
 <header class="prac-header">
@@ -610,10 +610,36 @@
     });
   }
 
+  function joinParts(it) {
+    const token = " " + it.answer + " ";
+    const full = it.full || "";
+    const at = full.indexOf(token);
+    if (at < 0) return [full];
+    return [full.slice(0, at + 1), "REL", full.slice(at + token.length - 1)];
+  }
+
+  function renderJoinStem(val, mode) {
+    const it = items[idx];
+    let html = "";
+    joinParts(it).forEach((p) => {
+      if (p === "REL") {
+        const shown = val || "________";
+        let cls = "blank";
+        if (val) {
+          if (mode === "ok") cls = "blank ok";
+          else if (mode === "soft") cls = "blank soft-answer";
+          else cls = "blank filled";
+        }
+        html += '<span class="' + cls + '">' + shown + "</span>";
+      } else html += p;
+    });
+    prompt.innerHTML = html;
+  }
+
   function renderPrompt(val, mode) {
     const it = items[idx];
     if (it.kind === "join") {
-      prompt.innerHTML = "";
+      renderJoinStem(val, mode);
       return;
     }
     let html = "", bi = 0;
@@ -651,13 +677,9 @@
     renderLives();
 
     if (it.kind === "join") {
-      prompt.innerHTML = it.hard
-        ? 'Tap <strong>who</strong> or <strong>which</strong> to join. <span class="hard-badge">Harder</span>'
-        : 'Tap <strong>who</strong> or <strong>which</strong> to join.';
-      pair.hidden = false;
-      pair.innerHTML =
-        '<p class="join-line">A. ' + it.a + "</p>" +
-        '<p class="join-line">B. ' + it.b + "</p>";
+      pair.hidden = true;
+      pair.innerHTML = "";
+      renderJoinStem(null);
     } else {
       pair.hidden = true;
       pair.innerHTML = "";
@@ -677,7 +699,8 @@
         selected = opt;
         [...choices.children].forEach((c) => c.classList.remove("selected"));
         btn.classList.add("selected");
-        if (it.kind !== "join") renderPrompt(opt);
+        if (it.kind === "join") renderJoinStem(opt);
+        else renderPrompt(opt);
         btnCheck.disabled = false;
       });
       choices.appendChild(btn);
@@ -711,7 +734,8 @@
     if (locked) return;
     selected = null;
     [...choices.children].forEach((c) => c.classList.remove("selected"));
-    if (items[idx].kind !== "join") renderPrompt(null);
+    if (items[idx].kind === "join") renderJoinStem(null);
+    else renderPrompt(null);
     btnCheck.disabled = true;
     toast.hidden = true;
   });
@@ -726,7 +750,8 @@
       if (c.textContent === it.answer) c.classList.add("correct");
       else if (c.textContent === selected && !ok) c.classList.add("wrong");
     });
-    if (it.kind !== "join") renderPrompt(it.answer, ok ? "ok" : "soft");
+    if (it.kind === "join") renderJoinStem(it.answer, ok ? "ok" : "soft");
+    else renderPrompt(it.answer, ok ? "ok" : "soft");
     if (ok) {
       correctCount++;
       showToast(toast, "Nice!", it.explain + (it.full ? " → " + it.full : ""), "ok");
