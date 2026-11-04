@@ -542,18 +542,22 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin-bottom: 0.2rem;
 }
 .bubble .blank {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   max-width: 100%;
   min-width: 4.2rem;
   min-height: 1.7rem;
-  padding: 0.08rem 0.55rem;
+  padding: 0.12rem 0.7rem;
   margin: 0.1rem;
   border-radius: var(--pill);
   background: rgba(255,255,255,0.85);
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--navy);
-  vertical-align: baseline;
+  vertical-align: middle;
+  line-height: 1.15;
   white-space: normal;
   overflow-wrap: anywhere;
   box-sizing: border-box;

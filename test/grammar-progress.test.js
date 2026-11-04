@@ -95,6 +95,10 @@ test('grammar hub keeps the back link and adds a top-right Practice control', ()
 
 test('chat bubbles are not outlined in coral', () => {
   const css = read('grammar.css');
+  const blank = css.slice(css.indexOf('.bubble .blank {'), css.indexOf('.bubble .blank.filled'));
+  assert.match(blank, /justify-content:\s*center/);
+  assert.match(blank, /align-items:\s*center/);
+  assert.match(blank, /text-align:\s*center/);
   const rule = css.slice(css.indexOf('.bubble.active-bubble'), css.indexOf('.chat-reply-label'));
   assert.match(rule, /\.bubble\.active-bubble/);
   assert.doesNotMatch(rule, /coral/);
