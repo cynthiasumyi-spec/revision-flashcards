@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Chat Quest · Unit 2 Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="grammar.css?v=25"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="unit2-hub.html">← Unit 2 hub</a>
+  <h1>Chat Quest</h1>
+  <p class="sub" id="chat-sub">Mystery of the red first-aid box</p>
+</header>
+<main class="wrap">
+  <div class="toolbar">
+    <span class="chip sky" id="phase-chip">1 / 10</span>
+    <div class="progress-dots" id="dots" aria-label="Progress"></div>
+  </div>
+
+  <div class="panel" id="game">
+    <div class="illust sky chat-hero" style="max-width:none;width:100%;aspect-ratio:16/11;margin:0 0 0.85rem">
+      <img id="chat-hero" src="illust/u2_06_typhoon.jpg" alt=""/>
+    </div>
+    <div class="chat-thread" id="thread"></div>
+
+    <div id="answer-block">
+      <p class="chat-reply-label" id="q-label">Fill the blank</p>
+      <div class="choices" id="choices"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+        <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
+        <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
+      </div>
+      <div class="toast" id="toast" hidden></div>
+    </div>
+  </div>
+
+  <div class="panel result-card" id="done" hidden>
+    <h2>Chat quest complete</h2>
+    <p class="big" id="score-big">0</p>
+    <p>correct answers (10 blanks + 1 inference)</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" id="btn-again" href="unit2-chat.html">Play again</a>
+      <a class="btn btn-ghost" href="unit2-hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
+     Students (no ?set=): silent rotate via localStorage key u2-chat-set-i — index starts at 0,
+     advances +1 when a run finishes so the next visit uses the next authored set. */
+  const FB = { ok: "illust/feedback-ok.png", bad: "illust/feedback-bad.png" };
+  function showToast(el, title, explain, kind) {
+    el.className = "toast toast-feedback has-art " + kind;
+    el.innerHTML =
+      '<img class="toast-art" src="' + FB[kind === "ok" ? "ok" : "bad"] + '" alt=""/>' +
+      '<div class="toast-body"><div class="toast-title"></div><div class="toast-explain"></div></div>';
+    el.querySelector(".toast-title").textContent = title;
+    el.querySelector(".toast-explain").textContent = explain || "";
+    el.hidden = false;
+  }
+
+  const set1Data = {
+  "sub": "Mystery of the red first-aid box",
+  "hero": "illust/u2_06_typhoon.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Ken, the typhoon is coming. If the wind gets stronger, school ",
+        "____",
+        " close early."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "First conditional result → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Yes. Mum packed bottled water ",
+        "____",
+        " we can drink clean water after the flood."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If a landslip blocks our street, Dad ",
+        "____",
+        " call the rescue team."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "We put torches in the bag ",
+        "____",
+        " we can see if the lights go out."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Miss Wong said if more rain falls tonight, the river ",
+        "____",
+        " rise near the school field, so we must stay upstairs."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "Longer first-conditional result → will."
+    },
+    {
+      "speaker": "miss",
+      "parts": [
+        "Good thinking. Volunteers cleared fallen trees ",
+        "____",
+        " cars could pass this morning."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If villagers drink dirty water, they ",
+        "____",
+        " get sick easily."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "Possible result → will."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Leo left a red first-aid box by the stairs ",
+        "____",
+        " anyone who is hurt can find help quickly after the storm."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Longer purpose stem → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If rescue teams arrive soon, more people ",
+        "____",
+        " get warm food."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We practise the warning drill ",
+        "____",
+        " everyone knows where to go."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    }
+  ],
+  "endQ": {
+    "q": "Who left the red first-aid box by the stairs?",
+    "options": [
+      "Ken",
+      "Amy",
+      "Leo",
+      "Miss Wong"
+    ],
+    "answer": "Leo",
+    "explain": "Amy said Leo left the red first-aid box by the stairs."
+  }
+};
+
+  const set2Data = {
+  "sub": "Mystery of the blue water cooler",
+  "hero": "illust/u2_aftershock_drill.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Ken, the hillside still shakes a little. If aftershocks continue tomorrow, outdoor games ",
+        "____",
+        " move into the cool hall."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "First conditional result → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Yes. I rubbed a tired helper’s shoulders ",
+        "____",
+        " he could keep packing rescue kits."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the dry slope cracks near the steps, helpers ",
+        "____",
+        " put up a bright rope barrier."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Mum packed ice packs ",
+        "____",
+        " we can cool anyone who feels dizzy after clearing bricks."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Miss Wong said if clean water returns to the taps this week, families ",
+        "____",
+        " cook warm meals at home again before night."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "Longer first-conditional result → will."
+    },
+    {
+      "speaker": "miss",
+      "parts": [
+        "Good. Helpers clear broken bricks ",
+        "____",
+        " families can walk past the damaged houses safely."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If people stand near cracked walls with no helmets, they ",
+        "____",
+        " get hurt very easily."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "Possible result → will."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "May wheeled a blue water cooler beside the first-aid table ",
+        "____",
+        " helpers can keep cold drinks ready for every thirsty worker."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Longer purpose stem → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If a tsunami warning sounds during the coastal safety talk, families ",
+        "____",
+        " move to higher ground at once."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We wrote a packing checklist ",
+        "____",
+        " nobody forgets an empty bottle."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    }
+  ],
+  "endQ": {
+    "q": "Who wheeled the blue water cooler beside the first-aid table?",
+    "options": [
+      "Ken",
+      "Amy",
+      "May",
+      "Miss Wong"
+    ],
+    "answer": "May",
+    "explain": "Amy said May wheeled the blue water cooler beside the first-aid table."
+  }
+};
+
+const set3Data = {
+  "sub": "Mystery of the orange life jacket",
+  "hero": "illust/u2_shelter_open.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Ken, heavy rain is coming. If Signal 8 rises this afternoon, Class 6A ",
+        "____",
+        " open the hall as a typhoon shelter."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "will",
+      "explain": "First conditional result → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Yes. We packed orange life jackets ",
+        "____",
+        " every family near the wet exit can stay safe."
+      ],
+      "options": ["will", "so that", "although", "after"],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the hillside softens after midnight rain, mud ",
+        "____",
+        " slide toward the lower road."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Mum labelled spare radios ",
+        "____",
+        " shelter helpers can hear every update clearly."
+      ],
+      "options": ["will", "so that", "although", "after"],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Miss Wong said if the shelter taps stay clear tonight, volunteers ",
+        "____",
+        " fill clean bottles for every family before bedtime."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "will",
+      "explain": "Longer first-conditional result → will."
+    },
+    {
+      "speaker": "miss",
+      "parts": [
+        "Good. Helpers clear wet bricks ",
+        "____",
+        " families can walk safely into the hall."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If people stand outside without raincoats, they ",
+        "____",
+        " get soaked very quickly."
+      ],
+      "options": ["will", "so that", "although", "after"],
+      "answer": "will",
+      "explain": "Possible result → will."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Rita hung an orange life jacket beside the spare radio shelf ",
+        "____",
+        " late arrivals can grab one before the wet exit opens."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "so that",
+      "explain": "Longer purpose stem → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If a coastal flood warning sounds during shelter hours, families ",
+        "____",
+        " move upstairs at once."
+      ],
+      "options": ["will", "so that", "although", "after"],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We wrote a shelter checklist ",
+        "____",
+        " nobody forgets a dry torch."
+      ],
+      "options": ["will", "so that", "although", "before"],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    }
+  ],
+  "endQ": {
+    "q": "Who hung the orange life jacket beside the spare radio shelf?",
+    "options": ["Ken", "Amy", "Rita", "Miss Wong"],
+    "answer": "Rita",
+    "explain": "Amy said Rita hung the orange life jacket beside the spare radio shelf."
+  }
+};
+
+  const set4Data = {
+  "sub": "Mystery of the yellow safety whistle",
+  "hero": "illust/u2_s4_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Ken, mist covers the hillside. If heavy rain returns this afternoon, Class 6A ",
+        "____",
+        " move the slope-safety drills indoors."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "First conditional result → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Yes. We stacked beige sandbags ",
+        "____",
+        " the soft soil can stay firm after weekend rain."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the dry slope cracks near the school steps, loose mud ",
+        "____",
+        " slide toward the lower garden path."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Mum labelled spare yellow helmets ",
+        "____",
+        " hillside helpers can grab one before the rope barrier."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Miss Wong said if the sandbags hold overnight after practice, helpers ",
+        "____",
+        " check the lower garden path at sunrise with flashlights."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "Longer first-conditional result → will."
+    },
+    {
+      "speaker": "miss",
+      "parts": [
+        "Good. Helpers clear loose soil ",
+        "____",
+        " families can walk the hillside path safely."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If people stand too close to the cracked slope, they ",
+        "____",
+        " get hit by small falling stones."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "Possible result → will."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Jade hung a yellow safety whistle on the sandbag stack ",
+        "____",
+        " late helpers can find it before the landslip drill starts."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Longer purpose stem → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If the yellow safety whistle blows for the landslip drill, Class 6A ",
+        "____",
+        " gather on the painted safe line at once."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We wrote a slope-safety checklist ",
+        "____",
+        " nobody forgets a bright helmet."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    }
+  ],
+  "endQ": {
+    "q": "Who hung the yellow safety whistle on the sandbag stack?",
+    "options": [
+      "Ken",
+      "Amy",
+      "Jade",
+      "Miss Wong"
+    ],
+    "answer": "Jade",
+    "explain": "Amy said Jade hung a yellow safety whistle on the sandbag stack."
+  }
+};
+
+  const set5Data = {
+  "sub": "Mystery of the green torch",
+  "hero": "illust/u2_s5_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Ken, the lights keep flickering. If the power cut lasts past dinner, Class 6A ",
+        "____",
+        " open the school hall as a help station."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "First conditional result → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Yes. We packed spare batteries and small radios ",
+        "____",
+        " every neighbour can hear evening news updates."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the building lifts stop during the blackout, helpers ",
+        "____",
+        " guide families down the cool stairwells."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "Mum labelled spare green torches ",
+        "____",
+        " night helpers can grab one before the stair queue."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Miss Wong said if the hall radio stays clear tonight, volunteers ",
+        "____",
+        " share warm updates for every family waiting in the dark."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "will",
+      "explain": "Longer first-conditional result → will."
+    },
+    {
+      "speaker": "miss",
+      "parts": [
+        "Good. Helpers clear schoolbags from the stairs ",
+        "____",
+        " neighbours can walk safely in the dark."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If people stand too close to the silent lifts, they ",
+        "____",
+        " get stuck when the doors freeze."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "Possible result → will."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "Owen hung a green torch by the battery shelf ",
+        "____",
+        " late helpers can find it before the blackout drill starts."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Longer purpose stem → so that."
+    },
+    {
+      "speaker": "ken",
+      "parts": [
+        "If the green torch blinks three times for the blackout drill, Class 6A ",
+        "____",
+        " gather on the painted safe line at once."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "after"
+      ],
+      "answer": "will",
+      "explain": "If + present → will."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We wrote a blackout checklist ",
+        "____",
+        " nobody forgets a spare battery."
+      ],
+      "options": [
+        "will",
+        "so that",
+        "although",
+        "before"
+      ],
+      "answer": "so that",
+      "explain": "Purpose → so that."
+    }
+  ],
+  "endQ": {
+    "q": "Who hung the green torch by the battery shelf?",
+    "options": [
+      "Ken",
+      "Amy",
+      "Owen",
+      "Miss Wong"
+    ],
+    "answer": "Owen",
+    "explain": "Amy said Owen hung a green torch by the battery shelf."
+  }
+};
+
+  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  const SET_KEY = "u2-chat-set-i";
+
+  function resolveSet() {
+    const q = parseInt(new URLSearchParams(location.search).get("set"), 10);
+    if (q >= 1 && q <= SETS.length) return { index: q - 1, forced: true };
+    let i = parseInt(localStorage.getItem(SET_KEY) || "0", 10);
+    if (isNaN(i) || i < 0) i = 0;
+    return { index: i % SETS.length, forced: false };
+  }
+
+  const resolved = resolveSet();
+  const setIndex = resolved.index;
+  const forced = resolved.forced;
+  const activeSet = SETS[setIndex];
+  const bubbles = activeSet.bubbles;
+  const endQ = activeSet.endQ;
+  document.getElementById("chat-sub").textContent = activeSet.sub;
+  document.getElementById("chat-hero").src = activeSet.hero;
+  if (forced) {
+    document.getElementById("btn-again").href = "unit2-chat.html?set=" + (setIndex + 1);
+  }
+
+  const names = {"amy":"Amy","ken":"Ken","miss":"Miss Wong"};
+  const totalDots = bubbles.length + 1;
+  let idx = 0;
+  let selected = null;
+  let locked = false;
+  let correctCount = 0;
+  let filled = [];
+
+  const thread = document.getElementById("thread");
+  const choices = document.getElementById("choices");
+  const phaseChip = document.getElementById("phase-chip");
+  const dots = document.getElementById("dots");
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnClear = document.getElementById("btn-clear");
+  const toast = document.getElementById("toast");
+  const qLabel = document.getElementById("q-label");
+
+  function buildBubbleHtml(parts, value, mode) {
+    let html = "";
+    parts.forEach((p) => {
+      if (p === "____") {
+        const v = value != null ? value : "____";
+        let cls = "blank";
+        if (value != null) {
+          if (mode === "ok") cls = "blank ok";
+          else if (mode === "soft") cls = "blank soft-answer";
+          else if (mode === "done") cls = "blank ok";
+          else cls = "blank filled";
+        }
+        html += '<span class="' + cls + '">' + v + "</span>";
+      } else html += p;
+    });
+    return html;
+  }
+
+  function renderDots() {
+    dots.innerHTML = "";
+    for (let i = 0; i < totalDots; i++) {
+      const s = document.createElement("span");
+      if (i < idx) s.className = "done";
+      else if (i === idx) s.className = "now";
+      dots.appendChild(s);
+    }
+  }
+
+  function renderThread(activeValue, activeMode) {
+    thread.innerHTML = "";
+    for (let i = 0; i < idx && i < bubbles.length; i++) {
+      const b = bubbles[i];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker;
+      d.innerHTML =
+        '<span class="who">' + names[b.speaker] + "</span>" +
+        buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+      thread.appendChild(d);
+    }
+    if (idx < bubbles.length) {
+      const b = bubbles[idx];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker + " active-bubble";
+      d.innerHTML =
+        '<span class="who">' + names[b.speaker] + "</span>" +
+        buildBubbleHtml(b.parts, activeValue, activeMode);
+      thread.appendChild(d);
+    }
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function renderChoices(options) {
+    choices.innerHTML = "";
+    options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (locked) return;
+        selected = opt;
+        [...choices.children].forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        if (idx < bubbles.length) renderThread(opt, null);
+        btnCheck.disabled = false;
+      });
+      choices.appendChild(btn);
+    });
+  }
+
+  function render() {
+    selected = null;
+    locked = false;
+    toast.hidden = true;
+    btnNext.hidden = true;
+    btnCheck.disabled = true;
+    btnClear.disabled = false;
+    renderDots();
+
+    if (idx < bubbles.length) {
+      phaseChip.textContent = (idx + 1) + " / " + bubbles.length;
+      phaseChip.className = "chip sky";
+      qLabel.innerHTML = "Fill the blank in " + names[bubbles[idx].speaker] + "’s message" + (bubbles[idx].hard ? ' <span class="hard-badge">Harder</span>' : "");
+      renderThread(null);
+      renderChoices(bubbles[idx].options);
+    } else {
+      phaseChip.textContent = "Inference";
+      phaseChip.className = "chip coral";
+      qLabel.textContent = endQ.q;
+      thread.innerHTML = "";
+      bubbles.forEach((b, i) => {
+        const d = document.createElement("div");
+        d.className = "bubble " + b.speaker;
+        d.innerHTML =
+          '<span class="who">' + names[b.speaker] + "</span>" +
+          buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+        thread.appendChild(d);
+      });
+      renderChoices(endQ.options);
+      [...choices.children].forEach((c) => c.classList.add("block"));
+    }
+  }
+
+  btnClear.addEventListener("click", () => {
+    if (locked) return;
+    selected = null;
+    [...choices.children].forEach((c) => c.classList.remove("selected"));
+    if (idx < bubbles.length) renderThread(null);
+    btnCheck.disabled = true;
+    toast.hidden = true;
+  });
+
+  btnCheck.addEventListener("click", () => {
+    if (!selected || locked) return;
+    locked = true;
+    const isBubble = idx < bubbles.length;
+    const answer = isBubble ? bubbles[idx].answer : endQ.answer;
+    const explain = isBubble ? bubbles[idx].explain : endQ.explain;
+    const ok = selected === answer;
+    [...choices.children].forEach((c) => {
+      c.disabled = true;
+      if (c.textContent === answer) c.classList.add("correct");
+      else if (c.textContent === selected && !ok) c.classList.add("wrong");
+    });
+    if (ok) {
+      correctCount++;
+      showToast(toast, "Yes!", explain, "ok");
+      if (isBubble) { filled[idx] = answer; renderThread(answer, "ok"); }
+    } else {
+      showToast(toast, "Answer: " + answer, explain, "bad");
+      if (isBubble) { filled[idx] = answer; renderThread(answer, "soft"); }
+    }
+    btnCheck.disabled = true;
+    btnClear.disabled = true;
+    btnNext.hidden = false;
+    if (isBubble) btnNext.textContent = idx === bubbles.length - 1 ? "Inference question" : "Next bubble";
+    else btnNext.textContent = "Finish";
+  });
+
+  btnNext.addEventListener("click", () => {
+    if (idx >= bubbles.length) {
+      if (!forced) {
+        localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      }
+      document.getElementById("game").hidden = true;
+      document.getElementById("done").hidden = false;
+      document.getElementById("score-big").textContent = correctCount + " / " + totalDots;
+      return;
+    }
+    idx++;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

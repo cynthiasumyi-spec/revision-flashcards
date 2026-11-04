@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Chat Quest · Unit 4 Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="grammar.css?v=25"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="unit4-hub.html">← Unit 4 hub</a>
+  <h1>Chat Quest</h1>
+  <p class="sub" id="chat-sub">Mystery of the silver prop sword</p>
+</header>
+<main class="wrap">
+  <div class="toolbar">
+    <span class="chip sky" id="phase-chip">1 / 10</span>
+    <div class="progress-dots" id="dots" aria-label="Progress"></div>
+  </div>
+  <div class="panel" id="game">
+    <div class="illust sky chat-hero" style="max-width:none;width:100%;aspect-ratio:16/11;margin:0 0 0.85rem">
+      <img id="chat-hero" src="illust/u4_fantasy.png" alt=""/>
+    </div>
+    <div class="chat-thread" id="thread"></div>
+    <div id="answer-block">
+      <p class="chat-reply-label" id="q-label">Fill the blank</p>
+      <div class="choices" id="choices"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+        <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
+        <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
+      </div>
+      <div class="toast" id="toast" hidden></div>
+    </div>
+  </div>
+  <div class="panel result-card" id="done" hidden>
+    <h2>Chat quest complete</h2>
+    <p class="big" id="score-big">0</p>
+    <p>correct answers (10 blanks + 1 inference)</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" id="btn-again" href="unit4-chat.html">Play again</a>
+      <a class="btn btn-ghost" href="unit4-hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen. */
+  const FB = { ok: "illust/feedback-ok.png", bad: "illust/feedback-bad.png" };
+  function showToast(el, title, explain, kind) {
+    el.className = "toast toast-feedback has-art " + kind;
+    el.innerHTML =
+      '<img class="toast-art" src="' + FB[kind === "ok" ? "ok" : "bad"] + '" alt=""/>' +
+      '<div class="toast-body"><div class="toast-title"></div><div class="toast-explain"></div></div>';
+    el.querySelector(".toast-title").textContent = title;
+    el.querySelector(".toast-explain").textContent = explain || "";
+    el.hidden = false;
+  }
+  const set1Data = {
+  "sub": "Mystery of the silver prop sword",
+  "hero": "illust/u4_fantasy.png",
+  "bubbles": [
+    {
+      "speaker": "sam",
+      "parts": [
+        "Amy, if I ",
+        "____",
+        " a film director, I would make a fantasy film."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Our comedy is ",
+        "____",
+        " funny as the action film!"
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → first as."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "If the wicked queen had a kind heart, she ",
+        "____",
+        " not hurt the princess."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "The curious rabbit is not as brave ",
+        "____",
+        " the knight."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → second as."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "If we lived in a cartoon world, talking animals ",
+        "____",
+        " help us every day on the set."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Longer imaginary result → would."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "This musical is as exciting ",
+        "____",
+        " that fantasy film."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as comparison."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If Sam played the brave knight, he ",
+        "____",
+        " save the village."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Someone left a silver prop sword by the curtains. If I ",
+        "____",
+        " the stage manager, I would lock props away after every rehearsal."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "Our class play was almost as long ",
+        "____",
+        " a real cinema film."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If I were a comedy actor, I ",
+        "____",
+        " make people laugh on screen."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    }
+  ],
+  "endQ": {
+    "q": "What was left by the curtains?",
+    "options": [
+      "A blue apron",
+      "A pink gift bag",
+      "A silver prop sword",
+      "A red first-aid box"
+    ],
+    "answer": "A silver prop sword",
+    "explain": "Miss Chan said someone left a silver prop sword by the curtains."
+  }
+};
+  const set2Data = {
+  "sub": "Mystery of the spotted dog collar",
+  "hero": "illust/u4_10_obedient_dog.jpg",
+  "bubbles": [
+    {
+      "speaker": "sam",
+      "parts": [
+        "Amy, if I ",
+        "____",
+        " the director of our dog comedy, I would let the puppy choose every treat."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Our puppy jokes are ",
+        "____",
+        " gentle as the quiet story Class 4C wrote!"
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → first as."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "If the obedient dog heard a whistle, it ",
+        "____",
+        " sit beside the camera at once."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "The wise coach is as patient ",
+        "____",
+        " Miss Chan on rehearsal day."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → second as."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "If our props could talk like sci-fi robots, they ",
+        "____",
+        " remind us where every treat is hidden under the bench."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Longer imaginary result → would."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "The park scene is as sweet ",
+        "____",
+        " our rehearsal take."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as comparison."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the obedient dog walked on stage, it ",
+        "____",
+        " bow for the whole showcase."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Someone left a spotted dog collar beside the treat box. If I ",
+        "____",
+        " the stage manager, I would label every prop after each shoot."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "Our class short was almost as short ",
+        "____",
+        " a TV advert."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If I were the host of the showcase, I ",
+        "____",
+        " call the obedient dog on stage for a bow."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary if → would."
+    }
+  ],
+  "endQ": {
+    "q": "What was left beside the treat box?",
+    "options": [
+      "A silver prop sword",
+      "A blue apron",
+      "A spotted dog collar",
+      "A pink napkin ring"
+    ],
+    "answer": "A spotted dog collar",
+    "explain": "Miss Chan said someone left a spotted dog collar beside the treat box."
+  }
+};
+const set3Data = {
+  "sub": "Mystery of the sparkly cape",
+  "hero": "illust/u4_monster_set.jpg",
+  "bubbles": [
+    {
+      "speaker": "sam",
+      "parts": [
+        "Amy, if I ",
+        "____",
+        " the wizard in our fantasy short play, I would cast a sparkling shield."
+      ],
+      "options": ["were", "will", "am", "as"],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Our tower scene is ",
+        "____",
+        " magical as the fairy-tale film Class 5A showed!"
+      ],
+      "options": ["as", "so", "than", "would"],
+      "answer": "as",
+      "explain": "as + adj + as → first as."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "If Tom played the giant hero, he ",
+        "____",
+        " protect the tiny cardboard city."
+      ],
+      "options": ["would", "will", "as", "were"],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "The sparkly-cape singer is as bright ",
+        "____",
+        " the stage lights tonight."
+      ],
+      "options": ["as", "so", "than", "would"],
+      "answer": "as",
+      "explain": "as + adj + as → second as."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "If our cardboard city could talk, the tiny buildings ",
+        "____",
+        " cheer when the hero steps onto the tokusatsu set."
+      ],
+      "options": ["would", "will", "as", "were"],
+      "answer": "would",
+      "explain": "Longer imaginary result → would."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "The ghost cue is as exciting ",
+        "____",
+        " last year’s Open Day play."
+      ],
+      "options": ["as", "so", "than", "would"],
+      "answer": "as",
+      "explain": "as…as comparison."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the giant hero heard his cue music, he ",
+        "____",
+        " leap onto the cardboard city at once."
+      ],
+      "options": ["would", "will", "as", "were"],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Someone left a sparkly cape beside the prop helmet. If I ",
+        "____",
+        " the stage manager, I would label every cape after each rehearsal."
+      ],
+      "options": ["were", "will", "am", "as"],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "Our tokusatsu short play was almost as bright ",
+        "____",
+        " the stage lights."
+      ],
+      "options": ["as", "so", "than", "would"],
+      "answer": "as",
+      "explain": "as…as."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If I were the host of the finale, I ",
+        "____",
+        " call the sparkly-cape singer on stage for a bow."
+      ],
+      "options": ["would", "will", "as", "were"],
+      "answer": "would",
+      "explain": "Imaginary if → would."
+    }
+  ],
+  "endQ": {
+    "q": "What was left beside the prop helmet?",
+    "options": [
+      "A silver prop sword",
+      "A spotted dog collar",
+      "A sparkly cape",
+      "A green oven mitt"
+    ],
+    "answer": "A sparkly cape",
+    "explain": "Miss Chan said someone left a sparkly cape beside the prop helmet."
+  }
+};
+
+  const set4Data = {
+  "sub": "Mystery of the silver microphone",
+  "hero": "illust/u4_s4_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "sam",
+      "parts": [
+        "Amy, if I ",
+        "____",
+        " the lead singer in our school musical short, I would hold the silver microphone with a big smile."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Our dance number is ",
+        "____",
+        " lively as the Open Day musical Class 5A showed!"
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → first as."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "If Tom played the dancing star, he ",
+        "____",
+        " leap across the cardboard stage."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "The silver-microphone singer is as bright ",
+        "____",
+        " the stage lights tonight."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → second as."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "If our cardboard stage could sing, the painted stars ",
+        "____",
+        " cheer when the lead singer steps onto the musical set."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Longer imaginary result → would."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "The chorus cue is as exciting ",
+        "____",
+        " last year’s Sports Day show."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as comparison."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the dancing star heard his cue music, he ",
+        "____",
+        " leap onto the cardboard stage at once."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Someone left a silver microphone beside the costume hats. If I ",
+        "____",
+        " the stage manager, I would label every microphone after each rehearsal."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "Our musical short was almost as bright ",
+        "____",
+        " the stage lights."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If I were the host of the musical finale, I ",
+        "____",
+        " call the silver-microphone singer on stage for a bow."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary if → would."
+    }
+  ],
+  "endQ": {
+    "q": "What was left beside the costume hats?",
+    "options": [
+      "A silver prop sword",
+      "A spotted dog collar",
+      "A sparkly cape",
+      "A silver microphone"
+    ],
+    "answer": "A silver microphone",
+    "explain": "Miss Chan said someone left a silver microphone beside the costume hats."
+  }
+};
+
+  const set5Data = {
+  "sub": "Mystery of the orange press badge",
+  "hero": "illust/u4_s5_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "sam",
+      "parts": [
+        "Amy, if I ",
+        "____",
+        " the weather presenter in our school newsroom short, I would point at the cardboard sky map with a big smile."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Our sky-map scene is ",
+        "____",
+        " clear as the weather clip Class 5A showed!"
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → first as."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "If Tom played the field reporter, he ",
+        "____",
+        " hold the toy camera and dash across the cardboard street."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "The orange-badge reporter is as bright ",
+        "____",
+        " the studio lights tonight."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as + adj + as → second as."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "If our cardboard news desk could talk, the painted microphones ",
+        "____",
+        " cheer when the weather presenter steps onto the set."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Longer imaginary result → would."
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "The weather cue is as exciting ",
+        "____",
+        " last year’s Open Day news clip."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as comparison."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If the field reporter heard his cue music, he ",
+        "____",
+        " dash onto the cardboard street at once."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary result → would."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Someone left an orange press badge beside the toy camera. If I ",
+        "____",
+        " the stage manager, I would label every badge after each rehearsal."
+      ],
+      "options": [
+        "were",
+        "will",
+        "am",
+        "as"
+      ],
+      "answer": "were",
+      "explain": "Imaginary If I were…"
+    },
+    {
+      "speaker": "sam",
+      "parts": [
+        "Our newsroom short was almost as bright ",
+        "____",
+        " the studio lights."
+      ],
+      "options": [
+        "as",
+        "so",
+        "than",
+        "would"
+      ],
+      "answer": "as",
+      "explain": "as…as."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "If I were the host of the newsroom finale, I ",
+        "____",
+        " call the orange-badge reporter on stage for a bow."
+      ],
+      "options": [
+        "would",
+        "will",
+        "as",
+        "were"
+      ],
+      "answer": "would",
+      "explain": "Imaginary if → would."
+    }
+  ],
+  "endQ": {
+    "q": "What was left beside the toy camera?",
+    "options": [
+      "A silver prop sword",
+      "A sparkly cape",
+      "A silver microphone",
+      "An orange press badge"
+    ],
+    "answer": "An orange press badge",
+    "explain": "Miss Chan said someone left an orange press badge beside the toy camera."
+  }
+};
+
+  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  const SET_KEY = "u4-chat-set-i";
+  function resolveSet() {
+    const q = parseInt(new URLSearchParams(location.search).get("set"), 10);
+    if (q >= 1 && q <= SETS.length) return { index: q - 1, forced: true };
+    let i = parseInt(localStorage.getItem(SET_KEY) || "0", 10);
+    if (isNaN(i) || i < 0) i = 0;
+    return { index: i % SETS.length, forced: false };
+  }
+  const resolved = resolveSet();
+  const setIndex = resolved.index;
+  const forced = resolved.forced;
+  const activeSet = SETS[setIndex];
+  const bubbles = activeSet.bubbles;
+  const endQ = activeSet.endQ;
+  document.getElementById("chat-sub").textContent = activeSet.sub;
+  document.getElementById("chat-hero").src = activeSet.hero;
+  if (forced) document.getElementById("btn-again").href = "unit4-chat.html?set=" + (setIndex + 1);
+  const names = {"sam":"Sam","amy":"Amy","miss":"Miss Chan"};
+  const totalDots = bubbles.length + 1;
+  let idx = 0, selected = null, locked = false, correctCount = 0, filled = [];
+  const thread = document.getElementById("thread");
+  const choices = document.getElementById("choices");
+  const phaseChip = document.getElementById("phase-chip");
+  const dots = document.getElementById("dots");
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnClear = document.getElementById("btn-clear");
+  const toast = document.getElementById("toast");
+  const qLabel = document.getElementById("q-label");
+  function buildBubbleHtml(parts, value, mode) {
+    let html = "";
+    parts.forEach((p) => {
+      if (p === "____") {
+        const v = value != null ? value : "____";
+        let cls = "blank";
+        if (value != null) {
+          if (mode === "ok") cls = "blank ok";
+          else if (mode === "soft") cls = "blank soft-answer";
+          else if (mode === "done") cls = "blank ok";
+          else cls = "blank filled";
+        }
+        html += '<span class="' + cls + '">' + v + "</span>";
+      } else html += p;
+    });
+    return html;
+  }
+  function renderDots() {
+    dots.innerHTML = "";
+    for (let i = 0; i < totalDots; i++) {
+      const s = document.createElement("span");
+      if (i < idx) s.className = "done";
+      else if (i === idx) s.className = "now";
+      dots.appendChild(s);
+    }
+  }
+  function renderThread(activeValue, activeMode) {
+    thread.innerHTML = "";
+    for (let i = 0; i < idx && i < bubbles.length; i++) {
+      const b = bubbles[i];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker;
+      d.innerHTML = '<span class="who">' + names[b.speaker] + "</span>" + buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+      thread.appendChild(d);
+    }
+    if (idx < bubbles.length) {
+      const b = bubbles[idx];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker + " active-bubble";
+      d.innerHTML = '<span class="who">' + names[b.speaker] + "</span>" + buildBubbleHtml(b.parts, activeValue, activeMode);
+      thread.appendChild(d);
+    }
+    thread.scrollTop = thread.scrollHeight;
+  }
+  function renderChoices(options) {
+    choices.innerHTML = "";
+    options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button"; btn.className = "choice"; btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (locked) return;
+        selected = opt;
+        [...choices.children].forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        if (idx < bubbles.length) renderThread(opt, null);
+        btnCheck.disabled = false;
+      });
+      choices.appendChild(btn);
+    });
+  }
+  function render() {
+    selected = null; locked = false; toast.hidden = true; btnNext.hidden = true; btnCheck.disabled = true; btnClear.disabled = false;
+    renderDots();
+    if (idx < bubbles.length) {
+      phaseChip.textContent = (idx + 1) + " / " + bubbles.length;
+      phaseChip.className = "chip sky";
+      qLabel.innerHTML = "Fill the blank in " + names[bubbles[idx].speaker] + "’s message" + (bubbles[idx].hard ? ' <span class="hard-badge">Harder</span>' : "");
+      renderThread(null); renderChoices(bubbles[idx].options);
+    } else {
+      phaseChip.textContent = "Inference"; phaseChip.className = "chip coral";
+      qLabel.textContent = endQ.q; thread.innerHTML = "";
+      bubbles.forEach((b, i) => {
+        const d = document.createElement("div");
+        d.className = "bubble " + b.speaker;
+        d.innerHTML = '<span class="who">' + names[b.speaker] + "</span>" + buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+        thread.appendChild(d);
+      });
+      renderChoices(endQ.options);
+      [...choices.children].forEach((c) => c.classList.add("block"));
+    }
+  }
+  btnClear.addEventListener("click", () => {
+    if (locked) return;
+    selected = null;
+    [...choices.children].forEach((c) => c.classList.remove("selected"));
+    if (idx < bubbles.length) renderThread(null);
+    btnCheck.disabled = true; toast.hidden = true;
+  });
+  btnCheck.addEventListener("click", () => {
+    if (!selected || locked) return;
+    locked = true;
+    const isBubble = idx < bubbles.length;
+    const answer = isBubble ? bubbles[idx].answer : endQ.answer;
+    const explain = isBubble ? bubbles[idx].explain : endQ.explain;
+    const ok = selected === answer;
+    [...choices.children].forEach((c) => {
+      c.disabled = true;
+      if (c.textContent === answer) c.classList.add("correct");
+      else if (c.textContent === selected && !ok) c.classList.add("wrong");
+    });
+    if (ok) { correctCount++; showToast(toast, "Yes!", explain, "ok"); if (isBubble) { filled[idx] = answer; renderThread(answer, "ok"); } }
+    else { showToast(toast, "Answer: " + answer, explain, "bad"); if (isBubble) { filled[idx] = answer; renderThread(answer, "soft"); } }
+    btnCheck.disabled = true; btnClear.disabled = true; btnNext.hidden = false;
+    if (isBubble) btnNext.textContent = idx === bubbles.length - 1 ? "Inference question" : "Next bubble";
+    else btnNext.textContent = "Finish";
+  });
+  btnNext.addEventListener("click", () => {
+    if (idx >= bubbles.length) {
+      if (!forced) localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      document.getElementById("game").hidden = true;
+      document.getElementById("done").hidden = false;
+      document.getElementById("score-big").textContent = correctCount + " / " + totalDots;
+      return;
+    }
+    idx++; render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

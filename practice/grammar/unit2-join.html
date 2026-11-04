@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Join the sentences · Unit 2 Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="grammar.css?v=25"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="unit2-hub.html">← Unit 2 hub</a>
+  <h1>Join the sentences</h1>
+  <p class="sub">Combine with will / so that</p>
+</header>
+<main class="wrap">
+  <div class="toolbar">
+    <span class="chip pink" id="q-num">1 / 6</span>
+    <div class="progress-dots" id="dots" aria-label="Progress"></div>
+  </div>
+
+  <div class="panel" id="game">
+    <div class="illust pink" style="max-width:180px;aspect-ratio:1.2">
+      <img src="illust/u2_03_flood.png" alt=""/>
+    </div>
+    <p class="hint-soft">Read A and B. Tap <strong>will</strong> or <strong>so that</strong> to join — no typing.</p>
+    <p class="section-label">Sentences</p>
+    <div class="join-plain" id="pair" aria-label="Sentences to join (display only)"></div>
+    <p class="section-label">Join with</p>
+    <div class="choices" id="choices"></div>
+    <div class="join-result" id="result-wrap" hidden>
+      <p class="section-label" id="result-label">Joined sentence</p>
+      <div class="join-preview" id="preview" aria-live="polite"></div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+      <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
+      <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
+    </div>
+    <div class="toast" id="toast" hidden></div>
+  </div>
+
+  <div class="panel result-card" id="done" hidden>
+    <h2>Join complete</h2>
+    <p class="big" id="score-big">0</p>
+    <p>correct sentences</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" id="btn-again" href="unit2-join.html">Play again</a>
+      <a class="btn btn-ghost" href="unit2-hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
+     Students (no ?set=): silent rotate via localStorage key u2-join-set-i — index starts at 0,
+     advances +1 when a run finishes so the next visit uses the next authored set. */
+  const FB = { ok: "illust/feedback-ok.png", bad: "illust/feedback-bad.png" };
+  function showToast(el, title, explain, kind) {
+    el.className = "toast toast-feedback has-art " + kind;
+    el.innerHTML =
+      '<img class="toast-art" src="' + FB[kind === "ok" ? "ok" : "bad"] + '" alt=""/>' +
+      '<div class="toast-body"><div class="toast-title"></div><div class="toast-explain"></div></div>';
+    el.querySelector(".toast-title").textContent = title;
+    el.querySelector(".toast-explain").textContent = explain || "";
+    el.hidden = false;
+  }
+
+  const choiceOpts = ["will","so that"];
+
+  const set1Data = {
+  "items": [
+    {
+      "a": "We packed bottled water.",
+      "b": "Families could drink clean water after the flood.",
+      "answer": "so that",
+      "preview": [
+        "We packed bottled water ",
+        "REL",
+        " families could drink clean water after the flood."
+      ],
+      "full": "We packed bottled water so that families could drink clean water after the flood."
+    },
+    {
+      "a": "If a typhoon comes,",
+      "b": "the strong wind ____ blow down a lot of trees.",
+      "answer": "will",
+      "preview": [
+        "If a typhoon comes, the strong wind ",
+        "REL",
+        " blow down a lot of trees."
+      ],
+      "full": "If a typhoon comes, the strong wind will blow down a lot of trees."
+    },
+    {
+      "a": "The school held a donation drive.",
+      "b": "Students could give food to people in need.",
+      "answer": "so that",
+      "preview": [
+        "The school held a donation drive ",
+        "REL",
+        " students could give food to people in need."
+      ],
+      "full": "The school held a donation drive so that students could give food to people in need."
+    },
+    {
+      "a": "If villagers drink dirty water,",
+      "b": "they ____ get sick easily.",
+      "answer": "will",
+      "preview": [
+        "If villagers drink dirty water, they ",
+        "REL",
+        " get sick easily."
+      ],
+      "full": "If villagers drink dirty water, they will get sick easily."
+    },
+    {
+      "hard": true,
+      "a": "Rescuers used loudspeakers after the landslip warning.",
+      "b": "Villagers in the valley would hear every safety message clearly.",
+      "answer": "so that",
+      "preview": [
+        "Rescuers used loudspeakers after the landslip warning ",
+        "REL",
+        " villagers in the valley would hear every safety message clearly."
+      ],
+      "full": "Rescuers used loudspeakers after the landslip warning so that villagers in the valley would hear every safety message clearly."
+    },
+    {
+      "hard": true,
+      "a": "If rescue teams do not arrive soon,",
+      "b": "more people along the flooded road ____ need warm food and dry clothes.",
+      "answer": "will",
+      "preview": [
+        "If rescue teams do not arrive soon, more people along the flooded road ",
+        "REL",
+        " need warm food and dry clothes."
+      ],
+      "full": "If rescue teams do not arrive soon, more people along the flooded road will need warm food and dry clothes."
+    }
+  ]
+};
+
+  const set2Data = {
+  "items": [
+    {
+      "a": "Ken rubbed a tired helper’s shoulders.",
+      "b": "The helper could keep packing rescue kits.",
+      "answer": "so that",
+      "preview": [
+        "Ken rubbed a tired helper’s shoulders ",
+        "REL",
+        " the helper could keep packing rescue kits."
+      ],
+      "full": "Ken rubbed a tired helper’s shoulders so that the helper could keep packing rescue kits."
+    },
+    {
+      "a": "If aftershocks continue tomorrow,",
+      "b": "outdoor games ____ move into the cool hall.",
+      "answer": "will",
+      "preview": [
+        "If aftershocks continue tomorrow, outdoor games ",
+        "REL",
+        " move into the cool hall."
+      ],
+      "full": "If aftershocks continue tomorrow, outdoor games will move into the cool hall."
+    },
+    {
+      "a": "Helpers cleared broken bricks near the damaged houses.",
+      "b": "Families could walk past safely.",
+      "answer": "so that",
+      "preview": [
+        "Helpers cleared broken bricks near the damaged houses ",
+        "REL",
+        " families could walk past safely."
+      ],
+      "full": "Helpers cleared broken bricks near the damaged houses so that families could walk past safely."
+    },
+    {
+      "a": "If clean water returns to the taps this week,",
+      "b": "families ____ cook warm meals at home again.",
+      "answer": "will",
+      "preview": [
+        "If clean water returns to the taps this week, families ",
+        "REL",
+        " cook warm meals at home again."
+      ],
+      "full": "If clean water returns to the taps this week, families will cook warm meals at home again."
+    },
+    {
+      "hard": true,
+      "a": "Tom packed a first-aid kit for the quake help day.",
+      "b": "Helpers could treat anyone who was hurt.",
+      "answer": "so that",
+      "preview": [
+        "Tom packed a first-aid kit for the quake help day ",
+        "REL",
+        " helpers could treat anyone who was hurt."
+      ],
+      "full": "Tom packed a first-aid kit for the quake help day so that helpers could treat anyone who was hurt."
+    },
+    {
+      "hard": true,
+      "a": "If a tsunami warning sounds during the coastal safety talk,",
+      "b": "families ____ move to higher ground at once.",
+      "answer": "will",
+      "preview": [
+        "If a tsunami warning sounds during the coastal safety talk, families ",
+        "REL",
+        " move to higher ground at once."
+      ],
+      "full": "If a tsunami warning sounds during the coastal safety talk, families will move to higher ground at once."
+    }
+  ]
+};
+
+const set3Data = {
+  "items": [
+    {
+      "a": "Volunteers packed orange life jackets for the shelter.",
+      "b": "Every family near the wet exit could stay safe.",
+      "answer": "so that",
+      "preview": [
+        "Volunteers packed orange life jackets for the shelter ",
+        "REL",
+        " every family near the wet exit could stay safe."
+      ],
+      "full": "Volunteers packed orange life jackets for the shelter so that every family near the wet exit could stay safe."
+    },
+    {
+      "a": "If Signal 8 rises this afternoon,",
+      "b": "Class 6A ____ open the school hall as a typhoon shelter.",
+      "answer": "will",
+      "preview": [
+        "If Signal 8 rises this afternoon, Class 6A ",
+        "REL",
+        " open the school hall as a typhoon shelter."
+      ],
+      "full": "If Signal 8 rises this afternoon, Class 6A will open the school hall as a typhoon shelter."
+    },
+    {
+      "a": "Helpers cleared wet bricks near the hall doors.",
+      "b": "Families could walk safely into the shelter.",
+      "answer": "so that",
+      "preview": [
+        "Helpers cleared wet bricks near the hall doors ",
+        "REL",
+        " families could walk safely into the shelter."
+      ],
+      "full": "Helpers cleared wet bricks near the hall doors so that families could walk safely into the shelter."
+    },
+    {
+      "a": "If the shelter taps stay clear tonight,",
+      "b": "volunteers ____ fill clean bottles for every family.",
+      "answer": "will",
+      "preview": [
+        "If the shelter taps stay clear tonight, volunteers ",
+        "REL",
+        " fill clean bottles for every family."
+      ],
+      "full": "If the shelter taps stay clear tonight, volunteers will fill clean bottles for every family."
+    },
+    {
+      "hard": true,
+      "a": "Amy packed extra bandages for the flood shelter nurses.",
+      "b": "They could treat wet cuts quickly.",
+      "answer": "so that",
+      "preview": [
+        "Amy packed extra bandages for the flood shelter nurses ",
+        "REL",
+        " they could treat wet cuts quickly."
+      ],
+      "full": "Amy packed extra bandages for the flood shelter nurses so that they could treat wet cuts quickly."
+    },
+    {
+      "hard": true,
+      "a": "If a coastal flood warning sounds during shelter hours,",
+      "b": "families ____ move upstairs to the dry floor at once.",
+      "answer": "will",
+      "preview": [
+        "If a coastal flood warning sounds during shelter hours, families ",
+        "REL",
+        " move upstairs to the dry floor at once."
+      ],
+      "full": "If a coastal flood warning sounds during shelter hours, families will move upstairs to the dry floor at once."
+    }
+  ]
+};
+
+  const set4Data = {
+  "items": [
+    {
+      "a": "Helpers stacked beige sandbags along the gentle slope.",
+      "b": "The soft soil could stay firm after weekend rain.",
+      "answer": "so that",
+      "preview": [
+        "Helpers stacked beige sandbags along the gentle slope ",
+        "REL",
+        " the soft soil could stay firm after weekend rain."
+      ],
+      "full": "Helpers stacked beige sandbags along the gentle slope so that the soft soil could stay firm after weekend rain."
+    },
+    {
+      "a": "If heavy rain returns this afternoon,",
+      "b": "Class 6A ____ move the slope-safety drills into the covered walkway.",
+      "answer": "will",
+      "preview": [
+        "If heavy rain returns this afternoon, Class 6A ",
+        "REL",
+        " move the slope-safety drills into the covered walkway."
+      ],
+      "full": "If heavy rain returns this afternoon, Class 6A will move the slope-safety drills into the covered walkway."
+    },
+    {
+      "a": "Helpers cleared loose soil near the school steps.",
+      "b": "Families could walk the hillside path safely.",
+      "answer": "so that",
+      "preview": [
+        "Helpers cleared loose soil near the school steps ",
+        "REL",
+        " families could walk the hillside path safely."
+      ],
+      "full": "Helpers cleared loose soil near the school steps so that families could walk the hillside path safely."
+    },
+    {
+      "a": "If the sandbags hold overnight after the practice,",
+      "b": "helpers ____ check the lower garden path at sunrise.",
+      "answer": "will",
+      "preview": [
+        "If the sandbags hold overnight after the practice, helpers ",
+        "REL",
+        " check the lower garden path at sunrise."
+      ],
+      "full": "If the sandbags hold overnight after the practice, helpers will check the lower garden path at sunrise."
+    },
+    {
+      "hard": true,
+      "a": "Amy packed bright yellow helmets for the hillside helpers.",
+      "b": "They could stay safe near the cracked slope.",
+      "answer": "so that",
+      "preview": [
+        "Amy packed bright yellow helmets for the hillside helpers ",
+        "REL",
+        " they could stay safe near the cracked slope."
+      ],
+      "full": "Amy packed bright yellow helmets for the hillside helpers so that they could stay safe near the cracked slope."
+    },
+    {
+      "hard": true,
+      "a": "If the yellow safety whistle blows for the landslip drill,",
+      "b": "Class 6A ____ gather on the painted safe line at once.",
+      "answer": "will",
+      "preview": [
+        "If the yellow safety whistle blows for the landslip drill, Class 6A ",
+        "REL",
+        " gather on the painted safe line at once."
+      ],
+      "full": "If the yellow safety whistle blows for the landslip drill, Class 6A will gather on the painted safe line at once."
+    }
+  ]
+};
+
+  const set5Data = {
+  "items": [
+    {
+      "a": "Helpers packed spare batteries and small radios.",
+      "b": "Every neighbour could hear evening news updates.",
+      "answer": "so that",
+      "preview": [
+        "Helpers packed spare batteries and small radios ",
+        "REL",
+        " every neighbour could hear evening news updates."
+      ],
+      "full": "Helpers packed spare batteries and small radios so that every neighbour could hear evening news updates."
+    },
+    {
+      "a": "If the power cut lasts past dinner,",
+      "b": "Class 6A ____ open the school hall as a quiet help station.",
+      "answer": "will",
+      "preview": [
+        "If the power cut lasts past dinner, Class 6A ",
+        "REL",
+        " open the school hall as a quiet help station."
+      ],
+      "full": "If the power cut lasts past dinner, Class 6A will open the school hall as a quiet help station."
+    },
+    {
+      "a": "Helpers cleared schoolbags from the stair landings.",
+      "b": "Neighbours could walk safely in the dark.",
+      "answer": "so that",
+      "preview": [
+        "Helpers cleared schoolbags from the stair landings ",
+        "REL",
+        " neighbours could walk safely in the dark."
+      ],
+      "full": "Helpers cleared schoolbags from the stair landings so that neighbours could walk safely in the dark."
+    },
+    {
+      "a": "If the hall radio stays clear tonight,",
+      "b": "volunteers ____ share warm updates for every family.",
+      "answer": "will",
+      "preview": [
+        "If the hall radio stays clear tonight, volunteers ",
+        "REL",
+        " share warm updates for every family."
+      ],
+      "full": "If the hall radio stays clear tonight, volunteers will share warm updates for every family."
+    },
+    {
+      "hard": true,
+      "a": "Amy packed soft blankets for chilly neighbours in the hall.",
+      "b": "They could rest warmly during the blackout.",
+      "answer": "so that",
+      "preview": [
+        "Amy packed soft blankets for chilly neighbours in the hall ",
+        "REL",
+        " they could rest warmly during the blackout."
+      ],
+      "full": "Amy packed soft blankets for chilly neighbours in the hall so that they could rest warmly during the blackout."
+    },
+    {
+      "hard": true,
+      "a": "If the green torch blinks three times for the blackout drill,",
+      "b": "Class 6A ____ gather on the painted safe line at once.",
+      "answer": "will",
+      "preview": [
+        "If the green torch blinks three times for the blackout drill, Class 6A ",
+        "REL",
+        " gather on the painted safe line at once."
+      ],
+      "full": "If the green torch blinks three times for the blackout drill, Class 6A will gather on the painted safe line at once."
+    }
+  ]
+};
+
+  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  const SET_KEY = "u2-join-set-i";
+
+  function resolveSet() {
+    const q = parseInt(new URLSearchParams(location.search).get("set"), 10);
+    if (q >= 1 && q <= SETS.length) return { index: q - 1, forced: true };
+    let i = parseInt(localStorage.getItem(SET_KEY) || "0", 10);
+    if (isNaN(i) || i < 0) i = 0;
+    return { index: i % SETS.length, forced: false };
+  }
+
+  const resolved = resolveSet();
+  const setIndex = resolved.index;
+  const forced = resolved.forced;
+  const items = SETS[setIndex].items;
+  if (forced) {
+    document.getElementById("btn-again").href = "unit2-join.html?set=" + (setIndex + 1);
+  }
+
+  let idx = 0;
+  let selected = null;
+  let locked = false;
+  let correctCount = 0;
+
+  const qNum = document.getElementById("q-num");
+  const dots = document.getElementById("dots");
+  const pair = document.getElementById("pair");
+  const preview = document.getElementById("preview");
+  const resultWrap = document.getElementById("result-wrap");
+  const resultLabel = document.getElementById("result-label");
+  const choices = document.getElementById("choices");
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnClear = document.getElementById("btn-clear");
+  const toast = document.getElementById("toast");
+
+  function renderDots() {
+    dots.innerHTML = "";
+    items.forEach((_, i) => {
+      const s = document.createElement("span");
+      if (i < idx) s.className = "done";
+      else if (i === idx) s.className = "now";
+      dots.appendChild(s);
+    });
+  }
+
+  function renderPreview(val, mode) {
+    const item = items[idx];
+    let html = "";
+    const shownRaw = val || null;
+    item.preview.forEach((p) => {
+      if (p === "REL") {
+        let shown = "____";
+        if (shownRaw) {
+          if (item.fillMap && item.fillMap[shownRaw]) shown = item.fillMap[shownRaw];
+          else shown = shownRaw;
+        }
+        let cls = "rel";
+        if (shownRaw) {
+          if (mode === "ok") cls = "rel ok";
+          else if (mode === "soft") cls = "rel soft";
+          else cls = "rel filled";
+        }
+        html += '<span class="' + cls + '">' + shown + "</span>";
+      } else html += p;
+    });
+    preview.innerHTML = html;
+  }
+
+  function showSoftJoin(val) {
+    resultWrap.hidden = false;
+    resultLabel.textContent = "Joined (preview)";
+    renderPreview(val);
+  }
+
+  function showFullJoin(val, mode) {
+    resultWrap.hidden = false;
+    resultLabel.textContent = "Joined sentence";
+    renderPreview(val, mode);
+  }
+
+  function hideJoin() {
+    resultWrap.hidden = true;
+    preview.innerHTML = "";
+  }
+
+  function render() {
+    const item = items[idx];
+    locked = false;
+    selected = null;
+    qNum.innerHTML = (idx + 1) + " / " + items.length + (item.hard ? ' <span class="hard-badge">Harder</span>' : "");
+    toast.hidden = true;
+    btnNext.hidden = true;
+    btnCheck.disabled = true;
+    btnClear.disabled = false;
+    renderDots();
+    pair.innerHTML =
+      '<p class="join-line">A. ' + item.a + "</p>" +
+      '<p class="join-line">B. ' + item.b + "</p>";
+    hideJoin();
+    choices.innerHTML = "";
+    choiceOpts.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (locked) return;
+        selected = opt;
+        [...choices.children].forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        showSoftJoin(opt);
+        btnCheck.disabled = false;
+      });
+      choices.appendChild(btn);
+    });
+  }
+
+  btnClear.addEventListener("click", () => {
+    if (locked) return;
+    selected = null;
+    [...choices.children].forEach((c) => c.classList.remove("selected"));
+    hideJoin();
+    btnCheck.disabled = true;
+    toast.hidden = true;
+  });
+
+  btnCheck.addEventListener("click", () => {
+    if (!selected || locked) return;
+    locked = true;
+    const item = items[idx];
+    const ok = selected === item.answer;
+    [...choices.children].forEach((c) => {
+      c.disabled = true;
+      if (c.textContent === item.answer) c.classList.add("correct");
+      else if (c.textContent === selected && !ok) c.classList.add("wrong");
+    });
+    if (ok) {
+      correctCount++;
+      showFullJoin(item.answer, "ok");
+      showToast(toast, "Perfect!", item.full, "ok");
+    } else {
+      showFullJoin(item.answer, "soft");
+      showToast(toast, "Try this", item.full, "bad");
+    }
+    btnCheck.disabled = true;
+    btnClear.disabled = true;
+    btnNext.hidden = false;
+    btnNext.textContent = idx === items.length - 1 ? "Finish" : "Next";
+  });
+
+  btnNext.addEventListener("click", () => {
+    if (idx >= items.length - 1) {
+      if (!forced) {
+        localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      }
+      document.getElementById("game").hidden = true;
+      document.getElementById("done").hidden = false;
+      document.getElementById("score-big").textContent = correctCount + " / " + items.length;
+      return;
+    }
+    idx++;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

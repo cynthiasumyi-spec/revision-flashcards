@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Join the sentences · Unit 3 Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="grammar.css?v=25"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="unit3-hub.html">← Unit 3 hub</a>
+  <h1>Join the sentences</h1>
+  <p class="sub">Combine with Although / after / before</p>
+</header>
+<main class="wrap">
+  <div class="toolbar">
+    <span class="chip pink" id="q-num">1 / 6</span>
+    <div class="progress-dots" id="dots" aria-label="Progress"></div>
+  </div>
+  <div class="panel" id="game">
+    <div class="illust pink" style="max-width:180px;aspect-ratio:1.2"><img src="illust/u3_mix.png" alt=""/></div>
+    <p class="hint-soft">Read A and B. Tap <strong>Although</strong>, <strong>after</strong> or <strong>before</strong> to join — no typing.</p>
+    <p class="section-label">Sentences</p>
+    <div class="join-plain" id="pair" aria-label="Sentences to join (display only)"></div>
+    <p class="section-label">Join with</p>
+    <div class="choices" id="choices"></div>
+    <div class="join-result" id="result-wrap" hidden>
+      <p class="section-label" id="result-label">Joined sentence</p>
+      <div class="join-preview" id="preview" aria-live="polite"></div>
+    </div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+      <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
+      <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
+    </div>
+    <div class="toast" id="toast" hidden></div>
+  </div>
+  <div class="panel result-card" id="done" hidden>
+    <h2>Join complete</h2>
+    <p class="big" id="score-big">0</p>
+    <p>correct sentences</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" id="btn-again" href="unit3-join.html">Play again</a>
+      <a class="btn btn-ghost" href="unit3-hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen. */
+  const FB = { ok: "illust/feedback-ok.png", bad: "illust/feedback-bad.png" };
+  function showToast(el, title, explain, kind) {
+    el.className = "toast toast-feedback has-art " + kind;
+    el.innerHTML =
+      '<img class="toast-art" src="' + FB[kind === "ok" ? "ok" : "bad"] + '" alt=""/>' +
+      '<div class="toast-body"><div class="toast-title"></div><div class="toast-explain"></div></div>';
+    el.querySelector(".toast-title").textContent = title;
+    el.querySelector(".toast-explain").textContent = explain || "";
+    el.hidden = false;
+  }
+  const choiceOpts = ["Although","after","before"];
+  const set1Data = {
+  "items": [
+    {
+      "a": "The dough looked sticky.",
+      "b": "Mia kept stirring it carefully.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the dough looked sticky, Mia kept stirring it carefully."
+      ],
+      "full": "Although the dough looked sticky, Mia kept stirring it carefully."
+    },
+    {
+      "a": "Wash your hands.",
+      "b": "Then chop any vegetables.",
+      "answer": "before",
+      "preview": [
+        "Wash your hands ",
+        "REL",
+        " you chop any vegetables."
+      ],
+      "full": "Wash your hands before you chop any vegetables."
+    },
+    {
+      "a": "Mix the butter and sugar.",
+      "b": "Then put the cake in the oven.",
+      "answer": "after",
+      "preview": [
+        "Put the cake in the oven ",
+        "REL",
+        " you mix the butter and sugar."
+      ],
+      "full": "Put the cake in the oven after you mix the butter and sugar."
+    },
+    {
+      "a": "The soup was a little salty.",
+      "b": "The judges liked it.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the soup was a little salty, the judges liked it."
+      ],
+      "full": "Although the soup was a little salty, the judges liked it."
+    },
+    {
+      "hard": true,
+      "a": "Ken chopped the onions carefully.",
+      "b": "Tears still came to his eyes.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " Ken chopped the onions carefully, tears still came to his eyes."
+      ],
+      "full": "Although Ken chopped the onions carefully, tears still came to his eyes."
+    },
+    {
+      "hard": true,
+      "a": "Finish cooking the dumplings.",
+      "b": "Then clean the steamer for the next class.",
+      "answer": "after",
+      "preview": [
+        "Clean the steamer for the next class ",
+        "REL",
+        " you finish cooking the dumplings."
+      ],
+      "full": "Clean the steamer for the next class after you finish cooking the dumplings."
+    }
+  ]
+};
+  const set2Data = {
+  "items": [
+    {
+      "a": "The porridge looked thicker than usual.",
+      "b": "Grandma Lee still asked for a second bowl.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the porridge looked thicker than usual, Grandma Lee still asked for a second bowl."
+      ],
+      "full": "Although the porridge looked thicker than usual, Grandma Lee still asked for a second bowl."
+    },
+    {
+      "a": "Heat the frying pan.",
+      "b": "Then fry the vegetables for the grandparents.",
+      "answer": "before",
+      "preview": [
+        "Heat the frying pan ",
+        "REL",
+        " you fry the vegetables for the grandparents."
+      ],
+      "full": "Heat the frying pan before you fry the vegetables for the grandparents."
+    },
+    {
+      "a": "Slice the bananas for topping.",
+      "b": "Then spread butter on the toast.",
+      "answer": "after",
+      "preview": [
+        "Spread butter on the toast ",
+        "REL",
+        " you slice the bananas for topping."
+      ],
+      "full": "Spread butter on the toast after you slice the bananas for topping."
+    },
+    {
+      "a": "The tea smelled a little strong.",
+      "b": "The grandparents sipped it happily.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the tea smelled a little strong, the grandparents sipped it happily."
+      ],
+      "full": "Although the tea smelled a little strong, the grandparents sipped it happily."
+    },
+    {
+      "hard": true,
+      "a": "The sponge cake came out a little soft.",
+      "b": "The grandparents still clapped for the dessert table.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the sponge cake came out a little soft, the grandparents still clapped for the dessert table."
+      ],
+      "full": "Although the sponge cake came out a little soft, the grandparents still clapped for the dessert table."
+    },
+    {
+      "hard": true,
+      "a": "Peel the potatoes carefully.",
+      "b": "Then chop them for the salad.",
+      "answer": "after",
+      "preview": [
+        "Chop the potatoes for the salad ",
+        "REL",
+        " you peel them carefully."
+      ],
+      "full": "Chop the potatoes for the salad after you peel them carefully."
+    }
+  ]
+};
+const set3Data = {
+  "items": [
+    {
+      "a": "The chocolate batter looked thicker than usual.",
+      "b": "Mia kept stirring for the birthday cake.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the chocolate batter looked thicker than usual, Mia kept stirring for the birthday cake."
+      ],
+      "full": "Although the chocolate batter looked thicker than usual, Mia kept stirring for the birthday cake."
+    },
+    {
+      "a": "Chop the fruit for the Open Day fruit cups.",
+      "b": "____ you open the bake-sale stall.",
+      "answer": "before",
+      "preview": [
+        "Chop the fruit for the Open Day fruit cups ",
+        "REL",
+        " you open the bake-sale stall."
+      ],
+      "full": "Chop the fruit for the Open Day fruit cups before you open the bake-sale stall."
+    },
+    {
+      "a": "Slide the cookie trays onto the cooling rack.",
+      "b": "____ you bake them for Open Day.",
+      "answer": "after",
+      "preview": [
+        "Slide the cookie trays onto the cooling rack ",
+        "REL",
+        " you bake them for Open Day."
+      ],
+      "full": "Slide the cookie trays onto the cooling rack after you bake them for Open Day."
+    },
+    {
+      "a": "The glaze smells very sweet.",
+      "b": "Parents still smile at every cupcake.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the glaze smells very sweet, parents still smile at every cupcake."
+      ],
+      "full": "Although the glaze smells very sweet, parents still smile at every cupcake."
+    },
+    {
+      "hard": true,
+      "a": "The birthday icing set a little unevenly.",
+      "b": "Open Day visitors still lined up for a slice.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the birthday icing set a little unevenly, Open Day visitors still lined up for a slice."
+      ],
+      "full": "Although the birthday icing set a little unevenly, Open Day visitors still lined up for a slice."
+    },
+    {
+      "hard": true,
+      "a": "Plate the steamed vegetables for the healthy snack corner.",
+      "b": "____ the steamer finishes.",
+      "answer": "after",
+      "preview": [
+        "Plate the steamed vegetables for the healthy snack corner ",
+        "REL",
+        " the steamer finishes."
+      ],
+      "full": "Plate the steamed vegetables for the healthy snack corner after the steamer finishes."
+    }
+  ]
+};
+
+  const set4Data = {
+  "items": [
+    {
+      "a": "The picnic sandwiches look plain.",
+      "b": "Class 6A still smiles while spreading jam.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the picnic sandwiches look plain, Class 6A still smiles while spreading jam."
+      ],
+      "full": "Although the picnic sandwiches look plain, Class 6A still smiles while spreading jam."
+    },
+    {
+      "a": "Chop the fruit for the Sports Day fruit cups.",
+      "b": "____ you pack the picnic trays.",
+      "answer": "before",
+      "preview": [
+        "Chop the fruit for the Sports Day fruit cups ",
+        "REL",
+        " you pack the picnic trays."
+      ],
+      "full": "Chop the fruit for the Sports Day fruit cups before you pack the picnic trays."
+    },
+    {
+      "a": "Wrap each Sports Day sandwich.",
+      "b": "____ you spread the filling.",
+      "answer": "after",
+      "preview": [
+        "Wrap each Sports Day sandwich ",
+        "REL",
+        " you spread the filling."
+      ],
+      "full": "Wrap each Sports Day sandwich after you spread the filling."
+    },
+    {
+      "a": "A little juice drips on the tray.",
+      "b": "Helpers still laugh at every fruit cup.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " a little juice drips on the tray, helpers still laugh at every fruit cup."
+      ],
+      "full": "Although a little juice drips on the tray, helpers still laugh at every fruit cup."
+    },
+    {
+      "hard": true,
+      "a": "The picnic bread felt a little dry.",
+      "b": "Mia kept buttering steadily for Sports Day.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the picnic bread felt a little dry, Mia kept buttering steadily for Sports Day."
+      ],
+      "full": "Although the picnic bread felt a little dry, Mia kept buttering steadily for Sports Day."
+    },
+    {
+      "hard": true,
+      "a": "Load the purple lunch trays for the Sports Day picnic.",
+      "b": "____ the sandwiches and fruit cups are ready.",
+      "answer": "after",
+      "preview": [
+        "Load the purple lunch trays for the Sports Day picnic ",
+        "REL",
+        " the sandwiches and fruit cups are ready."
+      ],
+      "full": "Load the purple lunch trays for the Sports Day picnic after the sandwiches and fruit cups are ready."
+    }
+  ]
+};
+
+  const set5Data = {
+  "items": [
+    {
+      "a": "The yoghurt looks a little thin.",
+      "b": "Mia keeps stirring for the breakfast tasting.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the yoghurt looks a little thin, Mia keeps stirring for the breakfast tasting."
+      ],
+      "full": "Although the yoghurt looks a little thin, Mia keeps stirring for the breakfast tasting."
+    },
+    {
+      "a": "Chop the bananas for the yoghurt cups.",
+      "b": "____ you open the Healthy Breakfast Club stall.",
+      "answer": "before",
+      "preview": [
+        "Chop the bananas for the yoghurt cups ",
+        "REL",
+        " you open the Healthy Breakfast Club stall."
+      ],
+      "full": "Chop the bananas for the yoghurt cups before you open the Healthy Breakfast Club stall."
+    },
+    {
+      "a": "Slide the golden pancakes onto the plate.",
+      "b": "____ you flip them for Breakfast Club.",
+      "answer": "after",
+      "preview": [
+        "Slide the golden pancakes onto the plate ",
+        "REL",
+        " you flip them for Breakfast Club."
+      ],
+      "full": "Slide the golden pancakes onto the plate after you flip them for Breakfast Club."
+    },
+    {
+      "a": "The honey smells very sweet.",
+      "b": "Parents still smile at every pancake.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the honey smells very sweet, parents still smile at every pancake."
+      ],
+      "full": "Although the honey smells very sweet, parents still smile at every pancake."
+    },
+    {
+      "hard": true,
+      "a": "The milk foamed slowly for the cereal bowls.",
+      "b": "Mia kept whisking steadily for Breakfast Club.",
+      "answer": "Although",
+      "preview": [
+        "",
+        "REL",
+        " the milk foamed slowly for the cereal bowls, Mia kept whisking steadily for Breakfast Club."
+      ],
+      "full": "Although the milk foamed slowly for the cereal bowls, Mia kept whisking steadily for Breakfast Club."
+    },
+    {
+      "hard": true,
+      "a": "Pack the colourful fruit skewers for Breakfast Club.",
+      "b": "____ the berries and melon cubes are ready.",
+      "answer": "after",
+      "preview": [
+        "Pack the colourful fruit skewers for Breakfast Club ",
+        "REL",
+        " the berries and melon cubes are ready."
+      ],
+      "full": "Pack the colourful fruit skewers for Breakfast Club after the berries and melon cubes are ready."
+    }
+  ]
+};
+
+  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  const SET_KEY = "u3-join-set-i";
+  function resolveSet() {
+    const q = parseInt(new URLSearchParams(location.search).get("set"), 10);
+    if (q >= 1 && q <= SETS.length) return { index: q - 1, forced: true };
+    let i = parseInt(localStorage.getItem(SET_KEY) || "0", 10);
+    if (isNaN(i) || i < 0) i = 0;
+    return { index: i % SETS.length, forced: false };
+  }
+  const resolved = resolveSet();
+  const setIndex = resolved.index;
+  const forced = resolved.forced;
+  const items = SETS[setIndex].items;
+  if (forced) document.getElementById("btn-again").href = "unit3-join.html?set=" + (setIndex + 1);
+  let idx = 0, selected = null, locked = false, correctCount = 0;
+  const qNum = document.getElementById("q-num");
+  const dots = document.getElementById("dots");
+  const pair = document.getElementById("pair");
+  const preview = document.getElementById("preview");
+  const resultWrap = document.getElementById("result-wrap");
+  const resultLabel = document.getElementById("result-label");
+  const choices = document.getElementById("choices");
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnClear = document.getElementById("btn-clear");
+  const toast = document.getElementById("toast");
+  function renderDots() {
+    dots.innerHTML = "";
+    items.forEach((_, i) => {
+      const s = document.createElement("span");
+      if (i < idx) s.className = "done";
+      else if (i === idx) s.className = "now";
+      dots.appendChild(s);
+    });
+  }
+  function renderPreview(val, mode) {
+    const item = items[idx];
+    let html = "";
+    const shownRaw = val || null;
+    item.preview.forEach((p) => {
+      if (p === "REL") {
+        let shown = "____";
+        if (shownRaw) {
+          if (item.fillMap && item.fillMap[shownRaw]) shown = item.fillMap[shownRaw];
+          else shown = shownRaw;
+        }
+        let cls = "rel";
+        if (shownRaw) {
+          if (mode === "ok") cls = "rel ok";
+          else if (mode === "soft") cls = "rel soft";
+          else cls = "rel filled";
+        }
+        html += '<span class="' + cls + '">' + shown + "</span>";
+      } else html += p;
+    });
+    preview.innerHTML = html;
+  }
+  function showSoftJoin(val) { resultWrap.hidden = false; resultLabel.textContent = "Joined (preview)"; renderPreview(val); }
+  function showFullJoin(val, mode) { resultWrap.hidden = false; resultLabel.textContent = "Joined sentence"; renderPreview(val, mode); }
+  function hideJoin() { resultWrap.hidden = true; preview.innerHTML = ""; }
+  function render() {
+    const item = items[idx];
+    locked = false; selected = null;
+    qNum.innerHTML = (idx + 1) + " / " + items.length + (item.hard ? ' <span class="hard-badge">Harder</span>' : "");
+    toast.hidden = true; btnNext.hidden = true; btnCheck.disabled = true; btnClear.disabled = false;
+    renderDots();
+    pair.innerHTML = '<p class="join-line">A. ' + item.a + "</p>" + '<p class="join-line">B. ' + item.b + "</p>";
+    hideJoin(); choices.innerHTML = "";
+    choiceOpts.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button"; btn.className = "choice"; btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (locked) return;
+        selected = opt;
+        [...choices.children].forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        showSoftJoin(opt); btnCheck.disabled = false;
+      });
+      choices.appendChild(btn);
+    });
+  }
+  btnClear.addEventListener("click", () => {
+    if (locked) return;
+    selected = null;
+    [...choices.children].forEach((c) => c.classList.remove("selected"));
+    hideJoin(); btnCheck.disabled = true; toast.hidden = true;
+  });
+  btnCheck.addEventListener("click", () => {
+    if (!selected || locked) return;
+    locked = true;
+    const item = items[idx];
+    const ok = selected === item.answer;
+    [...choices.children].forEach((c) => {
+      c.disabled = true;
+      if (c.textContent === item.answer) c.classList.add("correct");
+      else if (c.textContent === selected && !ok) c.classList.add("wrong");
+    });
+    if (ok) { correctCount++; showFullJoin(item.answer, "ok"); showToast(toast, "Perfect!", item.full, "ok"); }
+    else { showFullJoin(item.answer, "soft"); showToast(toast, "Try this", item.full, "bad"); }
+    btnCheck.disabled = true; btnClear.disabled = true; btnNext.hidden = false;
+    btnNext.textContent = idx === items.length - 1 ? "Finish" : "Next";
+  });
+  btnNext.addEventListener("click", () => {
+    if (idx >= items.length - 1) {
+      if (!forced) localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      document.getElementById("game").hidden = true;
+      document.getElementById("done").hidden = false;
+      document.getElementById("score-big").textContent = correctCount + " / " + items.length;
+      return;
+    }
+    idx++; render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

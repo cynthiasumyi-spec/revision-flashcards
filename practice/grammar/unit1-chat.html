@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Chat Quest · Unit 1 Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="grammar.css?v=25"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="unit1-hub.html">← Unit 1 hub</a>
+  <h1>Chat Quest</h1>
+  <p class="sub" id="chat-sub">Mystery of the pink gift bag</p>
+</header>
+<main class="wrap">
+  <div class="toolbar">
+    <span class="chip sky" id="phase-chip">1 / 10</span>
+    <div class="progress-dots" id="dots" aria-label="Progress"></div>
+  </div>
+
+  <div class="panel" id="game">
+    <div class="illust sky chat-hero" style="max-width:none;width:100%;aspect-ratio:16/11;margin:0 0 0.85rem">
+      <img id="chat-hero" src="illust/u1_03_flags.jpg" alt="Flag Day volunteers"/>
+    </div>
+    <div class="chat-thread" id="thread"></div>
+
+    <div id="answer-block">
+      <p class="chat-reply-label" id="q-label">Fill the blank</p>
+      <div class="choices" id="choices"></div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
+        <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
+        <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
+      </div>
+      <div class="toast" id="toast" hidden></div>
+    </div>
+  </div>
+
+  <div class="panel result-card" id="done" hidden>
+    <h2>Chat quest complete</h2>
+    <p class="big" id="score-big">0</p>
+    <p>correct answers (10 blanks + 1 inference)</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary" id="btn-again" href="unit1-chat.html">Play again</a>
+      <a class="btn btn-ghost" href="unit1-hub.html">Hub</a>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
+     Students (no ?set=): silent rotate via localStorage key u1-chat-set-i — index starts at 0,
+     advances +1 when a run finishes so the next visit uses the next authored set. */
+  const FB = { ok: "illust/feedback-ok.png", bad: "illust/feedback-bad.png" };
+  function showToast(el, title, explain, kind) {
+    el.className = "toast toast-feedback has-art " + kind;
+    el.innerHTML =
+      '<img class="toast-art" src="' + FB[kind === "ok" ? "ok" : "bad"] + '" alt=""/>' +
+      '<div class="toast-body"><div class="toast-title"></div><div class="toast-explain"></div></div>';
+    el.querySelector(".toast-title").textContent = title;
+    el.querySelector(".toast-explain").textContent = explain || "";
+    el.hidden = false;
+  }
+
+  const set1Data = {
+    sub: "Mystery of the pink gift bag",
+    hero: "illust/u1_03_flags.jpg",
+    bubbles: [
+      {
+        speaker: "amy",
+        parts: ["Hi Tom! Flag Day is so busy. There are ", "____", " flags on our stall already!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Flags are countable → so many."
+      },
+      {
+        speaker: "tom",
+        parts: ["Yes! And look — ", "____", " people are waiting outside the MTR."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "People are countable → so many."
+      },
+      {
+        speaker: "amy",
+        parts: ["Miss Chan left a pink gift bag ", "____", " has a teddy bear sticker near our stall."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Bag = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["I saw it this morning. The volunteer ", "____", " was packing sweets put it there."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Volunteer = person → who."
+      },
+      {
+        speaker: "amy",
+        hard: true,
+        parts: ["But now it’s gone! We already collected ", "____", " money from the morning crowd outside the MTR, and I really hope the pink bag is still safe near Miss Chan’s desk."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so much",
+        explain: "Money is uncountable → so much."
+      },
+      {
+        speaker: "tom",
+        parts: ["Ken sold flags all morning. He is the boy ", "____", " never left the stall."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["What about May? She collected ", "____", " coins and then ran to the fair."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Coins are countable → so many."
+      },
+      {
+        speaker: "miss",
+        hard: true,
+        parts: ["Don’t worry, class. Before the first bell I asked Leo to carefully carry the pink gift bag ", "____", " we prepared last night for Sunny Elderly Home up to the school office."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Bag = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["Leo is the boy ", "____", " helps in the office every Friday."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Phew! So the bag is safe — and we still have ", "____", " raffle tickets to sell!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Tickets are countable → so many."
+      }
+    ],
+    endQ: {
+      q: "Who carried the pink gift bag to the school office?",
+      options: ["Ken", "May", "Leo", "Miss Chan"],
+      answer: "Leo",
+      explain: "Miss Chan asked Leo to carry the bag to the office."
+    }
+  };
+
+  const set2Data = {
+    sub: "Mystery of the yellow walkathon banner",
+    hero: "illust/u1_08_walkathon.jpg",
+    bubbles: [
+      {
+        speaker: "amy",
+        parts: ["Hi Tom! The walkathon starts soon. There are ", "____", " posters on the school gate!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Posters are countable → so many."
+      },
+      {
+        speaker: "tom",
+        parts: ["Wow. I also see ", "____", " water bottles next to the start line."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Bottles are countable → so many."
+      },
+      {
+        speaker: "amy",
+        parts: ["Miss Chan’s yellow banner ", "____", " we painted last week is missing from the hall!"],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Banner = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["The helper ", "____", " checked the storeroom this morning was May."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Helper = person → who."
+      },
+      {
+        speaker: "amy",
+        hard: true,
+        parts: ["We already spent ", "____", " time looking under the chairs near the fair stalls, and I still cannot find that bright yellow banner anywhere."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so much",
+        explain: "Time is uncountable → so much."
+      },
+      {
+        speaker: "tom",
+        parts: ["Ken is the boy ", "____", " carried the megaphone to the stage."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Look — there are ", "____", " empty boxes behind the raffle table!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Boxes are countable → so many."
+      },
+      {
+        speaker: "miss",
+        hard: true,
+        parts: ["Don’t panic. Before assembly I asked Sam to carefully hang the yellow walkathon banner ", "____", " our art club finished yesterday beside the main gate."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Banner = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["Sam is the classmate ", "____", " always arrives earliest on Flag Day."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Classmate = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Great! So the banner is up — and we still have ", "____", " raffle tickets to give out!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Tickets are countable → so many."
+      }
+    ],
+    endQ: {
+      q: "Who hung the yellow walkathon banner by the main gate?",
+      options: ["Ken", "May", "Sam", "Miss Chan"],
+      answer: "Sam",
+      explain: "Miss Chan asked Sam to hang the banner by the main gate."
+    }
+  };
+
+
+  const set3Data = {
+    sub: "Mystery of the missing donation tin",
+    hero: "illust/u1_09_fair.jpg",
+    bubbles: [
+      {
+        speaker: "amy",
+        parts: ["Hi Tom! The book fair is packed. There are ", "____", " story books stacked by the door!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Books are countable → so many."
+      },
+      {
+        speaker: "tom",
+        parts: ["I know! And look — ", "____", " families are waiting near the pet adoption corner."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Families are countable → so many."
+      },
+      {
+        speaker: "amy",
+        parts: ["Miss Chan’s red donation tin ", "____", " we filled this morning is missing from the desk!"],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Tin = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["The volunteer ", "____", " counted the coins before break was Rita."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Volunteer = person → who."
+      },
+      {
+        speaker: "amy",
+        hard: true,
+        parts: ["We already spent ", "____", " time searching under the book tables near the raffle shelf, and I still cannot find that shiny red tin anywhere."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so much",
+        explain: "Time is uncountable → so much."
+      },
+      {
+        speaker: "tom",
+        parts: ["Ken is the boy ", "____", " carried the raffle ticket book to the stage."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Look — there are ", "____", " empty jars behind the juice stall!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Jars are countable → so many."
+      },
+      {
+        speaker: "miss",
+        hard: true,
+        parts: ["Don’t worry. Before the lunch bell I asked Rita to carefully take the red donation tin ", "____", " Class 6A filled for Hope Care Centre up to the school office for counting."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Tin = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["Rita is the classmate ", "____", " always helps at the charity book fair."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Classmate = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Phew! So the tin is safe — and we still have ", "____", " adoption forms to give out!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Forms are countable → so many."
+      }
+    ],
+    endQ: {
+      q: "Who took the red donation tin to the school office?",
+      options: ["Ken", "Rita", "Leo", "Miss Chan"],
+      answer: "Rita",
+      explain: "Miss Chan asked Rita to take the tin to the office for counting."
+    }
+  };
+
+
+  const set4Data = {
+    sub: "Mystery of the blue lucky-draw ticket book",
+    hero: "illust/u1_s4_chat_hero.jpg",
+    bubbles: [
+      {
+        speaker: "amy",
+        parts: ["Hi Tom! The charity carnival is packed. There are ", "____", " colourful balloons by the gate!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Balloons are countable → so many."
+      },
+      {
+        speaker: "tom",
+        parts: ["I know! And look — ", "____", " children are lining up at the ring-toss!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Children are countable → so many."
+      },
+      {
+        speaker: "amy",
+        parts: ["Miss Chan’s blue lucky-draw ticket book ", "____", " we stamped this morning is missing from the prize table!"],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Ticket book = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["The helper ", "____", " checked the storeroom before lunch was Pat."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Helper = person → who."
+      },
+      {
+        speaker: "amy",
+        hard: true,
+        parts: ["We already spent ", "____", " time looking behind the lemonade counter near the prize wheel, and that blue ticket book is still nowhere in sight."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so much",
+        explain: "Time is uncountable → so much."
+      },
+      {
+        speaker: "tom",
+        parts: ["Leo is the boy ", "____", " sets up the bounce castle every carnival day."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Look — there are ", "____", " paper crowns beside the photo booth!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Crowns are countable → so many."
+      },
+      {
+        speaker: "miss",
+        hard: true,
+        parts: ["Don’t worry. Before the first game I asked Pat to carefully lock the blue lucky-draw ticket book ", "____", " Class 6A prepared for Bright Kids Hospital inside the school office safe."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Ticket book = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["Pat is the classmate ", "____", " always arrives early on carnival day."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Classmate = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Great! The ticket book is locked away — and we still have ", "____", " carnival stamps to hand out!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Stamps are countable → so many."
+      }
+    ],
+    endQ: {
+      q: "Who locked the blue lucky-draw ticket book in the school office?",
+      options: ["Ken", "Pat", "Amy", "Miss Chan"],
+      answer: "Pat",
+      explain: "Miss Chan asked Pat to lock the ticket book in the office safe."
+    }
+  };
+
+  const set5Data = {
+    sub: "Mystery of the purple price-sticker book",
+    hero: "illust/u1_s5_chat_hero.jpg",
+    bubbles: [
+      {
+        speaker: "amy",
+        parts: ["Hi Tom! The charity toy bazaar is packed. There are ", "____", " teddy bears on the long tables!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Teddy bears are countable → so many."
+      },
+      {
+        speaker: "tom",
+        parts: ["I know! And look — ", "____", " families are lining up at the sticker gate!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Families are countable → so many."
+      },
+      {
+        speaker: "amy",
+        parts: ["Miss Chan’s purple price-sticker book ", "____", " we printed this morning is missing from the sorting desk!"],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Sticker book = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["The helper ", "____", " checked the storeroom before lunch was Jess."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Helper = person → who."
+      },
+      {
+        speaker: "amy",
+        hard: true,
+        parts: ["We already spent ", "____", " time looking behind the cookie stall near the raffle shelf, and that purple sticker book is still nowhere in sight."],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so much",
+        explain: "Time is uncountable → so much."
+      },
+      {
+        speaker: "tom",
+        parts: ["Ken is the boy ", "____", " carries the donation box every bazaar day."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Boy = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Look — there are ", "____", " board games beside the sorting table!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Games are countable → so many."
+      },
+      {
+        speaker: "miss",
+        hard: true,
+        parts: ["Don’t worry. Before the first sale I asked Jess to carefully lock the purple price-sticker book ", "____", " Class 6A prepared for Warm Hearts Children’s Home inside the school office safe."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "which",
+        explain: "Sticker book = thing → which."
+      },
+      {
+        speaker: "tom",
+        parts: ["Jess is the classmate ", "____", " always arrives early on bazaar day."],
+        options: ["who", "which", "so many", "so much"],
+        answer: "who",
+        explain: "Classmate = person → who."
+      },
+      {
+        speaker: "amy",
+        parts: ["Great! The sticker book is locked away — and we still have ", "____", " thank-you cards to hand out!"],
+        options: ["so many", "so much", "who", "which"],
+        answer: "so many",
+        explain: "Cards are countable → so many."
+      }
+    ],
+    endQ: {
+      q: "Who locked the purple price-sticker book in the school office?",
+      options: ["Ken", "Jess", "Amy", "Miss Chan"],
+      answer: "Jess",
+      explain: "Miss Chan asked Jess to lock the sticker book in the office safe."
+    }
+  };
+
+  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  const SET_KEY = "u1-chat-set-i";
+
+  function resolveSet() {
+    const q = parseInt(new URLSearchParams(location.search).get("set"), 10);
+    if (q >= 1 && q <= SETS.length) return { index: q - 1, forced: true };
+    let i = parseInt(localStorage.getItem(SET_KEY) || "0", 10);
+    if (isNaN(i) || i < 0) i = 0;
+    return { index: i % SETS.length, forced: false };
+  }
+
+  const resolved = resolveSet();
+  const setIndex = resolved.index;
+  const forced = resolved.forced;
+  const activeSet = SETS[setIndex];
+  const bubbles = activeSet.bubbles;
+  const endQ = activeSet.endQ;
+  document.getElementById("chat-sub").textContent = activeSet.sub;
+  document.getElementById("chat-hero").src = activeSet.hero;
+  if (forced) {
+    document.getElementById("btn-again").href = "unit1-chat.html?set=" + (setIndex + 1);
+  }
+
+  const names = { amy: "Amy", tom: "Tom", miss: "Miss Chan" };
+  const totalDots = bubbles.length + 1;
+  let idx = 0;
+  let selected = null;
+  let locked = false;
+  let correctCount = 0;
+  let filled = [];
+
+  const thread = document.getElementById("thread");
+  const choices = document.getElementById("choices");
+  const phaseChip = document.getElementById("phase-chip");
+  const dots = document.getElementById("dots");
+  const btnCheck = document.getElementById("btn-check");
+  const btnNext = document.getElementById("btn-next");
+  const btnClear = document.getElementById("btn-clear");
+  const toast = document.getElementById("toast");
+  const qLabel = document.getElementById("q-label");
+
+  function buildBubbleHtml(parts, value, mode) {
+    let html = "";
+    let bi = 0;
+    parts.forEach((p) => {
+      if (p === "____") {
+        const v = value != null ? value : "____";
+        let cls = "blank";
+        if (value != null) {
+          if (mode === "ok") cls = "blank ok";
+          else if (mode === "soft") cls = "blank soft-answer";
+          else if (mode === "done") cls = "blank ok";
+          else cls = "blank filled";
+        }
+        html += '<span class="' + cls + '">' + v + "</span>";
+        bi++;
+      } else html += p;
+    });
+    return html;
+  }
+
+  function renderDots() {
+    dots.innerHTML = "";
+    for (let i = 0; i < totalDots; i++) {
+      const s = document.createElement("span");
+      if (i < idx) s.className = "done";
+      else if (i === idx) s.className = "now";
+      dots.appendChild(s);
+    }
+  }
+
+  function renderThread(activeValue, activeMode) {
+    thread.innerHTML = "";
+    for (let i = 0; i < idx && i < bubbles.length; i++) {
+      const b = bubbles[i];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker;
+      d.innerHTML =
+        '<span class="who">' + names[b.speaker] + "</span>" +
+        buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+      thread.appendChild(d);
+    }
+    if (idx < bubbles.length) {
+      const b = bubbles[idx];
+      const d = document.createElement("div");
+      d.className = "bubble " + b.speaker + " active-bubble";
+      d.innerHTML =
+        '<span class="who">' + names[b.speaker] + "</span>" +
+        buildBubbleHtml(b.parts, activeValue, activeMode);
+      thread.appendChild(d);
+    }
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function renderChoices(options) {
+    choices.innerHTML = "";
+    options.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", () => {
+        if (locked) return;
+        selected = opt;
+        [...choices.children].forEach((c) => c.classList.remove("selected"));
+        btn.classList.add("selected");
+        if (idx < bubbles.length) renderThread(opt, null);
+        btnCheck.disabled = false;
+      });
+      choices.appendChild(btn);
+    });
+  }
+
+  function render() {
+    selected = null;
+    locked = false;
+    toast.hidden = true;
+    btnNext.hidden = true;
+    btnCheck.disabled = true;
+    btnClear.disabled = false;
+    renderDots();
+
+    if (idx < bubbles.length) {
+      phaseChip.textContent = (idx + 1) + " / " + bubbles.length;
+      phaseChip.className = "chip sky";
+      qLabel.innerHTML = "Fill the blank in " + names[bubbles[idx].speaker] + "’s message" + (bubbles[idx].hard ? ' <span class="hard-badge">Harder</span>' : "");
+      renderThread(null);
+      renderChoices(bubbles[idx].options);
+    } else {
+      phaseChip.textContent = "Inference";
+      phaseChip.className = "chip coral";
+      qLabel.textContent = endQ.q;
+      thread.innerHTML = "";
+      bubbles.forEach((b, i) => {
+        const d = document.createElement("div");
+        d.className = "bubble " + b.speaker;
+        d.innerHTML =
+          '<span class="who">' + names[b.speaker] + "</span>" +
+          buildBubbleHtml(b.parts, filled[i] || b.answer, "done");
+        thread.appendChild(d);
+      });
+      renderChoices(endQ.options);
+      [...choices.children].forEach((c) => c.classList.add("block"));
+    }
+  }
+
+  btnClear.addEventListener("click", () => {
+    if (locked) return;
+    selected = null;
+    [...choices.children].forEach((c) => c.classList.remove("selected"));
+    if (idx < bubbles.length) renderThread(null);
+    btnCheck.disabled = true;
+    toast.hidden = true;
+  });
+
+  btnCheck.addEventListener("click", () => {
+    if (!selected || locked) return;
+    locked = true;
+    const isBubble = idx < bubbles.length;
+    const answer = isBubble ? bubbles[idx].answer : endQ.answer;
+    const explain = isBubble ? bubbles[idx].explain : endQ.explain;
+    const ok = selected === answer;
+    [...choices.children].forEach((c) => {
+      c.disabled = true;
+      if (c.textContent === answer) c.classList.add("correct");
+      else if (c.textContent === selected && !ok) c.classList.add("wrong");
+    });
+    if (ok) {
+      correctCount++;
+      showToast(toast, "Yes!", explain, "ok");
+      if (isBubble) {
+        filled[idx] = answer;
+        renderThread(answer, "ok");
+      }
+    } else {
+      showToast(toast, "Answer: " + answer, explain, "bad");
+      if (isBubble) {
+        filled[idx] = answer;
+        renderThread(answer, "soft");
+      }
+    }
+    btnCheck.disabled = true;
+    btnClear.disabled = true;
+    btnNext.hidden = false;
+    if (isBubble) {
+      btnNext.textContent = idx === bubbles.length - 1 ? "Inference question" : "Next bubble";
+    } else {
+      btnNext.textContent = "Finish";
+    }
+  });
+
+  btnNext.addEventListener("click", () => {
+    if (idx >= bubbles.length) {
+      if (!forced) {
+        localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      }
+      document.getElementById("game").hidden = true;
+      document.getElementById("done").hidden = false;
+      document.getElementById("score-big").textContent = correctCount + " / " + totalDots;
+      return;
+    }
+    idx++;
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
