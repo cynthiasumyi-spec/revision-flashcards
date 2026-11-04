@@ -293,7 +293,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 .illust.sky { background: color-mix(in srgb, var(--sky) 40%, #fff); }
 .illust.pink { background: color-mix(in srgb, var(--pink) 35%, #fff); }
@@ -307,6 +307,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   max-height: min(18vh, 148px);
   object-fit: contain !important;
   object-position: center;
+  border-radius: var(--radius-sm);
 }
 .illust svg { width: 70%; height: auto; }
 .illust.chat-hero {
@@ -333,7 +334,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   max-height: none;
   border-radius: var(--radius-sm);
   background: transparent;
-  overflow: visible;
+  overflow: hidden;
   aspect-ratio: auto !important;
   position: relative;
   display: flex;
@@ -349,6 +350,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   max-height: min(18vh, 148px);
   object-fit: contain !important;
   object-position: center;
+  border-radius: var(--radius-sm);
 }
 .story-beat-label {
   display: inline-flex;
@@ -721,7 +723,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   object-fit: contain;
   flex-shrink: 0;
   background: #fff;
-  border-radius: 14px;
+  border-radius: var(--radius-sm);
 }
 .toast.toast-feedback .toast-body {
   flex: 1;

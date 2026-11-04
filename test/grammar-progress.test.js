@@ -104,7 +104,12 @@ test('chat bubbles are not outlined in coral', () => {
   const illust = css.slice(css.indexOf('.illust img'), css.indexOf('.illust svg'));
   assert.match(illust, /object-fit:\s*contain/);
   assert.doesNotMatch(illust, /cover/);
+  assert.match(illust, /border-radius:\s*var\(--radius-sm\)/);
   const story = css.slice(css.indexOf('.story-panel-art img'), css.indexOf('.story-beat-label'));
   assert.match(story, /object-fit:\s*contain/);
   assert.doesNotMatch(story, /cover/);
+  assert.match(story, /border-radius:\s*var\(--radius-sm\)/);
+  const frame = css.slice(css.indexOf('.illust {'), css.indexOf('.illust.sky'));
+  assert.match(frame, /overflow:\s*hidden/);
+  assert.match(frame, /border-radius:\s*var\(--radius-sm\)/);
 });
