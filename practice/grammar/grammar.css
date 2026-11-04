@@ -20,6 +20,8 @@
   --radius: 22px;
   --radius-sm: 16px;
   --pill: 999px;
+  /* Question art. Same cap for Story, Chat, Join, and Boss. */
+  --q-art-max: min(34vh, 300px);
   --margin: clamp(1rem, 2.2vw, 1.75rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -281,11 +283,18 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin-bottom: 0.75rem;
 }
 
+#game .illust,
+#game .story-panel-art {
+  width: fit-content !important;
+  max-width: min(100%, 640px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 .illust {
   width: 100%;
   max-width: 100%;
   height: auto;
-  margin: 0 auto 0.4rem;
+  margin: 0 auto 0.35rem;
   aspect-ratio: auto !important;
   border-radius: var(--radius-sm);
   background: transparent;
@@ -304,7 +313,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   width: auto !important;
   height: auto !important;
   max-width: 100%;
-  max-height: min(18vh, 148px);
+  max-height: var(--q-art-max);
   object-fit: contain !important;
   object-position: center;
   border-radius: var(--radius-sm);
@@ -319,7 +328,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: transparent;
 }
 .illust.chat-hero img {
-  max-height: min(16vh, 132px);
+  max-height: var(--q-art-max);
 }
 
 
@@ -327,8 +336,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .story-page {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.3rem;
 }
+.story-page .hint-soft { margin: 0; }
 .story-panel-art {
   width: 100%;
   max-height: none;
@@ -347,7 +357,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   width: auto !important;
   height: auto !important;
   max-width: 100%;
-  max-height: min(18vh, 148px);
+  max-height: var(--q-art-max);
   object-fit: contain !important;
   object-position: center;
   border-radius: var(--radius-sm);
@@ -361,9 +371,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-size: 0.9rem;
   background: color-mix(in srgb, var(--sunny) 40%, #fff);
   color: var(--navy);
-  padding: 0.3rem 0.75rem;
+  padding: 0.22rem 0.7rem;
   border-radius: var(--pill);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0;
 }
 .story-credit {
   margin: -0.35rem 0 0.25rem;
@@ -997,30 +1007,25 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--navy);
 }
 
-@media (max-height: 760px) {
+@media (max-width: 720px) and (max-height: 760px) {
+  :root { --q-art-max: min(28vh, 220px); }
   .prac-header { padding-top: 0.4rem; padding-bottom: 0.45rem; }
   .prac-header h1 { font-size: 1.18rem; margin-top: 0.16rem; }
   .prac-header .sub { font-size: 0.8rem; }
-  .wrap { padding-top: 0.45rem; padding-bottom: 0.7rem; }
-  .panel { padding: 0.6rem 0.65rem; }
-  .illust img,
-  .story-panel-art img,
-  .illust.chat-hero img {
-    max-height: min(15vh, 112px) !important;
-  }
-  .chat-thread { max-height: min(22vh, 150px); }
-  .prompt { margin-bottom: 0.4rem; line-height: 1.4; }
-  .choices { margin-bottom: 0.4rem; gap: 0.4rem; }
+  .wrap { padding-top: 0.4rem; padding-bottom: 0.6rem; }
+  .panel { padding: 0.55rem 0.65rem; }
+  .toolbar { margin-bottom: 0.3rem; }
+  .story-page { gap: 0.3rem; }
+  .chat-thread { max-height: min(18vh, 120px); }
+  .prompt { margin-bottom: 0.35rem; line-height: 1.35; }
+  .choices { margin-bottom: 0.35rem; gap: 0.35rem; }
   .choice { padding: 0.4rem 0.75rem; }
-  .btn { padding: 0.48rem 0.9rem; }
+  .btn { padding: 0.45rem 0.85rem; }
+  #game .illust,
+  #game .story-panel-art { margin-bottom: 0.25rem !important; }
 }
 
 @media (min-width: 900px) and (min-height: 800px) {
-  .illust img,
-  .story-panel-art img,
-  .illust.chat-hero img {
-    max-height: 200px !important;
-  }
-  .chat-thread { max-height: min(32vh, 260px); }
-  .panel { padding: 1.05rem 1.1rem; }
+  :root { --q-art-max: min(32vh, 340px); }
+  .chat-thread { max-height: min(22vh, 180px); }
 }
