@@ -102,7 +102,16 @@ test('chat bubbles are not outlined in coral', () => {
   const rule = css.slice(css.indexOf('.bubble.active-bubble'), css.indexOf('.chat-reply-label'));
   assert.match(rule, /\.bubble\.active-bubble/);
   assert.doesNotMatch(rule, /coral/);
-  assert.match(css, /\.join-choices \.choice/);
+  assert.match(css, /\.join-choices \{/);
+  assert.match(css, /--choice-bg:\s*color-mix\(in srgb, var\(--sky\) 42%, #fff\)/);
+  assert.match(css, /--choice-ink:\s*var\(--navy\)/);
+  assert.match(css, /--choice-selected-bg:\s*var\(--sky\)/);
+  const choiceRule = css.slice(css.indexOf('.choice {'), css.indexOf('.choice:hover'));
+  assert.match(choiceRule, /background:\s*var\(--choice-bg\)/);
+  assert.match(choiceRule, /color:\s*var\(--choice-ink\)/);
+  assert.doesNotMatch(choiceRule, /background:\s*var\(--cream\)/);
+  assert.match(css, /\.btn-ghost \{ background: var\(--cream\)/);
+  assert.match(css, /\.btn-primary \{ background: var\(--coral\)/);
   assert.match(css, /\.join-actions \.btn-primary/);
   assert.match(css, /\.join-actions \.btn-ghost/);
   const illust = css.slice(css.indexOf('.illust img'), css.indexOf('.illust svg'));

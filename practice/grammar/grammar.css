@@ -14,6 +14,11 @@
   --green: #009c48;
   --sky: #84c0e4;
   --pink: #f0909c;
+  /* Answer chips, distinct from cream Clear and coral Check. */
+  --choice-bg: color-mix(in srgb, var(--sky) 42%, #fff);
+  --choice-ink: var(--navy);
+  --choice-line: color-mix(in srgb, var(--sky) 48%, var(--navy));
+  --choice-selected-bg: var(--sky);
   --white: #ffffff;
   --font-display: "Fredoka", "jf-openhuninn", "Nunito", system-ui, sans-serif;
   --font-text: "Nunito", "jf-openhuninn", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
@@ -422,19 +427,29 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .choice {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 0.6rem 1.05rem;
   border-radius: var(--pill);
-  background: var(--cream);
+  background: var(--choice-bg);
+  color: var(--choice-ink);
+  border: 2px solid var(--choice-line);
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1rem;
-  transition: transform 140ms var(--ease), background 140ms;
-  text-align: left;
+  transition: transform 140ms var(--ease), background 140ms, border-color 140ms;
+  text-align: center;
 }
-.choice:hover { transform: translateY(-1px); }
-.choice.selected { background: var(--sunny); color: var(--navy); }
-.choice.correct { background: var(--green); color: #fff; }
-.choice.wrong { background: var(--pink); color: var(--navy); }
+.choice:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--sky) 62%, #fff);
+}
+.choice.selected {
+  background: var(--choice-selected-bg);
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.choice.correct { background: var(--green); color: #fff; border-color: var(--green); }
+.choice.wrong { background: var(--pink); color: var(--navy); border-color: var(--pink); }
 .choice:disabled { pointer-events: none; }
 .choice.block {
   width: 100%;
@@ -604,26 +619,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .join-choices {
   margin-bottom: 0.25rem;
-}
-.join-choices .choice {
-  background: color-mix(in srgb, var(--cream) 62%, #fff);
-  color: var(--navy);
-  border: 2px solid color-mix(in srgb, var(--sky) 72%, var(--navy));
-}
-.join-choices .choice.selected {
-  background: color-mix(in srgb, var(--sky) 58%, #fff);
-  color: var(--navy);
-  border-color: var(--navy);
-}
-.join-choices .choice.correct {
-  background: var(--green);
-  color: #fff;
-  border-color: var(--green);
-}
-.join-choices .choice.wrong {
-  background: var(--pink);
-  color: var(--navy);
-  border-color: var(--pink);
 }
 .join-actions {
   margin-top: 0.95rem;
