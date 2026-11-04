@@ -16,7 +16,7 @@ test('homepage header is Revision and Practice only', () => {
   const { nav: bar } = nav('index.html');
   assert.match(bar, /href="#packs"/);
   assert.match(bar, />Revision</);
-  assert.match(bar, /href="practice\/index.html"/);
+  assert.match(bar, /href="practice\/grammar\/practice-entry.html"/);
   assert.match(bar, />Practice</);
   assert.doesNotMatch(bar, />Packs</);
   assert.doesNotMatch(bar, />Start</);

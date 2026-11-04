@@ -24,7 +24,11 @@ window.Profile = (function () {
     { id: 'unit2', badgeId: 'unit-done:unit2', label: 'Unit 2 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit2.png' },
     { id: 'unit3', badgeId: 'unit-done:unit3', label: 'Unit 3 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit3.png' },
     { id: 'unit4', badgeId: 'unit-done:unit4', label: 'Unit 4 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-unit4.png' },
-    { id: 'dictation3', badgeId: 'unit-done:dictation3', label: 'Dictation 3 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-dictation3.png' }
+    { id: 'dictation3', badgeId: 'unit-done:dictation3', label: 'Dictation 3 Completer', zh: 'Unit 完成者', src: 'assets/badges/unit-completer-dictation3.png' },
+    { id: 'grammar-story', badgeId: 'grammar-story', label: 'Story Reader', zh: '故事閱讀員', src: 'assets/badges/story-reader.png' },
+    { id: 'grammar-inference', badgeId: 'grammar-inference', label: 'Inference Ace', zh: '推理高手', src: 'assets/badges/inference-ace.png' },
+    { id: 'grammar-join', badgeId: 'grammar-join', label: 'Sentence Linker', zh: '組句高手', src: 'assets/badges/sentence-linker.png' },
+    { id: 'grammar-boss', badgeId: 'grammar-boss', label: 'Boss Beater', zh: 'Boss 挑戰者', src: 'assets/badges/boss-beater.png' }
   ];
 
   AVATARS.forEach(function (avatar) {

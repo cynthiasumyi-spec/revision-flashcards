@@ -24,17 +24,21 @@ test('review progress rises with each finished practice, not with mastered words
   const { window } = setup();
   assert.equal(window.Badges.practiceProgress('unit1'), 0);
   window.Badges.recordSession('unit1', 'fill', 'easy');
-  assert.equal(window.Badges.practiceProgress('unit1'), 17);
+  assert.equal(window.Badges.practiceProgress('unit1'), 11);
   window.Badges.recordSession('unit1', 'fill', 'easy');
-  assert.equal(window.Badges.practiceProgress('unit1'), 17);
+  assert.equal(window.Badges.practiceProgress('unit1'), 11);
   window.Badges.recordSession('unit1', 'letters', 'hard');
   window.Badges.recordSession('unit1', 'match');
-  assert.equal(window.Badges.practiceProgress('unit1'), 50);
+  assert.equal(window.Badges.practiceProgress('unit1'), 33);
   window.Badges.recordSession('unit1', 'fill', 'hard');
   window.Badges.recordSession('unit1', 'letters', 'easy');
   window.Badges.recordSession('unit1', 'timed');
-  assert.equal(window.Badges.practiceProgress('unit1'), 100);
+  assert.equal(window.Badges.practiceProgress('unit1'), 67);
   assert.equal(window.Badges.practiceProgress('unit2'), 0);
+  window.Badges.recordGrammarSession('unit1', 'story');
+  window.Badges.recordGrammarSession('unit1', 'chat');
+  window.Badges.recordGrammarSession('unit1', 'join');
+  assert.equal(window.Badges.practiceProgress('unit1'), 100);
 });
 
 test('起步新手 unlocks after any one finished session', () => {
@@ -211,8 +215,15 @@ test('catalog lists five unit badges and no streak badge', () => {
     'letters-phrase': 'Phrase Speller',
     'match-pro': 'Match Master',
     'timed-brave': 'Timed Hero',
-    'hard-challenger': 'Hard Challenger'
+    'hard-challenger': 'Hard Challenger',
+    'grammar-story': 'Story Reader',
+    'grammar-inference': 'Inference Ace',
+    'grammar-join': 'Sentence Linker',
+    'grammar-boss': 'Boss Beater'
   };
+  ['grammar-story', 'grammar-inference', 'grammar-join', 'grammar-boss'].forEach(id => {
+    assert.ok(ids.includes(id), id);
+  });
   window.Badges.catalog().forEach(b => {
     assert.equal(typeof b.english, 'string');
     assert.match(b.english, /[A-Za-z]/);
@@ -251,6 +262,100 @@ test('a newly earned badge carries its English title and medal path', () => {
     assert.equal(fs.existsSync(color), true);
     assert.equal(fs.existsSync(gray), true);
   });
+});
+
+test('units 1 to 4 count three grammar modes and dictation 3 stays vocab-only', () => {
+  const { window, localStorage } = setup();
+  window.Badges.recordSession('dictation3', 'fill', 'easy');
+  assert.equal(window.Badges.practiceProgress('dictation3'), 17);
+  window.Badges.recordGrammarSession('dictation3', 'story');
+  assert.equal(window.Badges.practiceProgress('dictation3'), 17);
+  window.Badges.recordSession('mixed', 'fill', 'easy');
+  window.Badges.recordSession('mixed', 'fill', 'hard');
+  window.Badges.recordSession('mixed', 'letters', 'easy');
+  window.Badges.recordSession('mixed', 'letters', 'hard');
+  window.Badges.recordSession('mixed', 'match');
+  window.Badges.recordSession('mixed', 'timed');
+  assert.equal(window.Badges.practiceProgress('mixed'), 100);
+  window.Badges.recordGrammarSession('unit1', 'story');
+  assert.equal(window.Badges.coreComplete('unit1'), false);
+  assert.equal(window.Badges.unitUnlocked('unit2'), false);
+  const saved = JSON.parse(localStorage.getItem(window.Badges.KEY));
+  assert.equal(saved.units.unit1.grammarStory, true);
+  assert.equal(saved.units.unit1.grammarChat, false);
+  assert.equal(saved.units.unit1.grammarJoin, false);
+});
+
+test('story and join badges need units 1 to 4 and do not open the next unit', () => {
+  const { window } = setup();
+  ['unit1', 'unit2', 'unit3'].forEach(id => {
+    window.Badges.recordGrammarSession(id, 'story');
+    window.Badges.recordGrammarSession(id, 'join');
+  });
+  assert.equal(window.Badges.isEarned('grammar-story'), false);
+  assert.equal(window.Badges.isEarned('grammar-join'), false);
+  assert.equal(window.Badges.coreComplete('unit1'), false);
+  assert.equal(window.Badges.unitUnlocked('unit2'), false);
+  const story = window.Badges.recordGrammarSession('unit4', 'story');
+  assert.equal(window.Badges.isEarned('grammar-story'), true);
+  assert.equal(story.newBadges.some(b => b.id === 'grammar-story'), true);
+  assert.equal(story.newBadges.find(b => b.id === 'grammar-story').english, 'Story Reader');
+  assert.equal(window.Badges.isEarned('grammar-join'), false);
+  const join = window.Badges.recordGrammarSession('unit4', 'join');
+  assert.equal(window.Badges.isEarned('grammar-join'), true);
+  assert.equal(join.newBadges.some(b => b.id === 'grammar-join'), true);
+  const earnedAt = window.Badges.getEarned('grammar-story').earnedAt;
+  const again = window.Badges.recordGrammarSession('unit4', 'story');
+  assert.equal(again.newBadges.some(b => b.id === 'grammar-story'), false);
+  assert.equal(window.Badges.getEarned('grammar-story').earnedAt, earnedAt);
+});
+
+test('inference ace counts correct chat mysteries and boss beater needs a life left', () => {
+  const { window, localStorage } = setup();
+  window.Badges.recordGrammarInference();
+  window.Badges.recordGrammarInference();
+  assert.equal(window.Badges.isEarned('grammar-inference'), false);
+  const third = window.Badges.recordGrammarInference();
+  assert.equal(window.Badges.isEarned('grammar-inference'), true);
+  assert.equal(third.newBadges.some(b => b.id === 'grammar-inference'), true);
+  assert.equal(third.newBadges.find(b => b.id === 'grammar-inference').title, '推理高手');
+  const saved = JSON.parse(localStorage.getItem(window.Badges.KEY));
+  assert.equal(saved.grammarInferenceWins, 3);
+  const firstAt = window.Badges.getEarned('grammar-inference').earnedAt;
+  window.Badges.recordGrammarInference();
+  assert.equal(window.Badges.getEarned('grammar-inference').earnedAt, firstAt);
+  assert.equal(JSON.parse(localStorage.getItem(window.Badges.KEY)).grammarInferenceWins, 4);
+  const miss = window.Badges.recordGrammarBoss(0);
+  assert.equal(window.Badges.isEarned('grammar-boss'), false);
+  assert.equal(miss.newBadges.length, 0);
+  const clear = window.Badges.recordGrammarBoss(1);
+  assert.equal(window.Badges.isEarned('grammar-boss'), true);
+  assert.equal(clear.newBadges.some(b => b.id === 'grammar-boss' && b.english === 'Boss Beater'), true);
+  assert.equal(window.Badges.recordGrammarBoss(3).newBadges.some(b => b.id === 'grammar-boss'), false);
+  assert.equal(window.Badges.coreComplete('unit1'), false);
+});
+
+test('grammar catalog copy is listed for the shared badges page', () => {
+  const { window } = setup();
+  const byId = {};
+  window.Badges.catalog().forEach(b => { byId[b.id] = b; });
+  assert.equal(byId['grammar-story'].title, '故事閱讀員');
+  assert.equal(byId['grammar-story'].detail, 'Finish Story Book in Units 1–4.');
+  assert.equal(byId['grammar-story'].image, 'assets/badges/story-reader.png');
+  assert.equal(byId['grammar-inference'].title, '推理高手');
+  assert.equal(byId['grammar-inference'].detail, 'Get the Chat Quest mystery right 3 times.');
+  assert.equal(byId['grammar-inference'].image, 'assets/badges/inference-ace.png');
+  assert.equal(byId['grammar-join'].title, '組句高手');
+  assert.equal(byId['grammar-join'].detail, 'Finish Join the sentences in Units 1–4.');
+  assert.equal(byId['grammar-join'].image, 'assets/badges/sentence-linker.png');
+  assert.equal(byId['grammar-boss'].title, 'Boss 挑戰者');
+  assert.equal(byId['grammar-boss'].detail, 'Clear Boss Round with at least 1 life left.');
+  assert.equal(byId['grammar-boss'].image, 'assets/badges/boss-beater.png');
+  const listed = window.Badges.listWithStatus().map(b => b.english);
+  assert.ok(listed.includes('Story Reader'));
+  assert.ok(listed.includes('Inference Ace'));
+  assert.ok(listed.includes('Sentence Linker'));
+  assert.ok(listed.includes('Boss Beater'));
 });
 
 test('mastery still tracks review words without awarding a badge', () => {

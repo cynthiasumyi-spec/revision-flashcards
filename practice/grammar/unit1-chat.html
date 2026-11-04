@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=25"/>
+<link rel="stylesheet" href="grammar.css?v=26"/>
 </head>
 <body>
 <header class="prac-header">
@@ -49,6 +49,8 @@
     </div>
   </div>
 </main>
+<script src="../../practice/badges.js"></script>
+<script src="grammar-progress.js"></script>
 <script>
 (function () {
   /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
@@ -518,6 +520,7 @@
   const names = { amy: "Amy", tom: "Tom", miss: "Miss Chan" };
   const totalDots = bubbles.length + 1;
   let idx = 0;
+  let inferenceRewards = null;
   let selected = null;
   let locked = false;
   let correctCount = 0;
@@ -661,6 +664,7 @@
     });
     if (ok) {
       correctCount++;
+      if (!isBubble && !forced && window.Badges) inferenceRewards = Badges.recordGrammarInference();
       showToast(toast, "Yes!", explain, "ok");
       if (isBubble) {
         filled[idx] = answer;
@@ -687,6 +691,11 @@
     if (idx >= bubbles.length) {
       if (!forced) {
         localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+        if (window.Badges) {
+          var grammarRewards = [Badges.recordGrammarSession('unit1', 'chat')];
+          if (inferenceRewards) grammarRewards.push(inferenceRewards);
+          if (window.GrammarProgress) GrammarProgress.showMany(grammarRewards);
+        }
       }
       document.getElementById("game").hidden = true;
       document.getElementById("done").hidden = false;

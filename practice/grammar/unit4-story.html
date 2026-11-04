@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=25"/>
+<link rel="stylesheet" href="grammar.css?v=26"/>
 </head>
 <body>
 <header class="prac-header">
@@ -46,6 +46,8 @@
     </div>
   </div>
 </main>
+<script src="../../practice/badges.js"></script>
+<script src="grammar-progress.js"></script>
 <script>
 (function () {
   /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
@@ -1196,7 +1198,13 @@ const set3Data = {
   });
   btnNext.addEventListener("click", () => {
     if (idx >= scenes.length - 1) {
-      if (!forced) localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      if (!forced) {
+        localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+        if (window.Badges) {
+          var grammarRewards = Badges.recordGrammarSession('unit4', 'story');
+          if (window.GrammarProgress) GrammarProgress.show(grammarRewards);
+        }
+      }
       document.getElementById("game").hidden = true;
       document.getElementById("done").hidden = false;
       document.getElementById("score-big").textContent = correctCount + " / " + scenes.length;

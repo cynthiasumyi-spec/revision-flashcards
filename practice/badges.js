@@ -39,17 +39,23 @@ window.Badges = (function () {
   }
 
   function unitState(data, unitId) {
-    if (!data.units[unitId]) {
-      data.units[unitId] = {
-        fillEasy: false,
-        fillHard: false,
-        lettersEasy: false,
-        lettersHard: false,
-        match: false,
-        timed: false
-      };
-    }
-    return data.units[unitId];
+    if (!data.units[unitId]) data.units[unitId] = {};
+    var st = data.units[unitId];
+    var defaults = {
+      fillEasy: false,
+      fillHard: false,
+      lettersEasy: false,
+      lettersHard: false,
+      match: false,
+      timed: false,
+      grammarStory: false,
+      grammarChat: false,
+      grammarJoin: false
+    };
+    Object.keys(defaults).forEach(function (key) {
+      if (typeof st[key] === 'undefined') st[key] = defaults[key];
+    });
+    return st;
   }
 
   /*
@@ -93,12 +99,21 @@ window.Badges = (function () {
         detail: 'Finish Sentence Fill, Missing Letters, and Memory Match for ' + u.label + '.'
       };
     });
-    return globals.concat(units);
+    const grammar = [
+      { id: 'grammar-story', title: '故事閱讀員', english: 'Story Reader', image: 'assets/badges/story-reader.png', detail: 'Finish Story Book in Units 1–4.' },
+      { id: 'grammar-inference', title: '推理高手', english: 'Inference Ace', image: 'assets/badges/inference-ace.png', detail: 'Get the Chat Quest mystery right 3 times.' },
+      { id: 'grammar-join', title: '組句高手', english: 'Sentence Linker', image: 'assets/badges/sentence-linker.png', detail: 'Finish Join the sentences in Units 1–4.' },
+      { id: 'grammar-boss', title: 'Boss 挑戰者', english: 'Boss Beater', image: 'assets/badges/boss-beater.png', detail: 'Clear Boss Round with at least 1 life left.' }
+    ];
+    return globals.concat(units).concat(grammar);
   }
 
   function imageSrc(path) {
     if (!path) return '';
     try {
+      if (typeof location !== 'undefined' && location.pathname.indexOf('/practice/grammar/') !== -1) {
+        return '../../' + path;
+      }
       if (typeof location !== 'undefined' && location.pathname.indexOf('/practice/') !== -1) {
         return '../' + path;
       }
@@ -210,6 +225,57 @@ window.Badges = (function () {
     return { newBadges: fresh };
   }
 
+  function grantGrammarBadges(data) {
+    const fresh = [];
+    function take(badge) {
+      if (badge) fresh.push(badge);
+    }
+    if (crossUnit(data, function (unit) { return !!unit.grammarStory; })) {
+      take(award(data, 'grammar-story'));
+    }
+    if (crossUnit(data, function (unit) { return !!unit.grammarJoin; })) {
+      take(award(data, 'grammar-join'));
+    }
+    if ((Number(data.grammarInferenceWins) || 0) >= 3) {
+      take(award(data, 'grammar-inference'));
+    }
+    return fresh;
+  }
+
+  function recordGrammarSession(unitId, mode) {
+    const data = load();
+    if (CROSS_UNITS.indexOf(unitId) !== -1) {
+      const st = unitState(data, unitId);
+      if (mode === 'story') st.grammarStory = true;
+      else if (mode === 'chat') st.grammarChat = true;
+      else if (mode === 'join') st.grammarJoin = true;
+    }
+    const fresh = grantGrammarBadges(data);
+    save(data);
+    return { newBadges: fresh };
+  }
+
+  function recordGrammarInference() {
+    const data = load();
+    var wins = Number(data.grammarInferenceWins);
+    if (!isFinite(wins) || wins < 0) wins = 0;
+    data.grammarInferenceWins = wins + 1;
+    const fresh = grantGrammarBadges(data);
+    save(data);
+    return { newBadges: fresh };
+  }
+
+  function recordGrammarBoss(livesLeft) {
+    const data = load();
+    const fresh = [];
+    if (Number(livesLeft) >= 1) {
+      const badge = award(data, 'grammar-boss');
+      if (badge) fresh.push(badge);
+    }
+    save(data);
+    return { newBadges: fresh };
+  }
+
   function isEarned(id) {
     return !!load().earned[id];
   }
@@ -223,14 +289,17 @@ window.Badges = (function () {
   }
 
   var PRACTICE_FLAGS = ['fillEasy', 'fillHard', 'lettersEasy', 'lettersHard', 'match', 'timed'];
+  var GRAMMAR_FLAGS = ['grammarStory', 'grammarChat', 'grammarJoin'];
 
   function practiceProgress(unitId) {
     var st = load().units[unitId] || {};
+    var flags = PRACTICE_FLAGS;
+    if (CROSS_UNITS.indexOf(unitId) !== -1) flags = PRACTICE_FLAGS.concat(GRAMMAR_FLAGS);
     var done = 0;
-    PRACTICE_FLAGS.forEach(function (key) {
+    flags.forEach(function (key) {
       if (st[key]) done += 1;
     });
-    return Math.round((done / PRACTICE_FLAGS.length) * 100);
+    return Math.round((done / flags.length) * 100);
   }
 
   function hardUnlocked(unitId, activity) {
@@ -325,6 +394,9 @@ window.Badges = (function () {
     ORDER: ORDER,
     catalog: catalog,
     recordSession: recordSession,
+    recordGrammarSession: recordGrammarSession,
+    recordGrammarInference: recordGrammarInference,
+    recordGrammarBoss: recordGrammarBoss,
     isEarned: isEarned,
     getEarned: getEarned,
     coreComplete: coreComplete,

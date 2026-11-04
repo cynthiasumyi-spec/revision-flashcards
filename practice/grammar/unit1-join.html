@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=25"/>
+<link rel="stylesheet" href="grammar.css?v=26"/>
 </head>
 <body>
 <header class="prac-header">
@@ -25,16 +25,15 @@
     <div class="illust pink" style="max-width:180px;aspect-ratio:1.2">
       <img src="illust/u1_04_raffle.jpg" alt="Charity raffle"/>
     </div>
-    <p class="hint-soft">Read A and B. Tap <strong>who</strong> or <strong>which</strong> to join — no typing.</p>
     <p class="section-label">Sentences</p>
     <div class="join-plain" id="pair" aria-label="Sentences to join (display only)"></div>
-    <p class="section-label">Join with</p>
-    <div class="choices" id="choices"></div>
+    <p class="section-label join-with-label">Join with</p>
+    <div class="choices join-choices" id="choices"></div>
     <div class="join-result" id="result-wrap" hidden>
       <p class="section-label" id="result-label">Joined sentence</p>
       <div class="join-preview" id="preview" aria-live="polite"></div>
     </div>
-    <div class="btn-row">
+    <div class="btn-row join-actions">
       <button type="button" class="btn btn-ghost" id="btn-clear">Clear</button>
       <button type="button" class="btn btn-primary" id="btn-check" disabled>Check</button>
       <button type="button" class="btn btn-secondary" id="btn-next" hidden>Next</button>
@@ -52,6 +51,8 @@
     </div>
   </div>
 </main>
+<script src="../../practice/badges.js"></script>
+<script src="grammar-progress.js"></script>
 <script>
 (function () {
   /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
@@ -465,6 +466,10 @@
     if (idx >= items.length - 1) {
       if (!forced) {
         localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+        if (window.Badges) {
+          var grammarRewards = Badges.recordGrammarSession('unit1', 'join');
+          if (window.GrammarProgress) GrammarProgress.show(grammarRewards);
+        }
       }
       document.getElementById("game").hidden = true;
       document.getElementById("done").hidden = false;

@@ -45,9 +45,14 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .prac-header {
   position: sticky; top: 0; z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.75rem;
   background: var(--navy);
   color: var(--white);
-  padding: 0.85rem var(--margin) 1rem;
+  padding: 0.55rem var(--margin) 0.7rem;
 }
 .prac-header .back {
   display: inline-block;
@@ -55,20 +60,44 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-weight: 600;
   font-size: 0.95rem;
   opacity: 0.9;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
+}
+.prac-header .header-practice {
+  position: absolute;
+  top: 0.5rem;
+  right: var(--margin);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  min-height: 2.1rem;
+  padding: 0.32rem 0.9rem;
+  border-radius: var(--pill);
+  background: var(--sunny);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.prac-header .header-practice:hover { filter: brightness(1.06); }
+.prac-header:has(.header-practice) {
+  padding-right: calc(var(--margin) + 6.5rem);
 }
 .prac-header .back:hover { opacity: 1; text-decoration: underline; }
 .prac-header h1 {
-  margin: 0;
+  flex: 1 0 100%;
+  margin: 0.28rem 0 0;
   font-family: var(--font-display);
   font-weight: 650;
-  font-size: clamp(1.35rem, 1.1rem + 1.2vw, 1.85rem);
+  font-size: clamp(1.28rem, 1.05rem + 1vw, 1.85rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 .prac-header .sub {
-  margin: 0.3rem 0 0;
-  font-size: 0.95rem;
+  flex: 1 0 100%;
+  margin: 0.15rem 0 0;
+  font-size: 0.92rem;
   font-weight: 600;
   opacity: 0.85;
 }
@@ -76,7 +105,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .wrap {
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.15rem var(--margin) calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  padding: 0.75rem var(--margin) calc(1.25rem + env(safe-area-inset-bottom, 0px));
 }
 
 .section-label {
@@ -227,8 +256,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.75rem;
-  margin-bottom: 1rem;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 0.45rem;
 }
 .progress-dots {
   display: flex;
@@ -248,14 +277,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .panel {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 1.25rem 1.15rem;
-  margin-bottom: 1rem;
+  padding: 0.8rem 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 .illust {
   width: 100%;
   max-width: 280px;
-  margin: 0 auto 1rem;
+  max-height: 22vh;
+  margin: 0 auto 0.55rem;
   aspect-ratio: 1.15;
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--sunny) 35%, #fff);
@@ -279,8 +309,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .illust.chat-hero {
   max-width: none;
   width: 100%;
-  aspect-ratio: 16 / 11;
-  margin: 0 0 0.85rem;
+  max-height: 18vh !important;
+  aspect-ratio: 16 / 7 !important;
+  margin: 0 0 0.45rem !important;
   background: #f4efe6;
 }
 
@@ -289,14 +320,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .story-page {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.45rem;
 }
 .story-panel-art {
   width: 100%;
+  max-height: 22vh;
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--sunny) 28%, #fff);
   overflow: hidden;
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 7;
   position: relative;
 }
 .story-panel-art img {
@@ -422,19 +454,23 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .chat-thread {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-  max-height: min(58vh, 520px);
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  max-height: min(32vh, 280px);
+  overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 0.15rem;
+  padding: 0.2rem 0.35rem 0.35rem 0.1rem;
 }
 .bubble {
-  max-width: 92%;
-  padding: 0.7rem 0.95rem;
+  max-width: min(100%, 36rem);
+  min-width: 0;
+  padding: 0.6rem 0.85rem;
   border-radius: 18px;
   font-weight: 600;
   font-size: 0.96rem;
   line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .bubble.amy {
   align-self: flex-start;
@@ -483,19 +519,21 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin-bottom: 0.2rem;
 }
 .bubble .blank {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 4.8rem;
+  display: inline-block;
+  max-width: 100%;
+  min-width: 4.2rem;
   min-height: 1.7rem;
   padding: 0.08rem 0.55rem;
-  margin: 0 0.1rem;
+  margin: 0.1rem;
   border-radius: var(--pill);
   background: rgba(255,255,255,0.85);
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--navy);
   vertical-align: baseline;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
 }
 .bubble .blank.filled { background: var(--sunny); }
 .bubble .blank.ok { background: var(--green); color: #fff; }
@@ -504,7 +542,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--green);
 }
 .bubble.active-bubble {
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--coral) 55%, #fff);
+  font-weight: 700;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--navy) 22%, var(--sky));
 }
 
 .chat-reply-label {
@@ -529,9 +568,50 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 /* Join the sentences — plain A. / B. lines (no cards / no typing) */
 .join-plain {
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
   user-select: text;
   pointer-events: none; /* display-only — not editable */
+}
+.join-with-label {
+  margin: 0.85rem 0 0.4rem;
+}
+.join-choices {
+  margin-bottom: 0.25rem;
+}
+.join-choices .choice {
+  background: color-mix(in srgb, var(--cream) 62%, #fff);
+  color: var(--navy);
+  border: 2px solid color-mix(in srgb, var(--sky) 72%, var(--navy));
+}
+.join-choices .choice.selected {
+  background: color-mix(in srgb, var(--sky) 58%, #fff);
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.join-choices .choice.correct {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+.join-choices .choice.wrong {
+  background: var(--pink);
+  color: var(--navy);
+  border-color: var(--pink);
+}
+.join-actions {
+  margin-top: 0.95rem;
+  padding-top: 0.8rem;
+  border-top: 2px dashed color-mix(in srgb, var(--navy) 16%, transparent);
+}
+.join-actions .btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 2px solid color-mix(in srgb, var(--navy) 18%, #d7d0c4);
+}
+.join-actions .btn-primary {
+  background: var(--coral);
+  color: var(--white);
+  border: 2px solid var(--coral);
 }
 .join-result {
   margin-top: 0.35rem;
@@ -866,4 +946,66 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .entry-grid .game-card {
   min-height: 9.5rem;
+}
+
+.badge-toast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin-top: 0.85rem;
+  text-align: center;
+}
+.badge-toast-art {
+  width: 4.75rem;
+  height: 4.75rem;
+  object-fit: contain;
+}
+.badge-toast-kicker,
+.badge-toast-name,
+.badge-toast-english { margin: 0; }
+.badge-toast-kicker {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.badge-toast-name {
+  font-family: "Noto Sans TC", "PingFang TC", var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--navy);
+}
+.badge-toast-english {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy);
+}
+
+@media (max-height: 760px) {
+  .prac-header { padding-top: 0.4rem; padding-bottom: 0.45rem; }
+  .prac-header h1 { font-size: 1.18rem; margin-top: 0.16rem; }
+  .prac-header .sub { font-size: 0.8rem; }
+  .wrap { padding-top: 0.45rem; padding-bottom: 0.7rem; }
+  .panel { padding: 0.6rem 0.65rem; }
+  .story-panel-art,
+  .illust {
+    max-height: 14vh !important;
+  }
+  .chat-thread { max-height: min(24vh, 160px); }
+  .prompt { margin-bottom: 0.4rem; line-height: 1.4; }
+  .choices { margin-bottom: 0.4rem; gap: 0.4rem; }
+  .choice { padding: 0.4rem 0.75rem; }
+  .btn { padding: 0.48rem 0.9rem; }
+}
+
+@media (min-width: 900px) and (min-height: 800px) {
+  .story-panel-art,
+  .illust.chat-hero {
+    max-height: 280px !important;
+  }
+  .chat-thread { max-height: min(40vh, 360px); }
+  .panel { padding: 1.05rem 1.1rem; }
 }

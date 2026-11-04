@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=25"/>
+<link rel="stylesheet" href="grammar.css?v=26"/>
 </head>
 <body>
 <header class="prac-header">
@@ -46,6 +46,8 @@
     </div>
   </div>
 </main>
+<script src="../../practice/badges.js"></script>
+<script src="grammar-progress.js"></script>
 <script>
 (function () {
   /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen. */
@@ -927,7 +929,7 @@ const set3Data = {
   if (forced) document.getElementById("btn-again").href = "unit4-chat.html?set=" + (setIndex + 1);
   const names = {"sam":"Sam","amy":"Amy","miss":"Miss Chan"};
   const totalDots = bubbles.length + 1;
-  let idx = 0, selected = null, locked = false, correctCount = 0, filled = [];
+  let idx = 0, selected = null, locked = false, correctCount = 0, filled = [], inferenceRewards = null;
   const thread = document.getElementById("thread");
   const choices = document.getElementById("choices");
   const phaseChip = document.getElementById("phase-chip");
@@ -1037,7 +1039,7 @@ const set3Data = {
       if (c.textContent === answer) c.classList.add("correct");
       else if (c.textContent === selected && !ok) c.classList.add("wrong");
     });
-    if (ok) { correctCount++; showToast(toast, "Yes!", explain, "ok"); if (isBubble) { filled[idx] = answer; renderThread(answer, "ok"); } }
+    if (ok) { correctCount++; if (!isBubble && !forced && window.Badges) inferenceRewards = Badges.recordGrammarInference(); showToast(toast, "Yes!", explain, "ok"); if (isBubble) { filled[idx] = answer; renderThread(answer, "ok"); } }
     else { showToast(toast, "Answer: " + answer, explain, "bad"); if (isBubble) { filled[idx] = answer; renderThread(answer, "soft"); } }
     btnCheck.disabled = true; btnClear.disabled = true; btnNext.hidden = false;
     if (isBubble) btnNext.textContent = idx === bubbles.length - 1 ? "Inference question" : "Next bubble";
@@ -1045,7 +1047,14 @@ const set3Data = {
   });
   btnNext.addEventListener("click", () => {
     if (idx >= bubbles.length) {
-      if (!forced) localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+      if (!forced) {
+        localStorage.setItem(SET_KEY, String((setIndex + 1) % SETS.length));
+        if (window.Badges) {
+          var grammarRewards = [Badges.recordGrammarSession('unit4', 'chat')];
+          if (inferenceRewards) grammarRewards.push(inferenceRewards);
+          if (window.GrammarProgress) GrammarProgress.showMany(grammarRewards);
+        }
+      }
       document.getElementById("game").hidden = true;
       document.getElementById("done").hidden = false;
       document.getElementById("score-big").textContent = correctCount + " / " + totalDots;
