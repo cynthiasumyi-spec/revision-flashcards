@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=13"/>
+<link rel="stylesheet" href="game.css?v=14"/>
 </head>
 <body>
 <header class="prac-header">
@@ -59,13 +59,6 @@
         <p class="hunt-kind" id="scene-kicker"></p>
         <h2 class="hunt-q" id="scene-title"></h2>
         <div class="scene-look">
-          <p class="search-cue" id="search-cue" hidden>
-            <svg class="search-glass" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
-              <circle cx="26" cy="26" r="14" fill="none" stroke="#243c6c" stroke-width="5"/>
-              <path d="M37 37 L52 54" stroke="#243c6c" stroke-width="6" stroke-linecap="round"/>
-            </svg>
-            <span>Look on the picture</span>
-          </p>
           <div class="scene-frame">
             <img id="scene-art" alt=""/>
             <div id="scene-spots"></div>
@@ -73,6 +66,16 @@
         </div>
         <p class="case-lead" id="scene-reply"></p>
         <div class="choices" id="scene-actions"></div>
+        <div class="zoom-pop" id="zoom-pop" hidden>
+          <div class="zoom-card" role="dialog" aria-modal="true" aria-labelledby="zoom-title">
+            <h3 id="zoom-title"></h3>
+            <div class="zoom-frame" id="zoom-frame">
+              <img id="zoom-art" alt=""/>
+            </div>
+            <p id="zoom-reply"></p>
+            <button type="button" class="btn btn-primary" id="zoom-close">Close</button>
+          </div>
+        </div>
       </section>
       <section id="solve" hidden>
         <div class="btn-row">
@@ -98,7 +101,6 @@
     <aside id="notebook" class="notebook" hidden>
       <h2>Notebook</h2>
       <p class="notebook-purpose">This is where clues go when you talk and search. Use these notes to solve the case.</p>
-      <p id="notebook-empty">Nothing written yet.</p>
       <div id="notebook-cards"></div>
       <div class="btn-row">
         <button type="button" class="btn btn-primary" id="open-solve" disabled>Solve Case</button>
@@ -118,14 +120,17 @@
   var scene = document.getElementById("scene");
   var notebook = document.getElementById("notebook");
   var cardsEl = document.getElementById("notebook-cards");
-  var emptyEl = document.getElementById("notebook-empty");
   var solve = document.getElementById("solve");
   var ending = document.getElementById("ending");
   var openSolve = document.getElementById("open-solve");
   var replyEl = document.getElementById("scene-reply");
   var actionsEl = document.getElementById("scene-actions");
   var spotsEl = document.getElementById("scene-spots");
-  var searchCue = document.getElementById("search-cue");
+  var zoomPop = document.getElementById("zoom-pop");
+  var zoomFrame = document.getElementById("zoom-frame");
+  var zoomImg = document.getElementById("zoom-art");
+  var zoomTitle = document.getElementById("zoom-title");
+  var zoomReply = document.getElementById("zoom-reply");
   var stepLabel = document.getElementById("step-label");
   var feedback = document.getElementById("solve-feedback");
   var solveBtn = document.getElementById("solve-btn");
@@ -137,7 +142,6 @@
   function renderNotebook() {
     var cards = ClueHunt.notebook(hunt);
     cardsEl.innerHTML = "";
-    emptyEl.hidden = cards.length > 0;
     cards.forEach(function (card) {
       var view = ClueHunt.displayCard(card);
       var article = document.createElement("article");
@@ -155,8 +159,43 @@
     notebook.classList.toggle("is-open", !solve.hidden || !ending.hidden);
   }
 
+  function closeZoom() {
+    zoomPop.hidden = true;
+  }
+
+  function fitZoom(hit) {
+    var left = parseFloat(hit.left) / 100;
+    var top = parseFloat(hit.top) / 100;
+    var width = parseFloat(hit.width) / 100;
+    var height = parseFloat(hit.height) / 100;
+    var frameWidth = zoomFrame.clientWidth;
+    var frameHeight = zoomFrame.clientHeight;
+    var naturalWidth = zoomImg.naturalWidth;
+    var naturalHeight = zoomImg.naturalHeight;
+    if (!naturalWidth || !frameWidth || !width || !height) return;
+    var scale = Math.max(frameWidth / (naturalWidth * width), frameHeight / (naturalHeight * height));
+    var drawnWidth = naturalWidth * scale;
+    var drawnHeight = naturalHeight * scale;
+    zoomImg.style.width = drawnWidth + "px";
+    zoomImg.style.height = drawnHeight + "px";
+    zoomImg.style.left = ((frameWidth - width * drawnWidth) / 2 - left * drawnWidth) + "px";
+    zoomImg.style.top = ((frameHeight - height * drawnHeight) / 2 - top * drawnHeight) + "px";
+  }
+
+  function openZoom(artSrc, hit, title, reply) {
+    zoomTitle.textContent = title;
+    zoomReply.textContent = reply;
+    zoomPop.hidden = false;
+    function place() { requestAnimationFrame(function () { fitZoom(hit); }); }
+    zoomImg.onload = place;
+    if (zoomImg.getAttribute("src") !== artSrc) zoomImg.setAttribute("src", artSrc);
+    if (zoomImg.complete && zoomImg.naturalWidth) place();
+    document.getElementById("zoom-close").focus();
+  }
+
   function showMap() {
     if (ended) return;
+    closeZoom();
     intro.hidden = true;
     scene.hidden = true;
     solve.hidden = true;
@@ -167,11 +206,34 @@
     renderNotebook();
   }
 
+  function magnifierIcon() {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 64 64");
+    svg.setAttribute("width", "20");
+    svg.setAttribute("height", "20");
+    svg.setAttribute("aria-hidden", "true");
+    var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", "26");
+    circle.setAttribute("cy", "26");
+    circle.setAttribute("r", "12");
+    circle.setAttribute("fill", "none");
+    circle.setAttribute("stroke", "currentColor");
+    circle.setAttribute("stroke-width", "5");
+    var handle = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    handle.setAttribute("d", "M35 35 L50 50");
+    handle.setAttribute("stroke", "currentColor");
+    handle.setAttribute("stroke-width", "6");
+    handle.setAttribute("stroke-linecap", "round");
+    svg.appendChild(circle);
+    svg.appendChild(handle);
+    return svg;
+  }
+
   function renderActions(hotspot) {
     actionsEl.innerHTML = "";
     spotsEl.innerHTML = "";
+    closeZoom();
     var searching = hotspot.kind === "search";
-    searchCue.hidden = !searching;
     actionsEl.hidden = searching;
     var items = hotspot.kind === "search" ? hotspot.spots : hotspot.prompts;
     items.forEach(function (item) {
@@ -180,19 +242,20 @@
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = searching ? "scene-spot" : "choice";
-        btn.textContent = hit && hit.chip ? hit.chip : item.label;
-        if (hit && hit.chip) btn.setAttribute("aria-label", item.label);
-        if (hit) {
-          btn.style.left = hit.left;
-          btn.style.top = hit.top;
-          if (hit.width) btn.style.width = hit.width;
-          if (hit.height) btn.style.height = hit.height;
+        if (searching) {
+          btn.appendChild(magnifierIcon());
+          btn.setAttribute("aria-label", item.label);
+          btn.style.left = hit.x || hit.left;
+          btn.style.top = hit.y || hit.top;
+        } else {
+          btn.textContent = item.label;
         }
         btn.addEventListener("click", function () {
           var result = ClueHunt.visit(hunt, hotspot.id, item.id);
           hunt = result.state;
           replyEl.textContent = result.reply;
           renderNotebook();
+          if (searching && hit) openZoom(hotspot.art, hit, item.label, result.reply);
         });
         (searching ? spotsEl : actionsEl).appendChild(btn);
       });
@@ -250,6 +313,14 @@
     renderCaseGroup(document.getElementById("why-choices"), "why", ClueHunt.CASE.why.options);
     renderNotebook();
   }
+
+  document.getElementById("zoom-close").addEventListener("click", closeZoom);
+  zoomPop.addEventListener("click", function (event) {
+    if (event.target === zoomPop) closeZoom();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeZoom();
+  });
 
   document.getElementById("start-map").addEventListener("click", showMap);
   document.getElementById("back-map").addEventListener("click", showMap);

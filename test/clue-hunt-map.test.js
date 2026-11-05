@@ -39,8 +39,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
   const notebook = html.slice(html.indexOf('<aside id="notebook"'), html.indexOf('</aside>'));
   assert.match(notebook, /id="notebook-cards"/);
   assert.match(notebook, /where clues go when you talk and search/);
-  assert.match(notebook, /id="notebook-empty"/);
-  assert.match(notebook, /Nothing written yet/);
+  assert.doesNotMatch(notebook, /Nothing written yet/);
   assert.match(notebook, /id="open-solve"/);
   assert.match(notebook, /Solve Case/);
   assert.match(notebook, /disabled/);
@@ -62,16 +61,17 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(html, /href="index\.html">← Game</);
   assert.match(html, /id="back-map"/);
   assert.match(html, /id="scene-actions"/);
-  assert.match(html, /id="search-cue"/);
   assert.match(html, /id="scene-spots"/);
-  assert.match(html, /Look on the picture/);
+  assert.match(html, /id="zoom-pop"/);
+  assert.match(html, /id="zoom-close"/);
+  assert.doesNotMatch(html, /Look on the picture/);
   assert.match(html, /id="ending-copy"/);
 });
 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=13/);
+  assert.match(html, /game\.css\?v=14/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);

@@ -79,13 +79,14 @@
   position: absolute;
   display: inline-block;
   margin: 0;
-  padding: 0.08rem 0.48rem 0.12rem;
+  padding: 0.28rem 0.78rem 0.32rem;
   border: 0;
   border-radius: var(--pill);
-  background: color-mix(in srgb, var(--coral) 28%, #fff);
-  color: #c4510c;
+  background: #e25c12;
+  color: #fff;
+  font-size: 0.95rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -96,7 +97,7 @@
 .pin-film { left: 72%; top: 8%; width: 24%; height: 32%; }
 .pin-film span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-hall { left: 32%; top: 6%; width: 36%; height: 42%; }
-.pin-hall span { left: 50%; bottom: -14%; transform: translateX(-50%); }
+.pin-hall span { left: 50%; bottom: -28%; transform: translateX(-50%); }
 .pin-desk { left: 68%; top: 52%; width: 28%; height: 40%; }
 .pin-desk span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-store { left: 40%; top: 64%; width: 24%; height: 30%; }
@@ -118,20 +119,6 @@
   margin: 0 0 0.7rem;
   min-width: 0;
 }
-.search-cue {
-  display: flex;
-  flex: 0 0 4.4rem;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  margin: 0;
-  color: var(--navy);
-  font-weight: 800;
-  font-size: 0.75rem;
-  line-height: 1.2;
-  text-align: center;
-}
-.search-glass { display: block; }
 .scene-frame {
   position: relative;
   display: inline-block;
@@ -142,24 +129,67 @@
 #scene-spots { position: absolute; inset: 0; }
 .scene-spot {
   position: absolute;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin: 0;
+  padding: 0;
   border: 0;
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--sunny) 46%, transparent);
+  border-radius: 999px;
+  background: #fff;
   color: var(--navy);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.72rem;
-  line-height: 1.15;
-  padding: 0.28rem 0.35rem;
+  transform: translate(-50%, -50%);
   cursor: pointer;
 }
+.scene-spot svg { display: block; }
 .scene-spot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;
 }
+.zoom-pop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--navy) 46%, transparent);
+}
+.zoom-pop[hidden] { display: none !important; }
+.zoom-card {
+  width: min(100%, 22rem);
+  margin: 0;
+  padding: 0.9rem 0.95rem 1rem;
+  border: 0;
+  border-radius: 18px;
+  background: var(--cream);
+  color: var(--navy);
+}
+.zoom-card h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+.zoom-frame {
+  position: relative;
+  height: 12rem;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+}
+.zoom-frame img {
+  position: absolute;
+  max-width: none;
+  max-height: none;
+}
+.zoom-card p {
+  margin: 0.6rem 0 0.75rem;
+  font-weight: 700;
+}
+.zoom-card .btn { width: 100%; }
 #scene-art {
   display: block;
   width: auto;
@@ -196,11 +226,6 @@
   line-height: 1.35;
 }
 .notebook.is-open { background-color: #fff3d4; }
-.notebook-empty,
-#notebook-empty {
-  margin: 0 0 0.55rem;
-  font-weight: 700;
-}
 .clue-card {
   margin: 0 0 0.45rem;
   padding: 0.55rem 0.65rem;
@@ -262,7 +287,6 @@
   .hunt-layout { grid-template-columns: 1fr; gap: 0.45rem; }
   .hunt-q { margin-bottom: 0.3rem; }
   .scene-look { flex-wrap: wrap; }
-  .search-cue { flex: 1 1 100%; flex-direction: row; justify-content: flex-start; font-size: 0.85rem; }
   .hotspot { font-size: 0.66rem; }
   .notebook { padding: 0.6rem 0.55rem 0.6rem 1.35rem; }
 }
