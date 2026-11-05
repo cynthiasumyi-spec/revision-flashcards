@@ -144,6 +144,17 @@
   cursor: pointer;
 }
 .scene-spot svg { display: block; }
+.scene-ask {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.ask-choices {
+  flex-direction: column;
+  align-items: stretch;
+}
+.ask-choices .choice { width: 100%; }
 .scene-spot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;

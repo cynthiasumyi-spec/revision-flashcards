@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=16"/>
+<link rel="stylesheet" href="game.css?v=17"/>
 </head>
 <body>
 <header class="prac-header">
@@ -76,6 +76,14 @@
             <button type="button" class="btn btn-primary" id="zoom-close">Close</button>
           </div>
         </div>
+        <div class="zoom-pop" id="ask-pop" hidden>
+          <div class="zoom-card" role="dialog" aria-modal="true" aria-labelledby="ask-title">
+            <h3 id="ask-title"></h3>
+            <div class="choices ask-choices" id="ask-choices"></div>
+            <p id="ask-reply" hidden></p>
+            <button type="button" class="btn btn-primary" id="ask-close">Close</button>
+          </div>
+        </div>
       </section>
       <section id="solve" hidden>
         <div class="btn-row">
@@ -128,6 +136,10 @@
   var spotsEl = document.getElementById("scene-spots");
   var zoomPop = document.getElementById("zoom-pop");
   var zoomImg = document.getElementById("zoom-art");
+  var askPop = document.getElementById("ask-pop");
+  var askTitle = document.getElementById("ask-title");
+  var askChoices = document.getElementById("ask-choices");
+  var askReply = document.getElementById("ask-reply");
   var zoomTitle = document.getElementById("zoom-title");
   var zoomReply = document.getElementById("zoom-reply");
   var stepLabel = document.getElementById("step-label");
@@ -162,6 +174,10 @@
     zoomPop.hidden = true;
   }
 
+  function closeAsk() {
+    askPop.hidden = true;
+  }
+
   function openZoom(artSrc, title, reply) {
     zoomTitle.textContent = title;
     zoomReply.textContent = reply;
@@ -174,6 +190,7 @@
   function showMap() {
     if (ended) return;
     closeZoom();
+    closeAsk();
     intro.hidden = true;
     scene.hidden = true;
     solve.hidden = true;
@@ -207,35 +224,68 @@
     return svg;
   }
 
+  function openAsk(hotspot, items) {
+    closeZoom();
+    askTitle.textContent = hotspot.name;
+    askChoices.innerHTML = "";
+    askReply.hidden = true;
+    askReply.textContent = "";
+    items.forEach(function (item) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = item.label;
+      btn.addEventListener("click", function () {
+        var result = ClueHunt.visit(hunt, hotspot.id, item.id);
+        hunt = result.state;
+        renderNotebook();
+        askReply.hidden = false;
+        askReply.textContent = result.reply;
+        Array.prototype.forEach.call(askChoices.children, function (el) { el.classList.remove("selected"); });
+        btn.classList.add("selected");
+      });
+      askChoices.appendChild(btn);
+    });
+    askPop.hidden = false;
+  }
+
   function renderActions(hotspot) {
     actionsEl.innerHTML = "";
     spotsEl.innerHTML = "";
     closeZoom();
+    closeAsk();
     var searching = hotspot.kind === "search";
-    actionsEl.hidden = searching;
+    actionsEl.hidden = true;
     var items = hotspot.kind === "search" ? hotspot.spots : hotspot.prompts;
+    if (!searching) {
+      var mark = document.createElement("button");
+      mark.type = "button";
+      mark.className = "scene-spot scene-ask";
+      mark.textContent = "?";
+      mark.setAttribute("aria-label", "Ask a question");
+      mark.style.left = hotspot.mark.x;
+      mark.style.top = hotspot.mark.y;
+      mark.addEventListener("click", function () { openAsk(hotspot, items); });
+      spotsEl.appendChild(mark);
+      return;
+    }
     items.forEach(function (item) {
-      var hits = searching && item.hits && item.hits.length ? item.hits : [null];
+      var hits = item.hits && item.hits.length ? item.hits : [null];
       hits.forEach(function (hit) {
         var btn = document.createElement("button");
         btn.type = "button";
-        btn.className = searching ? "scene-spot" : "choice";
-        if (searching) {
-          btn.appendChild(magnifierIcon());
-          btn.setAttribute("aria-label", hit.title || item.label);
-          btn.style.left = hit.x || hit.left;
-          btn.style.top = hit.y || hit.top;
-        } else {
-          btn.textContent = item.label;
-        }
+        btn.className = "scene-spot";
+        btn.appendChild(magnifierIcon());
+        btn.setAttribute("aria-label", hit.title || item.label);
+        btn.style.left = hit.x || hit.left;
+        btn.style.top = hit.y || hit.top;
         btn.addEventListener("click", function () {
           var result = ClueHunt.visit(hunt, hotspot.id, item.id);
           hunt = result.state;
-          if (!searching) replyEl.textContent = result.reply;
           renderNotebook();
-          if (searching && hit) openZoom(hit.art, hit.title || item.label, result.reply);
+          if (hit) openZoom(hit.art, hit.title || item.label, result.reply);
         });
-        (searching ? spotsEl : actionsEl).appendChild(btn);
+        spotsEl.appendChild(btn);
       });
     });
   }
@@ -276,6 +326,8 @@
 
   function openSolvePanel() {
     if (ended || !ClueHunt.solveUnlocked(hunt)) return;
+    closeZoom();
+    closeAsk();
     map.hidden = true;
     scene.hidden = true;
     ending.hidden = true;
@@ -296,8 +348,15 @@
   zoomPop.addEventListener("click", function (event) {
     if (event.target === zoomPop) closeZoom();
   });
+  document.getElementById("ask-close").addEventListener("click", closeAsk);
+  askPop.addEventListener("click", function (event) {
+    if (event.target === askPop) closeAsk();
+  });
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") closeZoom();
+    if (event.key === "Escape") {
+      closeZoom();
+      closeAsk();
+    }
   });
 
   document.getElementById("start-map").addEventListener("click", showMap);
