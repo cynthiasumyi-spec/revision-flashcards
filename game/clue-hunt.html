@@ -85,10 +85,12 @@
           <button type="button" class="btn btn-ghost" id="solve-back">Back to the map</button>
         </div>
         <h2 class="hunt-q">Solve the case</h2>
+        <span class="solve-label">About what time did the box leave the stall?</span>
+        <div class="choices" id="time-choices"></div>
         <span class="solve-label">Who took the box?</span>
         <div class="choices" id="who-choices"></div>
-        <span class="solve-label">Where is Leo?</span>
-        <div class="choices" id="where-choices"></div>
+        <span class="solve-label">Why?</span>
+        <div class="choices" id="why-choices"></div>
         <div class="btn-row">
           <button type="button" class="btn btn-primary" id="solve-btn" disabled>Close the case</button>
         </div>
@@ -114,7 +116,7 @@
 <script>
 (function () {
   var hunt = ClueHunt.createHunt();
-  var casePicks = { who: null, where: null };
+  var casePicks = { time: null, who: null, why: null };
   var ended = false;
 
   var intro = document.getElementById("intro");
@@ -215,7 +217,7 @@
         casePicks[key] = opt;
         Array.prototype.forEach.call(container.children, function (el) { el.classList.remove("selected"); });
         btn.classList.add("selected");
-        solveBtn.disabled = !(casePicks.who && casePicks.where);
+        solveBtn.disabled = !(casePicks.time && casePicks.who && casePicks.why);
       });
       container.appendChild(btn);
     });
@@ -228,13 +230,14 @@
     ending.hidden = true;
     solve.hidden = false;
     notebook.hidden = false;
-    casePicks = { who: null, where: null };
+    casePicks = { time: null, who: null, why: null };
     solveBtn.disabled = true;
     feedback.hidden = true;
     feedback.textContent = "";
-    stepLabel.textContent = "Who took the box, and where is Leo?";
+    stepLabel.textContent = "Who took the box, and why?";
+    renderCaseGroup(document.getElementById("time-choices"), "time", ClueHunt.CASE.time.options);
     renderCaseGroup(document.getElementById("who-choices"), "who", ClueHunt.CASE.who.options);
-    renderCaseGroup(document.getElementById("where-choices"), "where", ClueHunt.CASE.where.options);
+    renderCaseGroup(document.getElementById("why-choices"), "why", ClueHunt.CASE.why.options);
     renderNotebook();
   }
 
