@@ -488,6 +488,19 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .toast.ok { background: var(--green); color: #fff; }
 .toast.bad { background: var(--pink); color: var(--navy); }
 
+/* Chat Quest question sits on the page, not inside a card. */
+.chat-stage {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 0.75rem;
+}
+.chat-stage .btn-ghost {
+  background: var(--white);
+  color: var(--ink);
+}
 /* Chat — full thread then quiz */
 .chat-thread {
   display: flex;

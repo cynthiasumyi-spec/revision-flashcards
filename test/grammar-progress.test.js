@@ -24,6 +24,19 @@ test('story chat and join pages record a grammar session when the set advances',
   });
 });
 
+test('chat quest questions are not wrapped in a panel frame', () => {
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
+    const html = read(unit + '-chat.html');
+    assert.match(html, /class="chat-stage" id="game"/, unit);
+    assert.doesNotMatch(html, /class="panel" id="game"/, unit);
+  });
+  const css = read('grammar.css');
+  const stage = css.slice(css.indexOf('.chat-stage {'), css.indexOf('.chat-thread {'));
+  assert.match(stage, /background:\s*transparent/);
+  assert.match(stage, /border:\s*0/);
+  assert.match(stage, /box-shadow:\s*none/);
+});
+
 test('chat pages count a correct final inference and boss records lives left', () => {
   ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
     const html = read(unit + '-chat.html');
