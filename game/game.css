@@ -90,17 +90,17 @@
   pointer-events: none;
 }
 .pin-stall { left: 7%; top: 8%; width: 22%; height: 24%; }
-.pin-stall span { right: 2%; top: 48%; }
+.pin-stall span { left: 2%; bottom: 1%; }
 .pin-wheel { left: 8%; top: 60%; width: 28%; height: 32%; }
-.pin-wheel span { right: 2%; top: 4%; }
+.pin-wheel span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-film { left: 72%; top: 8%; width: 24%; height: 32%; }
-.pin-film span { left: 4%; top: 1%; }
+.pin-film span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-hall { left: 32%; top: 6%; width: 36%; height: 42%; }
-.pin-hall span { right: 3%; top: 58%; }
+.pin-hall span { left: 50%; bottom: -14%; transform: translateX(-50%); }
 .pin-desk { left: 68%; top: 52%; width: 28%; height: 40%; }
-.pin-desk span { left: 2%; top: 1%; }
+.pin-desk span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-store { left: 40%; top: 64%; width: 24%; height: 30%; }
-.pin-store span { left: 4%; top: 2%; }
+.pin-store span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {
