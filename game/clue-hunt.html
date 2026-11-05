@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=18"/>
+<link rel="stylesheet" href="game.css?v=19"/>
 </head>
 <body>
 <header class="prac-header">
@@ -222,19 +222,6 @@
     return svg;
   }
 
-  function speechBubbleIcon() {
-    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 64 64");
-    svg.setAttribute("width", "22");
-    svg.setAttribute("height", "22");
-    svg.setAttribute("aria-hidden", "true");
-    var bubble = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    bubble.setAttribute("fill", "currentColor");
-    bubble.setAttribute("d", "M14 8h36a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H30l-10 14v-14H14a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z");
-    svg.appendChild(bubble);
-    return svg;
-  }
-
   function openAsk(hotspot, items) {
     closeZoom();
     askTitle.textContent = hotspot.name;
@@ -283,8 +270,8 @@
       var mark = document.createElement("button");
       mark.type = "button";
       mark.className = "scene-spot scene-ask";
-      mark.appendChild(speechBubbleIcon());
-      mark.setAttribute("aria-label", "Talk to this person");
+      mark.textContent = "?";
+      mark.setAttribute("aria-label", "Ask a question");
       mark.style.left = hotspot.mark.x;
       mark.style.top = hotspot.mark.y;
       mark.addEventListener("click", function () { openAsk(hotspot, items); });
