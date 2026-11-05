@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=6"/>
+<link rel="stylesheet" href="game.css?v=7"/>
 </head>
 <body>
 <header class="prac-header">
@@ -76,7 +76,19 @@
         </div>
         <p class="hunt-kind" id="scene-kicker"></p>
         <h2 class="hunt-q" id="scene-title"></h2>
-        <img id="scene-art" alt="" width="640" height="480"/>
+        <div class="scene-look">
+          <p class="search-cue" id="search-cue" hidden>
+            <svg class="search-glass" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true">
+              <circle cx="26" cy="26" r="14" fill="none" stroke="#243c6c" stroke-width="5"/>
+              <path d="M37 37 L52 54" stroke="#243c6c" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+            <span>Look on the picture</span>
+          </p>
+          <div class="scene-frame">
+            <img id="scene-art" alt=""/>
+            <div id="scene-spots"></div>
+          </div>
+        </div>
         <p class="case-lead" id="scene-reply"></p>
         <div class="choices" id="scene-actions"></div>
       </section>
@@ -130,6 +142,8 @@
   var openSolve = document.getElementById("open-solve");
   var replyEl = document.getElementById("scene-reply");
   var actionsEl = document.getElementById("scene-actions");
+  var spotsEl = document.getElementById("scene-spots");
+  var searchCue = document.getElementById("search-cue");
   var stepLabel = document.getElementById("step-label");
   var feedback = document.getElementById("solve-feedback");
   var solveBtn = document.getElementById("solve-btn");
@@ -173,19 +187,33 @@
 
   function renderActions(hotspot) {
     actionsEl.innerHTML = "";
+    spotsEl.innerHTML = "";
+    var searching = hotspot.kind === "search";
+    searchCue.hidden = !searching;
+    actionsEl.hidden = searching;
     var items = hotspot.kind === "search" ? hotspot.spots : hotspot.prompts;
     items.forEach(function (item) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "choice";
-      btn.textContent = item.label;
-      btn.addEventListener("click", function () {
-        var result = ClueHunt.visit(hunt, hotspot.id, item.id);
-        hunt = result.state;
-        replyEl.textContent = result.reply;
-        renderNotebook();
+      var hits = searching && item.hits && item.hits.length ? item.hits : [null];
+      hits.forEach(function (hit) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = searching ? "scene-spot" : "choice";
+        btn.textContent = hit && hit.chip ? hit.chip : item.label;
+        if (hit && hit.chip) btn.setAttribute("aria-label", item.label);
+        if (hit) {
+          btn.style.left = hit.left;
+          btn.style.top = hit.top;
+          if (hit.width) btn.style.width = hit.width;
+          if (hit.height) btn.style.height = hit.height;
+        }
+        btn.addEventListener("click", function () {
+          var result = ClueHunt.visit(hunt, hotspot.id, item.id);
+          hunt = result.state;
+          replyEl.textContent = result.reply;
+          renderNotebook();
+        });
+        (searching ? spotsEl : actionsEl).appendChild(btn);
       });
-      actionsEl.appendChild(btn);
     });
   }
 

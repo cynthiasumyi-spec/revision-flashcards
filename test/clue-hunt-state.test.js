@@ -59,7 +59,7 @@ test('each hotspot has one useful action and a useless stall tap adds nothing', 
   assert.equal(missed.added, false);
   assert.equal(missed.duplicate, false);
   assert.equal(missed.card, null);
-  assert.equal(missed.reply, 'The flags are still on the table.');
+  assert.equal(missed.reply, 'The box space is empty. The note is still on the table.');
   assert.deepEqual(missed.state.order, []);
   assert.equal(ClueHunt.visit.length, 3);
 });

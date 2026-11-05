@@ -19,9 +19,9 @@
       cardText: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!",
       misleading: false,
       spots: [
-        { id: "memo", label: "Apple-pattern note", useful: true, reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
-        { id: "flags", label: "Flags", useful: false, reply: "The flags are still on the table." },
-        { id: "books", label: "Old books", useful: false, reply: "The old books are still there." }
+        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ left: "46%", top: "30%", width: "42%", height: "44%", chip: "Note" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
+        { id: "flags", label: "Empty box space", useful: false, hits: [{ left: "8%", top: "42%", width: "34%", height: "30%", chip: "Empty space" }], reply: "The box space is empty. The note is still on the table." },
+        { id: "books", label: "Stall awning", useful: false, hits: [{ left: "4%", top: "0%", width: "90%", height: "26%", chip: "Awning" }], reply: "The awning is only decoration." }
       ]
     },
     {
@@ -61,15 +61,15 @@
       name: "School hall",
       kind: "search",
       marker: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
-      art: "illust/scene-hall-backstage.png",
+      art: "illust/scene-hall-auditorium.png",
       intro: "Look backstage.",
       cardTitle: "School hall",
       cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker.",
       misleading: false,
       spots: [
-        { id: "core", label: "Apple core and wish slip", useful: true, reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
-        { id: "curtain", label: "Stage curtain", useful: false, reply: "The stage curtain is still closed." },
-        { id: "seats", label: "Empty seats", useful: false, reply: "The seats are empty." }
+        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ left: "40%", top: "50%", width: "22%", height: "46%", chip: "Wish slip" }, { left: "81%", top: "64%", width: "11%", height: "20%", chip: "Apple" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
+        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ left: "28%", top: "0%", width: "11%", height: "56%", chip: "Curtain" }], reply: "The red curtains are tied open. Nothing is hidden there." },
+        { id: "seats", label: "Empty seats", useful: false, hits: [{ left: "0%", top: "62%", width: "24%", height: "36%", chip: "Seats" }], reply: "The seats are empty." }
       ]
     },
     {

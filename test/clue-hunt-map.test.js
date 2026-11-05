@@ -63,13 +63,16 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(html, /href="index\.html">← Game</);
   assert.match(html, /id="back-map"/);
   assert.match(html, /id="scene-actions"/);
+  assert.match(html, /id="search-cue"/);
+  assert.match(html, /id="scene-spots"/);
+  assert.match(html, /Look on the picture/);
   assert.match(html, /id="ending-copy"/);
 });
 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=6/);
+  assert.match(html, /game\.css\?v=7/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
@@ -120,7 +123,7 @@ test('scene art files exist and the storeroom picture is the book bin', () => {
     stall: 'illust/scene-stall-memo.png',
     wheel: 'illust/scene-prize-wheel.png',
     film: 'illust/scene-film-amy.png',
-    hall: 'illust/scene-hall-backstage.png',
+    hall: 'illust/scene-hall-auditorium.png',
     desk: 'illust/miss-chan-desk.png',
     store: '../practice/grammar/illust/u1_07_books.jpg'
   };
