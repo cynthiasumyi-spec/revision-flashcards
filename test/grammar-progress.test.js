@@ -47,6 +47,36 @@ test('chat mysteries need more than one clue and do not name the answer', () => 
           assert.equal(q.q.toLowerCase().includes(word), false, q.q);
         }
       });
+      const texts = data.bubbles.map(bubble => bubble.parts.join(' '));
+      const blob = (texts.join('\n') + '\n' + q.q).toLowerCase();
+      const known = new Set();
+      const nameBlock = html.match(/const names = \{([^}]+)\}/);
+      if (nameBlock) {
+        nameBlock[1].replace(/"([^"]+)"/g, (_, name) => known.add(name.toLowerCase()));
+        nameBlock[1].replace(/:\s*([A-Za-z][A-Za-z ]+)/g, (_, name) => known.add(name.trim().toLowerCase()));
+      }
+      q.options.forEach(opt => {
+        const low = opt.toLowerCase();
+        const words = low.replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(word => word.length > 3);
+        const inChat = blob.includes(low) || known.has(low) || words.some(word => blob.includes(word));
+        assert.equal(inChat, true, opt + ' / ' + q.q);
+      });
+      if (/^[A-Z][a-z]+$/.test(q.answer)) {
+        const named = texts.filter(text => text.includes(q.answer));
+        assert.ok(named.length >= 1, q.answer + ' is never named');
+        named.forEach(text => {
+          assert.equal(/\bis (the|our|on)\b/i.test(text), false, q.answer + ' labelled in: ' + text);
+        });
+      }
+      if (q.answer.startsWith('The ')) {
+        const noun = q.answer.slice(4).toLowerCase();
+        assert.ok(texts.some(text => text.toLowerCase().includes(noun)), q.answer);
+        texts.forEach(text => {
+          if (/someone left/i.test(text)) {
+            assert.equal(text.toLowerCase().includes(noun), false, q.answer);
+          }
+        });
+      }
       data.bubbles.forEach(bubble => {
         assert.equal(bubble.options.includes(bubble.answer), true, bubble.explain);
       });
@@ -130,11 +160,19 @@ test('join pages use one blank stem and lowercase choices', () => {
   });
 });
 
-test('grammar hub keeps the back link and adds a top-right Practice control', () => {
+test('grammar hub keeps only the back link to Practice', () => {
   const html = read('grammar-hub.html');
   assert.match(html, /class="back" href="practice-entry\.html"/);
-  assert.match(html, /class="header-practice" href="practice-entry\.html"/);
-  assert.match(html, />Practice</);
+  assert.doesNotMatch(html, /class="header-practice"/);
+});
+
+test('unit hubs add a top-right Practice link back to the entry page', () => {
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
+    const html = read(unit + '-hub.html');
+    assert.match(html, /class="back" href="grammar-hub\.html"/, unit);
+    assert.match(html, /class="header-practice" href="practice-entry\.html"/, unit);
+    assert.match(html, />Practice</, unit);
+  });
 });
 
 test('chat bubbles are not outlined in coral', () => {
@@ -155,10 +193,15 @@ test('chat bubbles are not outlined in coral', () => {
   assert.match(choiceRule, /color:\s*var\(--choice-ink\)/);
   assert.match(choiceRule, /border:\s*0/);
   assert.doesNotMatch(choiceRule, /background:\s*var\(--cream\)/);
-  assert.match(css, /--bubble-blue:/);
-  assert.match(css, /--bubble-green:/);
-  assert.match(css, /\.bubble\.amy,\s*\n\.bubble\.miss,\s*\n\.bubble\.mia,\s*\n\.bubble\.chef \{[\s\S]*background:\s*var\(--bubble-blue\)/);
-  assert.match(css, /\.bubble\.tom,\s*\n\.bubble\.ken,\s*\n\.bubble\.leo,\s*\n\.bubble\.sam \{[\s\S]*background:\s*var\(--bubble-green\)/);
+  ['amy', 'tom', 'miss', 'ken', 'leo', 'sam', 'mia', 'chef'].forEach(role => {
+    assert.match(css, new RegExp('--bubble-' + role + ':'));
+    assert.match(css, new RegExp('\\.bubble\\.' + role + ' \\{[^}]*background:\\s*var\\(--bubble-' + role + '\\)'));
+  });
+  const thread = css.slice(css.indexOf('.chat-thread {'), css.indexOf('.bubble {'));
+  assert.match(thread, /max-height:\s*none/);
+  assert.match(thread, /overflow:\s*visible/);
+  assert.doesNotMatch(css, /\.chat-thread \{[^}]*overflow-y:\s*auto/);
+  assert.doesNotMatch(css, /\.chat-thread \{[^}]*max-height:\s*min\(/);
   assert.match(rule, /box-shadow:\s*none/);
   assert.match(css, /\.btn-ghost \{ background: var\(--cream\)/);
   assert.match(css, /\.btn-primary \{ background: var\(--coral\)/);
