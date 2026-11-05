@@ -77,6 +77,9 @@ test('homepage keeps practice bars and hides the needs-review word list', () => 
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
   assert.match(home, /id="review-progress"/);
   assert.match(home, /practiceProgress/);
+  assert.match(home, /review-mark/);
+  assert.match(home, /assets\/badges\/unit-completer-unit1\.png/);
+  assert.match(home, /assets\/badges\/unit-completer-dictation3\.png/);
   assert.doesNotMatch(home, /mastered \/ total/);
   assert.doesNotMatch(home, /review-list\.js/);
   assert.doesNotMatch(home, /appendWords/);

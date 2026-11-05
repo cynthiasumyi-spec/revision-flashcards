@@ -1166,9 +1166,21 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: 0.55rem 0.75rem;
 }
 .review-row-link {
-  display: block;
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 0.15rem 0.7rem;
+  align-items: center;
   text-decoration: none;
   color: inherit;
+}
+.review-mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  background: var(--white, #fff);
+  justify-self: center;
 }
 .review-row-link:active { transform: scale(0.99); }
 .review-row.is-locked { opacity: 0.55; filter: saturate(0.6); }
