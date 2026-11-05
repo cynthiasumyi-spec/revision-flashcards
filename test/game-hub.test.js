@@ -13,6 +13,8 @@ test('home page tucks Be a Detective at the top-left of the packs sheet', () => 
   assert.match(sheet, /class="detective-peek" href="game\/clue-hunt\.html"/);
   assert.match(home, />Be a Detective</);
   assert.match(home, /Unlock your badges/);
+  const nav = home.match(/<nav class="nav-plain"[\s\S]*?<\/nav>/)[0];
+  assert.doesNotMatch(nav, />Game</);
   assert.doesNotMatch(home, /class="detective-card"/);
   assert.doesNotMatch(home, /Start Clue Hunt/);
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
