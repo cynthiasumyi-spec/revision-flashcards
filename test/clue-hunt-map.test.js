@@ -122,9 +122,9 @@ test('the page script opens every state hotspot by talk or search', () => {
 test('scene art files exist and Ken still marks the storeroom pin', () => {
   const ClueHunt = require('../game/clue-hunt-state.js');
   const expected = {
-    stall: 'illust/scene-stall-fair.png',
+    stall: 'illust/scene-stall-unsigned.png',
     wheel: 'illust/scene-prize-wheel-fair.png',
-    film: 'illust/scene-film-club.png',
+    film: 'illust/scene-film-sticker.png',
     hall: 'illust/scene-hall-full.png',
     desk: 'illust/scene-miss-chan-class.png',
     store: 'illust/scene-storeroom-ken.png'

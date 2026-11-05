@@ -13,13 +13,13 @@
       name: "Charity stall",
       kind: "search",
       marker: "../practice/grammar/illust/u1_s4_carnival_stalls.jpg",
-      art: "illust/scene-stall-fair.png",
+      art: "illust/scene-stall-unsigned.png",
       intro: "Look at the charity stall table.",
       cardTitle: "Charity stall",
-      cardText: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!",
+      cardText: "An unsigned note says: Please move the raffle box to the hall. Thanks!",
       misleading: false,
       spots: [
-        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ x: "78%", y: "68%", art: "illust/zoom-note.png" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
+        { id: "memo", label: "Unsigned note", useful: true, hits: [{ x: "78%", y: "68%", art: "illust/zoom-unsigned-note.png" }], reply: "An unsigned note says: Please move the raffle box to the hall. Thanks!" },
         { id: "flags", label: "Empty box space", useful: false, hits: [{ x: "30%", y: "73%", art: "illust/zoom-empty.png" }], reply: "The box space is empty. The note is still on the table." },
         { id: "books", label: "Stall awning", useful: false, hits: [{ x: "50%", y: "8%", art: "illust/zoom-awning.png" }], reply: "The awning is only decoration." }
       ]
@@ -46,15 +46,15 @@
       name: "Film club",
       kind: "talk",
       marker: "../practice/grammar/illust/u4_s5_studio_lights.jpg",
-      art: "illust/scene-film-club.png",
+      art: "illust/scene-film-sticker.png",
       intro: "Amy is here with the film club.",
       mark: { x: "54%", y: "24%" },
       cardTitle: "Film club",
-      cardText: "Amy's lunch box has a red apple every day. She once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus.",
+      cardText: "Amy once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus.",
       misleading: false,
       prompts: [
-        { id: "lunch", label: "What is in Amy's lunch?", useful: true, reply: "Amy's lunch box has a red apple every day. She once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus." },
-        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I only know about her lunch and her wish list." },
+        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "Amy once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus." },
+        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I only know about her wish list." },
         { id: "box", label: "Did you see the box?", useful: false, reply: "I did not see the box leave." }
       ]
     },

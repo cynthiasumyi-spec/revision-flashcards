@@ -23,13 +23,14 @@ test('six hotspots and only Ken is misleading', () => {
   assert.equal(misleading[0].id, 'store');
   assert.equal(misleading[0].cardText, 'Ken says he saw Leo go into the storeroom at noon.');
   const byId = Object.fromEntries(ClueHunt.HOTSPOTS.map((spot) => [spot.id, spot]));
-  assert.equal(byId.stall.cardText, 'An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!');
+  assert.equal(byId.stall.cardText, 'An unsigned note says: Please move the raffle box to the hall. Thanks!');
+  assert.doesNotMatch(byId.stall.cardText, /apple/i);
   assert.doesNotMatch(byId.stall.cardText, /Amy/);
   assert.match(byId.wheel.cardText, /About 1:15/);
   assert.match(byId.wheel.cardText, /blue jacket/);
   assert.match(byId.wheel.cardText, /new bike/);
   assert.doesNotMatch(byId.wheel.cardText, /Amy/);
-  assert.match(byId.film.cardText, /red apple every day/);
+  assert.doesNotMatch(byId.film.cardText, /red apple every day/);
   assert.match(byId.film.cardText, /apple sticker on a wish list/);
   assert.match(byId.film.cardText, /would not wait for the bus/);
   assert.doesNotMatch(byId.film.cardText, /memo/);
@@ -70,7 +71,8 @@ test('a useful visit adds one card and does not mutate the previous state', () =
   assert.deepEqual(start.order, []);
   assert.equal(found.added, true);
   assert.equal(found.duplicate, false);
-  assert.match(found.reply, /apple pattern/);
+  assert.match(found.reply, /unsigned note/);
+  assert.doesNotMatch(found.reply, /apple/i);
   assert.deepEqual(ClueHunt.notebook(found.state).map((card) => card.id), ['stall']);
 });
 
