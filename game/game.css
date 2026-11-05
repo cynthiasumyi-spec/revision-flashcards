@@ -144,17 +144,38 @@
   cursor: pointer;
 }
 .scene-spot svg { display: block; }
-.scene-ask {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-.ask-choices {
+.scene-ask svg { width: 1.25rem; height: 1.25rem; }
+.ask-thread {
+  display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 0.45rem;
+  max-height: min(62vh, 26rem);
+  margin: 0 0 0.75rem;
+  padding: 0.1rem 0.05rem 0.15rem;
+  overflow: auto;
 }
-.ask-choices .choice { width: 100%; }
+.ask-thread .talk-next { width: 100%; margin: 0; }
+.zoom-card .talk-said,
+.zoom-card .talk-reply {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.zoom-card .talk-said {
+  align-self: flex-end;
+  max-width: 92%;
+  border-radius: 16px 16px 4px 16px;
+  background: var(--choice-bg);
+  color: var(--choice-ink);
+}
+.zoom-card .talk-reply {
+  align-self: flex-start;
+  max-width: 92%;
+  border-radius: 16px 16px 16px 4px;
+  background: #fff;
+}
 .scene-spot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;

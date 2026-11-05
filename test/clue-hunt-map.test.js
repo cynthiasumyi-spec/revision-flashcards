@@ -65,7 +65,8 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(html, /id="zoom-pop"/);
   assert.match(html, /id="zoom-close"/);
   assert.match(html, /id="ask-pop"/);
-  assert.match(html, /id="ask-choices"/);
+  assert.match(html, /id="ask-thread"/);
+  assert.doesNotMatch(html, /id="ask-choices"/);
   assert.doesNotMatch(html, /Look on the picture/);
   assert.match(html, /id="ending-copy"/);
 });
@@ -73,7 +74,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=17/);
+  assert.match(html, /game\.css\?v=18/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
@@ -115,6 +116,9 @@ test('the page script opens every state hotspot by talk or search', () => {
   });
   const script = html.slice(html.lastIndexOf('<script>'), html.lastIndexOf('</script>'));
   assert.match(script, /hotspot\.kind === "search" \? hotspot\.spots : hotspot\.prompts/);
+  assert.match(script, /Talk to this person/);
+  assert.match(script, /function askNext/);
+  assert.doesNotMatch(script, /textContent = "\?"/);
   assert.match(script, /ClueHunt\.visit\(hunt, hotspot\.id, item\.id\)/);
   assert.doesNotMatch(script, /data-hotspot="stall"/);
 });

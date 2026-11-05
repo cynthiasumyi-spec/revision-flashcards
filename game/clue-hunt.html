@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=17"/>
+<link rel="stylesheet" href="game.css?v=18"/>
 </head>
 <body>
 <header class="prac-header">
@@ -79,8 +79,7 @@
         <div class="zoom-pop" id="ask-pop" hidden>
           <div class="zoom-card" role="dialog" aria-modal="true" aria-labelledby="ask-title">
             <h3 id="ask-title"></h3>
-            <div class="choices ask-choices" id="ask-choices"></div>
-            <p id="ask-reply" hidden></p>
+            <div class="ask-thread" id="ask-thread"></div>
             <button type="button" class="btn btn-primary" id="ask-close">Close</button>
           </div>
         </div>
@@ -138,8 +137,7 @@
   var zoomImg = document.getElementById("zoom-art");
   var askPop = document.getElementById("ask-pop");
   var askTitle = document.getElementById("ask-title");
-  var askChoices = document.getElementById("ask-choices");
-  var askReply = document.getElementById("ask-reply");
+  var askThread = document.getElementById("ask-thread");
   var zoomTitle = document.getElementById("zoom-title");
   var zoomReply = document.getElementById("zoom-reply");
   var stepLabel = document.getElementById("step-label");
@@ -224,29 +222,53 @@
     return svg;
   }
 
+  function speechBubbleIcon() {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 64 64");
+    svg.setAttribute("width", "22");
+    svg.setAttribute("height", "22");
+    svg.setAttribute("aria-hidden", "true");
+    var bubble = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bubble.setAttribute("fill", "currentColor");
+    bubble.setAttribute("d", "M14 8h36a8 8 0 0 1 8 8v16a8 8 0 0 1-8 8H30l-10 14v-14H14a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8z");
+    svg.appendChild(bubble);
+    return svg;
+  }
+
   function openAsk(hotspot, items) {
     closeZoom();
     askTitle.textContent = hotspot.name;
-    askChoices.innerHTML = "";
-    askReply.hidden = true;
-    askReply.textContent = "";
-    items.forEach(function (item) {
+    askThread.innerHTML = "";
+    askPop.hidden = false;
+    var asked = 0;
+    function askNext() {
+      if (asked >= items.length) return;
+      var item = items[asked];
       var btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "choice";
+      btn.className = "choice talk-next";
       btn.textContent = item.label;
       btn.addEventListener("click", function () {
+        btn.disabled = true;
+        var said = document.createElement("p");
+        said.className = "talk-said";
+        said.textContent = item.label;
+        btn.replaceWith(said);
         var result = ClueHunt.visit(hunt, hotspot.id, item.id);
         hunt = result.state;
         renderNotebook();
-        askReply.hidden = false;
-        askReply.textContent = result.reply;
-        Array.prototype.forEach.call(askChoices.children, function (el) { el.classList.remove("selected"); });
-        btn.classList.add("selected");
+        var reply = document.createElement("p");
+        reply.className = "talk-reply";
+        reply.textContent = result.reply;
+        askThread.appendChild(reply);
+        asked += 1;
+        askNext();
+        askThread.scrollTop = askThread.scrollHeight;
       });
-      askChoices.appendChild(btn);
-    });
-    askPop.hidden = false;
+      askThread.appendChild(btn);
+      btn.focus();
+    }
+    askNext();
   }
 
   function renderActions(hotspot) {
@@ -261,8 +283,8 @@
       var mark = document.createElement("button");
       mark.type = "button";
       mark.className = "scene-spot scene-ask";
-      mark.textContent = "?";
-      mark.setAttribute("aria-label", "Ask a question");
+      mark.appendChild(speechBubbleIcon());
+      mark.setAttribute("aria-label", "Talk to this person");
       mark.style.left = hotspot.mark.x;
       mark.style.top = hotspot.mark.y;
       mark.addEventListener("click", function () { openAsk(hotspot, items); });
