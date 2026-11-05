@@ -1089,64 +1089,52 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   max-width: var(--page-max);
   margin: 0 auto;
 }
-.detective-home {
-  padding: 0.2rem var(--margin) 0.4rem;
-}
-.detective-home-inner {
-  max-width: var(--page-max);
-  margin: 0 auto;
-}
-.detective-card {
-  display: grid;
-  grid-template-columns: minmax(8.5rem, 14rem) 1fr;
-  gap: 0.9rem 1.1rem;
+.hero.hero-simple .detective-peek {
+  position: absolute;
+  right: clamp(0.35rem, 1.6vw, 1rem);
+  bottom: 0.15rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background: color-mix(in srgb, var(--sunny) 62%, #fff);
-  border: 0;
-  border-radius: 22px;
-  padding: 0.75rem;
-  color: var(--navy);
+  gap: 0.05rem;
+  width: 4.4rem;
+  color: color-mix(in srgb, var(--sunny) 88%, #fff);
   text-decoration: none;
+  opacity: 0.78;
 }
-.detective-card:hover { filter: brightness(1.03); }
-.detective-card img {
-  width: 100%;
-  height: auto;
-  max-height: 11rem;
+.hero.hero-simple .detective-peek img {
+  width: 3.15rem;
+  height: 3.15rem;
   object-fit: contain;
-  border-radius: 16px;
-  background: #fff;
+  background: none;
+  border-radius: 0;
 }
-.detective-kicker {
-  margin: 0 0 0.15rem;
+.hero.hero-simple .detective-peek span {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  color: var(--navy);
-}
-.detective-copy h2 {
-  margin: 0 0 0.3rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
   font-weight: 650;
-  color: var(--navy);
+  font-size: 0.68rem;
+  line-height: 1.05;
+  text-align: center;
 }
-.detective-copy p {
-  margin: 0 0 0.75rem;
-  font-weight: 650;
-  color: var(--navy);
+.hero.hero-simple .detective-peek:hover,
+.hero.hero-simple .detective-peek:focus-visible {
+  opacity: 1;
 }
-.detective-card .btn-primary {
-  background: var(--coral);
-  color: #fff;
-  border: 0;
-  pointer-events: none;
-}
-@media (max-width: 640px) {
-  .detective-card { grid-template-columns: 1fr; }
-  .detective-card img { max-height: 9.5rem; }
+@media (max-width: 720px) {
+  .hero.hero-simple .detective-peek {
+    top: 0.35rem;
+    bottom: auto;
+    width: auto;
+    max-width: 7.2rem;
+    flex-direction: row;
+    gap: 0.2rem;
+  }
+  .hero.hero-simple .detective-peek img {
+    width: 2.15rem;
+    height: 2.15rem;
+  }
+  .hero.hero-simple .detective-peek span { font-size: 0.62rem; }
 }
 
 .today-home-card,

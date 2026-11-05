@@ -5,13 +5,20 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 
-test('home page has a detective card into Clue Hunt and a Game nav link', () => {
+test('home page hides a small detective link in the blue header', () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  assert.match(home, /class="detective-card" href="game\/clue-hunt\.html"/);
+  assert.match(home, /class="detective-peek" href="game\/clue-hunt\.html"/);
   assert.match(home, />Be a Detective</);
   assert.match(home, /practice\/grammar\/illust\/u4_curious\.png/);
+  assert.doesNotMatch(home, /class="detective-card"/);
+  assert.doesNotMatch(home, /Start Clue Hunt/);
+  assert.match(home, /badge-prompt/);
+  assert.match(home, /Unlock your badges/);
   assert.match(home, /href="game\/index\.html"/);
   assert.match(home, />Game</);
+  const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
+  assert.match(css, /\.detective-peek[\s\S]*position:\s*absolute/);
+  assert.match(css, /\.detective-peek[\s\S]*right:/);
 });
 
 test('game hub lists Clue Hunt and is not inside Practice', () => {
@@ -21,9 +28,13 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, /href="\.\.\/index\.html"/);
   assert.doesNotMatch(hub, /practice-entry\.html/);
   const hunt = fs.readFileSync(path.join(root, 'game/clue-hunt.html'), 'utf8');
-  assert.match(hunt, /buy\/sell raffle tickets/);
-  assert.match(hunt, /a comedy/);
+  assert.match(hunt, /Who left with Leo/);
+  assert.match(hunt, /Where is the missing boy/);
+  assert.match(hunt, /Who wanted the box/);
   assert.match(hunt, /The film club/);
+  assert.match(hunt, /answer: "Leo"/);
   assert.match(hunt, /In the school hall/);
+  assert.doesNotMatch(hunt, /Vocab · Unit/);
+  assert.doesNotMatch(hunt, /Grammar ·/);
   assert.equal((hunt.match(/answer: "/g) || []).length >= 8, true);
 });

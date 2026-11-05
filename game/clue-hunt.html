@@ -8,19 +8,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=1"/>
+<link rel="stylesheet" href="game.css?v=2"/>
 </head>
 <body>
 <header class="prac-header">
   <a class="back" href="index.html">← Game</a>
   <h1>Clue Hunt</h1>
-  <p class="sub" id="step-label">Question 1 of 5</p>
+  <p class="sub" id="step-label">Case file · lead 1 is sealed</p>
 </header>
 <main class="wrap">
   <div class="case-art">
     <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
   </div>
-  <p class="case-lead" id="case-lead">The raffle box is missing from the charity stall. Answer each question to unlock a clue, then solve the case.</p>
+  <p class="case-lead" id="case-lead">Leo has not come back from the charity stall. The raffle box is gone too. Five cards are sealed. Follow each lead until you can name who took the box, and where Leo is.</p>
   <div class="clue-row" id="clues"></div>
   <section id="ask">
     <p class="hunt-kind" id="kind"></p>
@@ -28,77 +28,77 @@
     <div class="choices" id="choices"></div>
     <p class="hint" id="feedback" hidden></p>
     <div class="btn-row">
-      <button type="button" class="btn btn-primary" id="check" disabled>Check</button>
+      <button type="button" class="btn btn-primary" id="check" disabled>Open this card</button>
     </div>
   </section>
   <section class="solve-block" id="solve" hidden>
-    <h2>Put the case together</h2>
-    <span class="solve-label">Who has the box now?</span>
+    <h2>The file is open. Name the case.</h2>
+    <span class="solve-label">Who took the box?</span>
     <div class="choices" id="who-choices"></div>
-    <span class="solve-label">What is missing?</span>
+    <span class="solve-label">Who is missing?</span>
     <div class="choices" id="what-choices"></div>
-    <span class="solve-label">Where is it now?</span>
+    <span class="solve-label">Where is he now?</span>
     <div class="choices" id="where-choices"></div>
     <div class="btn-row">
-      <button type="button" class="btn btn-primary" id="solve-btn" disabled>Solve</button>
+      <button type="button" class="btn btn-primary" id="solve-btn" disabled>Close the case</button>
     </div>
     <p class="hint" id="solve-feedback" hidden></p>
   </section>
   <section class="ending" id="ending" hidden>
-    <h2>Case closed</h2>
+    <h2>Found it</h2>
     <p id="ending-copy"></p>
   </section>
 </main>
 <script>
 (function () {
   var clues = [
-    { label: "What", text: "The missing thing is a box of raffle tickets." },
-    { label: "Where it was", text: "Amy last saw the box beside the prize wheel." },
-    { label: "Who looked", text: "Ken checked the prize wheel. The box was not there." },
-    { label: "Where now", text: "Someone carried the box into the hall for the film-club prize draw." },
-    { label: "Order", text: "The stall closed first. Then the box went to the hall." }
+    { label: "Who was with him", text: "Amy left the stall with Leo." },
+    { label: "What they carried", text: "The raffle tickets went with them. The flags stayed." },
+    { label: "Where he is not", text: "Ken searched beside the prize wheel. Leo was not there." },
+    { label: "Where the trail goes", text: "A comedy is playing in the school hall. The crowd went in." },
+    { label: "Who asked for the box", text: "The film club asked Amy to bring the tickets in for their draw." }
   ];
   var questions = [
     {
-      kind: "Vocab · Unit 1",
-      q: "At the school fair, she holds lucky-draw stubs and helps parents ____.",
-      options: ["buy/sell raffle tickets", "adopt a pet", "donate money", "visit an elderly home"],
-      answer: "buy/sell raffle tickets",
-      explain: "Lucky-draw stubs are raffle tickets."
+      kind: "Who left with Leo?",
+      q: "The note says only the ticket seller walked off with Leo. Amy is the ticket seller. Ken watched the gate. Who left with him?",
+      options: ["Amy", "Ken", "Miss Chan", "The caretaker"],
+      answer: "Amy",
+      explain: "Amy sells the raffle tickets. She walked off with Leo."
     },
     {
-      kind: "Grammar · which",
-      q: "The prize box ____ Class 6A filled this morning is not on the table.",
-      options: ["which", "who", "whose", "where"],
-      answer: "which",
-      explain: "The prize box is a thing, so we use which."
+      kind: "What is gone?",
+      q: "The flags are still on the table. The old books are still there. The lucky-draw box is not. What left with them?",
+      options: ["The raffle tickets", "The flags", "A pet", "The old books"],
+      answer: "The raffle tickets",
+      explain: "Only the raffle tickets are missing from the stall."
     },
     {
-      kind: "Grammar · if…will",
-      q: "If the fair opens at noon, Ken ____ check beside the prize wheel.",
-      options: ["will", "would", "going to", "shall"],
-      answer: "will",
-      explain: "A real plan uses if + present, will."
+      kind: "Where did Ken look?",
+      q: "Ken said he would check beside the prize wheel at noon. He is back, and he is alone. Where did he look?",
+      options: ["Beside the prize wheel", "Outside the MTR", "At the shelter", "At the elderly home"],
+      answer: "Beside the prize wheel",
+      explain: "The prize wheel is empty. Leo is not there."
     },
     {
-      kind: "Vocab · Unit 4",
-      q: "The film club is laughing at the jokes in ____ in the school hall.",
-      options: ["a comedy", "an action film", "a horror film", "a science fiction film"],
-      answer: "a comedy",
-      explain: "Jokes that make people laugh are a comedy, not an action film."
+      kind: "Where is the missing boy?",
+      q: "People are laughing at a funny film. The screen is in the school hall, not at the MTR. Where is the missing boy’s trail?",
+      options: ["The school hall", "The MTR exit", "The shelter", "The elderly home"],
+      answer: "The school hall",
+      explain: "A comedy is on in the school hall. The trail goes there."
     },
     {
-      kind: "Grammar · after",
-      q: "Carry the stamped tickets to the hall ____ you close the stall.",
-      options: ["after", "before", "when", "until"],
-      answer: "after",
-      explain: "Close the stall first, then carry the tickets."
+      kind: "Who wanted the box?",
+      q: "Amy says the film club asked her to bring the tickets in for their draw. Ken did not ask. Who wanted the box?",
+      options: ["The film club", "Ken", "Miss Chan", "The caretaker"],
+      answer: "The film club",
+      explain: "The film club needed the tickets. Leo is with that box."
     }
   ];
   var solve = {
-    who: { options: ["The film club", "Ken", "Amy", "The elderly home"], answer: "The film club" },
-    what: { options: ["Raffle tickets", "Flags", "A pet", "Old books"], answer: "Raffle tickets" },
-    where: { options: ["In the school hall", "Beside the prize wheel", "Outside the MTR", "At the shelter"], answer: "In the school hall" }
+    who: { options: ["The film club", "Ken", "Miss Chan", "The caretaker"], answer: "The film club" },
+    what: { options: ["Leo", "Amy", "Ken", "Miss Chan"], answer: "Leo" },
+    where: { options: ["In the school hall", "Beside the prize wheel", "Outside the MTR", "At the elderly home"], answer: "In the school hall" }
   };
 
   var step = 0;
@@ -118,7 +118,7 @@
       var card = document.createElement("article");
       var open = i < step;
       card.className = "clue-card" + (open ? "" : " locked");
-      card.innerHTML = "<strong>" + clue.label + "</strong><p>" + (open ? clue.text : "Locked") + "</p>";
+      card.innerHTML = "<strong>" + clue.label + "</strong><p>" + (open ? clue.text : "Sealed") + "</p>";
       clueBox.appendChild(card);
     });
   }
@@ -130,8 +130,8 @@
     promptEl.textContent = item.q;
     feedback.hidden = true;
     checkBtn.disabled = true;
-    checkBtn.textContent = "Check";
-    stepLabel.textContent = "Question " + (step + 1) + " of " + questions.length;
+    checkBtn.textContent = "Open this card";
+    stepLabel.textContent = "Lead " + (step + 1) + " of " + questions.length + " · card still sealed";
     choicesEl.innerHTML = "";
     item.options.forEach(function (opt) {
       var btn = document.createElement("button");
@@ -139,7 +139,7 @@
       btn.className = "choice";
       btn.textContent = opt;
       btn.addEventListener("click", function () {
-        if (checkBtn.textContent === "Next clue") return;
+        if (checkBtn.textContent === "Open the next card") return;
         picked = opt;
         Array.prototype.forEach.call(choicesEl.children, function (el) { el.classList.remove("selected"); });
         btn.classList.add("selected");
@@ -152,7 +152,7 @@
 
   checkBtn.addEventListener("click", function () {
     var item = questions[step];
-    if (checkBtn.textContent === "Next clue") {
+    if (checkBtn.textContent === "Open the next card") {
       step += 1;
       if (step >= questions.length) showSolve();
       else renderQuestion();
@@ -161,11 +161,11 @@
     if (!picked) return;
     var ok = picked === item.answer;
     feedback.hidden = false;
-    feedback.textContent = ok ? "Clue unlocked. " + item.explain : "Not yet. " + item.explain;
+    feedback.textContent = ok ? "The card opens. " + item.explain : "That lead does not fit. " + item.explain;
     if (!ok) return;
     Array.prototype.forEach.call(choicesEl.children, function (el) { el.disabled = true; });
-    checkBtn.textContent = "Next clue";
-    stepLabel.textContent = "Clue " + (step + 1) + " unlocked";
+    checkBtn.textContent = "Open the next card";
+    stepLabel.textContent = "Card " + (step + 1) + " is open";
     var shown = step;
     step += 1;
     renderClues();
@@ -192,7 +192,7 @@
   function showSolve() {
     document.getElementById("ask").hidden = true;
     document.getElementById("solve").hidden = false;
-    stepLabel.textContent = "Solve the case";
+    stepLabel.textContent = "Who did it, and where is Leo?";
     renderClues();
     choiceGroup("who-choices", "who");
     choiceGroup("what-choices", "what");
@@ -204,14 +204,14 @@
     var note = document.getElementById("solve-feedback");
     note.hidden = false;
     if (!ok) {
-      note.textContent = "Check the unlocked cards again. Who took it to the hall, what was in the box, and where it is now.";
+      note.textContent = "The cards do not match. Who asked for the box, who is missing, and where the comedy is playing.";
       return;
     }
     document.getElementById("solve").hidden = true;
     document.getElementById("case-lead").hidden = true;
     var ending = document.getElementById("ending");
     ending.hidden = false;
-    document.getElementById("ending-copy").textContent = "The film club borrowed the raffle tickets for the comedy prize draw in the school hall. The stall can collect the box after the film.";
+    document.getElementById("ending-copy").textContent = "The film club took the raffle tickets for their comedy draw. Leo went with the box. He is in the school hall, safe, and the stall can collect the tickets after the film.";
     stepLabel.textContent = "Case closed";
   });
 
