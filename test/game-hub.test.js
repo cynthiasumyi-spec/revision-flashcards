@@ -5,20 +5,21 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 
-test('home page hides a small detective link in the blue header', () => {
+test('home page tucks Be a Detective at the top-left of the packs sheet', () => {
   const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  assert.match(home, /class="detective-peek" href="game\/clue-hunt\.html"/);
+  const hero = home.slice(home.indexOf('class="hero'), home.indexOf('class="badge-prompt"'));
+  const sheet = home.slice(home.indexOf('class="sheet'), home.indexOf('id="packs-title"'));
+  assert.doesNotMatch(hero, /detective-peek/);
+  assert.match(sheet, /class="detective-peek" href="game\/clue-hunt\.html"/);
   assert.match(home, />Be a Detective</);
-  assert.match(home, /practice\/grammar\/illust\/u4_curious\.png/);
+  assert.match(home, /Unlock your badges/);
   assert.doesNotMatch(home, /class="detective-card"/);
   assert.doesNotMatch(home, /Start Clue Hunt/);
-  assert.match(home, /badge-prompt/);
-  assert.match(home, /Unlock your badges/);
-  assert.match(home, /href="game\/index\.html"/);
-  assert.match(home, />Game</);
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
-  assert.match(css, /\.detective-peek[\s\S]*position:\s*absolute/);
-  assert.match(css, /\.detective-peek[\s\S]*right:/);
+  const rule = css.slice(css.indexOf('.sheet .detective-peek {'), css.indexOf('.sheet .detective-peek img'));
+  assert.match(rule, /position:\s*absolute/);
+  assert.match(rule, /left:/);
+  assert.doesNotMatch(rule, /right:/);
 });
 
 test('game hub lists Clue Hunt and is not inside Practice', () => {

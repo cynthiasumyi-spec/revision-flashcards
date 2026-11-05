@@ -364,8 +364,37 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   margin: 0 auto;
   background: var(--cream);
   border-radius: var(--radius);
-  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem) 2rem;
+  padding: clamp(4.4rem, 7vw, 5.2rem) clamp(1.25rem, 3vw, 2.5rem) 2rem;
 }
+.sheet .detective-peek {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.55rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05rem;
+  width: 4.1rem;
+  color: var(--navy);
+  text-decoration: none;
+  opacity: 0.82;
+}
+.sheet .detective-peek img {
+  width: 2.7rem;
+  height: 2.7rem;
+  object-fit: contain;
+  background: none;
+}
+.sheet .detective-peek span {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 0.66rem;
+  line-height: 1.05;
+  text-align: center;
+}
+.sheet .detective-peek:hover,
+.sheet .detective-peek:focus-visible { opacity: 1; }
 .sheet-title {
   font-family: var(--font-display);
   font-weight: 650;
@@ -1088,53 +1117,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .today-home-inner {
   max-width: var(--page-max);
   margin: 0 auto;
-}
-.hero.hero-simple .detective-peek {
-  position: absolute;
-  right: clamp(0.35rem, 1.6vw, 1rem);
-  bottom: 0.15rem;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.05rem;
-  width: 4.4rem;
-  color: color-mix(in srgb, var(--sunny) 88%, #fff);
-  text-decoration: none;
-  opacity: 0.78;
-}
-.hero.hero-simple .detective-peek img {
-  width: 3.15rem;
-  height: 3.15rem;
-  object-fit: contain;
-  background: none;
-  border-radius: 0;
-}
-.hero.hero-simple .detective-peek span {
-  font-family: var(--font-display);
-  font-weight: 650;
-  font-size: 0.68rem;
-  line-height: 1.05;
-  text-align: center;
-}
-.hero.hero-simple .detective-peek:hover,
-.hero.hero-simple .detective-peek:focus-visible {
-  opacity: 1;
-}
-@media (max-width: 720px) {
-  .hero.hero-simple .detective-peek {
-    top: 0.35rem;
-    bottom: auto;
-    width: auto;
-    max-width: 7.2rem;
-    flex-direction: row;
-    gap: 0.2rem;
-  }
-  .hero.hero-simple .detective-peek img {
-    width: 2.15rem;
-    height: 2.15rem;
-  }
-  .hero.hero-simple .detective-peek span { font-size: 0.62rem; }
 }
 
 .today-home-card,
