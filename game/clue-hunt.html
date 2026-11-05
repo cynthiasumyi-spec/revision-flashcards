@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Clue Hunt · Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
+<link rel="stylesheet" href="game.css?v=1"/>
+</head>
+<body>
+<header class="prac-header">
+  <a class="back" href="index.html">← Game</a>
+  <h1>Clue Hunt</h1>
+  <p class="sub" id="step-label">Question 1 of 5</p>
+</header>
+<main class="wrap">
+  <div class="case-art">
+    <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
+  </div>
+  <p class="case-lead" id="case-lead">The raffle box is missing from the charity stall. Answer each question to unlock a clue, then solve the case.</p>
+  <div class="clue-row" id="clues"></div>
+  <section id="ask">
+    <p class="hunt-kind" id="kind"></p>
+    <h2 class="hunt-q" id="prompt"></h2>
+    <div class="choices" id="choices"></div>
+    <p class="hint" id="feedback" hidden></p>
+    <div class="btn-row">
+      <button type="button" class="btn btn-primary" id="check" disabled>Check</button>
+    </div>
+  </section>
+  <section class="solve-block" id="solve" hidden>
+    <h2>Put the case together</h2>
+    <span class="solve-label">Who has the box now?</span>
+    <div class="choices" id="who-choices"></div>
+    <span class="solve-label">What is missing?</span>
+    <div class="choices" id="what-choices"></div>
+    <span class="solve-label">Where is it now?</span>
+    <div class="choices" id="where-choices"></div>
+    <div class="btn-row">
+      <button type="button" class="btn btn-primary" id="solve-btn" disabled>Solve</button>
+    </div>
+    <p class="hint" id="solve-feedback" hidden></p>
+  </section>
+  <section class="ending" id="ending" hidden>
+    <h2>Case closed</h2>
+    <p id="ending-copy"></p>
+  </section>
+</main>
+<script>
+(function () {
+  var clues = [
+    { label: "What", text: "The missing thing is a box of raffle tickets." },
+    { label: "Where it was", text: "Amy last saw the box beside the prize wheel." },
+    { label: "Who looked", text: "Ken checked the prize wheel. The box was not there." },
+    { label: "Where now", text: "Someone carried the box into the hall for the film-club prize draw." },
+    { label: "Order", text: "The stall closed first. Then the box went to the hall." }
+  ];
+  var questions = [
+    {
+      kind: "Vocab · Unit 1",
+      q: "At the school fair, she holds lucky-draw stubs and helps parents ____.",
+      options: ["buy/sell raffle tickets", "adopt a pet", "donate money", "visit an elderly home"],
+      answer: "buy/sell raffle tickets",
+      explain: "Lucky-draw stubs are raffle tickets."
+    },
+    {
+      kind: "Grammar · which",
+      q: "The prize box ____ Class 6A filled this morning is not on the table.",
+      options: ["which", "who", "whose", "where"],
+      answer: "which",
+      explain: "The prize box is a thing, so we use which."
+    },
+    {
+      kind: "Grammar · if…will",
+      q: "If the fair opens at noon, Ken ____ check beside the prize wheel.",
+      options: ["will", "would", "going to", "shall"],
+      answer: "will",
+      explain: "A real plan uses if + present, will."
+    },
+    {
+      kind: "Vocab · Unit 4",
+      q: "The film club is laughing at the jokes in ____ in the school hall.",
+      options: ["a comedy", "an action film", "a horror film", "a science fiction film"],
+      answer: "a comedy",
+      explain: "Jokes that make people laugh are a comedy, not an action film."
+    },
+    {
+      kind: "Grammar · after",
+      q: "Carry the stamped tickets to the hall ____ you close the stall.",
+      options: ["after", "before", "when", "until"],
+      answer: "after",
+      explain: "Close the stall first, then carry the tickets."
+    }
+  ];
+  var solve = {
+    who: { options: ["The film club", "Ken", "Amy", "The elderly home"], answer: "The film club" },
+    what: { options: ["Raffle tickets", "Flags", "A pet", "Old books"], answer: "Raffle tickets" },
+    where: { options: ["In the school hall", "Beside the prize wheel", "Outside the MTR", "At the shelter"], answer: "In the school hall" }
+  };
+
+  var step = 0;
+  var picked = null;
+  var solved = { who: null, what: null, where: null };
+  var clueBox = document.getElementById("clues");
+  var kindEl = document.getElementById("kind");
+  var promptEl = document.getElementById("prompt");
+  var choicesEl = document.getElementById("choices");
+  var feedback = document.getElementById("feedback");
+  var checkBtn = document.getElementById("check");
+  var stepLabel = document.getElementById("step-label");
+
+  function renderClues() {
+    clueBox.innerHTML = "";
+    clues.forEach(function (clue, i) {
+      var card = document.createElement("article");
+      var open = i < step;
+      card.className = "clue-card" + (open ? "" : " locked");
+      card.innerHTML = "<strong>" + clue.label + "</strong><p>" + (open ? clue.text : "Locked") + "</p>";
+      clueBox.appendChild(card);
+    });
+  }
+
+  function renderQuestion() {
+    var item = questions[step];
+    picked = null;
+    kindEl.textContent = item.kind;
+    promptEl.textContent = item.q;
+    feedback.hidden = true;
+    checkBtn.disabled = true;
+    checkBtn.textContent = "Check";
+    stepLabel.textContent = "Question " + (step + 1) + " of " + questions.length;
+    choicesEl.innerHTML = "";
+    item.options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", function () {
+        if (checkBtn.textContent === "Next clue") return;
+        picked = opt;
+        Array.prototype.forEach.call(choicesEl.children, function (el) { el.classList.remove("selected"); });
+        btn.classList.add("selected");
+        checkBtn.disabled = false;
+      });
+      choicesEl.appendChild(btn);
+    });
+    renderClues();
+  }
+
+  checkBtn.addEventListener("click", function () {
+    var item = questions[step];
+    if (checkBtn.textContent === "Next clue") {
+      step += 1;
+      if (step >= questions.length) showSolve();
+      else renderQuestion();
+      return;
+    }
+    if (!picked) return;
+    var ok = picked === item.answer;
+    feedback.hidden = false;
+    feedback.textContent = ok ? "Clue unlocked. " + item.explain : "Not yet. " + item.explain;
+    if (!ok) return;
+    Array.prototype.forEach.call(choicesEl.children, function (el) { el.disabled = true; });
+    checkBtn.textContent = "Next clue";
+    stepLabel.textContent = "Clue " + (step + 1) + " unlocked";
+    var shown = step;
+    step += 1;
+    renderClues();
+    step = shown;
+  });
+
+  function choiceGroup(id, key) {
+    var box = document.getElementById(id);
+    solve[key].options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", function () {
+        solved[key] = opt;
+        Array.prototype.forEach.call(box.children, function (el) { el.classList.remove("selected"); });
+        btn.classList.add("selected");
+        document.getElementById("solve-btn").disabled = !(solved.who && solved.what && solved.where);
+      });
+      box.appendChild(btn);
+    });
+  }
+
+  function showSolve() {
+    document.getElementById("ask").hidden = true;
+    document.getElementById("solve").hidden = false;
+    stepLabel.textContent = "Solve the case";
+    renderClues();
+    choiceGroup("who-choices", "who");
+    choiceGroup("what-choices", "what");
+    choiceGroup("where-choices", "where");
+  }
+
+  document.getElementById("solve-btn").addEventListener("click", function () {
+    var ok = solved.who === solve.who.answer && solved.what === solve.what.answer && solved.where === solve.where.answer;
+    var note = document.getElementById("solve-feedback");
+    note.hidden = false;
+    if (!ok) {
+      note.textContent = "Check the unlocked cards again. Who took it to the hall, what was in the box, and where it is now.";
+      return;
+    }
+    document.getElementById("solve").hidden = true;
+    document.getElementById("case-lead").hidden = true;
+    var ending = document.getElementById("ending");
+    ending.hidden = false;
+    document.getElementById("ending-copy").textContent = "The film club borrowed the raffle tickets for the comedy prize draw in the school hall. The stall can collect the box after the film.";
+    stepLabel.textContent = "Case closed";
+  });
+
+  renderQuestion();
+})();
+</script>
+</body>
+</html>

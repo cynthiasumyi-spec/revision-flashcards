@@ -76,17 +76,24 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   opacity: 0.9;
   margin-bottom: 0;
 }
-.prac-header .header-practice {
+.header-pills {
   position: absolute;
   top: 50%;
   right: var(--margin);
   transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 2;
+}
+.prac-header .header-home,
+.prac-header .header-practice {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
   min-height: 2.1rem;
   padding: 0.32rem 0.9rem;
+  border: 0;
   border-radius: var(--pill);
   background: var(--sunny);
   color: var(--navy);
@@ -95,9 +102,13 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-size: 0.95rem;
   line-height: 1;
 }
+.prac-header .header-home:hover,
 .prac-header .header-practice:hover { filter: brightness(1.06); }
-.prac-header:has(.header-practice) {
-  padding-right: calc(var(--margin) + 6.5rem);
+.prac-header:has(.header-pills) {
+  padding-right: calc(var(--margin) + 13.2rem);
+}
+.prac-header:has(.header-pills.solo) {
+  padding-right: calc(var(--margin) + 6.8rem);
 }
 .prac-header .back:hover { opacity: 1; text-decoration: underline; }
 .prac-header h1 {

@@ -12,16 +12,18 @@ function nav(file) {
   return { html, nav: match[0] };
 }
 
-test('homepage header is Revision and Practice only', () => {
+test('homepage header is Revision, Practice, and Game', () => {
   const { nav: bar } = nav('index.html');
   assert.match(bar, /href="#packs"/);
   assert.match(bar, />Revision</);
   assert.match(bar, /href="practice\/grammar\/practice-entry.html"/);
   assert.match(bar, />Practice</);
+  assert.match(bar, /href="game\/index.html"/);
+  assert.match(bar, />Game</);
   assert.doesNotMatch(bar, />Packs</);
   assert.doesNotMatch(bar, />Start</);
   assert.doesNotMatch(bar, /nav-action/);
-  assert.equal(bar.match(/<a\b/g).length, 2);
+  assert.equal(bar.match(/<a\b/g).length, 3);
 });
 
 test('packs are a swipe carousel, not a grid', () => {

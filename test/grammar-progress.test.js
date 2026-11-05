@@ -218,24 +218,38 @@ test('join pages use one blank stem and lowercase choices', () => {
   });
 });
 
-test('grammar hub keeps only the back link to Practice', () => {
+test('grammar hub keeps the back link and a centered Home pill', () => {
   const html = read('grammar-hub.html');
   assert.match(html, /class="back" href="practice-entry\.html"/);
+  assert.match(html, /class="header-home" href="\.\.\/\.\.\/index\.html"/);
+  assert.match(html, />Home</);
   assert.doesNotMatch(html, /class="header-practice"/);
 });
 
-test('unit hubs add a top-right Practice link back to the entry page', () => {
+test('unit hubs add centered Home and Practice pills', () => {
   ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
     const html = read(unit + '-hub.html');
     assert.match(html, /class="back" href="grammar-hub\.html"/, unit);
+    assert.match(html, /class="header-home" href="\.\.\/\.\.\/index\.html"/, unit);
     assert.match(html, /class="header-practice" href="practice-entry\.html"/, unit);
-    assert.match(html, />Practice</, unit);
+    const homeAt = html.indexOf('class="header-home"');
+    const practiceAt = html.indexOf('class="header-practice"');
+    assert.ok(homeAt > 0 && homeAt < practiceAt, unit);
   });
   const css = read('grammar.css');
-  const pill = css.slice(css.indexOf('.prac-header .header-practice {'), css.indexOf('.prac-header .header-practice:hover'));
-  assert.match(pill, /top:\s*50%/);
-  assert.match(pill, /transform:\s*translateY\(-50%\)/);
-  assert.doesNotMatch(pill, /top:\s*0\.5rem/);
+  const pills = css.slice(css.indexOf('.header-pills {'), css.indexOf('.prac-header .header-home'));
+  assert.match(pills, /top:\s*50%/);
+  assert.match(pills, /transform:\s*translateY\(-50%\)/);
+  assert.match(css, /\.prac-header \.header-home,\s*\n\.prac-header \.header-practice \{[\s\S]*background:\s*var\(--sunny\)/);
+  assert.doesNotMatch(pills, /top:\s*0\.5rem/);
+});
+
+test('comedy comparisons are not measured against an action film', () => {
+  ['unit4-story.html', 'unit4-chat.html', 'unit4-join.html'].forEach(file => {
+    const html = read(file);
+    assert.equal(/funny as the action film/i.test(html), false, file);
+    assert.equal(/as funny as the action film/i.test(html), false, file);
+  });
 });
 
 test('chat bubbles are not outlined in coral', () => {

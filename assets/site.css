@@ -1089,6 +1089,66 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   max-width: var(--page-max);
   margin: 0 auto;
 }
+.detective-home {
+  padding: 0.2rem var(--margin) 0.4rem;
+}
+.detective-home-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+.detective-card {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 14rem) 1fr;
+  gap: 0.9rem 1.1rem;
+  align-items: center;
+  background: color-mix(in srgb, var(--sunny) 62%, #fff);
+  border: 0;
+  border-radius: 22px;
+  padding: 0.75rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+.detective-card:hover { filter: brightness(1.03); }
+.detective-card img {
+  width: 100%;
+  height: auto;
+  max-height: 11rem;
+  object-fit: contain;
+  border-radius: 16px;
+  background: #fff;
+}
+.detective-kicker {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--navy);
+}
+.detective-copy h2 {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
+  font-weight: 650;
+  color: var(--navy);
+}
+.detective-copy p {
+  margin: 0 0 0.75rem;
+  font-weight: 650;
+  color: var(--navy);
+}
+.detective-card .btn-primary {
+  background: var(--coral);
+  color: #fff;
+  border: 0;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .detective-card { grid-template-columns: 1fr; }
+  .detective-card img { max-height: 9.5rem; }
+}
+
 .today-home-card,
 .today-progress-card {
   background: var(--white, #fff);
