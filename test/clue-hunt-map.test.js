@@ -71,7 +71,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=10/);
+  assert.match(html, /game\.css\?v=11/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
