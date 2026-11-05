@@ -24,6 +24,37 @@ test('story chat and join pages record a grammar session when the set advances',
   });
 });
 
+test('chat mysteries need more than one clue and do not name the answer', () => {
+  const vm = require('node:vm');
+  const banned = ['sword', 'collar', 'cape', 'microphone', 'badge', 'apron', 'whisk', 'mitt'];
+  let count = 0;
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
+    const html = read(unit + '-chat.html');
+    const code = html.match(/<script>\s*\(function \(\) \{([\s\S]*)\}\)\(\);\s*<\/script>/)[1];
+    const cut = code.split(/const SETS/)[0] + '\nthis.__sets = {set1Data,set2Data,set3Data,set4Data,set5Data};';
+    const context = vm.createContext({});
+    vm.runInContext(cut, context);
+    Object.values(context.__sets).forEach(data => {
+      count += 1;
+      const q = data.endQ;
+      assert.ok(q.options.includes(q.answer), q.q);
+      assert.equal(q.options.length, 4, q.q);
+      assert.equal(q.q.toLowerCase().includes(q.answer.toLowerCase()), false, q.q);
+      const obvious = /who (carried|hung|left|wheeled|locked|found|took) /i;
+      assert.equal(obvious.test(q.q), false, q.q);
+      banned.forEach(word => {
+        if (q.answer.toLowerCase().includes(word)) {
+          assert.equal(q.q.toLowerCase().includes(word), false, q.q);
+        }
+      });
+      data.bubbles.forEach(bubble => {
+        assert.equal(bubble.options.includes(bubble.answer), true, bubble.explain);
+      });
+    });
+  });
+  assert.equal(count, 20);
+});
+
 test('chat quest questions are not wrapped in a panel frame', () => {
   ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
     const html = read(unit + '-chat.html');
