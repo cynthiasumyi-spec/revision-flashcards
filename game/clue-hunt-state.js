@@ -13,15 +13,15 @@
       name: "Charity stall",
       kind: "search",
       marker: "../practice/grammar/illust/u1_s4_carnival_stalls.jpg",
-      art: "illust/scene-stall-memo.png",
+      art: "illust/scene-stall-fair.png",
       intro: "Look at the charity stall table.",
       cardTitle: "Charity stall",
       cardText: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!",
       misleading: false,
       spots: [
-        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ left: "46%", top: "30%", width: "42%", height: "44%", chip: "Note" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
-        { id: "flags", label: "Empty box space", useful: false, hits: [{ left: "8%", top: "42%", width: "34%", height: "30%", chip: "Empty space" }], reply: "The box space is empty. The note is still on the table." },
-        { id: "books", label: "Stall awning", useful: false, hits: [{ left: "4%", top: "0%", width: "90%", height: "26%", chip: "Awning" }], reply: "The awning is only decoration." }
+        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ left: "62%", top: "58%", width: "34%", height: "34%", chip: "Note" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
+        { id: "flags", label: "Empty box space", useful: false, hits: [{ left: "14%", top: "60%", width: "30%", height: "28%", chip: "Empty space" }], reply: "The box space is empty. The note is still on the table." },
+        { id: "books", label: "Stall awning", useful: false, hits: [{ left: "2%", top: "0%", width: "96%", height: "18%", chip: "Awning" }], reply: "The awning is only decoration." }
       ]
     },
     {
@@ -29,7 +29,7 @@
       name: "Prize wheel",
       kind: "talk",
       marker: "../practice/grammar/illust/u1_s4_lucky_draw.jpg",
-      art: "illust/scene-prize-wheel.png",
+      art: "illust/scene-prize-wheel-fair.png",
       intro: "A student is watching the prize wheel.",
       cardTitle: "Prize wheel",
       cardText: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket.",
@@ -45,7 +45,7 @@
       name: "Film club",
       kind: "talk",
       marker: "../practice/grammar/illust/u4_s5_studio_lights.jpg",
-      art: "illust/scene-film-amy.png",
+      art: "illust/scene-film-club.png",
       intro: "Amy is here with the film club.",
       cardTitle: "Film club",
       cardText: "Amy's lunch box has a red apple every day. She once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus.",
@@ -61,15 +61,15 @@
       name: "School hall",
       kind: "search",
       marker: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
-      art: "illust/scene-hall-auditorium.png",
+      art: "illust/scene-hall-full.png",
       intro: "Look backstage.",
       cardTitle: "School hall",
       cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker.",
       misleading: false,
       spots: [
-        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ left: "40%", top: "50%", width: "22%", height: "46%", chip: "Wish slip" }, { left: "81%", top: "64%", width: "11%", height: "20%", chip: "Apple" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
-        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ left: "28%", top: "0%", width: "11%", height: "56%", chip: "Curtain" }], reply: "The red curtains are tied open. Nothing is hidden there." },
-        { id: "seats", label: "Empty seats", useful: false, hits: [{ left: "0%", top: "62%", width: "24%", height: "36%", chip: "Seats" }], reply: "The seats are empty." }
+        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ left: "42%", top: "52%", width: "24%", height: "46%", chip: "Wish slip" }, { left: "78%", top: "62%", width: "12%", height: "22%", chip: "Apple" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
+        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ left: "26%", top: "0%", width: "16%", height: "48%", chip: "Curtain" }], reply: "The red curtains are tied open. Nothing is hidden there." },
+        { id: "seats", label: "Empty seats", useful: false, hits: [{ left: "0%", top: "66%", width: "34%", height: "32%", chip: "Seats" }], reply: "The seats are empty." }
       ]
     },
     {
@@ -77,7 +77,7 @@
       name: "Miss Chan's desk",
       kind: "talk",
       marker: "illust/miss-chan-desk.png",
-      art: "illust/miss-chan-desk.png",
+      art: "illust/scene-miss-chan-class.png",
       intro: "Miss Chan is at her desk.",
       cardTitle: "Miss Chan's desk",
       cardText: "Miss Chan did not ask anyone to move the raffle box.",
@@ -93,7 +93,7 @@
       name: "Storeroom",
       kind: "talk",
       marker: "../practice/grammar/illust/u1_07_books.jpg",
-      art: "../practice/grammar/illust/u1_07_books.jpg",
+      art: "illust/scene-storeroom-ken.png",
       intro: "Ken is in the storeroom with the books.",
       cardTitle: "Storeroom",
       cardText: "Ken says he saw Leo go into the storeroom at noon.",

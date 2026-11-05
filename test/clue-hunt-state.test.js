@@ -41,7 +41,7 @@ test('six hotspots and only Ken is misleading', () => {
   assert.doesNotMatch(byId.hall.cardText, /Amy/);
   assert.equal(byId.desk.cardText, 'Miss Chan did not ask anyone to move the raffle box.');
   assert.doesNotMatch(byId.desk.cardText, /Amy/);
-  assert.equal(byId.store.art, '../practice/grammar/illust/u1_07_books.jpg');
+  assert.equal(byId.store.art, 'illust/scene-storeroom-ken.png');
   assert.equal(byId.store.marker, '../practice/grammar/illust/u1_07_books.jpg');
   const src = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
   assert.doesNotMatch(src, /Who is missing/);
