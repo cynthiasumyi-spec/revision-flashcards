@@ -109,3 +109,29 @@ test('the page script opens every state hotspot by talk or search', () => {
   assert.match(script, /ClueHunt\.visit\(hunt, hotspot\.id, item\.id\)/);
   assert.doesNotMatch(script, /data-hotspot="stall"/);
 });
+
+test('scene art files exist and the storeroom picture is the book bin', () => {
+  const ClueHunt = require('../game/clue-hunt-state.js');
+  const expected = {
+    stall: 'illust/scene-stall-memo.png',
+    wheel: 'illust/scene-prize-wheel.png',
+    film: 'illust/scene-film-amy.png',
+    hall: 'illust/scene-hall-backstage.png',
+    desk: 'illust/miss-chan-desk.png',
+    store: '../practice/grammar/illust/u1_07_books.jpg'
+  };
+  ClueHunt.HOTSPOTS.forEach((spot) => {
+    assert.equal(spot.art, expected[spot.id]);
+    const file = spot.art.startsWith('illust/')
+      ? path.join(root, 'game', spot.art)
+      : path.join(root, 'game', spot.art);
+    const buf = fs.readFileSync(file);
+    if (spot.art.startsWith('illust/')) {
+      assert.equal(buf[0], 0x89);
+      assert.equal(buf.slice(1, 4).toString(), 'PNG');
+    } else {
+      assert.ok(buf.length > 1000);
+    }
+  });
+  assert.equal(ClueHunt.HOTSPOTS.find((spot) => spot.id === 'store').marker, expected.store);
+});
