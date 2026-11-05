@@ -153,7 +153,13 @@ test('chat bubbles are not outlined in coral', () => {
   const choiceRule = css.slice(css.indexOf('.choice {'), css.indexOf('.choice:hover'));
   assert.match(choiceRule, /background:\s*var\(--choice-bg\)/);
   assert.match(choiceRule, /color:\s*var\(--choice-ink\)/);
+  assert.match(choiceRule, /border:\s*0/);
   assert.doesNotMatch(choiceRule, /background:\s*var\(--cream\)/);
+  assert.match(css, /--bubble-blue:/);
+  assert.match(css, /--bubble-green:/);
+  assert.match(css, /\.bubble\.amy,\s*\n\.bubble\.miss,\s*\n\.bubble\.mia,\s*\n\.bubble\.chef \{[\s\S]*background:\s*var\(--bubble-blue\)/);
+  assert.match(css, /\.bubble\.tom,\s*\n\.bubble\.ken,\s*\n\.bubble\.leo,\s*\n\.bubble\.sam \{[\s\S]*background:\s*var\(--bubble-green\)/);
+  assert.match(rule, /box-shadow:\s*none/);
   assert.match(css, /\.btn-ghost \{ background: var\(--cream\)/);
   assert.match(css, /\.btn-primary \{ background: var\(--coral\)/);
   assert.match(css, /\.join-actions \.btn-primary/);

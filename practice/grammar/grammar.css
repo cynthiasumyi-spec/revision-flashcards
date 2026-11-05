@@ -17,8 +17,9 @@
   /* Answer chips, distinct from cream Clear and coral Check. */
   --choice-bg: color-mix(in srgb, var(--sky) 42%, #fff);
   --choice-ink: var(--navy);
-  --choice-line: color-mix(in srgb, var(--sky) 48%, var(--navy));
   --choice-selected-bg: var(--sky);
+  --bubble-blue: color-mix(in srgb, var(--sky) 50%, #fff);
+  --bubble-green: color-mix(in srgb, var(--green) 32%, #fff);
   --white: #ffffff;
   --font-display: "Fredoka", "jf-openhuninn", "Nunito", system-ui, sans-serif;
   --font-text: "Nunito", "jf-openhuninn", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
@@ -146,7 +147,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .chip.boss {
   background: var(--navy);
   color: var(--sunny);
-  box-shadow: 0 0 0 2px var(--sunny);
+  box-shadow: none;
 }
 
 .game-grid {
@@ -283,9 +284,11 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .panel {
   background: var(--white);
+  border: 0;
   border-radius: var(--radius);
   padding: 0.8rem 0.85rem;
   margin-bottom: 0.75rem;
+  box-shadow: none;
 }
 
 #game .illust,
@@ -432,7 +435,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   border-radius: var(--pill);
   background: var(--choice-bg);
   color: var(--choice-ink);
-  border: 2px solid var(--choice-line);
+  border: 0;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1rem;
@@ -446,10 +449,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .choice.selected {
   background: var(--choice-selected-bg);
   color: var(--navy);
-  border-color: var(--navy);
 }
-.choice.correct { background: var(--green); color: #fff; border-color: var(--green); }
-.choice.wrong { background: var(--pink); color: var(--navy); border-color: var(--pink); }
+.choice.correct { background: var(--green); color: #fff; }
+.choice.wrong { background: var(--pink); color: var(--navy); }
 .choice:disabled { pointer-events: none; }
 .choice.block {
   width: 100%;
@@ -465,6 +467,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-weight: 650;
   font-size: 1.05rem;
   padding: 0.75rem 1.35rem;
+  border: 0;
   border-radius: var(--pill);
   text-decoration: none;
   transition: transform 140ms var(--ease);
@@ -516,49 +519,31 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   max-width: min(100%, 36rem);
   min-width: 0;
   padding: 0.6rem 0.85rem;
+  border: 0;
   border-radius: 18px;
+  box-shadow: none;
   font-weight: 600;
   font-size: 0.96rem;
   line-height: 1.45;
   overflow-wrap: anywhere;
   word-break: break-word;
-}
-.bubble.amy {
-  align-self: flex-start;
-  background: color-mix(in srgb, var(--sky) 45%, #fff);
   color: var(--navy);
-  border-bottom-left-radius: 6px;
 }
-.bubble.tom {
-  align-self: flex-end;
-  background: color-mix(in srgb, var(--sunny) 55%, #fff);
-  color: var(--navy);
-  border-bottom-right-radius: 6px;
-}
-.bubble.miss {
-  align-self: flex-start;
-  background: color-mix(in srgb, var(--pink) 40%, #fff);
-  color: var(--navy);
-  border-bottom-left-radius: 6px;
-}
-/* Unit 2–4 chat cast aliases (mirror amy/tom/miss layout) */
-.bubble.ken, .bubble.leo, .bubble.sam {
-  align-self: flex-end;
-  background: color-mix(in srgb, var(--sunny) 55%, #fff);
-  color: var(--navy);
-  border-bottom-right-radius: 6px;
-}
-.bubble.mia {
-  align-self: flex-start;
-  background: color-mix(in srgb, var(--sky) 45%, #fff);
-  color: var(--navy);
-  border-bottom-left-radius: 6px;
-}
+.bubble.amy,
+.bubble.miss,
+.bubble.mia,
 .bubble.chef {
   align-self: flex-start;
-  background: color-mix(in srgb, var(--pink) 40%, #fff);
-  color: var(--navy);
+  background: var(--bubble-blue);
   border-bottom-left-radius: 6px;
+}
+.bubble.tom,
+.bubble.ken,
+.bubble.leo,
+.bubble.sam {
+  align-self: flex-end;
+  background: var(--bubble-green);
+  border-bottom-right-radius: 6px;
 }
 
 .bubble .who {
@@ -598,7 +583,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .bubble.active-bubble {
   font-weight: 700;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--navy) 22%, var(--sky));
+  border: 0;
+  box-shadow: none;
 }
 
 .chat-reply-label {
@@ -636,17 +622,17 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .join-actions {
   margin-top: 0.95rem;
   padding-top: 0.8rem;
-  border-top: 2px dashed color-mix(in srgb, var(--navy) 16%, transparent);
+  border: 0;
 }
 .join-actions .btn-ghost {
-  background: transparent;
-  color: var(--muted);
-  border: 2px solid color-mix(in srgb, var(--navy) 18%, #d7d0c4);
+  background: var(--cream);
+  color: var(--ink);
+  border: 0;
 }
 .join-actions .btn-primary {
   background: var(--coral);
   color: var(--white);
-  border: 2px solid var(--coral);
+  border: 0;
 }
 .join-result {
   margin-top: 0.35rem;
@@ -780,9 +766,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin: 0 0 1.35rem;
   padding: 1rem 1.1rem 1.05rem;
   background: color-mix(in srgb, var(--cream) 72%, #fff);
-  border: 2px solid color-mix(in srgb, var(--navy) 14%, #e8dcc4);
+  border: 0;
   border-radius: var(--radius-sm);
-  box-shadow: 0 1px 0 color-mix(in srgb, var(--sunny) 35%, transparent);
+  box-shadow: none;
 }
 .practise-panel-title {
   margin: 0 0 0.55rem;

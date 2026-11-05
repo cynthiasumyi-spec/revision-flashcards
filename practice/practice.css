@@ -300,6 +300,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .panel {
   background: var(--white);
+  border: 0;
   border-radius: var(--radius);
   padding: 1.25rem 1.15rem;
   box-shadow: none;
@@ -315,6 +316,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-weight: 650;
   font-size: 1.05rem;
   padding: 0.75rem 1.35rem;
+  border: 0;
   border-radius: var(--pill);
   text-decoration: none;
   transition: transform 140ms var(--ease);
