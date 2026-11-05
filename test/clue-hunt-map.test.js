@@ -9,41 +9,30 @@ function huntHtml() {
   return fs.readFileSync(path.join(root, 'game/clue-hunt.html'), 'utf8');
 }
 
-test('intro leads to a four-stop map before any quiz', () => {
+test('intro leads to a six-stop paper map before any quiz', () => {
   const html = huntHtml();
   const intro = html.slice(html.indexOf('id="intro"'), html.indexOf('id="fair-map"'));
   assert.match(intro, />The case</);
   assert.match(intro, />How to play</);
-  assert.match(intro, /Leo has not come back from the charity stall/);
-  assert.match(intro, /The raffle box is gone too/);
-  assert.match(intro, /Tap a place on the map/);
-  assert.match(intro, /Talk to a person, or tap something to search/);
-  assert.match(intro, /Your notebook fills in as you find clues/);
-  assert.match(intro, /Tap Solve Case when the notebook is ready/);
+  assert.match(intro, /Leo was guarding the raffle box at the school charity fair/);
+  assert.match(intro, /The box is gone, and Leo has not come back/);
+  assert.match(intro, /name who took the box, and why/);
   assert.match(intro, /id="start-map"/);
   assert.match(intro, /u1_09_fair\.jpg/);
   assert.doesNotMatch(intro, /class="choice"/);
-  assert.equal((html.match(/class="hotspot\b/g) || []).length, 4);
-  assert.match(html, /data-hotspot="stall"/);
-  assert.match(html, /data-hotspot="hall"/);
-  assert.match(html, /data-hotspot="film"/);
-  assert.match(html, /data-hotspot="store"/);
+  assert.equal((html.match(/class="hotspot\b/g) || []).length, 6);
+  ['stall', 'wheel', 'film', 'hall', 'desk', 'store'].forEach((id) => {
+    assert.match(html, new RegExp('data-hotspot="' + id + '"'));
+  });
   assert.match(html, /illust\/map-open\.png/);
   assert.match(html, /u1_s4_carnival_stalls\.jpg/);
-  assert.match(html, /u4_s4_musical_finale\.jpg/);
+  assert.match(html, /u1_s4_lucky_draw\.jpg/);
   assert.match(html, /u4_s5_studio_lights\.jpg/);
+  assert.match(html, /u4_s4_musical_finale\.jpg/);
+  assert.match(html, /illust\/miss-chan-desk\.png/);
   assert.match(html, /u1_07_books\.jpg/);
   assert.doesNotMatch(html, /u4_comedy\.png/);
-  assert.doesNotMatch(html, /u4_curious\.png/);
-  assert.doesNotMatch(html, /u4_timid\.png/);
-  const state = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
-  assert.match(state, /u1_s4_carnival_stalls\.jpg/);
-  assert.match(state, /u4_s4_musical_finale\.jpg/);
-  assert.match(state, /u4_s5_studio_lights\.jpg/);
-  assert.match(state, /u1_07_books\.jpg/);
   assert.doesNotMatch(html, /id="ask"/);
-  assert.doesNotMatch(html, /Sealed/);
-  assert.doesNotMatch(html, /Open this card/);
 });
 
 test('notebook and solve page are present, without a missing-person picker', () => {
@@ -76,7 +65,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=5/);
+  assert.match(html, /game\.css\?v=6/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);

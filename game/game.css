@@ -84,10 +84,12 @@
   background: #fff;
 }
 .hotspot span { display: block; }
-.pin-stall { left: 22%; top: 44%; }
-.pin-hall { left: 46%; top: 22%; }
-.pin-film { left: 74%; top: 40%; }
-.pin-store { left: 60%; top: 74%; }
+.pin-stall { left: 20%; top: 38%; }
+.pin-wheel { left: 24%; top: 70%; }
+.pin-film { left: 76%; top: 34%; }
+.pin-hall { left: 48%; top: 18%; }
+.pin-desk { left: 80%; top: 68%; }
+.pin-store { left: 50%; top: 76%; }
 .hotspot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;
