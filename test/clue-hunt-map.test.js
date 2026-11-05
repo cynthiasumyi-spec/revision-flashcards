@@ -97,3 +97,15 @@ test('page script explores before it grades and does not label the false card', 
   assert.doesNotMatch(script, /ClueHunt\.PRACTICE/);
   assert.doesNotMatch(script, /renderPractice/);
 });
+
+test('the page script opens every state hotspot by talk or search', () => {
+  const html = huntHtml();
+  const ClueHunt = require('../game/clue-hunt-state.js');
+  ClueHunt.HOTSPOTS.forEach((spot) => {
+    assert.match(html, new RegExp('data-hotspot="' + spot.id + '"'));
+  });
+  const script = html.slice(html.lastIndexOf('<script>'), html.lastIndexOf('</script>'));
+  assert.match(script, /hotspot\.kind === "search" \? hotspot\.spots : hotspot\.prompts/);
+  assert.match(script, /ClueHunt\.visit\(hunt, hotspot\.id, item\.id\)/);
+  assert.doesNotMatch(script, /data-hotspot="stall"/);
+});

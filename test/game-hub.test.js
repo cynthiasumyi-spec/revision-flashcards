@@ -30,6 +30,8 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, />Clue Hunt</);
   assert.match(hub, /href="\.\.\/index\.html"/);
   assert.match(hub, /Walk the school fair, fill your notebook/);
+  assert.match(hub, /who took the box, and why/);
+  assert.doesNotMatch(hub, /where he is/);
   assert.doesNotMatch(hub, /sealed cards/);
   assert.doesNotMatch(hub, /practice-entry\.html/);
   const hunt = fs.readFileSync(path.join(root, 'game/clue-hunt.html'), 'utf8');
