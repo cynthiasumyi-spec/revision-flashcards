@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=34"/>
+<link rel="stylesheet" href="grammar.css?v=35"/>
 </head>
 <body>
 <header class="prac-header">
   <a class="back" href="unit1-hub.html">← Unit 1 hub</a>
   <h1>Chat Quest</h1>
-  <p class="sub" id="chat-sub">Mystery of the pink gift bag</p>
+  <p class="sub" id="chat-sub">Case: the pink gift bag left the stall</p>
 </header>
 <main class="wrap">
   <div class="toolbar">
@@ -68,433 +68,906 @@
   }
 
   const set1Data = {
-    sub: "Mystery of the pink gift bag",
-    hero: "illust/u1_03_flags.jpg",
-    bubbles: [
-      {
-        speaker: "amy",
-        parts: ["Hi Tom! Flag Day is so busy. There are ", "____", " flags on our stall already!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Flags are countable → so many."
-      },
-      {
-        speaker: "tom",
-        parts: ["Yes! Leo unlocks the school office every Friday before the bell. And look — ", "____", " people are waiting outside the MTR."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "People are countable → so many."
-      },
-      {
-        speaker: "amy",
-        parts: ["Miss Chan left a pink gift bag ", "____", " has a teddy bear sticker near our stall."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Bag = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["I saw it this morning. The volunteer ", "____", " was packing sweets put it there."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Volunteer = person → who."
-      },
-      {
-        speaker: "amy",
-        hard: true,
-        parts: ["But now it’s gone! We already collected ", "____", ", even though so many coins were counted, from the morning crowd outside the MTR, and I really hope the pink bag is still safe near Miss Chan’s desk."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so much",
-        explain: "Money is uncountable → so much."
-      },
-      {
-        speaker: "tom",
-        parts: ["Ken sold flags all morning. He is the boy ", "____", " never left the stall."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["What about May? She collected ", "____", " coins and then ran to the fair."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Coins are countable → so many."
-      },
-      {
-        speaker: "miss",
-        hard: true,
-        parts: ["Don’t worry, class. Before the first bell I asked the boy who helps in the office every Friday to carry up to the school office the pink gift bag for Sunny Elderly Home, the one ", "____", " we prepared last night."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Bag = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["May is the girl ", "____", " ran to the fair with the coins."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Phew! So the bag is safe — and we still have ", "____", " raffle tickets to sell!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Tickets are countable → so many."
-      }
-    ],
-    endQ: {
-      q: "The pink gift bag is no longer by the stall. Who should Amy look for?",
-      options: ["Ken", "May", "Leo", "Miss Chan"],
-      answer: "Leo",
-      explain: "Leo unlocks the school office every Friday. Later Miss Chan asked that Friday office helper to take the bag upstairs. Ken stayed at the stall, and May ran to the fair with the coins."
+  "sub": "Case: the pink gift bag left the stall",
+  "hero": "illust/u1_03_flags.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Hi Tom! Flag Day is so busy. There is ",
+        "____",
+        " excitement at our stall already!"
+      ],
+      "options": [
+        "so many",
+        "many",
+        "how many",
+        "so much"
+      ],
+      "answer": "so much",
+      "explain": "Excitement is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Yes! Leo unlocks the school office upstairs every Friday before the bell. And look — ",
+        "____",
+        " people are waiting outside the MTR."
+      ],
+      "options": [
+        "so much",
+        "much",
+        "how much",
+        "so many"
+      ],
+      "answer": "so many",
+      "explain": "People are countable → so many."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Miss Chan left a pink gift bag ",
+        "____",
+        " has a teddy bear sticker near our stall."
+      ],
+      "options": [
+        "who",
+        "whose",
+        "where",
+        "which"
+      ],
+      "answer": "which",
+      "explain": "Bag = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "I saw it this morning. The volunteer ",
+        "____",
+        " was packing sweets put it there."
+      ],
+      "options": [
+        "which",
+        "whose",
+        "where",
+        "who"
+      ],
+      "answer": "who",
+      "explain": "Volunteer = person → who."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "But now it’s gone! We already collected ",
+        "____",
+        ", even though so many coins were counted, from the morning crowd outside the MTR, and I really hope the pink bag is still safe near Miss Chan’s desk."
+      ],
+      "options": [
+        "too many",
+        "how many",
+        "so much",
+        "so many"
+      ],
+      "answer": "so much",
+      "explain": "Money is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Ken sold flags all morning. He is the boy ",
+        "____",
+        " never left the stall."
+      ],
+      "options": [
+        "whose",
+        "which",
+        "who",
+        "whom"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "What about May? She collected ",
+        "____",
+        " money and then ran to the fair."
+      ],
+      "options": [
+        "so many",
+        "so much",
+        "many",
+        "how many"
+      ],
+      "answer": "so much",
+      "explain": "Money is uncountable → so much."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Don’t worry, class. Before the first bell I asked the boy who arrives before the bell every Friday to carry the pink gift bag for Sunny Elderly Home upstairs, the one ",
+        "____",
+        " we prepared last night."
+      ],
+      "options": [
+        "where",
+        "who",
+        "which",
+        "whom"
+      ],
+      "answer": "which",
+      "explain": "Bag = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "May is the girl ",
+        "____",
+        " ran to the fair with the coins."
+      ],
+      "options": [
+        "whose",
+        "who",
+        "where",
+        "which"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We still have ",
+        "____",
+        " raffle tickets to sell!"
+      ],
+      "options": [
+        "how many",
+        "how much",
+        "so many",
+        "so much"
+      ],
+      "answer": "so many",
+      "explain": "Tickets are countable → so many."
     }
-  };
-
-  const set2Data = {
-    sub: "Mystery of the yellow walkathon banner",
-    hero: "illust/u1_08_walkathon.jpg",
-    bubbles: [
-      {
-        speaker: "amy",
-        parts: ["Hi Tom! The walkathon starts soon. There are ", "____", " posters on the school gate!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Posters are countable → so many."
-      },
-      {
-        speaker: "tom",
-        parts: ["Wow. Sam reaches the school gate first on Flag Day. I also see ", "____", " water bottles next to the start line."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Bottles are countable → so many."
-      },
-      {
-        speaker: "amy",
-        parts: ["Miss Chan’s yellow banner ", "____", " we painted last week is missing from the hall!"],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Banner = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["The helper ", "____", " checked the storeroom this morning was May."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Helper = person → who."
-      },
-      {
-        speaker: "amy",
-        hard: true,
-        parts: ["We already spent ", "____", ", even with so many chairs nearby, looking under the chairs near the fair stalls, and I still cannot find that bright yellow banner anywhere."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so much",
-        explain: "Time is uncountable → so much."
-      },
-      {
-        speaker: "tom",
-        parts: ["Ken is the boy ", "____", " carried the megaphone to the stage."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Look — there are ", "____", " empty boxes behind the raffle table!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Boxes are countable → so many."
-      },
-      {
-        speaker: "miss",
-        hard: true,
-        parts: ["Don’t panic. Before assembly I asked the classmate who always arrives earliest on Flag Day to hang beside the main gate the yellow walkathon banner, the one ", "____", " our art club finished yesterday."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Banner = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["May is the classmate ", "____", " checked the storeroom this morning."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Classmate = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Great! So the banner is up — and we still have ", "____", " raffle tickets to give out!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Tickets are countable → so many."
-      }
+  ],
+  "endQ": {
+    "q": "The pink gift bag has left the stall. Where should Amy look for it?",
+    "options": [
+      "By the stall",
+      "At the fair",
+      "The school office",
+      "Near Miss Chan's desk"
     ],
-    endQ: {
-      q: "The yellow banner is missing from the hall. Who already took care of it?",
-      options: ["Ken", "May", "Sam", "Miss Chan"],
-      answer: "Sam",
-      explain: "Sam reaches the school gate first on Flag Day. Miss Chan asked the classmate who arrives earliest to hang the banner. May checked the storeroom, and Ken carried the megaphone."
+    "answer": "The school office",
+    "explain": "Leo unlocks the school office upstairs every Friday before the bell. Miss Chan asked that Friday helper to carry the bag upstairs. Ken stayed by the stall, May ran to the fair, and Amy hoped it was near the desk."
+  }
+};
+
+const set2Data = {
+  "sub": "Case: the banner missing from the hall",
+  "hero": "illust/u1_08_walkathon.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Hi Tom! The walkathon starts soon. There is ",
+        "____",
+        " noise by the school gate!"
+      ],
+      "options": [
+        "so much",
+        "too many",
+        "so many",
+        "many"
+      ],
+      "answer": "so much",
+      "explain": "Noise is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Wow. Sam waits by the school gate before anyone else on Flag Day. I also see ",
+        "____",
+        " water bottles next to the start line."
+      ],
+      "options": [
+        "so much",
+        "so many",
+        "much",
+        "how much"
+      ],
+      "answer": "so many",
+      "explain": "Bottles are countable → so many."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Miss Chan’s yellow banner ",
+        "____",
+        " we painted last week is missing from the hall!"
+      ],
+      "options": [
+        "whom",
+        "which",
+        "whose",
+        "who"
+      ],
+      "answer": "which",
+      "explain": "Banner = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "The helper ",
+        "____",
+        " checked the storeroom this morning was May."
+      ],
+      "options": [
+        "who",
+        "whose",
+        "whom",
+        "where"
+      ],
+      "answer": "who",
+      "explain": "Helper = person → who."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "We already spent ",
+        "____",
+        ", even with so many chairs nearby, looking under the chairs near the fair stalls, and I still cannot find that bright yellow banner anywhere."
+      ],
+      "options": [
+        "so many",
+        "many",
+        "how many",
+        "so much"
+      ],
+      "answer": "so much",
+      "explain": "Time is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Ken is the boy ",
+        "____",
+        " carried the megaphone to the stage."
+      ],
+      "options": [
+        "which",
+        "whose",
+        "where",
+        "who"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Look — there is ",
+        "____",
+        " litter behind the raffle table!"
+      ],
+      "options": [
+        "too many",
+        "how many",
+        "so much",
+        "so many"
+      ],
+      "answer": "so much",
+      "explain": "Litter is uncountable → so much."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Don’t panic. Before assembly I asked the classmate who always arrives earliest on Flag Day to hang the yellow walkathon banner where that classmate waits, the one ",
+        "____",
+        " our art club finished yesterday."
+      ],
+      "options": [
+        "which",
+        "where",
+        "whom",
+        "who"
+      ],
+      "answer": "which",
+      "explain": "Banner = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "May is the classmate ",
+        "____",
+        " checked the storeroom this morning."
+      ],
+      "options": [
+        "whose",
+        "which",
+        "who",
+        "whom"
+      ],
+      "answer": "who",
+      "explain": "Classmate = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We still have ",
+        "____",
+        " raffle tickets to give out!"
+      ],
+      "options": [
+        "so many",
+        "how many",
+        "so much",
+        "much"
+      ],
+      "answer": "so many",
+      "explain": "Tickets are countable → so many."
     }
-  };
-
-
-  const set3Data = {
-    sub: "Mystery of the missing donation tin",
-    hero: "illust/u1_09_fair.jpg",
-    bubbles: [
-      {
-        speaker: "amy",
-        parts: ["Hi Tom! The book fair is packed. There are ", "____", " story books stacked by the door!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Books are countable → so many."
-      },
-      {
-        speaker: "tom",
-        parts: ["I know! Rita often stays late to help at the charity book fair. And look — ", "____", " families are waiting near the pet adoption corner."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Families are countable → so many."
-      },
-      {
-        speaker: "amy",
-        parts: ["Miss Chan’s red donation tin ", "____", " we filled this morning is missing from the desk!"],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Tin = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["The volunteer ", "____", " counted the coins before break was Ken."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Volunteer = person → who."
-      },
-      {
-        speaker: "amy",
-        hard: true,
-        parts: ["We already spent ", "____", ", even with so many books nearby, searching under the book tables near the raffle shelf, and I still cannot find that shiny red tin anywhere."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so much",
-        explain: "Time is uncountable → so much."
-      },
-      {
-        speaker: "tom",
-        parts: ["Ken is the boy ", "____", " carried the raffle ticket book to the stage."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Look — Leo is stacking books by the juice stall, and there are ", "____", " empty jars behind the juice stall!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Jars are countable → so many."
-      },
-      {
-        speaker: "miss",
-        hard: true,
-        parts: ["Don’t worry. Before the lunch bell I asked the classmate who always helps at the charity book fair to take up to the school office the red donation tin for Hope Care Centre, the one ", "____", " Class 6A filled for counting."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Tin = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["Tom is the classmate ", "____", " kept searching under the book tables."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Classmate = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Phew! So the tin is safe — and we still have ", "____", " adoption forms to give out!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Forms are countable → so many."
-      }
+  ],
+  "endQ": {
+    "q": "The yellow banner is no longer in the hall. Where should Amy look for it?",
+    "options": [
+      "In the hall",
+      "In the storeroom",
+      "By the school gate",
+      "On the stage"
     ],
-    endQ: {
-      q: "Amy wants the missing red tin counted. Who should she find?",
-      options: ["Ken", "Rita", "Leo", "Miss Chan"],
-      answer: "Rita",
-      explain: "Rita often stays late to help at the charity book fair. Miss Chan asked that book-fair helper to take the tin to the office. Ken counted coins, and Tom kept searching under the tables."
+    "answer": "By the school gate",
+    "explain": "Sam waits by the school gate before anyone else. Miss Chan asked that earliest classmate to hang the banner where that classmate waits. May checked the storeroom, and Ken carried the megaphone to the stage."
+  }
+};
+
+const set3Data = {
+  "sub": "Case: the book-fair desk is empty",
+  "hero": "illust/u1_09_fair.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Hi Tom! The book fair is packed. There is ",
+        "____",
+        " chatter beside the story books!"
+      ],
+      "options": [
+        "so many",
+        "so much",
+        "many",
+        "how many"
+      ],
+      "answer": "so much",
+      "explain": "Chatter is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "I know! Rita often stays late to help at the charity book fair. And look — ",
+        "____",
+        " families are waiting near the pet adoption corner."
+      ],
+      "options": [
+        "so much",
+        "much",
+        "how much",
+        "so many"
+      ],
+      "answer": "so many",
+      "explain": "Families are countable → so many."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Miss Chan’s red donation tin ",
+        "____",
+        " we filled this morning belongs to Hope Care Centre."
+      ],
+      "options": [
+        "who",
+        "whose",
+        "where",
+        "which"
+      ],
+      "answer": "which",
+      "explain": "Tin = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "The volunteer ",
+        "____",
+        " counted the coins before break was Ken."
+      ],
+      "options": [
+        "whose",
+        "who",
+        "where",
+        "which"
+      ],
+      "answer": "who",
+      "explain": "Volunteer = person → who."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "We already spent ",
+        "____",
+        ", even with so many books nearby, searching under the book tables near the raffle shelf, and the book-fair desk is still empty."
+      ],
+      "options": [
+        "so much",
+        "too many",
+        "so many",
+        "many"
+      ],
+      "answer": "so much",
+      "explain": "Time is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Ken is the boy ",
+        "____",
+        " carried the raffle ticket book to the stage."
+      ],
+      "options": [
+        "who",
+        "whose",
+        "whom",
+        "where"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Look — Leo is stacking books by the juice stall, and there are ",
+        "____",
+        " empty jars behind the juice stall!"
+      ],
+      "options": [
+        "how many",
+        "how much",
+        "so many",
+        "so much"
+      ],
+      "answer": "so many",
+      "explain": "Jars are countable → so many."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Don’t worry. Before the lunch bell I asked the classmate who always helps at the charity book fair to take upstairs the tin we filled this morning, the one ",
+        "____",
+        " Class 6A filled for counting."
+      ],
+      "options": [
+        "where",
+        "who",
+        "which",
+        "whom"
+      ],
+      "answer": "which",
+      "explain": "Tin = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Tom is the classmate ",
+        "____",
+        " kept searching under the book tables."
+      ],
+      "options": [
+        "which",
+        "whose",
+        "where",
+        "who"
+      ],
+      "answer": "who",
+      "explain": "Classmate = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We still have ",
+        "____",
+        " paperwork to give out!"
+      ],
+      "options": [
+        "so many",
+        "many",
+        "how many",
+        "so much"
+      ],
+      "answer": "so much",
+      "explain": "Paperwork is uncountable → so much."
     }
-  };
-
-
-  const set4Data = {
-    sub: "Mystery of the blue lucky-draw ticket book",
-    hero: "illust/u1_s4_chat_hero.jpg",
-    bubbles: [
-      {
-        speaker: "amy",
-        parts: ["Hi Tom! The charity carnival is packed. There are ", "____", " colourful balloons by the gate!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Balloons are countable → so many."
-      },
-      {
-        speaker: "tom",
-        parts: ["I know! Pat reaches school before the carnival gates open. And look — ", "____", " children are lining up at the ring-toss!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Children are countable → so many."
-      },
-      {
-        speaker: "amy",
-        parts: ["Miss Chan’s blue lucky-draw ticket book ", "____", " we stamped this morning is missing from the prize table!"],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Ticket book = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["The helper ", "____", " checked the storeroom before lunch was Leo."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Helper = person → who."
-      },
-      {
-        speaker: "amy",
-        hard: true,
-        parts: ["We already spent ", "____", ", even with so many cups nearby, looking behind the lemonade counter near the prize wheel, and that blue ticket book is still nowhere in sight."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so much",
-        explain: "Time is uncountable → so much."
-      },
-      {
-        speaker: "tom",
-        parts: ["Leo is the boy ", "____", " sets up the bounce castle every carnival day."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Look — Ken is running the photo booth, and there are ", "____", " paper crowns beside the photo booth!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Crowns are countable → so many."
-      },
-      {
-        speaker: "miss",
-        hard: true,
-        parts: ["Don’t worry. Before the first game I asked the classmate who always arrives early on carnival day to lock inside the office safe the blue lucky-draw ticket book for Bright Kids Hospital, the one ", "____", " Class 6A prepared for the hospital."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Ticket book = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["Amy is the classmate ", "____", " counted the balloons by the gate."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Classmate = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Great! The ticket book is locked away — and we still have ", "____", " carnival stamps to hand out!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Stamps are countable → so many."
-      }
+  ],
+  "endQ": {
+    "q": "The book-fair desk is empty. What was taken before lunch?",
+    "options": [
+      "The story books",
+      "The raffle ticket book",
+      "The red donation tin",
+      "The empty jars"
     ],
-    endQ: {
-      q: "The blue ticket book is missing from the prize table. Who should Amy ask if she needs it back?",
-      options: ["Ken", "Pat", "Amy", "Miss Chan"],
-      answer: "Pat",
-      explain: "Pat reaches school before the carnival gates open. Miss Chan asked that early classmate to lock the book in the office safe. Leo checked the storeroom, and Amy counted the balloons."
-    }
-  };
+    "answer": "The red donation tin",
+    "explain": "The red donation tin is the tin Class 6A filled this morning. Miss Chan asked the book-fair helper to take that tin upstairs. The story books, the raffle ticket book, and the empty jars stayed at the fair."
+  }
+};
 
-  const set5Data = {
-    sub: "Mystery of the purple price-sticker book",
-    hero: "illust/u1_s5_chat_hero.jpg",
-    bubbles: [
-      {
-        speaker: "amy",
-        parts: ["Hi Tom! The charity toy bazaar is packed. There are ", "____", " teddy bears on the long tables!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Teddy bears are countable → so many."
-      },
-      {
-        speaker: "tom",
-        parts: ["I know! Jess reaches school before the bazaar gates open. And look — ", "____", " families are lining up at the sticker gate!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Families are countable → so many."
-      },
-      {
-        speaker: "amy",
-        parts: ["Miss Chan’s purple price-sticker book ", "____", " we printed this morning is missing from the sorting desk!"],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Sticker book = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["The helper ", "____", " checked the storeroom before lunch was Ken."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Helper = person → who."
-      },
-      {
-        speaker: "amy",
-        hard: true,
-        parts: ["We already spent ", "____", ", even with so many cookies nearby, looking behind the cookie stall near the raffle shelf, and that purple sticker book is still nowhere in sight."],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so much",
-        explain: "Time is uncountable → so much."
-      },
-      {
-        speaker: "tom",
-        parts: ["Ken is the boy ", "____", " carries the donation box every bazaar day."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Boy = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Look — there are ", "____", " board games beside the sorting table!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Games are countable → so many."
-      },
-      {
-        speaker: "miss",
-        hard: true,
-        parts: ["Don’t worry. Before the first sale I asked the classmate who always arrives early on bazaar day to lock inside the office safe the purple price-sticker book for Warm Hearts Children’s Home, the one ", "____", " Class 6A prepared for the children’s home."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "which",
-        explain: "Sticker book = thing → which."
-      },
-      {
-        speaker: "tom",
-        parts: ["Tom is the classmate ", "____", " watched the long queue at the sticker gate."],
-        options: ["who", "which", "so many", "so much"],
-        answer: "who",
-        explain: "Classmate = person → who."
-      },
-      {
-        speaker: "amy",
-        parts: ["Great! The sticker book is locked away — and we still have ", "____", " thank-you cards to hand out!"],
-        options: ["so many", "so much", "who", "which"],
-        answer: "so many",
-        explain: "Cards are countable → so many."
-      }
+const set4Data = {
+  "sub": "Case: the ticket book left the prize table",
+  "hero": "illust/u1_s4_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Hi Tom! The charity carnival is packed. There is ",
+        "____",
+        " excitement by the gate!"
+      ],
+      "options": [
+        "too many",
+        "how many",
+        "so much",
+        "so many"
+      ],
+      "answer": "so much",
+      "explain": "Excitement is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "I know! Pat's first stop is the office safe, before the carnival gates open. And look — ",
+        "____",
+        " children are lining up at the ring-toss!"
+      ],
+      "options": [
+        "so much",
+        "so many",
+        "much",
+        "how much"
+      ],
+      "answer": "so many",
+      "explain": "Children are countable → so many."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Miss Chan’s blue lucky-draw ticket book ",
+        "____",
+        " we stamped this morning is missing from the prize table!"
+      ],
+      "options": [
+        "whom",
+        "which",
+        "whose",
+        "who"
+      ],
+      "answer": "which",
+      "explain": "Ticket book = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "The helper ",
+        "____",
+        " checked the storeroom before lunch was Leo."
+      ],
+      "options": [
+        "whose",
+        "which",
+        "who",
+        "whom"
+      ],
+      "answer": "who",
+      "explain": "Helper = person → who."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "We already spent ",
+        "____",
+        ", even with so many cups nearby, looking behind the lemonade counter near the prize wheel, and that blue ticket book is still nowhere in sight."
+      ],
+      "options": [
+        "so many",
+        "so much",
+        "many",
+        "how many"
+      ],
+      "answer": "so much",
+      "explain": "Time is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Leo is the boy ",
+        "____",
+        " sets up the bounce castle every carnival day."
+      ],
+      "options": [
+        "whose",
+        "who",
+        "where",
+        "which"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Look — Ken is running the photo booth, and there is ",
+        "____",
+        " glitter beside the photo booth!"
+      ],
+      "options": [
+        "so much",
+        "too many",
+        "so many",
+        "many"
+      ],
+      "answer": "so much",
+      "explain": "Glitter is uncountable → so much."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Don’t worry. Before the first game I asked the classmate who always arrives early on carnival day to lock away the blue lucky-draw ticket book for Bright Kids Hospital, the one ",
+        "____",
+        " Class 6A prepared for the hospital."
+      ],
+      "options": [
+        "which",
+        "where",
+        "whom",
+        "who"
+      ],
+      "answer": "which",
+      "explain": "Ticket book = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Amy is the classmate ",
+        "____",
+        " counted the balloons by the gate."
+      ],
+      "options": [
+        "who",
+        "whose",
+        "whom",
+        "where"
+      ],
+      "answer": "who",
+      "explain": "Classmate = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "We still have ",
+        "____",
+        " carnival stamps to hand out!"
+      ],
+      "options": [
+        "so many",
+        "how many",
+        "so much",
+        "much"
+      ],
+      "answer": "so many",
+      "explain": "Stamps are countable → so many."
+    }
+  ],
+  "endQ": {
+    "q": "The blue ticket book is not on the prize table. Where is it now?",
+    "options": [
+      "Behind the lemonade counter",
+      "In the storeroom",
+      "In the office safe",
+      "At the photo booth"
     ],
-    endQ: {
-      q: "The purple sticker book is missing from the sorting desk. Who should Amy ask if she needs it back?",
-      options: ["Ken", "Jess", "Amy", "Miss Chan"],
-      answer: "Jess",
-      explain: "Jess reaches school before the bazaar gates open. Miss Chan asked that early classmate to lock the book in the office safe. Ken carries the donation box, and Tom watched the sticker queue."
-    }
-  };
+    "answer": "In the office safe",
+    "explain": "Pat's first stop is the office safe. Miss Chan asked that early classmate to lock the ticket book away. Amy searched behind the lemonade counter, Leo checked the storeroom, and Ken is at the photo booth."
+  }
+};
 
-  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+const set5Data = {
+  "sub": "Case: Jess is missing from the sticker queue",
+  "hero": "illust/u1_s5_chat_hero.jpg",
+  "bubbles": [
+    {
+      "speaker": "amy",
+      "parts": [
+        "Hi Tom! The charity toy bazaar is packed. There is ",
+        "____",
+        " excitement around the toy tables!"
+      ],
+      "options": [
+        "so many",
+        "many",
+        "how many",
+        "so much"
+      ],
+      "answer": "so much",
+      "explain": "Excitement is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "I know! Jess reaches school before the bazaar gates open. And look — ",
+        "____",
+        " families are lining up at the sticker gate!"
+      ],
+      "options": [
+        "so much",
+        "much",
+        "how much",
+        "so many"
+      ],
+      "answer": "so many",
+      "explain": "Families are countable → so many."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Miss Chan’s purple price-sticker book ",
+        "____",
+        " we printed this morning is missing from the sorting desk!"
+      ],
+      "options": [
+        "who",
+        "whose",
+        "where",
+        "which"
+      ],
+      "answer": "which",
+      "explain": "Sticker book = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "The helper ",
+        "____",
+        " checked the storeroom before lunch was Ken."
+      ],
+      "options": [
+        "which",
+        "whose",
+        "where",
+        "who"
+      ],
+      "answer": "who",
+      "explain": "Helper = person → who."
+    },
+    {
+      "speaker": "amy",
+      "hard": true,
+      "parts": [
+        "We already spent ",
+        "____",
+        ", even with so many cookies nearby, looking behind the cookie stall near the raffle shelf, and that purple sticker book is still nowhere in sight."
+      ],
+      "options": [
+        "too many",
+        "how many",
+        "so much",
+        "so many"
+      ],
+      "answer": "so much",
+      "explain": "Time is uncountable → so much."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Ken is the boy ",
+        "____",
+        " carries the donation box every bazaar day."
+      ],
+      "options": [
+        "whose",
+        "which",
+        "who",
+        "whom"
+      ],
+      "answer": "who",
+      "explain": "Boy = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Look — there is ",
+        "____",
+        " cardboard beside the sorting table!"
+      ],
+      "options": [
+        "so many",
+        "so much",
+        "many",
+        "how many"
+      ],
+      "answer": "so much",
+      "explain": "Cardboard is uncountable → so much."
+    },
+    {
+      "speaker": "miss",
+      "hard": true,
+      "parts": [
+        "Don’t worry. Before the first sale I asked the classmate who always arrives early on bazaar day to lock inside the office safe the purple price-sticker book for Warm Hearts Children’s Home, the one ",
+        "____",
+        " Class 6A prepared for the children’s home."
+      ],
+      "options": [
+        "where",
+        "who",
+        "which",
+        "whom"
+      ],
+      "answer": "which",
+      "explain": "Sticker book = thing → which."
+    },
+    {
+      "speaker": "tom",
+      "parts": [
+        "Tom is the classmate ",
+        "____",
+        " watched the long queue at the sticker gate."
+      ],
+      "options": [
+        "whose",
+        "who",
+        "where",
+        "which"
+      ],
+      "answer": "who",
+      "explain": "Classmate = person → who."
+    },
+    {
+      "speaker": "amy",
+      "parts": [
+        "Great! The sticker book is locked away — and we still have ",
+        "____",
+        " thank-you cards to hand out!"
+      ],
+      "options": [
+        "how many",
+        "how much",
+        "so many",
+        "so much"
+      ],
+      "answer": "so many",
+      "explain": "Cards are countable → so many."
+    }
+  ],
+  "endQ": {
+    "q": "Jess is not in the sticker queue. Where is she now?",
+    "options": [
+      "The sticker gate",
+      "The storeroom",
+      "The cookie stall",
+      "The office safe"
+    ],
+    "answer": "The office safe",
+    "explain": "Jess reaches school before the bazaar gates open. Miss Chan asked that early classmate to lock the sticker book inside the office safe. Ken checked the storeroom, and Amy looked behind the cookie stall."
+  }
+};
+
+const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
   const SET_KEY = "u1-chat-set-i";
 
   function resolveSet() {

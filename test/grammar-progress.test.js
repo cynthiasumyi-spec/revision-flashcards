@@ -83,6 +83,64 @@ test('chat mysteries need more than one clue and do not name the answer', () => 
     });
   });
   assert.equal(count, 20);
+  const questions = [];
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
+    const html = read(unit + '-chat.html');
+    const code = html.match(/<script>\s*\(function \(\) \{([\s\S]*)\}\)\(\);\s*<\/script>/)[1];
+    const cut = code.split(/const SETS/)[0] + '\nthis.__sets = {set1Data,set2Data,set3Data,set4Data,set5Data};';
+    const context = vm.createContext({});
+    vm.runInContext(cut, context);
+    Object.values(context.__sets).forEach(data => questions.push(data.endQ.q));
+  });
+  assert.ok(questions.filter(q => /\bwhere\b/i.test(q)).length >= 8, questions.join('\n'));
+  assert.ok(questions.filter(q => /\bwhat\b/i.test(q)).length >= 4, questions.join('\n'));
+});
+
+test('chat blanks spread answers and do not repeat one choice cluster', () => {
+  const vm = require('node:vm');
+  ['unit1', 'unit2', 'unit3', 'unit4'].forEach(unit => {
+    const html = read(unit + '-chat.html');
+    const code = html.match(/<script>\s*\(function \(\) \{([\s\S]*)\}\)\(\);\s*<\/script>/)[1];
+    const cut = code.split(/const SETS/)[0] + '\nthis.__sets = {set1Data,set2Data,set3Data,set4Data,set5Data};';
+    const context = vm.createContext({});
+    vm.runInContext(cut, context);
+    Object.entries(context.__sets).forEach(([name, data]) => {
+      const counts = {};
+      const sigs = new Set();
+      data.bubbles.forEach(bubble => {
+        assert.equal(bubble.options.length, 4, unit + ' ' + name);
+        assert.equal(new Set(bubble.options).size, 4, bubble.explain);
+        assert.ok(bubble.options.includes(bubble.answer), bubble.explain);
+        const key = String(bubble.answer).toLowerCase();
+        counts[key] = (counts[key] || 0) + 1;
+        sigs.add(JSON.stringify([...bubble.options].sort()));
+      });
+      assert.ok(sigs.size >= 3, unit + ' ' + name + ' ' + [...sigs].join(' | '));
+      const max = Math.max(...Object.values(counts));
+      if (unit === 'unit1') {
+        ['so many', 'so much', 'who', 'which'].forEach(key => {
+          assert.ok(counts[key] >= 2, unit + ' ' + name + ' ' + key);
+        });
+        assert.ok(max <= 3, unit + ' ' + name + ' ' + JSON.stringify(counts));
+      }
+      if (unit === 'unit2') {
+        assert.ok(counts.will >= 4 && counts['so that'] >= 4, JSON.stringify(counts));
+        assert.ok(max <= 6, JSON.stringify(counts));
+      }
+      if (unit === 'unit3') {
+        ['although', 'after', 'before'].forEach(key => {
+          assert.ok(counts[key] >= 2, unit + ' ' + name + ' ' + JSON.stringify(counts));
+        });
+        assert.ok(max <= 4, JSON.stringify(counts));
+      }
+      if (unit === 'unit4') {
+        ['were', 'would', 'as'].forEach(key => {
+          assert.ok(counts[key] >= 2, unit + ' ' + name + ' ' + JSON.stringify(counts));
+        });
+        assert.ok(max <= 4, JSON.stringify(counts));
+      }
+    });
+  });
 });
 
 test('chat quest questions are not wrapped in a panel frame', () => {
@@ -173,6 +231,11 @@ test('unit hubs add a top-right Practice link back to the entry page', () => {
     assert.match(html, /class="header-practice" href="practice-entry\.html"/, unit);
     assert.match(html, />Practice</, unit);
   });
+  const css = read('grammar.css');
+  const pill = css.slice(css.indexOf('.prac-header .header-practice {'), css.indexOf('.prac-header .header-practice:hover'));
+  assert.match(pill, /top:\s*50%/);
+  assert.match(pill, /transform:\s*translateY\(-50%\)/);
+  assert.doesNotMatch(pill, /top:\s*0\.5rem/);
 });
 
 test('chat bubbles are not outlined in coral', () => {

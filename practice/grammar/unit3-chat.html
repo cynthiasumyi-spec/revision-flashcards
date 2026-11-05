@@ -7,13 +7,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="grammar.css?v=34"/>
+<link rel="stylesheet" href="grammar.css?v=35"/>
 </head>
 <body>
 <header class="prac-header">
   <a class="back" href="unit3-hub.html">← Unit 3 hub</a>
   <h1>Chat Quest</h1>
-  <p class="sub" id="chat-sub">Mystery of the blue apron</p>
+  <p class="sub" id="chat-sub">Case: the blue apron is off its hook</p>
 </header>
 <main class="wrap">
   <div class="toolbar">
@@ -62,24 +62,24 @@
     el.hidden = false;
   }
   const set1Data = {
-  "sub": "Mystery of the blue apron",
+  "sub": "Case: the blue apron is off its hook",
   "hero": "illust/u3_mix.png",
   "bubbles": [
     {
       "speaker": "mia",
       "parts": [
-        "Leo, Sam handles the flour tin before we cook. Wash your hands ",
+        "Leo, Sam keeps the spare aprons behind the flour tin. Chop the onions ",
         "____",
-        " you chop the onions!"
+        " you wash your hands!"
       ],
       "options": [
-        "although",
-        "after",
         "before",
-        "will"
+        "when",
+        "until",
+        "after"
       ],
-      "answer": "before",
-      "explain": "Wash earlier → before."
+      "answer": "after",
+      "explain": "The first action is finished, then the next one → after."
     },
     {
       "speaker": "leo",
@@ -89,10 +89,10 @@
         " the dough looks sticky, I will keep stirring."
       ],
       "options": [
-        "Although",
+        "Because",
         "After",
-        "Before",
-        "So that"
+        "When",
+        "Although"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -105,10 +105,10 @@
         " you mix the butter and sugar."
       ],
       "options": [
-        "although",
+        "while",
+        "when",
         "after",
-        "before",
-        "will"
+        "before"
       ],
       "answer": "after",
       "explain": "Mix first → after."
@@ -121,10 +121,10 @@
         " you stir in more salt."
       ],
       "options": [
-        "although",
         "after",
-        "before",
-        "will"
+        "when",
+        "until",
+        "before"
       ],
       "answer": "before",
       "explain": "Taste earlier than adding salt → before."
@@ -138,10 +138,10 @@
         " the steamer is small, we steamed enough dumplings for the whole tasting table before the guests arrived."
       ],
       "options": [
-        "Although",
-        "After",
         "Before",
-        "So that"
+        "So",
+        "Although",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Longer contrast → Although."
@@ -154,10 +154,10 @@
         " you finish serving the pasta."
       ],
       "options": [
-        "although",
+        "until",
         "after",
-        "before",
-        "will"
+        "when",
+        "before"
       ],
       "answer": "after",
       "explain": "Finish serving first → after."
@@ -170,10 +170,10 @@
         " Ken chopped carefully, tears still came to his eyes."
       ],
       "options": [
-        "Although",
         "After",
-        "Before",
-        "So that"
+        "Although",
+        "When",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -187,10 +187,10 @@
         " you blow on it a little, although the steamer is already hot — safety first in our Junior Super Chef kitchen."
       ],
       "options": [
-        "although",
-        "after",
+        "while",
+        "when",
         "before",
-        "will"
+        "after"
       ],
       "answer": "before",
       "explain": "Blow earlier than tasting → before."
@@ -203,10 +203,10 @@
         " we plate the dessert."
       ],
       "options": [
-        "although",
-        "after",
+        "until",
         "before",
-        "will"
+        "when",
+        "after"
       ],
       "answer": "before",
       "explain": "Look earlier than plating → before."
@@ -216,49 +216,50 @@
       "parts": [
         "",
         "____",
-        " the kitchen was busy, the flour-duty boy still found the blue apron behind the flour tin!"
+        " the kitchen was busy, the flour-duty boy still found the missing apron in his usual spot!"
       ],
       "options": [
         "Although",
-        "After",
         "Before",
-        "So that"
+        "Because",
+        "When"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
     }
   ],
   "endQ": {
-    "q": "The blue apron was missing. Who can the cooks thank?",
+    "q": "The blue apron is not on its hook. Where is it now?",
     "options": [
-      "Mia",
-      "Leo",
-      "Sam",
-      "Chef Chan"
+      "By the steamer",
+      "Behind the flour tin",
+      "On the dessert plates",
+      "In the pasta bowls"
     ],
-    "answer": "Sam",
-    "explain": "Sam handles the flour tin before cooking. Leo said the flour-duty boy found the apron behind that tin. Mia planned to look, but she did not find it."
+    "answer": "Behind the flour tin",
+    "explain": "Sam keeps the spare aprons behind the flour tin. The flour-duty boy found the missing apron in his usual spot. The steamer, dessert plates, and pasta bowls are other places in the chat."
   }
 };
-  const set2Data = {
-  "sub": "Mystery of the pink napkin rings",
+
+const set2Data = {
+  "sub": "Case: the grandparents have no napkin rings",
   "hero": "illust/u3_04_pour.jpg",
   "bubbles": [
     {
       "speaker": "mia",
       "parts": [
-        "Leo, Sam walks around checking every place at the grandparents table. Heat the frying pan ",
+        "Leo, Sam walks around checking every place at the grandparents table. The spare rings are in the drawer. Fry the vegetables for the grandparents ",
         "____",
-        " you fry the vegetables for the grandparents!"
+        " you heat the frying pan!"
       ],
       "options": [
-        "although",
         "after",
+        "until",
         "before",
-        "will"
+        "while"
       ],
-      "answer": "before",
-      "explain": "Heat earlier → before."
+      "answer": "after",
+      "explain": "The first action is finished, then the next one → after."
     },
     {
       "speaker": "leo",
@@ -268,10 +269,10 @@
         " the porridge looks thicker than usual, Grandma Lee still wants a second bowl."
       ],
       "options": [
-        "Although",
+        "Because",
         "After",
-        "Before",
-        "So that"
+        "When",
+        "Although"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -284,10 +285,10 @@
         " you slice the bananas for topping."
       ],
       "options": [
-        "although",
-        "after",
         "before",
-        "will"
+        "when",
+        "until",
+        "after"
       ],
       "answer": "after",
       "explain": "Slice first → after."
@@ -300,10 +301,10 @@
         " you place it on the tray."
       ],
       "options": [
-        "although",
-        "after",
         "before",
-        "will"
+        "until",
+        "after",
+        "while"
       ],
       "answer": "before",
       "explain": "Cool earlier than placing → before."
@@ -317,10 +318,10 @@
         " the sponge cake came out a little soft, the grandparents still clapped for our dessert table before the photos started."
       ],
       "options": [
-        "Although",
-        "After",
         "Before",
-        "So that"
+        "So",
+        "Although",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Longer contrast → Although."
@@ -333,10 +334,10 @@
         " you peel them carefully."
       ],
       "options": [
-        "although",
+        "while",
+        "when",
         "after",
-        "before",
-        "will"
+        "before"
       ],
       "answer": "after",
       "explain": "Peel first → after."
@@ -349,10 +350,10 @@
         " the soup tasted mild, Grandpa Chan smiled at every spoonful."
       ],
       "options": [
-        "Although",
         "After",
-        "Before",
-        "So that"
+        "Although",
+        "When",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -366,10 +367,10 @@
         " the grandparents sit down, although the table already looks full — we need one bright ring at every place setting."
       ],
       "options": [
-        "although",
         "after",
-        "before",
-        "will"
+        "when",
+        "until",
+        "before"
       ],
       "answer": "before",
       "explain": "Count earlier than sitting → before."
@@ -382,10 +383,10 @@
         " we plate the dessert."
       ],
       "options": [
-        "although",
-        "after",
+        "while",
+        "when",
         "before",
-        "will"
+        "after"
       ],
       "answer": "before",
       "explain": "Search earlier → before."
@@ -395,44 +396,50 @@
       "parts": [
         "",
         "____",
-        " the kitchen was busy, the boy on place settings still found the pink napkin rings in the drawer!"
+        " the kitchen was busy, the boy on place settings still found the missing rings in Sam’s spare spot!"
       ],
       "options": [
         "Although",
-        "After",
         "Before",
-        "So that"
+        "Because",
+        "When"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
     }
   ],
   "endQ": {
-    "q": "Every grandparent needs one at their place. Who can the cooks thank?",
+    "q": "The grandparents have no pink napkin rings. Where are the rings now?",
     "options": [
-      "Mia",
-      "Leo",
-      "Sam",
-      "Chef Chan"
+      "On the tray",
+      "In the drawer",
+      "In the storeroom",
+      "On the dessert table"
     ],
-    "answer": "Sam",
-    "explain": "Sam walks around checking every place at the grandparents table. Leo said that boy found the rings in the drawer. Mia only searched the storeroom."
+    "answer": "In the drawer",
+    "explain": "Sam checks the place settings, and the spare rings are in the drawer. The place-settings boy found the missing rings in Sam’s spare spot. The tray, storeroom, and dessert table are other places."
   }
 };
+
 const set3Data = {
-  "sub": "Mystery of the green oven mitt",
+  "sub": "Case: Tom is not at the fruit cups",
   "hero": "illust/u3_cookie_cool.jpg",
   "bubbles": [
     {
       "speaker": "mia",
       "parts": [
-        "Leo, Tom sorts the recipe cards before the bake sale. Chop the fruit for the fruit cups ",
+        "Leo, Tom sorts the recipe cards before the bake sale. Open the bake-sale stall ",
         "____",
-        " you open the bake-sale stall!"
+        " you chop the fruit for the fruit cups!"
       ],
-      "options": ["although", "after", "before", "will"],
-      "answer": "before",
-      "explain": "Chop earlier → before."
+      "options": [
+        "until",
+        "after",
+        "when",
+        "before"
+      ],
+      "answer": "after",
+      "explain": "The first action is finished, then the next one → after."
     },
     {
       "speaker": "leo",
@@ -441,7 +448,12 @@ const set3Data = {
         "____",
         " the chocolate batter looks thicker than usual, Mia keeps stirring for the birthday cake."
       ],
-      "options": ["Although", "After", "Before", "So that"],
+      "options": [
+        "Because",
+        "After",
+        "When",
+        "Although"
+      ],
       "answer": "Although",
       "explain": "Contrast → Although."
     },
@@ -452,7 +464,12 @@ const set3Data = {
         "____",
         " you bake them for Open Day."
       ],
-      "options": ["although", "after", "before", "will"],
+      "options": [
+        "after",
+        "until",
+        "before",
+        "while"
+      ],
       "answer": "after",
       "explain": "Bake first → after."
     },
@@ -463,7 +480,12 @@ const set3Data = {
         "____",
         " you pour the white icing."
       ],
-      "options": ["although", "after", "before", "will"],
+      "options": [
+        "until",
+        "before",
+        "when",
+        "after"
+      ],
       "answer": "before",
       "explain": "Cool earlier than pouring → before."
     },
@@ -475,7 +497,12 @@ const set3Data = {
         "____",
         " the birthday icing set a little unevenly, the Open Day visitors still lined up for a slice before the candles were lit."
       ],
-      "options": ["Although", "After", "Before", "So that"],
+      "options": [
+        "Before",
+        "So",
+        "Although",
+        "Because"
+      ],
       "answer": "Although",
       "explain": "Longer contrast → Although."
     },
@@ -486,7 +513,12 @@ const set3Data = {
         "____",
         " the steamer finishes for the healthy snack corner."
       ],
-      "options": ["although", "after", "before", "will"],
+      "options": [
+        "before",
+        "when",
+        "until",
+        "after"
+      ],
       "answer": "after",
       "explain": "Steamer finishes first → after."
     },
@@ -497,7 +529,12 @@ const set3Data = {
         "____",
         " the jam toast smelled simple, parents still asked for a second slice."
       ],
-      "options": ["Although", "After", "Before", "So that"],
+      "options": [
+        "After",
+        "Although",
+        "When",
+        "Because"
+      ],
       "answer": "Although",
       "explain": "Contrast → Although."
     },
@@ -509,7 +546,12 @@ const set3Data = {
         "____",
         " anyone pulls the hot cookie trays, although the trays already smell ready — we need that mitt by the oven door."
       ],
-      "options": ["although", "after", "before", "will"],
+      "options": [
+        "before",
+        "until",
+        "after",
+        "while"
+      ],
       "answer": "before",
       "explain": "Check earlier than pulling trays → before."
     },
@@ -520,7 +562,12 @@ const set3Data = {
         "____",
         " we plate the birthday cake."
       ],
-      "options": ["although", "after", "before", "will"],
+      "options": [
+        "after",
+        "when",
+        "until",
+        "before"
+      ],
       "answer": "before",
       "explain": "Search earlier → before."
     },
@@ -531,38 +578,48 @@ const set3Data = {
         "____",
         " the bake-sale stall was crowded, the recipe-card helper still found the green oven mitt under the recipe card!"
       ],
-      "options": ["Although", "After", "Before", "So that"],
+      "options": [
+        "Although",
+        "Before",
+        "Because",
+        "When"
+      ],
       "answer": "Although",
       "explain": "Contrast → Although."
     }
   ],
   "endQ": {
-    "q": "The green oven mitt was not by the oven door. Who can the cooks thank?",
-    "options": ["Mia", "Leo", "Tom", "Chef Chan"],
-    "answer": "Tom",
-    "explain": "Tom sorts the recipe cards before the bake sale. Leo said that helper found the mitt under a recipe card. Mia searched the drawer instead."
+    "q": "Tom is not at the fruit cups. Where is he now?",
+    "options": [
+      "At the fruit cups",
+      "By the oven door",
+      "By the recipe cards",
+      "In the kitchen drawer"
+    ],
+    "answer": "By the recipe cards",
+    "explain": "Tom sorts the recipe cards before the bake sale. The recipe-card helper found the mitt under a recipe card, so that helper is there. The fruit cups, oven door, and kitchen drawer are other places."
   }
 };
 
-  const set4Data = {
-  "sub": "Mystery of the purple lunch tray",
+const set4Data = {
+  "sub": "Case: something missing from the sandwich stack",
   "hero": "illust/u3_s4_chat_hero.jpg",
   "bubbles": [
     {
       "speaker": "mia",
       "parts": [
-        "Leo, Nora folds every paper napkin for the picnic. Chop the fruit for the Sports Day fruit cups ",
+        "Leo, Nora folds every paper napkin for the picnic. The purple lunch tray is her spare. Pack the picnic trays ",
         "____",
-        " you pack the picnic trays!"
+        " you chop the fruit for the Sports Day fruit cups!"
       ],
       "options": [
-        "although",
+        "while",
+        "when",
         "after",
-        "before",
-        "will"
+        "before"
       ],
-      "answer": "before",
-      "explain": "Chop earlier → before."
+      "answer": "after",
+      "explain": "The first action is finished, then the next one → after."
     },
     {
       "speaker": "leo",
@@ -572,10 +629,10 @@ const set3Data = {
         " the picnic sandwiches look plain, Class 6A still smiles while spreading jam."
       ],
       "options": [
-        "Although",
+        "Because",
         "After",
-        "Before",
-        "So that"
+        "When",
+        "Although"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -588,10 +645,10 @@ const set3Data = {
         " you spread the filling."
       ],
       "options": [
-        "although",
+        "until",
         "after",
-        "before",
-        "will"
+        "when",
+        "before"
       ],
       "answer": "after",
       "explain": "Spread first → after."
@@ -604,10 +661,10 @@ const set3Data = {
         " you seal the clear lid."
       ],
       "options": [
-        "although",
-        "after",
+        "while",
+        "when",
         "before",
-        "will"
+        "after"
       ],
       "answer": "before",
       "explain": "Cool earlier than sealing → before."
@@ -621,10 +678,10 @@ const set3Data = {
         " a little juice dripped on the tray, the Sports Day helpers still lined up to pack fruit cups before the bus left."
       ],
       "options": [
-        "Although",
-        "After",
         "Before",
-        "So that"
+        "So",
+        "Although",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Longer contrast → Although."
@@ -637,10 +694,10 @@ const set3Data = {
         " the sandwiches and fruit cups are ready."
       ],
       "options": [
-        "although",
         "after",
+        "until",
         "before",
-        "will"
+        "while"
       ],
       "answer": "after",
       "explain": "Food ready first → after."
@@ -653,10 +710,10 @@ const set3Data = {
         " the picnic bread smelled simple, parents still asked for an extra sandwich."
       ],
       "options": [
-        "Although",
         "After",
-        "Before",
-        "So that"
+        "Although",
+        "When",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -670,10 +727,10 @@ const set3Data = {
         " anyone carries the picnic baskets out, although the baskets already look full — we need that tray by the sandwich stack."
       ],
       "options": [
-        "although",
-        "after",
+        "until",
         "before",
-        "will"
+        "when",
+        "after"
       ],
       "answer": "before",
       "explain": "Check earlier than carrying out → before."
@@ -686,10 +743,10 @@ const set3Data = {
         " we stick stickers on the fruit cups."
       ],
       "options": [
-        "although",
-        "after",
         "before",
-        "will"
+        "until",
+        "after",
+        "while"
       ],
       "answer": "before",
       "explain": "Search earlier → before."
@@ -699,50 +756,50 @@ const set3Data = {
       "parts": [
         "",
         "____",
-        " the picnic table was crowded, the napkin helper still found the purple lunch tray under the napkin pile!"
+        " the picnic table was crowded, the napkin helper still found her spare under the napkin pile!"
       ],
       "options": [
         "Although",
-        "After",
         "Before",
-        "So that"
+        "Because",
+        "When"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
     }
   ],
   "endQ": {
-    "q": "A tray is missing from the sandwich stack. Who can the cooks thank?",
+    "q": "Something is missing from the sandwich stack. What did the napkin helper find?",
     "options": [
-      "Mia",
-      "Leo",
-      "Nora",
-      "Chef Chan"
+      "The fruit cups",
+      "The paper napkins",
+      "The purple lunch tray",
+      "The picnic baskets"
     ],
-    "answer": "Nora",
-    "explain": "Nora folds every paper napkin for the picnic. Leo said the napkin helper found the purple tray under the napkin pile. Mia searched the shelf instead."
+    "answer": "The purple lunch tray",
+    "explain": "Nora folds the napkins, and the purple lunch tray is her spare. The napkin helper found her spare under the napkin pile. The fruit cups and picnic baskets were still being packed."
   }
 };
 
-  const set5Data = {
-  "sub": "Mystery of the pink whisk",
+const set5Data = {
+  "sub": "Case: the pink whisk left the yoghurt bowls",
   "hero": "illust/u3_s5_chat_hero.jpg",
   "bubbles": [
     {
       "speaker": "mia",
       "parts": [
-        "Leo, Vera sorts the recipe cards before breakfast. Chop the bananas for the yoghurt cups ",
+        "Leo, Vera sorts the recipe cards before breakfast and keeps small tools under those cards. Open the Healthy Breakfast Club stall ",
         "____",
-        " you open the Healthy Breakfast Club stall!"
+        " you chop the bananas for the yoghurt cups!"
       ],
       "options": [
-        "although",
-        "after",
         "before",
-        "will"
+        "when",
+        "until",
+        "after"
       ],
-      "answer": "before",
-      "explain": "Chop earlier → before."
+      "answer": "after",
+      "explain": "The first action is finished, then the next one → after."
     },
     {
       "speaker": "leo",
@@ -752,10 +809,10 @@ const set3Data = {
         " the yoghurt looks a little thin, Mia keeps stirring for the breakfast tasting."
       ],
       "options": [
-        "Although",
+        "Because",
         "After",
-        "Before",
-        "So that"
+        "When",
+        "Although"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -768,10 +825,10 @@ const set3Data = {
         " you flip them for Breakfast Club."
       ],
       "options": [
-        "although",
+        "while",
+        "when",
         "after",
-        "before",
-        "will"
+        "before"
       ],
       "answer": "after",
       "explain": "Flip first → after."
@@ -784,10 +841,10 @@ const set3Data = {
         " you drizzle the golden honey."
       ],
       "options": [
-        "although",
         "after",
-        "before",
-        "will"
+        "when",
+        "until",
+        "before"
       ],
       "answer": "before",
       "explain": "Cool earlier than drizzling → before."
@@ -801,10 +858,10 @@ const set3Data = {
         " a little honey dripped on the tray, the Breakfast Club helpers still lined up to plate pancakes before the bell."
       ],
       "options": [
-        "Although",
-        "After",
         "Before",
-        "So that"
+        "So",
+        "Although",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Longer contrast → Although."
@@ -817,10 +874,10 @@ const set3Data = {
         " the berries and melon cubes are ready."
       ],
       "options": [
-        "although",
+        "until",
         "after",
-        "before",
-        "will"
+        "when",
+        "before"
       ],
       "answer": "after",
       "explain": "Fruit ready first → after."
@@ -833,10 +890,10 @@ const set3Data = {
         " the cereal bowls looked simple, parents still asked for a second spoonful."
       ],
       "options": [
-        "Although",
         "After",
-        "Before",
-        "So that"
+        "Although",
+        "When",
+        "Because"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
@@ -850,10 +907,10 @@ const set3Data = {
         " anyone carries the tasting trays out, although the bowls already look full — we need that whisk by the yoghurt bowls."
       ],
       "options": [
-        "although",
-        "after",
+        "while",
+        "when",
         "before",
-        "will"
+        "after"
       ],
       "answer": "before",
       "explain": "Check earlier than carrying out → before."
@@ -866,10 +923,10 @@ const set3Data = {
         " we stick name stickers on the yoghurt cups."
       ],
       "options": [
-        "although",
-        "after",
+        "until",
         "before",
-        "will"
+        "when",
+        "after"
       ],
       "answer": "before",
       "explain": "Search earlier → before."
@@ -879,32 +936,32 @@ const set3Data = {
       "parts": [
         "",
         "____",
-        " the breakfast table was crowded, the recipe-card helper still found the pink whisk under the recipe cards!"
+        " the breakfast table was crowded, the recipe-card helper still found the pink whisk in her tool spot!"
       ],
       "options": [
         "Although",
-        "After",
         "Before",
-        "So that"
+        "Because",
+        "When"
       ],
       "answer": "Although",
       "explain": "Contrast → Although."
     }
   ],
   "endQ": {
-    "q": "The pink whisk was not by the yoghurt bowls. Who can the cooks thank?",
+    "q": "The pink whisk is not by the yoghurt bowls. Where is it now?",
     "options": [
-      "Mia",
-      "Leo",
-      "Vera",
-      "Chef Chan"
+      "By the yoghurt bowls",
+      "On the kitchen shelf",
+      "Under the recipe cards",
+      "On the pancake plate"
     ],
-    "answer": "Vera",
-    "explain": "Vera sorts the recipe cards before breakfast. Leo said that helper found the pink whisk under the recipe cards. Mia searched the shelf instead."
+    "answer": "Under the recipe cards",
+    "explain": "Vera sorts the recipe cards and keeps small tools under those cards. The recipe-card helper found the pink whisk in her tool spot. The yoghurt bowls, kitchen shelf, and pancake plate are other places."
   }
 };
 
-  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
   const SET_KEY = "u3-chat-set-i";
   function resolveSet() {
     const q = parseInt(new URLSearchParams(location.search).get("set"), 10);

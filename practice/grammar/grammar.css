@@ -78,8 +78,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .prac-header .header-practice {
   position: absolute;
-  top: 0.5rem;
+  top: 50%;
   right: var(--margin);
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
