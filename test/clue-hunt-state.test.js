@@ -6,14 +6,6 @@ const ClueHunt = require('../game/clue-hunt-state.js');
 
 const root = path.join(__dirname, '..');
 
-function practiceOk() {
-  return {
-    table: 'The flags and the old books',
-    'hall-sentence': 'is',
-    asked: 'The film club'
-  };
-}
-
 test('four hotspots, one per stop, and only Ken is misleading', () => {
   assert.equal(ClueHunt.HOTSPOTS.length, 4);
   assert.deepEqual(ClueHunt.HOTSPOTS.map((spot) => spot.id), ['stall', 'hall', 'film', 'store']);
@@ -94,12 +86,8 @@ test('the notebook view of Ken’s card is unlabeled', () => {
   assert.doesNotMatch(view.title + view.text, /false|wrong/i);
 });
 
-test('practice questions confirm the true cards and do not ask who is missing', () => {
-  assert.equal(ClueHunt.PRACTICE.length, 3);
-  assert.deepEqual(ClueHunt.PRACTICE.map((item) => item.kind), ['Vocab', 'Grammar', 'Vocab']);
-  assert.deepEqual(ClueHunt.PRACTICE.map((item) => item.id), ['table', 'hall-sentence', 'asked']);
-  assert.equal(ClueHunt.PRACTICE[1].prompt, 'A comedy ___ on in the school hall.');
-  assert.equal(ClueHunt.PRACTICE[1].answer, 'is');
+test('solve asks who and where only', () => {
+  assert.equal(ClueHunt.PRACTICE, undefined);
   assert.deepEqual(Object.keys(ClueHunt.CASE), ['who', 'where']);
   assert.equal(ClueHunt.CASE.who.answer, 'The film club');
   assert.equal(ClueHunt.CASE.where.answer, 'In the school hall');
@@ -109,24 +97,16 @@ test('practice questions confirm the true cards and do not ask who is missing', 
     'Beside the prize wheel',
     'At the charity stall'
   ]);
-  const joined = JSON.stringify(ClueHunt.PRACTICE) + JSON.stringify(ClueHunt.CASE);
-  assert.doesNotMatch(joined, /Who is missing/);
-  assert.doesNotMatch(joined, /Vocab · Unit/);
-  assert.doesNotMatch(joined, /Grammar ·/);
-});
-
-test('a wrong practice answer hints that card and hides the ending', () => {
-  const result = ClueHunt.submitSolve(
-    { table: 'The raffle tickets', 'hall-sentence': 'is', asked: 'The film club' },
-    { who: 'The film club', where: 'In the school hall' }
-  );
-  assert.deepEqual(result, { ok: false, hint: 'Read the charity stall card again.', ending: '' });
+  const src = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
+  assert.doesNotMatch(src, /A comedy ___/);
+  assert.doesNotMatch(src, /Who is missing/);
+  assert.doesNotMatch(JSON.stringify(ClueHunt.CASE), /Who is missing/);
 });
 
 test('a wrong case answer names the card to reread and does not reveal the ending', () => {
-  const whoOnly = ClueHunt.submitSolve(practiceOk(), { who: 'Ken', where: 'In the school hall' });
-  const whereOnly = ClueHunt.submitSolve(practiceOk(), { who: 'The film club', where: 'In the storeroom' });
-  const both = ClueHunt.submitSolve(practiceOk(), { who: 'Miss Chan', where: 'Beside the prize wheel' });
+  const whoOnly = ClueHunt.submitSolve({ who: 'Ken', where: 'In the school hall' });
+  const whereOnly = ClueHunt.submitSolve({ who: 'The film club', where: 'In the storeroom' });
+  const both = ClueHunt.submitSolve({ who: 'Miss Chan', where: 'Beside the prize wheel' });
   assert.equal(whoOnly.ok, false);
   assert.equal(whoOnly.ending, '');
   assert.equal(whoOnly.hint, 'Read the film club card again.');
@@ -136,7 +116,7 @@ test('a wrong case answer names the card to reread and does not reveal the endin
 });
 
 test('the correct pair returns the one ending', () => {
-  const result = ClueHunt.submitSolve(practiceOk(), {
+  const result = ClueHunt.submitSolve({
     who: 'The film club',
     where: 'In the school hall'
   });

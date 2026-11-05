@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=4"/>
+<link rel="stylesheet" href="game.css?v=5"/>
 </head>
 <body>
 <header class="prac-header">
@@ -23,13 +23,19 @@
         <div class="case-art">
           <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
         </div>
-        <p class="case-lead" id="case-lead">Leo has not come back from the charity stall. The raffle box is gone too.</p>
-        <ol class="case-steps">
-          <li>Tap a place on the map.</li>
-          <li>Talk to a person, or tap something to search.</li>
-          <li>Your notebook fills in as you find clues.</li>
-          <li>Tap Solve Case when the notebook is ready.</li>
-        </ol>
+        <div class="case-block">
+          <h2 class="block-label">The case</h2>
+          <p class="case-lead" id="case-lead">Leo has not come back from the charity stall. The raffle box is gone too.</p>
+        </div>
+        <div class="play-block">
+          <h2 class="block-label">How to play</h2>
+          <ol class="case-steps">
+            <li>Tap a place on the map.</li>
+            <li>Talk to a person, or tap something to search.</li>
+            <li>Your notebook fills in as you find clues.</li>
+            <li>Tap Solve Case when the notebook is ready.</li>
+          </ol>
+        </div>
         <div class="btn-row">
           <button type="button" class="btn btn-primary" id="start-map">Look around the fair</button>
         </div>
@@ -37,21 +43,22 @@
       <section id="fair-map" hidden>
         <h2 class="hunt-q">School fair</h2>
         <div class="fair-map">
-          <button type="button" class="hotspot" data-hotspot="stall">
+          <img class="fair-map-base" src="illust/map-open.png" alt="" width="919" height="727"/>
+          <button type="button" class="hotspot pin-stall" data-hotspot="stall">
             <img src="../practice/grammar/illust/u1_s4_carnival_stalls.jpg" alt="" width="320" height="240"/>
-            Charity stall
+            <span>Charity stall</span>
           </button>
-          <button type="button" class="hotspot" data-hotspot="hall">
+          <button type="button" class="hotspot pin-hall" data-hotspot="hall">
             <img src="../practice/grammar/illust/u4_s4_musical_finale.jpg" alt="" width="320" height="240"/>
-            School hall
+            <span>School hall</span>
           </button>
-          <button type="button" class="hotspot" data-hotspot="film">
+          <button type="button" class="hotspot pin-film" data-hotspot="film">
             <img src="../practice/grammar/illust/u4_s5_studio_lights.jpg" alt="" width="320" height="240"/>
-            Film club
+            <span>Film club</span>
           </button>
-          <button type="button" class="hotspot" data-hotspot="store">
+          <button type="button" class="hotspot pin-store" data-hotspot="store">
             <img src="../practice/grammar/illust/u1_07_books.jpg" alt="" width="320" height="240"/>
-            Storeroom
+            <span>Storeroom</span>
           </button>
         </div>
       </section>
@@ -70,7 +77,6 @@
           <button type="button" class="btn btn-ghost" id="solve-back">Back to the map</button>
         </div>
         <h2 class="hunt-q">Solve the case</h2>
-        <div id="practice"></div>
         <span class="solve-label">Who took the box?</span>
         <div class="choices" id="who-choices"></div>
         <span class="solve-label">Where is Leo?</span>
@@ -87,6 +93,7 @@
     </div>
     <aside id="notebook" class="notebook" hidden>
       <h2>Notebook</h2>
+      <p class="notebook-purpose">This is where clues go when you talk and search. Use these notes to solve the case.</p>
       <p id="notebook-empty">Nothing written yet.</p>
       <div id="notebook-cards"></div>
       <div class="btn-row">
@@ -99,7 +106,6 @@
 <script>
 (function () {
   var hunt = ClueHunt.createHunt();
-  var practicePicks = {};
   var casePicks = { who: null, where: null };
   var ended = false;
 
@@ -190,39 +196,6 @@
     renderNotebook();
   }
 
-  function renderPractice() {
-    var box = document.getElementById("practice");
-    box.innerHTML = "";
-    practicePicks = {};
-    ClueHunt.PRACTICE.forEach(function (q) {
-      var block = document.createElement("fieldset");
-      block.className = "practice-q";
-      var legend = document.createElement("legend");
-      legend.textContent = q.prompt;
-      block.appendChild(legend);
-      var kind = document.createElement("p");
-      kind.className = "hunt-kind";
-      kind.textContent = q.kind;
-      block.appendChild(kind);
-      var choices = document.createElement("div");
-      choices.className = "choices";
-      q.options.forEach(function (opt) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "choice";
-        btn.textContent = opt;
-        btn.addEventListener("click", function () {
-          practicePicks[q.id] = opt;
-          Array.prototype.forEach.call(choices.children, function (el) { el.classList.remove("selected"); });
-          btn.classList.add("selected");
-        });
-        choices.appendChild(btn);
-      });
-      block.appendChild(choices);
-      box.appendChild(block);
-    });
-  }
-
   function renderCaseGroup(container, key, options) {
     container.innerHTML = "";
     options.forEach(function (opt) {
@@ -252,7 +225,6 @@
     feedback.hidden = true;
     feedback.textContent = "";
     stepLabel.textContent = "Who took the box, and where is Leo?";
-    renderPractice();
     renderCaseGroup(document.getElementById("who-choices"), "who", ClueHunt.CASE.who.options);
     renderCaseGroup(document.getElementById("where-choices"), "where", ClueHunt.CASE.where.options);
     renderNotebook();
@@ -270,7 +242,7 @@
   });
 
   solveBtn.addEventListener("click", function () {
-    var result = ClueHunt.submitSolve(practicePicks, casePicks);
+    var result = ClueHunt.submitSolve(casePicks);
     feedback.hidden = false;
     if (!result.ok) {
       feedback.textContent = result.hint;

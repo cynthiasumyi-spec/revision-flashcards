@@ -14,51 +14,80 @@
   margin: 0 auto;
   object-fit: contain;
 }
+.wrap { max-width: 960px; }
+.block-label {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+.case-block { margin: 0.15rem 0 1.35rem; }
+.play-block { margin: 0 0 0.95rem; }
 .case-lead {
-  margin: 0 0 0.55rem;
+  margin: 0;
   font-weight: 700;
   color: var(--navy);
 }
+#scene-reply { margin: 0 0 0.7rem; }
 .case-steps {
-  margin: 0 0 0.9rem;
+  margin: 0;
   padding-left: 1.3rem;
   color: var(--navy);
   font-weight: 700;
 }
-.case-steps li { margin: 0.15rem 0; }
+.case-steps li { margin: 0.2rem 0; }
 .hunt-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(12rem, 17rem);
+  grid-template-columns: minmax(0, 1fr) 15rem;
   gap: 0.8rem;
   align-items: start;
 }
+.hunt-stage { min-width: 0; }
 .fair-map {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.7rem;
-  margin: 0 0 0.9rem;
-}
-.hotspot {
-  border: 0;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--sunny) 55%, #fff);
-  color: var(--navy);
-  font-family: var(--font-display);
-  font-weight: 650;
-  font-size: 1rem;
-  padding: 0.7rem;
-  text-align: left;
-  cursor: pointer;
-}
-.hotspot img {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  max-height: 92px;
+  position: relative;
+  width: min(100%, 640px);
   margin: 0 auto 0.35rem;
+}
+.fair-map-base {
+  display: block;
+  width: 100%;
+  height: auto;
   object-fit: contain;
   border-radius: 12px;
 }
+.hotspot {
+  position: absolute;
+  z-index: 1;
+  width: 5.4rem;
+  margin: 0;
+  border: 0;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--sunny) 82%, #fff);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: 0.72rem;
+  line-height: 1.15;
+  padding: 0.28rem 0.28rem 0.22rem;
+  text-align: center;
+  cursor: pointer;
+  transform: translate(-50%, -78%);
+}
+.hotspot img {
+  display: block;
+  width: 100%;
+  height: 2.7rem;
+  margin: 0 auto 0.12rem;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+}
+.hotspot span { display: block; }
+.pin-stall { left: 22%; top: 44%; }
+.pin-hall { left: 46%; top: 22%; }
+.pin-film { left: 74%; top: 40%; }
+.pin-store { left: 60%; top: 74%; }
 .hotspot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;
@@ -75,19 +104,30 @@
 }
 .notebook {
   border: 0;
-  border-radius: 16px;
-  background: color-mix(in srgb, var(--sky) 22%, #fff);
+  border-radius: 4px 18px 18px 4px;
   color: var(--navy);
-  padding: 0.75rem;
+  padding: 0.8rem 0.75rem 0.75rem 1.5rem;
+  background-color: #fff8e6;
+  background-image:
+    radial-gradient(circle at 0.62rem 0.72rem, #fff 0.16rem, color-mix(in srgb, var(--navy) 22%, #e4d0a4) 0.18rem 0.28rem, transparent 0.31rem),
+    linear-gradient(to right, color-mix(in srgb, var(--coral) 32%, #f6e2c4) 0.72rem, transparent 0.72rem),
+    repeating-linear-gradient(to bottom, transparent 0 1.42rem, color-mix(in srgb, var(--sky) 50%, #d5e8f6) 1.42rem 1.5rem);
+  background-repeat: repeat-y, no-repeat, repeat;
+  background-size: 100% 1.55rem, 100% 100%, 100% 1.5rem;
+  background-position: 0 0.95rem, 0 0, 0 2.7rem;
 }
 .notebook h2 {
-  margin: 0 0 0.4rem;
+  margin: 0 0 0.25rem;
   font-family: var(--font-display);
   font-size: 1.15rem;
 }
-.notebook.is-open {
-  background: color-mix(in srgb, var(--sunny) 34%, #fff);
+.notebook-purpose {
+  margin: 0 0 0.55rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
+.notebook.is-open { background-color: #fff3d4; }
 .notebook-empty,
 #notebook-empty {
   margin: 0 0 0.55rem;
@@ -98,7 +138,7 @@
   padding: 0.55rem 0.65rem;
   border: 0;
   border-radius: 16px;
-  background: color-mix(in srgb, var(--sky) 28%, #fff);
+  background: color-mix(in srgb, #fff 86%, var(--sky));
   color: var(--navy);
 }
 .clue-card strong {
@@ -124,17 +164,6 @@
   font-weight: 700;
   color: var(--muted);
   font-size: 0.85rem;
-}
-.practice-q {
-  border: 0;
-  margin: 0 0 0.8rem;
-  padding: 0;
-}
-.practice-q legend {
-  padding: 0;
-  margin: 0 0 0.3rem;
-  font-weight: 800;
-  color: var(--navy);
 }
 .solve-label {
   display: block;
@@ -162,5 +191,9 @@
 }
 .ending p { margin: 0; }
 @media (max-width: 720px) {
-  .hunt-layout { grid-template-columns: 1fr; }
+  .hunt-layout { grid-template-columns: 1fr; gap: 0.45rem; }
+  .hunt-q { margin-bottom: 0.3rem; }
+  .hotspot { width: 4.35rem; font-size: 0.66rem; }
+  .hotspot img { height: 2.15rem; }
+  .notebook { padding: 0.6rem 0.55rem 0.6rem 1.35rem; }
 }

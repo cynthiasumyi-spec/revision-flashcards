@@ -70,33 +70,6 @@
     }
   ];
 
-  var PRACTICE = [
-    {
-      id: "table",
-      kind: "Vocab",
-      prompt: "What is still on the charity stall table?",
-      options: ["The flags and the old books", "The raffle tickets", "A pet", "The prize wheel"],
-      answer: "The flags and the old books",
-      hint: "Read the charity stall card again."
-    },
-    {
-      id: "hall-sentence",
-      kind: "Grammar",
-      prompt: "A comedy ___ on in the school hall.",
-      options: ["is", "are", "am", "be"],
-      answer: "is",
-      hint: "Read the school hall card again."
-    },
-    {
-      id: "asked",
-      kind: "Vocab",
-      prompt: "Who asked Amy to bring the tickets?",
-      options: ["The film club", "Ken", "Miss Chan", "The caretaker"],
-      answer: "The film club",
-      hint: "Read the film club card again."
-    }
-  ];
-
   var CASE = {
     who: {
       prompt: "Who took the box?",
@@ -176,14 +149,8 @@
     return "Read the school hall card again.";
   }
 
-  function submitSolve(practiceAnswers, picks) {
-    var answers = practiceAnswers || {};
+  function submitSolve(picks) {
     var chosen = picks || {};
-    for (var i = 0; i < PRACTICE.length; i++) {
-      if (answers[PRACTICE[i].id] !== PRACTICE[i].answer) {
-        return { ok: false, hint: PRACTICE[i].hint, ending: "" };
-      }
-    }
     if (chosen.who !== CASE.who.answer || chosen.where !== CASE.where.answer) {
       return { ok: false, hint: caseHint(chosen), ending: "" };
     }
@@ -192,7 +159,6 @@
 
   return {
     HOTSPOTS: HOTSPOTS,
-    PRACTICE: PRACTICE,
     CASE: CASE,
     ENDING: ENDING,
     createHunt: createHunt,
