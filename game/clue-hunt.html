@@ -92,12 +92,195 @@
 <script src="clue-hunt-state.js"></script>
 <script>
 (function () {
-  document.getElementById("start-map").addEventListener("click", function () {
-    document.getElementById("intro").hidden = true;
-    document.getElementById("fair-map").hidden = false;
-    document.getElementById("notebook").hidden = false;
+  var hunt = ClueHunt.createHunt();
+  var practicePicks = {};
+  var casePicks = { who: null, where: null };
+  var ended = false;
+
+  var intro = document.getElementById("intro");
+  var map = document.getElementById("fair-map");
+  var scene = document.getElementById("scene");
+  var notebook = document.getElementById("notebook");
+  var cardsEl = document.getElementById("notebook-cards");
+  var emptyEl = document.getElementById("notebook-empty");
+  var solve = document.getElementById("solve");
+  var ending = document.getElementById("ending");
+  var openSolve = document.getElementById("open-solve");
+  var replyEl = document.getElementById("scene-reply");
+  var actionsEl = document.getElementById("scene-actions");
+  var stepLabel = document.getElementById("step-label");
+  var feedback = document.getElementById("solve-feedback");
+  var solveBtn = document.getElementById("solve-btn");
+
+  function hotspotById(id) {
+    return ClueHunt.HOTSPOTS.filter(function (item) { return item.id === id; })[0];
+  }
+
+  function renderNotebook() {
+    var cards = ClueHunt.notebook(hunt);
+    cardsEl.innerHTML = "";
+    emptyEl.hidden = cards.length > 0;
+    cards.forEach(function (card) {
+      var view = ClueHunt.displayCard(card);
+      var article = document.createElement("article");
+      article.className = "clue-card";
+      article.setAttribute("data-card", card.id);
+      var title = document.createElement("strong");
+      title.textContent = view.title;
+      var body = document.createElement("p");
+      body.textContent = view.text;
+      article.appendChild(title);
+      article.appendChild(body);
+      cardsEl.appendChild(article);
+    });
+    openSolve.disabled = ended || !solve.hidden || !ClueHunt.solveUnlocked(hunt);
+    notebook.classList.toggle("is-open", !solve.hidden || !ending.hidden);
+  }
+
+  function showMap() {
+    if (ended) return;
+    intro.hidden = true;
+    scene.hidden = true;
+    solve.hidden = true;
+    ending.hidden = true;
+    map.hidden = false;
+    notebook.hidden = false;
+    stepLabel.textContent = "Walk the school fair";
+    renderNotebook();
+  }
+
+  function renderActions(hotspot) {
+    actionsEl.innerHTML = "";
+    var items = hotspot.kind === "search" ? hotspot.spots : hotspot.prompts;
+    items.forEach(function (item) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = item.label;
+      btn.addEventListener("click", function () {
+        var result = ClueHunt.visit(hunt, hotspot.id, item.id);
+        hunt = result.state;
+        replyEl.textContent = result.reply;
+        renderNotebook();
+      });
+      actionsEl.appendChild(btn);
+    });
+  }
+
+  function openHotspot(id) {
+    if (ended) return;
+    var hotspot = hotspotById(id);
+    map.hidden = true;
+    solve.hidden = true;
+    ending.hidden = true;
+    scene.hidden = false;
+    notebook.hidden = false;
+    document.getElementById("scene-kicker").textContent = hotspot.kind === "search" ? "Search" : "Talk";
+    document.getElementById("scene-title").textContent = hotspot.name;
+    document.getElementById("scene-art").src = hotspot.art;
+    replyEl.textContent = hotspot.intro;
+    renderActions(hotspot);
+    stepLabel.textContent = hotspot.name;
+    renderNotebook();
+  }
+
+  function renderPractice() {
+    var box = document.getElementById("practice");
+    box.innerHTML = "";
+    practicePicks = {};
+    ClueHunt.PRACTICE.forEach(function (q) {
+      var block = document.createElement("fieldset");
+      block.className = "practice-q";
+      var legend = document.createElement("legend");
+      legend.textContent = q.prompt;
+      block.appendChild(legend);
+      var kind = document.createElement("p");
+      kind.className = "hunt-kind";
+      kind.textContent = q.kind;
+      block.appendChild(kind);
+      var choices = document.createElement("div");
+      choices.className = "choices";
+      q.options.forEach(function (opt) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "choice";
+        btn.textContent = opt;
+        btn.addEventListener("click", function () {
+          practicePicks[q.id] = opt;
+          Array.prototype.forEach.call(choices.children, function (el) { el.classList.remove("selected"); });
+          btn.classList.add("selected");
+        });
+        choices.appendChild(btn);
+      });
+      block.appendChild(choices);
+      box.appendChild(block);
+    });
+  }
+
+  function renderCaseGroup(container, key, options) {
+    container.innerHTML = "";
+    options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.textContent = opt;
+      btn.addEventListener("click", function () {
+        casePicks[key] = opt;
+        Array.prototype.forEach.call(container.children, function (el) { el.classList.remove("selected"); });
+        btn.classList.add("selected");
+        solveBtn.disabled = !(casePicks.who && casePicks.where);
+      });
+      container.appendChild(btn);
+    });
+  }
+
+  function openSolvePanel() {
+    if (ended || !ClueHunt.solveUnlocked(hunt)) return;
+    map.hidden = true;
+    scene.hidden = true;
+    ending.hidden = true;
+    solve.hidden = false;
+    notebook.hidden = false;
+    casePicks = { who: null, where: null };
+    solveBtn.disabled = true;
+    feedback.hidden = true;
+    feedback.textContent = "";
+    stepLabel.textContent = "Who took the box, and where is Leo?";
+    renderPractice();
+    renderCaseGroup(document.getElementById("who-choices"), "who", ClueHunt.CASE.who.options);
+    renderCaseGroup(document.getElementById("where-choices"), "where", ClueHunt.CASE.where.options);
+    renderNotebook();
+  }
+
+  document.getElementById("start-map").addEventListener("click", showMap);
+  document.getElementById("back-map").addEventListener("click", showMap);
+  document.getElementById("solve-back").addEventListener("click", showMap);
+  openSolve.addEventListener("click", openSolvePanel);
+
+  Array.prototype.forEach.call(document.querySelectorAll(".hotspot"), function (btn) {
+    btn.addEventListener("click", function () {
+      openHotspot(btn.getAttribute("data-hotspot"));
+    });
+  });
+
+  solveBtn.addEventListener("click", function () {
+    var result = ClueHunt.submitSolve(practicePicks, casePicks);
+    feedback.hidden = false;
+    if (!result.ok) {
+      feedback.textContent = result.hint;
+      return;
+    }
+    ended = true;
+    solve.hidden = true;
+    map.hidden = true;
+    scene.hidden = true;
+    ending.hidden = false;
+    document.getElementById("ending-copy").textContent = result.ending;
+    stepLabel.textContent = "Case closed";
+    renderNotebook();
   });
 })();
 </script>
+
 </body>
 </html>

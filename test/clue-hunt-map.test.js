@@ -69,3 +69,22 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /\.hotspot img \{[^}]*object-fit:\s*contain/);
 });
+
+test('page script explores before it grades and does not label the false card', () => {
+  const html = huntHtml();
+  const script = html.slice(html.lastIndexOf('<script>'), html.lastIndexOf('</script>'));
+  assert.equal((script.match(/ClueHunt\.createHunt\(\)/g) || []).length, 1);
+  assert.match(script, /ClueHunt\.visit/);
+  assert.match(script, /ClueHunt\.notebook/);
+  assert.match(script, /ClueHunt\.solveUnlocked/);
+  assert.match(script, /ClueHunt\.displayCard/);
+  assert.match(script, /ClueHunt\.submitSolve/);
+  assert.match(script, /querySelectorAll\("\.hotspot"\)/);
+  assert.match(script, /if \(ended\) return;/);
+  assert.match(script, /if \(ended \|\| !ClueHunt\.solveUnlocked\(hunt\)\) return;/);
+  assert.doesNotMatch(script, /notebook\.hidden = true/);
+  assert.doesNotMatch(script, /Who is missing/);
+  assert.doesNotMatch(script, /misleading/);
+  assert.doesNotMatch(script, /step \+= 1/);
+  assert.doesNotMatch(script, /Open this card/);
+});
