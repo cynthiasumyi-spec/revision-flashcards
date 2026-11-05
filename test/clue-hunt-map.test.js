@@ -24,13 +24,12 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   ['stall', 'wheel', 'film', 'hall', 'desk', 'store'].forEach((id) => {
     assert.match(html, new RegExp('data-hotspot="' + id + '"'));
   });
-  assert.match(html, /illust\/map-school\.png/);
-  assert.match(html, /u1_s4_carnival_stalls\.jpg/);
-  assert.match(html, /u1_s4_lucky_draw\.jpg/);
-  assert.match(html, /u4_s5_studio_lights\.jpg/);
-  assert.match(html, /u4_s4_musical_finale\.jpg/);
-  assert.match(html, /illust\/miss-chan-desk\.png/);
-  assert.match(html, /u1_07_books\.jpg/);
+  const map = html.slice(html.indexOf('id="fair-map"'), html.indexOf('id="scene"'));
+  assert.match(map, /illust\/map-school-places\.png/);
+  assert.doesNotMatch(map, /class="hotspot\b[^>]*>\s*<img/);
+  ['Charity stall', 'Prize wheel', 'Film club', 'School hall', "Miss Chan's desk", 'Storeroom'].forEach((label) => {
+    assert.match(map, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  });
   assert.doesNotMatch(html, /u4_comedy\.png/);
   assert.doesNotMatch(html, /id="ask"/);
 });
@@ -72,16 +71,17 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=8/);
+  assert.match(html, /game\.css\?v=9/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
+  assert.match(css, /\.hotspot \{[^}]*background:\s*transparent/);
   assert.doesNotMatch(css, /grid-template-columns:\s*1fr 1fr/);
   assert.match(css, /\.notebook \{[^}]*border:\s*0/);
   assert.match(css, /\.clue-card \{[^}]*border:\s*0/);
   assert.match(css, /\.notebook \{[^}]*repeating-linear-gradient/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
-  assert.match(css, /\.hotspot img \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.fair-map-base \{[^}]*object-fit:\s*contain/);
 });
 
 test('page script explores before it grades and does not label the false card', () => {

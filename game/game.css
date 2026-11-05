@@ -59,37 +59,37 @@
 .hotspot {
   position: absolute;
   z-index: 1;
-  width: 5.4rem;
   margin: 0;
   border: 0;
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--sunny) 82%, #fff);
+  border-radius: 18px;
+  background: transparent;
   color: var(--navy);
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: 700;
   font-size: 0.72rem;
   line-height: 1.15;
-  padding: 0.28rem 0.28rem 0.22rem;
+  padding: 0;
   text-align: center;
   cursor: pointer;
-  transform: translate(-50%, -78%);
 }
-.hotspot img {
-  display: block;
-  width: 100%;
-  height: 2.7rem;
-  margin: 0 auto 0.12rem;
-  object-fit: contain;
-  border-radius: 8px;
-  background: #fff;
+.hotspot span {
+  position: absolute;
+  left: 50%;
+  bottom: 0.15rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  text-shadow: 0 0 4px #fcf0d8, 0 0 4px #fcf0d8, 0 1px 0 #fcf0d8;
 }
-.hotspot span { display: block; }
-.pin-stall { left: 16%; top: 24%; }
-.pin-wheel { left: 20%; top: 78%; }
-.pin-film { left: 84%; top: 26%; }
-.pin-hall { left: 50%; top: 30%; }
-.pin-desk { left: 82%; top: 74%; }
-.pin-store { left: 51%; top: 80%; }
+.pin-stall { left: 7%; top: 8%; width: 22%; height: 24%; }
+.pin-wheel { left: 8%; top: 60%; width: 28%; height: 32%; }
+.pin-film { left: 72%; top: 8%; width: 24%; height: 32%; }
+.pin-hall { left: 32%; top: 6%; width: 36%; height: 42%; }
+.pin-desk { left: 68%; top: 52%; width: 28%; height: 40%; }
+.pin-store { left: 40%; top: 64%; width: 24%; height: 30%; }
+.hotspot:hover,
+.hotspot:focus-visible {
+  background: color-mix(in srgb, var(--sunny) 24%, transparent);
+}
 .hotspot:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: 2px;
@@ -247,7 +247,6 @@
   .hunt-q { margin-bottom: 0.3rem; }
   .scene-look { flex-wrap: wrap; }
   .search-cue { flex: 1 1 100%; flex-direction: row; justify-content: flex-start; font-size: 0.85rem; }
-  .hotspot { width: 4.35rem; font-size: 0.66rem; }
-  .hotspot img { height: 2.15rem; }
+  .hotspot { font-size: 0.66rem; }
   .notebook { padding: 0.6rem 0.55rem 0.6rem 1.35rem; }
 }
