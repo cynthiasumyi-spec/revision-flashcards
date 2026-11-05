@@ -56,3 +56,16 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(html, /id="scene-actions"/);
   assert.match(html, /id="ending-copy"/);
 });
+
+test('clue hunt styles use fills and contain the pictures', () => {
+  const html = huntHtml();
+  const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
+  assert.match(html, /game\.css\?v=3/);
+  assert.match(css, /\.fair-map \{/);
+  assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
+  assert.match(css, /\.notebook \{[^}]*border:\s*0/);
+  assert.match(css, /\.clue-card \{[^}]*border:\s*0/);
+  assert.match(css, /\.practice-q \{[^}]*border:\s*0/);
+  assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.hotspot img \{[^}]*object-fit:\s*contain/);
+});
