@@ -6,27 +6,50 @@ const ClueHunt = require('../game/clue-hunt-state.js');
 
 const root = path.join(__dirname, '..');
 
-test('four hotspots, one per stop, and only Ken is misleading', () => {
-  assert.equal(ClueHunt.HOTSPOTS.length, 4);
-  assert.deepEqual(ClueHunt.HOTSPOTS.map((spot) => spot.id), ['stall', 'hall', 'film', 'store']);
-  assert.deepEqual(ClueHunt.HOTSPOTS.map((spot) => spot.kind), ['search', 'talk', 'talk', 'talk']);
+function solved() {
+  return {
+    time: 'About 1:20',
+    who: 'Amy',
+    why: 'To draw a ticket in secret and win the big prize'
+  };
+}
+
+test('six hotspots and only Ken is misleading', () => {
+  assert.equal(ClueHunt.HOTSPOTS.length, 6);
+  assert.deepEqual(ClueHunt.HOTSPOTS.map((spot) => spot.id), ['stall', 'wheel', 'film', 'hall', 'desk', 'store']);
+  assert.deepEqual(ClueHunt.HOTSPOTS.map((spot) => spot.kind), ['search', 'talk', 'talk', 'search', 'talk', 'talk']);
   const misleading = ClueHunt.HOTSPOTS.filter((spot) => spot.misleading);
   assert.equal(misleading.length, 1);
   assert.equal(misleading[0].id, 'store');
-  assert.equal(misleading[0].cardTitle, 'Storeroom');
   assert.equal(misleading[0].cardText, 'Ken says he saw Leo go into the storeroom at noon.');
-  assert.equal(ClueHunt.HOTSPOTS[0].cardText, 'The raffle tickets are gone. The flags and the old books are still there.');
-  assert.equal(ClueHunt.HOTSPOTS[1].cardText, 'A comedy is on in the school hall. A boy came in with the raffle box.');
-  assert.equal(ClueHunt.HOTSPOTS[2].cardText, 'The film club asked Amy to bring the tickets for their comedy draw.');
-  const film = ClueHunt.HOTSPOTS[2];
-  assert.match(film.intro, /Amy left the stall with Leo/);
-  assert.match(film.prompts.find((item) => item.id === 'wheel').reply, /beside the prize wheel/);
+  const byId = Object.fromEntries(ClueHunt.HOTSPOTS.map((spot) => [spot.id, spot]));
+  assert.equal(byId.stall.cardText, 'An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!');
+  assert.doesNotMatch(byId.stall.cardText, /Amy/);
+  assert.match(byId.wheel.cardText, /About 1:15/);
+  assert.match(byId.wheel.cardText, /blue jacket/);
+  assert.match(byId.wheel.cardText, /new bike/);
+  assert.doesNotMatch(byId.wheel.cardText, /Amy/);
+  assert.match(byId.film.cardText, /red apple every day/);
+  assert.match(byId.film.cardText, /apple sticker on a wish list/);
+  assert.match(byId.film.cardText, /would not wait for the bus/);
+  assert.doesNotMatch(byId.film.cardText, /memo/);
+  assert.doesNotMatch(byId.film.cardText, /blue jacket/);
+  assert.match(byId.hall.cardText, /About 1:20/);
+  assert.match(byId.hall.cardText, /still waiting/);
+  assert.match(byId.hall.cardText, /apple core/);
+  assert.match(byId.hall.cardText, /Win bike/);
+  assert.doesNotMatch(byId.hall.cardText, /Amy/);
+  assert.equal(byId.desk.cardText, 'Miss Chan did not ask anyone to move the raffle box.');
+  assert.doesNotMatch(byId.desk.cardText, /Amy/);
+  assert.equal(byId.store.art, '../practice/grammar/illust/u1_07_books.jpg');
+  assert.equal(byId.store.marker, '../practice/grammar/illust/u1_07_books.jpg');
   const src = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
   assert.doesNotMatch(src, /Who is missing/);
-  assert.doesNotMatch(src, /answer: "Leo"/);
+  assert.doesNotMatch(src, /A comedy ___/);
+  assert.equal(ClueHunt.PRACTICE, undefined);
 });
 
-test('each hotspot has one useful action and the others add nothing', () => {
+test('each hotspot has one useful action and a useless stall tap adds nothing', () => {
   ClueHunt.HOTSPOTS.forEach((spot) => {
     const actions = spot.kind === 'search' ? spot.spots : spot.prompts;
     assert.equal(actions.length, 3);
@@ -43,36 +66,34 @@ test('each hotspot has one useful action and the others add nothing', () => {
 
 test('a useful visit adds one card and does not mutate the previous state', () => {
   const start = ClueHunt.createHunt();
-  const found = ClueHunt.visit(start, 'stall', 'tickets');
+  const found = ClueHunt.visit(start, 'stall', 'memo');
   assert.deepEqual(start.order, []);
   assert.equal(found.added, true);
   assert.equal(found.duplicate, false);
-  assert.equal(found.reply, 'The raffle tickets are gone. The flags and the old books are still there.');
+  assert.match(found.reply, /apple pattern/);
   assert.deepEqual(ClueHunt.notebook(found.state).map((card) => card.id), ['stall']);
 });
 
 test('revisiting a hotspot does not duplicate its card', () => {
-  const once = ClueHunt.visit(ClueHunt.createHunt(), 'hall', 'comedy');
-  const twice = ClueHunt.visit(once.state, 'hall', 'comedy');
-  const aside = ClueHunt.visit(once.state, 'hall', 'when');
+  const once = ClueHunt.visit(ClueHunt.createHunt(), 'hall', 'core');
+  const twice = ClueHunt.visit(once.state, 'hall', 'core');
+  const aside = ClueHunt.visit(once.state, 'hall', 'seats');
   assert.equal(twice.added, false);
   assert.equal(twice.duplicate, true);
   assert.equal(twice.state.order.length, 1);
   assert.equal(aside.added, false);
-  assert.equal(aside.duplicate, false);
-  assert.equal(aside.reply, 'The comedy is in the afternoon. I did not see him at noon.');
   assert.equal(aside.state.order.length, 1);
-  assert.equal(ClueHunt.notebook(twice.state)[0].text, 'A comedy is on in the school hall. A boy came in with the raffle box.');
+  assert.match(ClueHunt.notebook(twice.state)[0].text, /apple core/);
 });
 
-test('solve stays locked until all four cards exist, in any order', () => {
+test('solve stays locked until all six cards exist, in any order', () => {
   let state = ClueHunt.createHunt();
-  const steps = [['film', 'asked'], ['store', 'noon'], ['hall', 'comedy'], ['stall', 'tickets']];
+  const steps = [['desk', 'move'], ['store', 'noon'], ['hall', 'core'], ['stall', 'memo'], ['wheel', 'jacket'], ['film', 'lunch']];
   steps.forEach((pair, index) => {
     state = ClueHunt.visit(state, pair[0], pair[1]).state;
-    assert.equal(ClueHunt.solveUnlocked(state), index === 3);
+    assert.equal(ClueHunt.solveUnlocked(state), index === 5);
   });
-  assert.deepEqual(ClueHunt.notebook(state).map((card) => card.id), ['film', 'store', 'hall', 'stall']);
+  assert.deepEqual(ClueHunt.notebook(state).map((card) => card.id), ['desk', 'store', 'hall', 'stall', 'wheel', 'film']);
 });
 
 test('the notebook view of Ken’s card is unlabeled', () => {
@@ -86,44 +107,45 @@ test('the notebook view of Ken’s card is unlabeled', () => {
   assert.doesNotMatch(view.title + view.text, /false|wrong/i);
 });
 
-test('solve asks who and where only', () => {
-  assert.equal(ClueHunt.PRACTICE, undefined);
-  assert.deepEqual(Object.keys(ClueHunt.CASE), ['who', 'where']);
-  assert.equal(ClueHunt.CASE.who.answer, 'The film club');
-  assert.equal(ClueHunt.CASE.where.answer, 'In the school hall');
-  assert.deepEqual(ClueHunt.CASE.where.options, [
-    'In the school hall',
-    'In the storeroom',
-    'Beside the prize wheel',
-    'At the charity stall'
-  ]);
-  const src = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
-  assert.doesNotMatch(src, /A comedy ___/);
-  assert.doesNotMatch(src, /Who is missing/);
-  assert.doesNotMatch(JSON.stringify(ClueHunt.CASE), /Who is missing/);
+test('solve asks who, why, and about 1:20, with no grammar blank', () => {
+  assert.deepEqual(Object.keys(ClueHunt.CASE), ['who', 'why', 'time']);
+  assert.equal(ClueHunt.CASE.who.answer, 'Amy');
+  assert.deepEqual(ClueHunt.CASE.who.options, ['Amy', 'Ken', 'Miss Chan', 'The caretaker']);
+  assert.equal(ClueHunt.CASE.why.answer, 'To draw a ticket in secret and win the big prize');
+  assert.equal(ClueHunt.CASE.time.answer, 'About 1:20');
+  assert.deepEqual(ClueHunt.CASE.time.options, ['About 1:20', 'At noon', 'At 11:30', 'About 2:00']);
+  assert.equal(ClueHunt.CASE.where, undefined);
+  const joined = JSON.stringify(ClueHunt.CASE);
+  assert.doesNotMatch(joined, /Who is missing/);
+  assert.doesNotMatch(joined, /A comedy ___/);
 });
 
-test('a wrong case answer names the card to reread and does not reveal the ending', () => {
-  const whoOnly = ClueHunt.submitSolve({ who: 'Ken', where: 'In the school hall' });
-  const whereOnly = ClueHunt.submitSolve({ who: 'The film club', where: 'In the storeroom' });
-  const both = ClueHunt.submitSolve({ who: 'Miss Chan', where: 'Beside the prize wheel' });
+test('a wrong time hints a card and hides the ending', () => {
+  const noon = ClueHunt.submitSolve({ time: 'At noon', who: 'Amy', why: 'To draw a ticket in secret and win the big prize' });
+  const other = ClueHunt.submitSolve({ time: 'At 11:30', who: 'Amy', why: 'To draw a ticket in secret and win the big prize' });
+  assert.deepEqual(noon, { ok: false, hint: 'Read the storeroom card again.', ending: '' });
+  assert.equal(other.hint, 'Read the school hall card again.');
+  assert.doesNotMatch(noon.hint + other.hint, /Amy/);
+});
+
+test('a wrong who or why names a card and does not reveal the ending', () => {
+  const whoOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Ken', why: 'To draw a ticket in secret and win the big prize' });
+  const whyOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Amy', why: 'To hide the box in the storeroom' });
+  const both = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Miss Chan', why: 'To give the tickets to the film club' });
   assert.equal(whoOnly.ok, false);
   assert.equal(whoOnly.ending, '');
   assert.equal(whoOnly.hint, 'Read the film club card again.');
-  assert.equal(whereOnly.hint, 'Read the school hall card again.');
-  assert.equal(both.hint, 'Read the film club card and the school hall card again.');
-  assert.doesNotMatch(both.hint, /took the raffle tickets/);
+  assert.equal(whyOnly.hint, 'Read the prize wheel card again.');
+  assert.equal(both.hint, 'Read the film club card and the prize wheel card again.');
+  assert.doesNotMatch(whoOnly.hint + whyOnly.hint + both.hint, /Amy/);
 });
 
-test('the correct pair returns the one ending', () => {
-  const result = ClueHunt.submitSolve({
-    who: 'The film club',
-    where: 'In the school hall'
-  });
-  assert.deepEqual(result, {
-    ok: true,
-    hint: '',
-    ending: 'The film club took the raffle tickets for their comedy draw. Leo went with the box. He is in the school hall, safe, and the stall can collect the tickets after the film.'
-  });
+test('the correct who, why, and time return the one ending', () => {
+  const result = ClueHunt.submitSolve(solved());
+  assert.equal(result.ok, true);
+  assert.equal(result.hint, '');
   assert.equal(result.ending, ClueHunt.ENDING);
+  assert.match(result.ending, /Amy brings the tickets back and says sorry/);
+  assert.match(result.ending, /He is safe/);
+  assert.doesNotMatch(result.ending, /film club took/);
 });

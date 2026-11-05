@@ -5,58 +5,94 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var ENDING = "The film club took the raffle tickets for their comedy draw. Leo went with the box. He is in the school hall, safe, and the stall can collect the tickets after the film.";
+  var ENDING = "Amy opened the raffle box backstage to draw a ticket for the new bike. Leo was waiting there the whole time. He is safe. Amy brings the tickets back and says sorry. The stall can use the tickets again.";
 
   var HOTSPOTS = [
     {
       id: "stall",
       name: "Charity stall",
       kind: "search",
-      art: "../practice/grammar/illust/u1_s4_carnival_stalls.jpg",
-      intro: "Look around the charity stall.",
+      marker: "../practice/grammar/illust/u1_s4_carnival_stalls.jpg",
+      art: "illust/scene-stall-memo.png",
+      intro: "Look at the charity stall table.",
       cardTitle: "Charity stall",
-      cardText: "The raffle tickets are gone. The flags and the old books are still there.",
+      cardText: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!",
       misleading: false,
       spots: [
-        { id: "tickets", label: "Empty raffle spot", useful: true, reply: "The raffle tickets are gone. The flags and the old books are still there." },
+        { id: "memo", label: "Apple-pattern note", useful: true, reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
         { id: "flags", label: "Flags", useful: false, reply: "The flags are still on the table." },
         { id: "books", label: "Old books", useful: false, reply: "The old books are still there." }
       ]
     },
     {
-      id: "hall",
-      name: "School hall",
+      id: "wheel",
+      name: "Prize wheel",
       kind: "talk",
-      art: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
-      intro: "A show is on in the school hall.",
-      cardTitle: "School hall",
-      cardText: "A comedy is on in the school hall. A boy came in with the raffle box.",
+      marker: "../practice/grammar/illust/u1_s4_lucky_draw.jpg",
+      art: "illust/scene-prize-wheel.png",
+      intro: "A student is watching the prize wheel.",
+      cardTitle: "Prize wheel",
+      cardText: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket.",
       misleading: false,
       prompts: [
-        { id: "comedy", label: "What is on in the hall?", useful: true, reply: "A comedy is on in the school hall. A boy came in with the raffle box." },
-        { id: "when", label: "What time did you see him?", useful: false, reply: "The comedy is in the afternoon. I did not see him at noon." },
-        { id: "ken", label: "Was Ken here?", useful: false, reply: "I did not see Ken in the hall." }
+        { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket." },
+        { id: "lucky", label: "What are people guessing?", useful: false, reply: "People keep guessing which ticket is the lucky one." },
+        { id: "noon", label: "Was this at noon?", useful: false, reply: "I saw them after lunch, not at noon." }
       ]
     },
     {
       id: "film",
       name: "Film club",
       kind: "talk",
-      art: "../practice/grammar/illust/u4_s5_studio_lights.jpg",
-      intro: "Amy left the stall with Leo. She is here with the film club list.",
+      marker: "../practice/grammar/illust/u4_s5_studio_lights.jpg",
+      art: "illust/scene-film-amy.png",
+      intro: "Amy is here with the film club.",
       cardTitle: "Film club",
-      cardText: "The film club asked Amy to bring the tickets for their comedy draw.",
+      cardText: "Amy's lunch box has a red apple every day. She once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus.",
       misleading: false,
       prompts: [
-        { id: "asked", label: "Who asked for the tickets?", useful: true, reply: "The film club asked Amy to bring the tickets for their comedy draw." },
-        { id: "caretaker", label: "Did the caretaker take the box?", useful: false, reply: "No. The caretaker did not ask for the tickets." },
-        { id: "wheel", label: "Is Leo at the prize wheel?", useful: false, reply: "Ken looked beside the prize wheel. Leo was not there." }
+        { id: "lunch", label: "What is in Amy's lunch?", useful: true, reply: "Amy's lunch box has a red apple every day. She once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus." },
+        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I only know about her lunch and her wish list." },
+        { id: "box", label: "Did you see the box?", useful: false, reply: "I did not see the box leave." }
+      ]
+    },
+    {
+      id: "hall",
+      name: "School hall",
+      kind: "search",
+      marker: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
+      art: "illust/scene-hall-backstage.png",
+      intro: "Look backstage.",
+      cardTitle: "School hall",
+      cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker.",
+      misleading: false,
+      spots: [
+        { id: "core", label: "Apple core and wish slip", useful: true, reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
+        { id: "curtain", label: "Stage curtain", useful: false, reply: "The stage curtain is still closed." },
+        { id: "seats", label: "Empty seats", useful: false, reply: "The seats are empty." }
+      ]
+    },
+    {
+      id: "desk",
+      name: "Miss Chan's desk",
+      kind: "talk",
+      marker: "illust/miss-chan-desk.png",
+      art: "illust/miss-chan-desk.png",
+      intro: "Miss Chan is at her desk.",
+      cardTitle: "Miss Chan's desk",
+      cardText: "Miss Chan did not ask anyone to move the raffle box.",
+      misleading: false,
+      prompts: [
+        { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "Miss Chan did not ask anyone to move the raffle box." },
+        { id: "leo", label: "Where is Leo?", useful: false, reply: "I have not seen Leo since this morning." },
+        { id: "note", label: "Who wrote the note?", useful: false, reply: "I do not know who wrote a note." }
       ]
     },
     {
       id: "store",
       name: "Storeroom",
       kind: "talk",
+      marker: "../practice/grammar/illust/u1_07_books.jpg",
       art: "../practice/grammar/illust/u1_07_books.jpg",
       intro: "Ken is in the storeroom with the books.",
       cardTitle: "Storeroom",
@@ -73,13 +109,23 @@
   var CASE = {
     who: {
       prompt: "Who took the box?",
-      options: ["The film club", "Ken", "Miss Chan", "The caretaker"],
-      answer: "The film club"
+      options: ["Amy", "Ken", "Miss Chan", "The caretaker"],
+      answer: "Amy"
     },
-    where: {
-      prompt: "Where is Leo?",
-      options: ["In the school hall", "In the storeroom", "Beside the prize wheel", "At the charity stall"],
-      answer: "In the school hall"
+    why: {
+      prompt: "Why?",
+      options: [
+        "To draw a ticket in secret and win the big prize",
+        "To help Miss Chan move the box",
+        "To hide the box in the storeroom",
+        "To give the tickets to the film club"
+      ],
+      answer: "To draw a ticket in secret and win the big prize"
+    },
+    time: {
+      prompt: "About what time did the box leave the stall?",
+      options: ["About 1:20", "At noon", "At 11:30", "About 2:00"],
+      answer: "About 1:20"
     }
   };
 
@@ -134,24 +180,32 @@
   }
 
   function solveUnlocked(state) {
-    return state.order.length === 4;
+    return state.order.length === 6;
   }
 
   function displayCard(card) {
     return { title: card.title, text: card.text };
   }
 
+  function timeHint(time) {
+    if (time === "At noon") return "Read the storeroom card again.";
+    return "Read the school hall card again.";
+  }
+
   function caseHint(picks) {
     var whoOk = picks.who === CASE.who.answer;
-    var whereOk = picks.where === CASE.where.answer;
-    if (!whoOk && !whereOk) return "Read the film club card and the school hall card again.";
+    var whyOk = picks.why === CASE.why.answer;
+    if (!whoOk && !whyOk) return "Read the film club card and the prize wheel card again.";
     if (!whoOk) return "Read the film club card again.";
-    return "Read the school hall card again.";
+    return "Read the prize wheel card again.";
   }
 
   function submitSolve(picks) {
     var chosen = picks || {};
-    if (chosen.who !== CASE.who.answer || chosen.where !== CASE.where.answer) {
+    if (chosen.time !== CASE.time.answer) {
+      return { ok: false, hint: timeHint(chosen.time), ending: "" };
+    }
+    if (chosen.who !== CASE.who.answer || chosen.why !== CASE.why.answer) {
       return { ok: false, hint: caseHint(chosen), ending: "" };
     }
     return { ok: true, hint: "", ending: ENDING };
