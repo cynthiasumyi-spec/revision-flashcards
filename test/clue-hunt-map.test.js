@@ -71,7 +71,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=15/);
+  assert.match(html, /game\.css\?v=16/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
@@ -141,4 +141,17 @@ test('scene art files exist and Ken still marks the storeroom pin', () => {
     }
   });
   assert.equal(ClueHunt.HOTSPOTS.find((spot) => spot.id === 'store').marker, '../practice/grammar/illust/u1_07_books.jpg');
+  const zoomArts = [];
+  ClueHunt.HOTSPOTS.forEach((spot) => {
+    (spot.spots || []).forEach((action) => {
+      (action.hits || []).forEach((hit) => {
+        assert.ok(hit.art, spot.id + ' ' + action.id);
+        zoomArts.push(hit.art);
+        const buf = fs.readFileSync(path.join(root, 'game', hit.art));
+        assert.equal(buf[0], 0x89);
+        assert.equal(buf.slice(1, 4).toString(), 'PNG');
+      });
+    });
+  });
+  assert.equal(new Set(zoomArts).size, 7);
 });

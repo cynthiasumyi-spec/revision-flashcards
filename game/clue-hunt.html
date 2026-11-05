@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=15"/>
+<link rel="stylesheet" href="game.css?v=16"/>
 </head>
 <body>
 <header class="prac-header">
@@ -127,7 +127,6 @@
   var actionsEl = document.getElementById("scene-actions");
   var spotsEl = document.getElementById("scene-spots");
   var zoomPop = document.getElementById("zoom-pop");
-  var zoomFrame = document.getElementById("zoom-frame");
   var zoomImg = document.getElementById("zoom-art");
   var zoomTitle = document.getElementById("zoom-title");
   var zoomReply = document.getElementById("zoom-reply");
@@ -163,33 +162,12 @@
     zoomPop.hidden = true;
   }
 
-  function fitZoom(hit) {
-    var left = parseFloat(hit.left) / 100;
-    var top = parseFloat(hit.top) / 100;
-    var width = parseFloat(hit.width) / 100;
-    var height = parseFloat(hit.height) / 100;
-    var frameWidth = zoomFrame.clientWidth;
-    var frameHeight = zoomFrame.clientHeight;
-    var naturalWidth = zoomImg.naturalWidth;
-    var naturalHeight = zoomImg.naturalHeight;
-    if (!naturalWidth || !frameWidth || !width || !height) return;
-    var scale = Math.max(frameWidth / (naturalWidth * width), frameHeight / (naturalHeight * height));
-    var drawnWidth = naturalWidth * scale;
-    var drawnHeight = naturalHeight * scale;
-    zoomImg.style.width = drawnWidth + "px";
-    zoomImg.style.height = drawnHeight + "px";
-    zoomImg.style.left = ((frameWidth - width * drawnWidth) / 2 - left * drawnWidth) + "px";
-    zoomImg.style.top = ((frameHeight - height * drawnHeight) / 2 - top * drawnHeight) + "px";
-  }
-
-  function openZoom(artSrc, hit, title, reply) {
+  function openZoom(artSrc, title, reply) {
     zoomTitle.textContent = title;
     zoomReply.textContent = reply;
+    zoomImg.removeAttribute("style");
     zoomPop.hidden = false;
-    function place() { requestAnimationFrame(function () { fitZoom(hit); }); }
-    zoomImg.onload = place;
     if (zoomImg.getAttribute("src") !== artSrc) zoomImg.setAttribute("src", artSrc);
-    if (zoomImg.complete && zoomImg.naturalWidth) place();
     document.getElementById("zoom-close").focus();
   }
 
@@ -244,7 +222,7 @@
         btn.className = searching ? "scene-spot" : "choice";
         if (searching) {
           btn.appendChild(magnifierIcon());
-          btn.setAttribute("aria-label", item.label);
+          btn.setAttribute("aria-label", hit.title || item.label);
           btn.style.left = hit.x || hit.left;
           btn.style.top = hit.y || hit.top;
         } else {
@@ -255,7 +233,7 @@
           hunt = result.state;
           if (!searching) replyEl.textContent = result.reply;
           renderNotebook();
-          if (searching && hit) openZoom(hotspot.art, hit, item.label, result.reply);
+          if (searching && hit) openZoom(hit.art, hit.title || item.label, result.reply);
         });
         (searching ? spotsEl : actionsEl).appendChild(btn);
       });

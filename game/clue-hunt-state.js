@@ -19,9 +19,9 @@
       cardText: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!",
       misleading: false,
       spots: [
-        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ x: "78%", y: "68%", left: "60%", top: "54%", width: "34%", height: "34%" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
-        { id: "flags", label: "Empty box space", useful: false, hits: [{ x: "30%", y: "73%", left: "14%", top: "62%", width: "32%", height: "22%" }], reply: "The box space is empty. The note is still on the table." },
-        { id: "books", label: "Stall awning", useful: false, hits: [{ x: "50%", y: "8%", left: "22%", top: "0%", width: "56%", height: "16%" }], reply: "The awning is only decoration." }
+        { id: "memo", label: "Apple-pattern note", useful: true, hits: [{ x: "78%", y: "68%", art: "illust/zoom-note.png" }], reply: "An unsigned note with an apple pattern says: Please move the raffle box to the hall. Thanks!" },
+        { id: "flags", label: "Empty box space", useful: false, hits: [{ x: "30%", y: "73%", art: "illust/zoom-empty.png" }], reply: "The box space is empty. The note is still on the table." },
+        { id: "books", label: "Stall awning", useful: false, hits: [{ x: "50%", y: "8%", art: "illust/zoom-awning.png" }], reply: "The awning is only decoration." }
       ]
     },
     {
@@ -67,9 +67,9 @@
       cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker.",
       misleading: false,
       spots: [
-        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ x: "55%", y: "76%", left: "40%", top: "52%", width: "26%", height: "36%" }, { x: "84%", y: "72%", left: "76%", top: "60%", width: "16%", height: "24%" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
-        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ x: "34%", y: "22%", left: "24%", top: "2%", width: "18%", height: "42%" }], reply: "The red curtains are tied open. Nothing is hidden there." },
-        { id: "seats", label: "Empty seats", useful: false, hits: [{ x: "16%", y: "78%", left: "1%", top: "64%", width: "30%", height: "30%" }], reply: "The seats are empty." }
+        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ x: "55%", y: "76%", title: "Wish slip", art: "illust/zoom-slip.png" }, { x: "84%", y: "72%", title: "Apple core", art: "illust/zoom-apple.png" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
+        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ x: "34%", y: "22%", art: "illust/zoom-curtain.png" }], reply: "The red curtains are tied open. Nothing is hidden there." },
+        { id: "seats", label: "Empty seats", useful: false, hits: [{ x: "16%", y: "78%", art: "illust/zoom-seats.png" }], reply: "The seats are empty." }
       ]
     },
     {
