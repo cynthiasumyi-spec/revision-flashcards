@@ -15,10 +15,17 @@
   object-fit: contain;
 }
 .case-lead {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.55rem;
   font-weight: 700;
   color: var(--navy);
 }
+.case-steps {
+  margin: 0 0 0.9rem;
+  padding-left: 1.3rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+.case-steps li { margin: 0.15rem 0; }
 .hunt-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(12rem, 17rem);

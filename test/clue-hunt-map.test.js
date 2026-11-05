@@ -14,7 +14,10 @@ test('intro leads to a four-stop map before any quiz', () => {
   const intro = html.slice(html.indexOf('id="intro"'), html.indexOf('id="fair-map"'));
   assert.match(intro, /Leo has not come back from the charity stall/);
   assert.match(intro, /The raffle box is gone too/);
-  assert.match(intro, /write what you find in the notebook/);
+  assert.match(intro, /Tap a place on the map/);
+  assert.match(intro, /Talk to a person, or tap something to search/);
+  assert.match(intro, /Your notebook fills in as you find clues/);
+  assert.match(intro, /Tap Solve Case when the notebook is ready/);
   assert.match(intro, /id="start-map"/);
   assert.match(intro, /u1_09_fair\.jpg/);
   assert.doesNotMatch(intro, /class="choice"/);
@@ -24,9 +27,17 @@ test('intro leads to a four-stop map before any quiz', () => {
   assert.match(html, /data-hotspot="film"/);
   assert.match(html, /data-hotspot="store"/);
   assert.match(html, /u1_s4_carnival_stalls\.jpg/);
-  assert.match(html, /u4_comedy\.png/);
-  assert.match(html, /u4_curious\.png/);
-  assert.match(html, /u4_timid\.png/);
+  assert.match(html, /u4_s4_musical_finale\.jpg/);
+  assert.match(html, /u4_s5_studio_lights\.jpg/);
+  assert.match(html, /u1_07_books\.jpg/);
+  assert.doesNotMatch(html, /u4_comedy\.png/);
+  assert.doesNotMatch(html, /u4_curious\.png/);
+  assert.doesNotMatch(html, /u4_timid\.png/);
+  const state = fs.readFileSync(path.join(root, 'game/clue-hunt-state.js'), 'utf8');
+  assert.match(state, /u1_s4_carnival_stalls\.jpg/);
+  assert.match(state, /u4_s4_musical_finale\.jpg/);
+  assert.match(state, /u4_s5_studio_lights\.jpg/);
+  assert.match(state, /u1_07_books\.jpg/);
   assert.doesNotMatch(html, /id="ask"/);
   assert.doesNotMatch(html, /Sealed/);
   assert.doesNotMatch(html, /Open this card/);
@@ -60,7 +71,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=3/);
+  assert.match(html, /game\.css\?v=4/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
   assert.match(css, /\.notebook \{[^}]*border:\s*0/);
