@@ -253,7 +253,7 @@
         btn.addEventListener("click", function () {
           var result = ClueHunt.visit(hunt, hotspot.id, item.id);
           hunt = result.state;
-          replyEl.textContent = result.reply;
+          if (!searching) replyEl.textContent = result.reply;
           renderNotebook();
           if (searching && hit) openZoom(hotspot.art, hit, item.label, result.reply);
         });
