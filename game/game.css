@@ -355,23 +355,7 @@
   font-family: var(--font-display);
 }
 .ending p { margin: 0; }
-.case-you {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 0 0 0.8rem;
-}
-.case-you-art {
-  display: block;
-  width: 7.4rem;
-  height: auto;
-  max-width: 46%;
-  border-radius: 0;
-  object-fit: contain;
-  object-position: center center;
-  background: transparent;
-  flex: 0 0 auto;
-}
+#you-intro { margin: 0 0 0.8rem; }
 .person-avatar {
   width: 3.15rem;
   height: 3.15rem;
@@ -382,10 +366,6 @@
   flex: 0 0 auto;
   /* Soft butter disc from the site sunny/cream family. Transparent headshot corners show this circle, not the blue bubble. */
   background-color: color-mix(in srgb, var(--sunny) 46%, #fff);
-}
-.person-avatar-lg {
-  width: 7.5rem;
-  height: 7.5rem;
 }
 .talk-line {
   display: flex;
@@ -400,29 +380,6 @@
   font-size: 0.78rem;
 }
 .talk-line p { margin: 0; }
-.hunt-tools {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 0.35rem;
-}
-.people-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  width: 100%;
-  margin: 0 0 0.45rem;
-  padding: 0.45rem 0.6rem;
-  border: 0;
-  border-radius: 16px;
-  background: var(--cream, #fcf0d8);
-  color: var(--navy);
-  font-family: var(--font-display);
-  font-weight: 700;
-  cursor: pointer;
-}
-#people-detail { text-align: center; }
-#people-detail .person-avatar { margin-inline: auto; }
-#people-detail-fact { font-weight: 700; }
 @media (max-width: 720px) {
   .hunt-layout { grid-template-columns: 1fr; gap: 0.45rem; }
   .hunt-q { margin-bottom: 0.3rem; }
