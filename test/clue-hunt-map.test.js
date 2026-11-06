@@ -98,6 +98,7 @@ test('page script explores before it grades and does not label the false card', 
   assert.equal((script.match(/ClueHunt\.createHunt\(\)/g) || []).length, 1);
   assert.match(script, /ClueHunt\.visit/);
   assert.match(script, /ClueHunt\.notebook/);
+  assert.match(script, /purposeEl\.hidden = cards\.length > 0/);
   assert.match(script, /ClueHunt\.solveUnlocked/);
   assert.match(script, /ClueHunt\.displayCard/);
   assert.match(script, /ClueHunt\.submitSolve/);

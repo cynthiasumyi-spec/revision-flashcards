@@ -114,7 +114,7 @@
       <div class="notebook-sheet">
         <div class="notebook-write">
           <h2>Notebook</h2>
-          <p class="notebook-purpose">Clues from talks and searches are written here. Use these notes to solve the case.</p>
+          <p class="notebook-purpose" id="notebook-purpose">Clues from talks and searches are written here. Use these notes to solve the case.</p>
           <div id="notebook-cards"></div>
           <div class="btn-row">
             <button type="button" class="btn btn-primary" id="open-solve" disabled>Solve Case</button>
@@ -138,6 +138,7 @@
   var scene = document.getElementById("scene");
   var notebook = document.getElementById("notebook");
   var cardsEl = document.getElementById("notebook-cards");
+  var purposeEl = document.getElementById("notebook-purpose");
   var solve = document.getElementById("solve");
   var ending = document.getElementById("ending");
   var openSolve = document.getElementById("open-solve");
@@ -161,6 +162,7 @@
   function renderNotebook() {
     var cards = ClueHunt.notebook(hunt);
     cardsEl.innerHTML = "";
+    purposeEl.hidden = cards.length > 0;
     cards.forEach(function (card) {
       var view = ClueHunt.displayCard(card);
       var article = document.createElement("article");
