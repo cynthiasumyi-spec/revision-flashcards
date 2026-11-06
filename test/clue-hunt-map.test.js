@@ -25,7 +25,7 @@ test('intro leads to a six-stop paper map before any quiz', () => {
     assert.match(html, new RegExp('data-hotspot="' + id + '"'));
   });
   const map = html.slice(html.indexOf('id="fair-map"'), html.indexOf('id="scene"'));
-  assert.match(map, /illust\/map-school-callouts\.png/);
+  assert.match(map, /illust\/map-school-doorplates\.png/);
   assert.doesNotMatch(map, /class="hotspot\b[^>]*>\s*<img/);
   ['Charity stall', 'Prize wheel', 'Film club', 'School hall', "Miss Chan's desk", 'Storeroom'].forEach((label) => {
     assert.match(map, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
