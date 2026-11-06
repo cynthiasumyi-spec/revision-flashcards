@@ -41,8 +41,7 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, />Case Name</);
   assert.match(hub, />Date</);
   assert.match(hub, /School Fair Day/);
-  assert.match(hub, />Incident Details</);
-  assert.match(hub, />Location</);
+  assert.match(hub, />Date<\/span>[\s\S]*?>Location<\/span>[\s\S]*?>Incident Details</);
   assert.match(hub, /<span class="case-label">Location<\/span>\s*<p>School<\/p>/);
   assert.match(hub, /Missing raffle box/);
   assert.match(hub, /class="case-book"/);
