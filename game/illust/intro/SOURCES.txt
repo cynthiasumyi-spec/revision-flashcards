@@ -1,0 +1,33 @@
+School Mystery intro icons. Official いらすとや only. Do not generate replacements.
+
+Magnifying glass — The case decoration, not the player portrait
+Page: https://www.irasutoya.com/2013/03/blog-post_385.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPjN7mvcBqNZ2IWnLWX1fTBUnsrADM_PuGU_jFTJ7ztXrUzGaaLON2Kg9DJdbEPD049xp4R_zX_Ofv3_hyT42p-ehyphenhypheneK6_CWzTlp2k-OAnw_VVw9CjRMe9ifbrM15lIZo-Q18S8T5ShHo/s400/bunbougu_mushimegane.png
+Repo: game/illust/intro/glass.png
+
+Open map — How to play, tap a place
+Page: https://www.irasutoya.com/2018/03/blog-post_7.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgkZy_cxIPtg4IlvTYi_4mgVAvZ6QqFBsrw0BSplymJ-ClZITnyqAOXvmYCXNUDqt7qFaXzyzxRCKyTUxk2avueqUzoDVEUGD8QkbkWot7vWLuz7qhCe0YfAKXzteVW8UqXym0UYcM-ik0/s450/map_open.png
+Repo: game/illust/intro/map.png
+
+Speech bubble — How to play, talk or search
+Page: https://www.irasutoya.com/2013/03/blog-post_26.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVZKZmjiC4wJtacaSxZzxgQAKDXkkVh5tHD4jFpo35HqbyNPj-G27mxmasX83D0W9_FqPra4iLZJZd69FkB2iIfhhX_vRpbZwRkbY59LkT9AzJlPKuzNp_4GfGFPjGxgw0ByachnI6YqU/s800/fukidashi03.png
+Repo: game/illust/intro/talk.png
+
+Lined clipboard — How to play, notebook
+Page: https://www.irasutoya.com/2017/02/blog-post.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBXH1fwP8Wh8o7-kfqQe3dLRzLBP9vOf-idRx1VCIc4CaE2jnkxTaUnvKjrb2QHvUpiReos6Hhaoyreo0HzQ3sTN8JIemHtmUyvQdM5NNQQydFUsDUSjVpafYs9OZgI3Ex2rQIg4WLqhoL/s300/clipboard2_notebook.png
+Repo: game/illust/intro/notebook.png
+Library: clipboard/clipboard2_notebook.png
+
+Checked clipboard — How to play, solve
+Page: https://www.irasutoya.com/2017/02/blog-post.html
+Library file: clipboard/clipboard4_check.png
+Repo: game/illust/intro/solve.png
+
+Wooden sign — Start looking tap target. English words are drawn on the blank library sign, not a new illustration.
+Library file: blank-wooden-signs/wood_kanban1.png
+Repo: game/illust/intro/start-looking.png
+
+Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy glass.png, map.png, and talk.png into the library at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN (folder name: Clue Hunt - Irasutoya Asset Library, path Bricks Calendar Developing / Clue Hunt - Irasutoya Asset Library). The clipboard and wooden sign are already in that library.

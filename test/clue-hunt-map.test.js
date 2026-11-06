@@ -24,7 +24,17 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   assert.match(intro, /Leo was looking after the raffle box at the school charity fair/);
   assert.match(intro, /The box is gone, and Leo has not come back/);
   assert.match(intro, /say who took the box, and why/);
+  assert.match(intro, /class="story-card"/);
+  assert.match(intro, /illust\/intro\/glass\.png/);
+  assert.match(intro, /illust\/intro\/map\.png/);
+  assert.match(intro, /illust\/intro\/talk\.png/);
+  assert.match(intro, /illust\/intro\/notebook\.png/);
+  assert.match(intro, /illust\/intro\/solve\.png/);
   assert.match(intro, /id="start-map"/);
+  assert.match(intro, /illust\/intro\/start-looking\.png/);
+  assert.match(intro, /alt="Start looking"/);
+  assert.doesNotMatch(intro, /btn-primary/);
+  assert.doesNotMatch(intro, /Look around the fair/);
   assert.match(intro, /u1_09_fair\.jpg/);
   assert.doesNotMatch(intro, /class="choice"/);
   assert.equal((html.match(/class="hotspot\b/g) || []).length, 6);
@@ -95,7 +105,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=26/);
+  assert.match(html, /game\.css\?v=27/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -109,6 +119,8 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.person-avatar \{[^}]*object-position:\s*center center/);
   assert.match(css, /\.person-avatar \{[^}]*background-color:\s*color-mix\(in srgb, var\(--sunny\) 46%, #fff\)/);
   assert.doesNotMatch(css, /\.case-you-art/);
+  assert.match(css, /\.story-card \{[^}]*background:\s*#fffaf1/);
+  assert.match(css, /\.start-look \{[^}]*background:\s*transparent/);
   assert.match(css, /illust\/clipboard-line\.png/);
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);

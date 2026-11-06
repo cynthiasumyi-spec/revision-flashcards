@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=26"/>
+<link rel="stylesheet" href="game.css?v=27"/>
 </head>
 <body>
 <header class="prac-header">
@@ -23,23 +23,30 @@
         <div class="case-art">
           <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
         </div>
-        <div class="case-block">
+        <article class="story-card">
           <h2 class="block-label">The case</h2>
-          <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
-          <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
-        </div>
-        <div class="play-block">
+          <div class="case-row">
+            <!-- Magnifying glass: いらすとや https://www.irasutoya.com/2013/03/blog-post_385.html -->
+            <img class="story-icon" src="illust/intro/glass.png" alt="" width="72" height="120"/>
+            <div>
+              <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+              <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
+            </div>
+          </div>
+        </article>
+        <article class="story-card">
           <h2 class="block-label">How to play</h2>
-          <ol class="case-steps">
-            <li>Tap a place on the map.</li>
-            <li>Talk to a person, or search.</li>
-            <li>Clues are written in the notebook.</li>
-            <li>When you have all the notes, tap Solve Case and say who took the box, and why.</li>
+          <ol class="play-steps">
+            <li><img src="illust/intro/map.png" alt="" width="72" height="56"/><span>Tap a place on the map.</span></li>
+            <li><img src="illust/intro/talk.png" alt="" width="72" height="54"/><span>Talk to a person, or search.</span></li>
+            <li><img src="illust/intro/notebook.png" alt="" width="52" height="72"/><span>Clues are written in the notebook.</span></li>
+            <li><img src="illust/intro/solve.png" alt="" width="54" height="72"/><span>When you have all the notes, tap Solve Case and say who took the box, and why.</span></li>
           </ol>
-        </div>
-        <div class="btn-row">
-          <button type="button" class="btn btn-primary" id="start-map">Look around the fair</button>
-        </div>
+        </article>
+        <!-- Wooden sign: library blank-wooden-signs/wood_kanban1.png, English painted on the blank. -->
+        <button type="button" class="start-look" id="start-map">
+          <img src="illust/intro/start-looking.png" alt="Start looking" width="634" height="475"/>
+        </button>
       </section>
       <section id="fair-map" hidden>
         <h2 class="hunt-q">School fair</h2>
