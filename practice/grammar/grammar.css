@@ -223,16 +223,20 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: #fffdf8;
   border: 1.5px solid #c5ced8;
   border-radius: 4px;
-  padding: 5.8rem 0.65rem 0.7rem;
+  padding: 0.6rem 0.65rem 6.8rem;
+  overflow: visible;
 }
 .gc-mystery .case-stamp {
   position: absolute;
-  top: 0.55rem;
-  left: 50%;
-  width: 86%;
+  right: 0.55rem;
+  bottom: 2.7rem;
+  left: auto;
+  top: auto;
+  width: 68%;
   height: auto;
   margin: 0;
-  transform: translateX(-50%) rotate(-12deg);
+  transform: rotate(-12deg);
+  transform-origin: right bottom;
   pointer-events: none;
   z-index: 2;
 }
@@ -308,8 +312,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 @media (max-width: 640px) {
   .gc-mystery .case-box p,
   .gc-mystery .case-no { font-size: 0.95rem; }
-  .gc-mystery .case-stamp { width: 74%; top: 0.85rem; }
-  .gc-mystery .case-page { padding-top: 5.1rem; }
+  .gc-mystery .case-stamp { width: 68%; right: 0.7rem; bottom: 2.2rem; }
+  .gc-mystery .case-page { padding: 0.55rem 0.55rem 6.2rem; }
 }
 .game-card h3 {
   margin: 0 0 0.3rem;
