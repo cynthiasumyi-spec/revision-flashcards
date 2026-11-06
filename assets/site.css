@@ -605,10 +605,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .how-grid { grid-template-columns: 1fr; }
 }
 
-/* —— Word of the day: soft sky band, so it does not blend into the yellow packs field —— */
+/* —— Word of the day: soft mint band, separate from the yellow packs field —— */
 .cta {
   position: relative;
-  background: color-mix(in srgb, var(--sky) 46%, #fff);
+  background: color-mix(in srgb, var(--soft-green) 58%, #fff);
   color: var(--navy);
   min-height: 0;
   padding: clamp(1.75rem, 5vw, 3rem) var(--margin) clamp(2rem, 6vw, 3.5rem);
