@@ -49,6 +49,25 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(css, /\.nav-jump[\s\S]*box-shadow:\s*none/);
 });
 
+test('See it and Read it tell students what to do', () => {
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const how = html.slice(html.indexOf('id="how"'), html.indexOf('</main>'));
+  const blurbs = [...how.matchAll(/<h3>(See it|Read it)<\/h3>\s*<p>([^<]+)<\/p>/g)];
+  assert.deepEqual(blurbs.map((match) => match[1]), ['See it', 'Read it']);
+  const see = blurbs[0][2];
+  const read = blurbs[1][2];
+  assert.equal(see, 'Look at the picture for the word. Tap it to enlarge and notice the scene.');
+  assert.equal(read, 'Read a textbook sentence and a Form 1 sentence. Traditional Chinese is under each one.');
+  [see, read].forEach((text) => {
+    assert.ok(text.trim().split(/\s+/).length <= 25, text);
+  });
+  assert.doesNotMatch(how, /cute art|meaning stick/i);
+  assert.match(see, /Tap it to enlarge/);
+  assert.match(read, /textbook sentence/);
+  assert.match(read, /Form 1/);
+  assert.match(read, /Traditional Chinese/);
+});
+
 test('pack covers have no black letterbox bars', () => {
   const script = `
 from PIL import Image
