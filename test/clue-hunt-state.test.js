@@ -30,15 +30,15 @@ test('six hotspots and only Ken is misleading', () => {
   assert.match(byId.wheel.cardText, /blue jacket/);
   assert.match(byId.wheel.cardText, /new bike/);
   assert.doesNotMatch(byId.wheel.cardText, /Amy/);
-  assert.doesNotMatch(byId.film.cardText, /red apple every day/);
-  assert.match(byId.film.cardText, /apple sticker on a wish list/);
+  assert.doesNotMatch(byId.film.cardText, /apple/i);
+  assert.match(byId.film.cardText, /new bike/);
   assert.match(byId.film.cardText, /would not have to wait for the bus/);
   assert.doesNotMatch(byId.film.cardText, /memo/);
   assert.doesNotMatch(byId.film.cardText, /blue jacket/);
   assert.match(byId.hall.cardText, /About 1:20/);
-  assert.match(byId.hall.cardText, /still waiting/);
-  assert.match(byId.hall.cardText, /apple core/);
-  assert.match(byId.hall.cardText, /Win bike/);
+  assert.match(byId.hall.cardText, /raffle box was backstage/);
+  assert.match(byId.hall.cardText, /tickets were sticking out/);
+  assert.doesNotMatch(byId.hall.cardText, /apple|Leo|Win bike|waiting/i);
   assert.doesNotMatch(byId.hall.cardText, /Amy/);
   assert.equal(byId.desk.cardText, 'Miss Chan did not ask anyone to move the raffle box.');
   assert.doesNotMatch(byId.desk.cardText, /Amy/);
@@ -104,20 +104,21 @@ test('a useful visit adds one card and does not mutate the previous state', () =
 });
 
 test('revisiting a hotspot does not duplicate its card', () => {
-  const once = ClueHunt.visit(ClueHunt.createHunt(), 'hall', 'core');
-  const twice = ClueHunt.visit(once.state, 'hall', 'core');
+  const once = ClueHunt.visit(ClueHunt.createHunt(), 'hall', 'box');
+  const twice = ClueHunt.visit(once.state, 'hall', 'box');
   const aside = ClueHunt.visit(once.state, 'hall', 'seats');
   assert.equal(twice.added, false);
   assert.equal(twice.duplicate, true);
   assert.equal(twice.state.order.length, 1);
   assert.equal(aside.added, false);
   assert.equal(aside.state.order.length, 1);
-  assert.match(ClueHunt.notebook(twice.state)[0].text, /apple core/);
+  assert.match(ClueHunt.notebook(twice.state)[0].text, /About 1:20/);
+  assert.doesNotMatch(ClueHunt.notebook(twice.state)[0].text, /apple|Leo|Win bike/i);
 });
 
 test('solve stays locked until all six cards exist, in any order', () => {
   let state = ClueHunt.createHunt();
-  const steps = [['desk', 'move'], ['store', 'noon'], ['hall', 'core'], ['stall', 'memo'], ['wheel', 'jacket'], ['film', 'lunch']];
+  const steps = [['desk', 'move'], ['store', 'noon'], ['hall', 'box'], ['stall', 'memo'], ['wheel', 'jacket'], ['film', 'lunch']];
   steps.forEach((pair, index) => {
     state = ClueHunt.visit(state, pair[0], pair[1]).state;
     assert.equal(ClueHunt.solveUnlocked(state), index === 5);

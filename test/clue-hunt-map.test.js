@@ -129,7 +129,7 @@ test('scene art files exist and Ken still marks the storeroom pin', () => {
     stall: 'illust/scene-stall-unsigned.png',
     wheel: 'illust/scene-prize-wheel-fair.png',
     film: 'illust/scene-film-sticker.png',
-    hall: 'illust/scene-hall-full.png',
+    hall: 'illust/scene-hall-open-box.png',
     desk: 'illust/scene-miss-chan-class.png',
     store: 'illust/scene-storeroom-ken.png'
   };
@@ -159,5 +159,5 @@ test('scene art files exist and Ken still marks the storeroom pin', () => {
       });
     });
   });
-  assert.equal(new Set(zoomArts).size, 7);
+  assert.equal(new Set(zoomArts).size, 6);
 });

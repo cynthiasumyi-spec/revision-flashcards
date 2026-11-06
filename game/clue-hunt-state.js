@@ -50,10 +50,10 @@
       intro: "Amy is here with the film club.",
       mark: { x: "54%", y: "24%" },
       cardTitle: "Film club",
-      cardText: "Amy wished for the new bike. She said if she won the bike, she would not have to wait for the bus. She once stuck an apple sticker on a wish list.",
+      cardText: "Amy wished for the new bike. She said if she won the bike, she would not have to wait for the bus.",
       misleading: false,
       prompts: [
-        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "She wished for the new bike. She said if she won it, she would not have to wait for the bus. She once stuck an apple sticker on a wish list." },
+        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "She wished for the new bike. She said if she won it, she would not have to wait for the bus." },
         { id: "note", label: "Did Amy write a note?", useful: false, reply: "I did not see her write a note. We were talking about her wish list and the new bike." },
         { id: "box", label: "Did you see the raffle box?", useful: false, reply: "No. We were filming in this room. I did not see the raffle box." }
       ]
@@ -63,13 +63,13 @@
       name: "School hall",
       kind: "search",
       marker: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
-      art: "illust/scene-hall-full.png",
+      art: "illust/scene-hall-open-box.png",
       intro: "Look around backstage.",
       cardTitle: "School hall",
-      cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting there. A half-eaten apple core is by the side door. A wish slip says \"Win bike\", with a tiny apple sticker.",
+      cardText: "About 1:20 the raffle box was backstage. It was open, and some tickets were sticking out.",
       misleading: false,
       spots: [
-        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ x: "55%", y: "76%", title: "Wish slip", art: "illust/zoom-slip.png" }, { x: "84%", y: "72%", title: "Apple core", art: "illust/zoom-apple.png" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting there. A half-eaten apple core is by the side door. A wish slip says \"Win bike\", with a tiny apple sticker." },
+        { id: "box", label: "Raffle box", useful: true, hits: [{ x: "62%", y: "56%", title: "Raffle box", art: "illust/zoom-raffle-box.png" }], reply: "About 1:20 the raffle box was backstage. It was open, and some tickets were sticking out." },
         { id: "curtain", label: "Stage curtain", useful: false, hits: [{ x: "34%", y: "22%", art: "illust/zoom-curtain.png" }], reply: "The red curtains are tied back. Nothing is hidden behind them." },
         { id: "seats", label: "Empty seats", useful: false, hits: [{ x: "16%", y: "78%", art: "illust/zoom-seats.png" }], reply: "The seats are empty. Nobody left a bag or a note." }
       ]
