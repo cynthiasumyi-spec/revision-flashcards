@@ -24,7 +24,8 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   assert.match(intro, /Leo was looking after the raffle box at the school charity fair/);
   assert.match(intro, /The box is gone, and Leo has not come back/);
   assert.match(intro, /say who took the box, and why/);
-  assert.match(intro, /class="story-card"/);
+  assert.match(intro, /class="story-card story-card-case"/);
+  assert.match(intro, /class="story-card story-card-play"/);
   assert.match(intro, /illust\/intro\/glass\.png/);
   assert.match(intro, /illust\/intro\/map\.png/);
   assert.match(intro, /illust\/intro\/talk\.png/);
@@ -105,7 +106,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=27/);
+  assert.match(html, /game\.css\?v=28/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -119,7 +120,11 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.person-avatar \{[^}]*object-position:\s*center center/);
   assert.match(css, /\.person-avatar \{[^}]*background-color:\s*color-mix\(in srgb, var\(--sunny\) 46%, #fff\)/);
   assert.doesNotMatch(css, /\.case-you-art/);
-  assert.match(css, /\.story-card \{[^}]*background:\s*#fffaf1/);
+  assert.match(css, /\.story-card \{[^}]*border:\s*0/);
+  assert.doesNotMatch(css, /\.story-card \{[^}]*border:\s*[1-9]/);
+  assert.match(css, /\.story-card-case \{[^}]*background:\s*var\(--sky\)/);
+  assert.match(css, /\.story-card-play \{[^}]*background:\s*var\(--sunny\)/);
+  assert.match(css, /\.start-look \{[^}]*border:\s*0/);
   assert.match(css, /\.start-look \{[^}]*background:\s*transparent/);
   assert.match(css, /illust\/clipboard-line\.png/);
   assert.match(css, /illust\/clipboard-top\.png/);
