@@ -205,19 +205,19 @@
   font-size: 1.15rem;
 }
 .zoom-frame {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 14rem;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   overflow: hidden;
   border-radius: 12px;
-  background: #fff8ee;
+  background: #fce7d4;
 }
 .zoom-frame img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 .zoom-card p {
   margin: 0.6rem 0 0.75rem;
@@ -311,11 +311,19 @@
   font-family: var(--font-display);
   font-size: calc(100cqw * 32 / 583);
 }
-.notebook .btn-row { margin: calc(100cqw * 18 / 583) 0 calc(100cqw * 10 / 583); }
+.notebook .btn-row {
+  display: flex;
+  justify-content: center;
+  margin: calc(100cqw * 18 / 583) 0 calc(100cqw * 10 / 583);
+}
 .notebook .btn {
-  width: 100%;
-  padding: 0.4rem 0.7rem;
+  width: auto;
+  padding: 0.35rem 1.05rem;
   font-size: calc(100cqw * 32 / 583);
+}
+.notebook #open-solve {
+  width: auto;
+  margin-inline: auto;
 }
 .hunt-q {
   margin: 0 0 0.55rem;
@@ -362,9 +370,11 @@
   border: 0;
   border-radius: 28px;
 }
-.story-card-case { background: var(--navy); }
-.story-card-case .block-label { color: var(--cream); }
-.story-card-play { background: var(--sunny); }
+.story-card-case { background: var(--sunny); }
+.story-card-case .block-label { color: var(--navy); }
+.story-card-play { background: var(--navy); }
+.story-card-play .block-label,
+.story-card-play .play-steps li { color: var(--cream); }
 .report-sheet {
   min-height: 7.2rem;
   padding: 0.9rem 1rem 0.85rem;
@@ -390,15 +400,15 @@
 .report-nav button {
   border: 0;
   border-radius: 999px;
-  background: var(--sunny);
-  color: var(--navy);
+  background: var(--navy);
+  color: var(--cream);
   font-family: var(--font-display);
   font-weight: 700;
   padding: 0.35rem 0.85rem;
 }
 #report-count {
   margin: 0;
-  color: var(--cream);
+  color: var(--navy);
   font-weight: 700;
 }
 .report-dots { display: flex; gap: 0.35rem; }
@@ -406,11 +416,11 @@
   width: 0.72rem;
   height: 0.72rem;
   padding: 0;
-  background: color-mix(in srgb, var(--cream) 40%, transparent);
+  background: color-mix(in srgb, var(--navy) 28%, transparent);
 }
-.report-dots button[aria-current="true"] { background: var(--cream); }
+.report-dots button[aria-current="true"] { background: var(--navy); }
 .report-nav button:disabled {
-  background: color-mix(in srgb, var(--sunny) 38%, #fff);
+  background: color-mix(in srgb, var(--navy) 18%, #fff);
   color: color-mix(in srgb, var(--navy) 42%, #fff);
 }
 .case-row {
@@ -481,7 +491,7 @@
   object-position: center center;
   flex: 0 0 auto;
   /* Soft butter disc from the site sunny/cream family. Transparent headshot corners show this circle, not the blue bubble. */
-  background-color: color-mix(in srgb, var(--sunny) 46%, #fff);
+  background-color: #fff;
 }
 .talk-line {
   display: flex;

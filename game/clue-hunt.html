@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=34"/>
+<link rel="stylesheet" href="game.css?v=35"/>
 </head>
 <body>
 <header class="prac-header">
@@ -75,7 +75,7 @@
         <h2 class="hunt-q">School fair</h2>
         <div class="fair-map">
           <!-- Door plates: いらすとや https://www.irasutoya.com/2014/12/blog-post_13.html room15 blank, English names. -->
-          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=3" alt="School floor plan" width="1152" height="864"/>
+          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=4" alt="School floor plan" width="1152" height="864"/>
           <button type="button" class="hotspot pin-stall" data-hotspot="stall"><span>Charity stall</span></button>
           <button type="button" class="hotspot pin-wheel" data-hotspot="wheel"><span>Prize wheel</span></button>
           <button type="button" class="hotspot pin-film" data-hotspot="film"><span>Film club</span></button>
@@ -88,7 +88,7 @@
         <div class="btn-row">
           <button type="button" class="btn btn-ghost" id="back-map">Back to the map</button>
         </div>
-        <p class="hunt-kind" id="scene-kicker"></p>
+        <p class="hunt-kind" id="scene-kicker" hidden></p>
         <h2 class="hunt-q" id="scene-title"></h2>
         <div class="scene-look">
           <div class="scene-frame">
@@ -371,12 +371,15 @@
     ending.hidden = true;
     scene.hidden = false;
     notebook.hidden = false;
-    document.getElementById("scene-kicker").textContent = hotspot.kind === "search" ? "Search" : "Talk";
+    var kicker = document.getElementById("scene-kicker");
+    kicker.hidden = true;
+    kicker.textContent = "";
     document.getElementById("scene-title").textContent = hotspot.name;
     document.getElementById("scene-art").src = hotspot.art;
     replyEl.textContent = hotspot.intro;
     renderActions(hotspot);
-    setStep(hotspot.name);
+    stepLabel.hidden = true;
+    stepLabel.textContent = "";
     renderNotebook();
   }
 
