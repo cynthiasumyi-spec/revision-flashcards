@@ -1,0 +1,80 @@
+# Publishes the preview branch to a separate GitHub Pages repo.
+# Trigger: push to preview only. This file stays off main.
+# It does not deploy this repo's Pages site (that site still builds from main).
+
+name: Deploy preview site
+
+on:
+  push:
+    branches:
+      - preview
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publish preview branch
+    if: github.ref == 'refs/heads/preview'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout preview
+        uses: actions/checkout@v4
+
+      - name: Stop if the preview site is not connected
+        env:
+          PREVIEW_DEPLOY_TOKEN: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
+        run: |
+          if [ -n "${PREVIEW_DEPLOY_TOKEN}" ]; then
+            echo "Preview deploy token is set."
+            exit 0
+          fi
+          echo "::error title=Preview site is not connected::Add Actions secret PREVIEW_DEPLOY_TOKEN. The steps are in PREVIEW.md on the preview branch."
+          echo "This job only pushes to cynthiasumyi-spec/revision-flashcards-preview."
+          echo "It does not publish https://cynthiasumyi-spec.github.io/revision-flashcards/ and it does not change main."
+          exit 1
+
+      - name: Assemble the preview site
+        run: |
+          python3 - << 'PY'
+          import shutil
+          from pathlib import Path
+
+          root = Path(".").resolve()
+          dest = Path("/tmp/preview-site")
+          if dest.exists():
+              shutil.rmtree(dest)
+          shutil.copytree(
+              root,
+              dest,
+              ignore=shutil.ignore_patterns(".git", ".github", "preview-site"),
+          )
+          index = dest / "index.html"
+          html = index.read_text(encoding="utf-8")
+          banner = """<div style="background:#284070;color:#f8f0e0;font-family:Nunito,sans-serif;padding:0.85rem 1rem 1rem;text-align:center;position:relative;z-index:80;">
+            <strong style="display:inline-block;background:#f8c040;color:#284070;border-radius:999px;padding:0.32rem 0.8rem;letter-spacing:-0.02em;">PREVIEW / stub</strong>
+            <span style="display:block;margin:0.45rem 0 0.1rem;font-weight:700;">Not the live site. This copy is the preview host.</span>
+            <a href="v2/" style="display:inline-flex;align-items:center;min-height:44px;color:#f8c040;font-weight:800;">Open the new structure</a>
+          </div>"""
+          needle = "<body>"
+          if needle not in html:
+              raise SystemExit("preview assemble: index.html has no <body> tag")
+          index.write_text(html.replace(needle, needle + "\n" + banner, 1), encoding="utf-8")
+          print("assembled", dest)
+          PY
+
+      - name: Publish to revision-flashcards-preview
+        uses: peaceiris/actions-gh-pages@v4.1.0
+        with:
+          personal_token: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
+          external_repository: cynthiasumyi-spec/revision-flashcards-preview
+          publish_branch: gh-pages
+          publish_dir: /tmp/preview-site
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: Deploy preview

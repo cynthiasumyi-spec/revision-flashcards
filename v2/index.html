@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#284070" />
+  <title>Books · PREVIEW stub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800&family=Noto+Sans+TC:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="preview.css?v=1" />
+</head>
+<body data-step="books">
+  <a class="skip" href="#content">Skip to choices</a>
+  <header class="banner">
+    <div class="banner-inner">
+      <p class="banner-flag">PREVIEW / stub</p>
+      <p class="banner-text">Not the live site. Structure only — no lessons yet.</p>
+      <a class="banner-live" href="https://cynthiasumyi-spec.github.io/revision-flashcards/">Live site</a>
+    </div>
+  </header>
+  <main id="content">
+    <nav class="steps" aria-label="Steps">
+      <ol>
+        <li><a class="step is-current" data-step="books" data-path="index.html" href="index.html">Books</a></li>
+        <li><a class="step" data-step="levels" data-path="levels.html" href="levels.html">Levels</a></li>
+        <li><a class="step" data-step="unit" data-path="unit.html" href="unit.html">Unit</a></li>
+        <li><a class="step" data-step="type" data-path="type.html" href="type.html">Learning type</a></li>
+        <li><a class="step" data-step="method" data-path="method.html" href="method.html">Method</a></li>
+      </ol>
+    </nav>
+    <h1 id="page-title">Books</h1>
+    <p class="lead">Pick a book.</p>
+    <div class="picked" data-picked hidden aria-label="Choices so far"></div>
+    <div class="choices choices-pair" aria-labelledby="page-title">
+    <a class="choice tone-mustard" href="levels.html?book=Longman" data-key="book" data-value="Longman" data-dest="levels.html" data-dest-step="levels">
+      <span class="choice-copy">
+        <span class="choice-title">Longman</span>
+        <span class="choice-note" lang="zh-Hant">朗文</span>
+      </span>
+      <svg class="mark" viewBox="0 0 72 72" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 20c8 4 14 4 22 0v34c-8 4-14 4-22 0V20z"/><path fill="currentColor" opacity=".4" d="M42 20c8 4 14 4 22 0v34c-8 4-14 4-22 0V20z"/></svg>
+    </a>
+    <a class="choice tone-sky" href="levels.html?book=Oxford" data-key="book" data-value="Oxford" data-dest="levels.html" data-dest-step="levels">
+      <span class="choice-copy">
+        <span class="choice-title">Oxford</span>
+        <span class="choice-note" lang="zh-Hant">牛津</span>
+      </span>
+      <svg class="mark" viewBox="0 0 72 72" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 16h30c7 0 12 5 12 12v32H28c-8 0-14-5-14-12V16z"/><path fill="#f8f0e0" d="M34 16h10v26l-5-4-5 4V16z"/><path d="M30 16v42" fill="none" stroke="#f8f0e0" stroke-width="3" stroke-linecap="round"/></svg>
+    </a>    </div>
+  </main>
+  <script src="preview.js?v=1"></script>
+</body>
+</html>
