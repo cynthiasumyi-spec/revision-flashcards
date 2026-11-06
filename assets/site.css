@@ -605,10 +605,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .how-grid { grid-template-columns: 1fr; }
 }
 
-/* —— Word of the day: site pink band (Dictation / How), separate from yellow Packs —— */
+/* —— Word of the day: pale yellow band, lighter than the sunny Packs field —— */
 .cta {
   position: relative;
-  background: var(--pink);
+  background: color-mix(in srgb, var(--sunny) 40%, #fff);
   color: var(--navy);
   min-height: 0;
   padding: clamp(1.75rem, 5vw, 3rem) var(--margin) clamp(2rem, 6vw, 3.5rem);

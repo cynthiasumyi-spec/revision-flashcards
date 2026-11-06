@@ -112,6 +112,10 @@ test('homepage drops the old blurb and the keep-practising footer', () => {
   const css = fs.readFileSync(path.join(__dirname, '..', 'assets/site.css'), 'utf8');
   const card = css.slice(css.indexOf('.daily-card {'), css.indexOf('.daily-kicker'));
   const cont = css.slice(css.indexOf('.daily-continue {'), css.indexOf('.daily-continue-copy'));
+  const band = css.slice(css.indexOf('.cta {'), css.indexOf('.daily-card'));
+  assert.match(band, /background:\s*color-mix\(in srgb, var\(--sunny\) 40%, #fff\)/);
+  assert.doesNotMatch(band, /var\(--pink\)/);
+  assert.match(css, /\.packs-field \{[^}]*background:\s*var\(--sunny\)/);
   assert.match(card, /border:\s*0/);
   assert.match(card, /box-shadow:\s*none/);
   assert.doesNotMatch(card, /border:\s*5px/);
