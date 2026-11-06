@@ -16,7 +16,9 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   assert.match(intro, />How to play</);
   assert.match(intro, /id="you-intro"/);
   assert.match(intro, /You are a Primary 6 student\. You are looking into what happened to the raffle box\./);
+  assert.match(intro, /class="case-you-art"/);
   assert.match(intro, /src="illust\/people\/you\.png"/);
+  assert.doesNotMatch(intro, /person-avatar/);
   assert.match(intro, /Leo was looking after the raffle box at the school charity fair/);
   assert.match(intro, /The box is gone, and Leo has not come back/);
   assert.match(intro, /say who took the box, and why/);
@@ -43,10 +45,14 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(notebook, /id="notebook-cards"/);
   assert.match(notebook, /Clues from talks and searches are written here/);
   assert.doesNotMatch(notebook, /Nothing written yet/);
-  assert.match(notebook, /id="open-people"/);
-  assert.match(notebook, />People</);
+  assert.doesNotMatch(notebook, /id="open-people"/);
+  assert.doesNotMatch(notebook, /People/);
+  assert.doesNotMatch(notebook, /person-avatar/);
   assert.doesNotMatch(notebook, /id="people-list"/);
   const stage = html.slice(html.indexOf('class="hunt-stage"'), html.indexOf('id="notebook"'));
+  assert.match(stage, /id="hunt-tools"/);
+  assert.match(stage, /id="open-people"/);
+  assert.match(stage, />People</);
   assert.match(stage, /id="people"/);
   assert.match(stage, /id="people-list"/);
   assert.match(stage, /id="people-detail"/);
@@ -89,7 +95,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=23/);
+  assert.match(html, /game\.css\?v=24/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -99,6 +105,10 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.notebook \{[^}]*border:\s*0/);
   assert.match(css, /\.clue-card \{[^}]*border:\s*0/);
   assert.match(css, /\.person-avatar \{[^}]*border-radius:\s*50%/);
+  assert.match(css, /\.person-avatar \{[^}]*object-fit:\s*cover/);
+  assert.match(css, /\.person-avatar \{[^}]*object-position:\s*center center/);
+  assert.match(css, /\.case-you-art \{[^}]*border-radius:\s*0/);
+  assert.match(css, /\.case-you-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /illust\/clipboard-line\.png/);
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
@@ -119,6 +129,11 @@ test('page script explores before it grades and does not label the false card', 
   assert.match(script, /ClueHunt\.peopleAlbum\(hunt\)/);
   assert.match(script, /function showMap/);
   assert.match(script, /people\.hidden = true/);
+  assert.match(script, /img\.src = person\.head/);
+  assert.match(script, /function openPeople\(\) \{[\s\S]*?notebook\.hidden = true/);
+  assert.match(script, /function closePeople\(\) \{[\s\S]*?notebook\.hidden = false/);
+  assert.match(script, /function showMap\(\) \{[\s\S]*?notebook\.hidden = false/);
+  assert.match(script, /function openHotspot\(id\) \{[\s\S]*?notebook\.hidden = false/);
   assert.match(script, /ClueHunt\.notebook/);
   assert.match(script, /purposeEl\.hidden = cards\.length > 0/);
   assert.match(script, /ClueHunt\.solveUnlocked/);
@@ -127,7 +142,6 @@ test('page script explores before it grades and does not label the false card', 
   assert.match(script, /querySelectorAll\("\.hotspot"\)/);
   assert.match(script, /if \(ended\) return;/);
   assert.match(script, /if \(ended \|\| !ClueHunt\.solveUnlocked\(hunt\)\) return;/);
-  assert.doesNotMatch(script, /notebook\.hidden = true/);
   assert.doesNotMatch(script, /Who is missing/);
   assert.doesNotMatch(script, /misleading/);
   assert.doesNotMatch(script, /step \+= 1/);

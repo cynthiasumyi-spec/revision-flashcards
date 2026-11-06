@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=23"/>
+<link rel="stylesheet" href="game.css?v=24"/>
 </head>
 <body>
 <header class="prac-header">
@@ -19,6 +19,9 @@
 <main class="wrap">
   <div class="hunt-layout">
     <div class="hunt-stage">
+      <div class="hunt-tools" id="hunt-tools" hidden>
+        <button type="button" class="btn btn-ghost" id="open-people">People</button>
+      </div>
       <section id="intro">
         <div class="case-art">
           <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
@@ -26,7 +29,7 @@
         <div class="case-block">
           <h2 class="block-label">The case</h2>
           <div class="case-you">
-            <img class="person-avatar person-avatar-lg" src="illust/people/you.png" alt="" width="96" height="96"/>
+            <img class="case-you-art" src="illust/people/you.png" alt="" width="153" height="200"/>
             <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
           </div>
           <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
@@ -128,9 +131,6 @@
     </div>
     <!-- Notebook frame: いらすとや clipboard https://www.irasutoya.com/2017/02/blog-post.html -->
     <aside id="notebook" class="notebook" hidden>
-      <div class="hunt-side-bar">
-        <button type="button" class="btn btn-ghost" id="open-people">People</button>
-      </div>
       <div class="notebook-sheet">
         <div class="notebook-write">
           <h2>Notebook</h2>
@@ -178,6 +178,8 @@
   var peopleList = document.getElementById("people-list");
   var peopleDetail = document.getElementById("people-detail");
   var peopleFrom = "map";
+  var huntTools = document.getElementById("hunt-tools");
+  var labelBeforePeople = "";
 
   function hotspotById(id) {
     return ClueHunt.HOTSPOTS.filter(function (item) { return item.id === id; })[0];
@@ -233,6 +235,7 @@
     map.hidden = false;
     people.hidden = true;
     notebook.hidden = false;
+    huntTools.hidden = false;
     stepLabel.textContent = "Walk the school fair";
     renderNotebook();
   }
@@ -266,7 +269,7 @@
     row.className = "talk-line " + rowClass;
     var img = document.createElement("img");
     img.className = "person-avatar";
-    img.src = person.art;
+    img.src = person.head;
     img.alt = "";
     var copy = document.createElement("div");
     var name = document.createElement("span");
@@ -362,6 +365,7 @@
     people.hidden = true;
     scene.hidden = false;
     notebook.hidden = false;
+    huntTools.hidden = false;
     document.getElementById("scene-kicker").textContent = hotspot.kind === "search" ? "Search" : "Talk";
     document.getElementById("scene-title").textContent = hotspot.name;
     document.getElementById("scene-art").src = hotspot.art;
@@ -382,6 +386,7 @@
 
   function finishCase(endingText) {
     ended = true;
+    huntTools.hidden = true;
     solve.hidden = true;
     map.hidden = true;
     scene.hidden = true;
@@ -436,6 +441,7 @@
     people.hidden = true;
     solve.hidden = false;
     notebook.hidden = false;
+    huntTools.hidden = true;
     casePicks = { time: null, who: null, why: null };
     solveOn = "time";
     document.getElementById("solve-time").hidden = false;
@@ -477,7 +483,7 @@
       btn.className = "people-row";
       var img = document.createElement("img");
       img.className = "person-avatar";
-      img.src = person.art;
+      img.src = person.head;
       img.alt = "";
       var name = document.createElement("span");
       name.textContent = person.name;
@@ -486,7 +492,7 @@
       btn.addEventListener("click", function () {
         peopleList.hidden = true;
         peopleDetail.hidden = false;
-        document.getElementById("people-detail-art").src = person.art;
+        document.getElementById("people-detail-art").src = person.head;
         document.getElementById("people-detail-name").textContent = person.name;
         document.getElementById("people-detail-fact").textContent = person.fact;
       });
@@ -496,14 +502,21 @@
 
   function openPeople() {
     peopleFrom = scene.hidden ? "map" : "scene";
+    labelBeforePeople = stepLabel.textContent;
     map.hidden = true;
     scene.hidden = true;
     people.hidden = false;
+    notebook.hidden = true;
+    huntTools.hidden = true;
+    stepLabel.textContent = "People";
     renderPeople();
   }
 
   function closePeople() {
     people.hidden = true;
+    notebook.hidden = false;
+    huntTools.hidden = false;
+    stepLabel.textContent = labelBeforePeople;
     if (peopleFrom === "scene") scene.hidden = false;
     else map.hidden = false;
   }

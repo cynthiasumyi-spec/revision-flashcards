@@ -20,6 +20,13 @@ test('seven irasutoya people portraits exist and differ', () => {
   assert.match(sources, /https:\/\/www\.irasutoya\.com\/2015\/09\/blog-post_768\.html/);
   assert.match(sources, /https:\/\/www\.irasutoya\.com\/2016\/02\/blog-post_84\.html/);
   assert.match(sources, /Drive library folder people\//);
+  assert.match(sources, /heads\/ are square crops/);
+  files.forEach((name) => {
+    const head = fs.readFileSync(path.join(peopleDir, 'heads', name));
+    const full = fs.readFileSync(path.join(peopleDir, name));
+    assert.equal(head.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', name);
+    assert.notEqual(head.toString('base64').slice(0, 80), full.toString('base64').slice(0, 80));
+  });
   assert.match(sources, /1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN/);
 });
 
@@ -31,6 +38,7 @@ test('a new hunt unlocks only You', () => {
   assert.equal(album[0].name, 'You');
   assert.equal(album[0].fact, 'You are a Primary 6 student. You are looking into what happened to the raffle box.');
   assert.equal(album[0].art, 'illust/people/you.png');
+  assert.equal(album[0].head, 'illust/people/heads/you.png');
 });
 
 test('the first question at a talk unlocks that speaker, even when the question is useless', () => {

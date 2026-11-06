@@ -361,17 +361,30 @@
   gap: 0.8rem;
   margin: 0 0 0.8rem;
 }
+.case-you-art {
+  display: block;
+  width: 7.4rem;
+  height: auto;
+  max-width: 46%;
+  border-radius: 0;
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+  flex: 0 0 auto;
+}
 .person-avatar {
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 3.15rem;
+  height: 3.15rem;
+  max-width: none;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center center;
   flex: 0 0 auto;
   background: transparent;
 }
 .person-avatar-lg {
-  width: 6rem;
-  height: 6rem;
+  width: 7.5rem;
+  height: 7.5rem;
 }
 .talk-line {
   display: flex;
@@ -386,7 +399,7 @@
   font-size: 0.78rem;
 }
 .talk-line p { margin: 0; }
-.hunt-side-bar {
+.hunt-tools {
   display: flex;
   justify-content: flex-end;
   margin: 0 0 0.35rem;
@@ -406,7 +419,8 @@
   font-weight: 700;
   cursor: pointer;
 }
-.people-detail { text-align: center; }
+#people-detail { text-align: center; }
+#people-detail .person-avatar { margin-inline: auto; }
 #people-detail-fact { font-weight: 700; }
 @media (max-width: 720px) {
   .hunt-layout { grid-template-columns: 1fr; gap: 0.45rem; }

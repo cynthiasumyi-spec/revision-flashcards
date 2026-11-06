@@ -151,13 +151,13 @@
   var YOU_FACT = "You are a Primary 6 student. You are looking into what happened to the raffle box.";
 
   var PEOPLE = [
-    { id: "you", name: "You", art: "illust/people/you.png", speakerFor: null },
-    { id: "may", name: "May", art: "illust/people/may.png", speakerFor: "wheel" },
-    { id: "amy", name: "Amy", art: "illust/people/amy.png", speakerFor: "film" },
-    { id: "miss-chan", name: "Miss Chan", art: "illust/people/miss-chan.png", speakerFor: "desk" },
-    { id: "ken", name: "Ken", art: "illust/people/ken.png", speakerFor: "store" },
-    { id: "leo", name: "Leo", art: "illust/people/leo.png", speakerFor: null },
-    { id: "sam", name: "Sam", art: "illust/people/sam.png", speakerFor: null }
+    { id: "you", name: "You", art: "illust/people/you.png", head: "illust/people/heads/you.png", speakerFor: null },
+    { id: "may", name: "May", art: "illust/people/may.png", head: "illust/people/heads/may.png", speakerFor: "wheel" },
+    { id: "amy", name: "Amy", art: "illust/people/amy.png", head: "illust/people/heads/amy.png", speakerFor: "film" },
+    { id: "miss-chan", name: "Miss Chan", art: "illust/people/miss-chan.png", head: "illust/people/heads/miss-chan.png", speakerFor: "desk" },
+    { id: "ken", name: "Ken", art: "illust/people/ken.png", head: "illust/people/heads/ken.png", speakerFor: "store" },
+    { id: "leo", name: "Leo", art: "illust/people/leo.png", head: "illust/people/heads/leo.png", speakerFor: null },
+    { id: "sam", name: "Sam", art: "illust/people/sam.png", head: "illust/people/heads/sam.png", speakerFor: null }
   ];
 
   function firstSentence(text) {
@@ -208,7 +208,7 @@
     return PEOPLE.filter(function (person) {
       return state.people[person.id];
     }).map(function (person) {
-      return { id: person.id, name: person.name, art: person.art, fact: state.people[person.id].fact };
+      return { id: person.id, name: person.name, art: person.art, head: person.head, fact: state.people[person.id].fact };
     });
   }
 

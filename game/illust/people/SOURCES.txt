@@ -35,4 +35,6 @@ Page: https://www.irasutoya.com/2016/02/blog-post_84.html
 File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6cVGchklhipf-oWZV29_qEMbfma-eB8Xt3sfKNcgoWCtwnG4c-ElR7pzffKqG9-1PprYMJ8cJMBuMwrK_Uq-LGJEw4H7y6MzRfZI53C83A-qRD0Tq32bbPb9GNQ79s8xLxHDD16_RS91g/s800/job_teacher_woman.png
 Repo: game/illust/people/miss-chan.png
 
+Headshots in game/illust/people/heads/ are square crops of these same seven official files. Talk bubbles and the People album use the crops. The case intro uses the full you.png figure. The crops are not new drawings.
+
 Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy these seven PNGs into Drive library folder people/ at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN and add the page URLs to that library's SOURCES.txt.
