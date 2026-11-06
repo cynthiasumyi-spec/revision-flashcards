@@ -50,6 +50,27 @@ test('six hotspots and only Ken is misleading', () => {
   assert.equal(ClueHunt.PRACTICE, undefined);
 });
 
+test('talk follow-ups stay on the case and Ken’s noon line stays', () => {
+  const byId = Object.fromEntries(ClueHunt.HOTSPOTS.map((spot) => [spot.id, spot]));
+  const store = byId.store.prompts;
+  assert.equal(store[0].label, 'What time did you see Leo?');
+  assert.equal(store[0].reply, 'Ken says he saw Leo go into the storeroom at noon.');
+  assert.equal(store[0].useful, true);
+  assert.equal(store[1].label, 'Who took the box?');
+  assert.match(store[1].reply, /only person I saw was Leo/);
+  assert.doesNotMatch(store[1].reply, /not sure|only remember|Amy/i);
+  assert.equal(store[2].label, 'Why are you in the storeroom?');
+  assert.match(store[2].reply, /sorting old books/);
+  assert.doesNotMatch(store.map((item) => item.label + item.reply).join(' '), /Where is the school hall|across the fair/i);
+  const who = ClueHunt.visit(ClueHunt.createHunt(), 'store', 'who');
+  assert.equal(who.added, false);
+  assert.equal(who.reply, store[1].reply);
+  assert.equal(byId.film.prompts[1].reply, 'I did not see her write a note. We were talking about her wish list.');
+  assert.match(byId.desk.prompts[2].reply, /handwriting/);
+  assert.doesNotMatch(byId.desk.prompts[2].reply, /Amy/);
+  assert.match(byId.wheel.prompts[2].reply, /not at noon/);
+});
+
 test('each hotspot has one useful action and a useless stall tap adds nothing', () => {
   ClueHunt.HOTSPOTS.forEach((spot) => {
     const actions = spot.kind === 'search' ? spot.spots : spot.prompts;

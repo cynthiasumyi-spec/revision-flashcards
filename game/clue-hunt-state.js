@@ -37,7 +37,7 @@
       misleading: false,
       prompts: [
         { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket." },
-        { id: "lucky", label: "What are people guessing?", useful: false, reply: "People keep guessing which ticket is the lucky one." },
+        { id: "lucky", label: "What are people guessing?", useful: false, reply: "They are guessing which ticket wins the new bike." },
         { id: "noon", label: "Was this at noon?", useful: false, reply: "I saw them after lunch, not at noon." }
       ]
     },
@@ -54,8 +54,8 @@
       misleading: false,
       prompts: [
         { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "Amy once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus." },
-        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I only know about her wish list." },
-        { id: "box", label: "Did you see the box?", useful: false, reply: "I did not see the box leave." }
+        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I did not see her write a note. We were talking about her wish list." },
+        { id: "box", label: "Did you see the box?", useful: false, reply: "No. We stayed in the film room. I did not see the raffle box." }
       ]
     },
     {
@@ -87,8 +87,8 @@
       misleading: false,
       prompts: [
         { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "Miss Chan did not ask anyone to move the raffle box." },
-        { id: "leo", label: "Where is Leo?", useful: false, reply: "I have not seen Leo since this morning." },
-        { id: "note", label: "Who wrote the note?", useful: false, reply: "I do not know who wrote a note." }
+        { id: "leo", label: "Where is Leo?", useful: false, reply: "I have not seen Leo since this morning. I have been in the classroom." },
+        { id: "note", label: "Who wrote the note?", useful: false, reply: "I did not write it. I do not know the handwriting." }
       ]
     },
     {
@@ -104,8 +104,8 @@
       misleading: true,
       prompts: [
         { id: "noon", label: "What time did you see Leo?", useful: true, reply: "Ken says he saw Leo go into the storeroom at noon." },
-        { id: "who", label: "Who took the box?", useful: false, reply: "I am not sure. I only remember the storeroom." },
-        { id: "hall", label: "Where is the school hall?", useful: false, reply: "The school hall is across the fair, not in here." }
+        { id: "who", label: "Who took the box?", useful: false, reply: "I did not see who took it. The only person I saw was Leo." },
+        { id: "books", label: "Why are you in the storeroom?", useful: false, reply: "I am sorting old books for Miss Chan. I did not see the raffle box in here." }
       ]
     }
   ];
