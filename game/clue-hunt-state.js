@@ -5,7 +5,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var ENDING = "Amy opened the raffle box backstage to draw a ticket for the new bike. Leo was waiting there the whole time. He is safe. Amy brings the tickets back and says sorry. The stall can use the tickets again.";
+  var ENDING = "Amy opened the raffle box backstage to pick a ticket for the new bike. Leo was waiting there the whole time. He is safe. Amy brought the tickets back and said sorry. The charity stall can use the tickets again.";
 
   var HOTSPOTS = [
     {
@@ -20,8 +20,8 @@
       misleading: false,
       spots: [
         { id: "memo", label: "Unsigned note", useful: true, hits: [{ x: "78%", y: "68%", art: "illust/zoom-unsigned-note.png" }], reply: "An unsigned note says: Please move the raffle box to the hall. Thanks!" },
-        { id: "flags", label: "Empty box space", useful: false, hits: [{ x: "30%", y: "73%", art: "illust/zoom-empty.png" }], reply: "The box space is empty. The note is still on the table." },
-        { id: "books", label: "Stall awning", useful: false, hits: [{ x: "50%", y: "8%", art: "illust/zoom-awning.png" }], reply: "The awning is only decoration." }
+        { id: "flags", label: "Where the box was", useful: false, hits: [{ x: "30%", y: "73%", art: "illust/zoom-empty.png" }], reply: "The raffle box is not here. Only the note is left on the table." },
+        { id: "books", label: "Stall awning", useful: false, hits: [{ x: "50%", y: "8%", art: "illust/zoom-awning.png" }], reply: "The awning is just the colourful roof. Nothing is written on it." }
       ]
     },
     {
@@ -33,12 +33,12 @@
       intro: "A student is watching the prize wheel.",
       mark: { x: "26%", y: "32%" },
       cardTitle: "Prize wheel",
-      cardText: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket.",
+      cardText: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing which ticket is the lucky one.",
       misleading: false,
       prompts: [
-        { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing the lucky ticket." },
-        { id: "lucky", label: "What are people guessing?", useful: false, reply: "They are guessing which ticket wins the new bike." },
-        { id: "noon", label: "Was this at noon?", useful: false, reply: "I saw them after lunch, not at noon." }
+        { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, I saw someone in a blue jacket leave the stall with Leo. The big prize is a new bike. People keep guessing which ticket is the lucky one." },
+        { id: "lucky", label: "What are people guessing?", useful: false, reply: "They are guessing the lucky ticket for the new bike." },
+        { id: "noon", label: "Was that at noon?", useful: false, reply: "I saw them after lunch, not at noon." }
       ]
     },
     {
@@ -50,12 +50,12 @@
       intro: "Amy is here with the film club.",
       mark: { x: "54%", y: "24%" },
       cardTitle: "Film club",
-      cardText: "Amy once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus.",
+      cardText: "Amy wished for the new bike. She said if she won the bike, she would not have to wait for the bus. She once stuck an apple sticker on a wish list.",
       misleading: false,
       prompts: [
-        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "Amy once stuck an apple sticker on a wish list. She said if she won the bike, she would not wait for the bus." },
-        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I did not see her write a note. We were talking about her wish list." },
-        { id: "box", label: "Did you see the box?", useful: false, reply: "No. We stayed in the film room. I did not see the raffle box." }
+        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "She wished for the new bike. She said if she won it, she would not have to wait for the bus. She once stuck an apple sticker on a wish list." },
+        { id: "note", label: "Did Amy write a note?", useful: false, reply: "I did not see her write a note. We were talking about her wish list and the new bike." },
+        { id: "box", label: "Did you see the raffle box?", useful: false, reply: "No. We were filming in this room. I did not see the raffle box." }
       ]
     },
     {
@@ -64,14 +64,14 @@
       kind: "search",
       marker: "../practice/grammar/illust/u4_s4_musical_finale.jpg",
       art: "illust/scene-hall-full.png",
-      intro: "Look backstage.",
+      intro: "Look around backstage.",
       cardTitle: "School hall",
-      cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker.",
+      cardText: "About 1:20 someone brought the raffle box backstage. Leo is still waiting there. A half-eaten apple core is by the side door. A wish slip says \"Win bike\", with a tiny apple sticker.",
       misleading: false,
       spots: [
-        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ x: "55%", y: "76%", title: "Wish slip", art: "illust/zoom-slip.png" }, { x: "84%", y: "72%", title: "Apple core", art: "illust/zoom-apple.png" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting. A half-eaten apple core is by the side door. A wish slip says Win bike, with a tiny apple sticker." },
-        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ x: "34%", y: "22%", art: "illust/zoom-curtain.png" }], reply: "The red curtains are tied open. Nothing is hidden there." },
-        { id: "seats", label: "Empty seats", useful: false, hits: [{ x: "16%", y: "78%", art: "illust/zoom-seats.png" }], reply: "The seats are empty." }
+        { id: "core", label: "Apple core and wish slip", useful: true, hits: [{ x: "55%", y: "76%", title: "Wish slip", art: "illust/zoom-slip.png" }, { x: "84%", y: "72%", title: "Apple core", art: "illust/zoom-apple.png" }], reply: "About 1:20 someone brought the raffle box backstage. Leo is still waiting there. A half-eaten apple core is by the side door. A wish slip says \"Win bike\", with a tiny apple sticker." },
+        { id: "curtain", label: "Stage curtain", useful: false, hits: [{ x: "34%", y: "22%", art: "illust/zoom-curtain.png" }], reply: "The red curtains are tied back. Nothing is hidden behind them." },
+        { id: "seats", label: "Empty seats", useful: false, hits: [{ x: "16%", y: "78%", art: "illust/zoom-seats.png" }], reply: "The seats are empty. Nobody left a bag or a note." }
       ]
     },
     {
@@ -86,7 +86,7 @@
       cardText: "Miss Chan did not ask anyone to move the raffle box.",
       misleading: false,
       prompts: [
-        { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "Miss Chan did not ask anyone to move the raffle box." },
+        { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "I did not ask anyone to move the raffle box." },
         { id: "leo", label: "Where is Leo?", useful: false, reply: "I have not seen Leo since this morning. I have been in the classroom." },
         { id: "note", label: "Who wrote the note?", useful: false, reply: "I did not write it. I do not know the handwriting." }
       ]
@@ -103,7 +103,7 @@
       cardText: "Ken says he saw Leo go into the storeroom at noon.",
       misleading: true,
       prompts: [
-        { id: "noon", label: "What time did you see Leo?", useful: true, reply: "Ken says he saw Leo go into the storeroom at noon." },
+        { id: "noon", label: "What time did you see Leo?", useful: true, reply: "I saw Leo go into the storeroom at noon." },
         { id: "who", label: "Who took the box?", useful: false, reply: "I did not see who took it. The only person I saw was Leo." },
         { id: "books", label: "Why are you in the storeroom?", useful: false, reply: "I am sorting old books for Miss Chan. I did not see the raffle box in here." }
       ]
@@ -119,12 +119,12 @@
     why: {
       prompt: "Why?",
       options: [
-        "To draw a ticket in secret and win the big prize",
+        "To pick a ticket in secret and win the new bike",
         "To help Miss Chan move the box",
         "To hide the box in the storeroom",
         "To give the tickets to the film club"
       ],
-      answer: "To draw a ticket in secret and win the big prize"
+      answer: "To pick a ticket in secret and win the new bike"
     },
     time: {
       prompt: "About what time did the box leave the stall?",
@@ -165,7 +165,7 @@
       return { state: state, added: false, duplicate: false, reply: action.reply, card: null };
     }
     if (state.found[hotspot.id]) {
-      return { state: state, added: false, duplicate: true, reply: hotspot.cardText, card: state.found[hotspot.id] };
+      return { state: state, added: false, duplicate: true, reply: action.reply, card: state.found[hotspot.id] };
     }
     var card = {
       id: hotspot.id,
@@ -176,7 +176,7 @@
     var found = Object.assign({}, state.found);
     found[hotspot.id] = card;
     var next = { found: found, order: state.order.concat([hotspot.id]) };
-    return { state: next, added: true, duplicate: false, reply: hotspot.cardText, card: card };
+    return { state: next, added: true, duplicate: false, reply: action.reply, card: card };
   }
 
   function notebook(state) {

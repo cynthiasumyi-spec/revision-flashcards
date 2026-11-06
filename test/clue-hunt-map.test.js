@@ -14,9 +14,9 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   const intro = html.slice(html.indexOf('id="intro"'), html.indexOf('id="fair-map"'));
   assert.match(intro, />The case</);
   assert.match(intro, />How to play</);
-  assert.match(intro, /Leo was guarding the raffle box at the school charity fair/);
+  assert.match(intro, /Leo was looking after the raffle box at the school charity fair/);
   assert.match(intro, /The box is gone, and Leo has not come back/);
-  assert.match(intro, /name who took the box, and why/);
+  assert.match(intro, /say who took the box, and why/);
   assert.match(intro, /id="start-map"/);
   assert.match(intro, /u1_09_fair\.jpg/);
   assert.doesNotMatch(intro, /class="choice"/);
@@ -38,7 +38,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
   const html = huntHtml();
   const notebook = html.slice(html.indexOf('<aside id="notebook"'), html.indexOf('</aside>'));
   assert.match(notebook, /id="notebook-cards"/);
-  assert.match(notebook, /where clues go when you talk and search/);
+  assert.match(notebook, /Clues from talks and searches are written here/);
   assert.doesNotMatch(notebook, /Nothing written yet/);
   assert.match(notebook, /id="open-solve"/);
   assert.match(notebook, /Solve Case/);
@@ -51,7 +51,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(solve, /id="time-choices"/);
   assert.match(solve, /Who took the box\?/);
   assert.match(solve, /id="who-choices"/);
-  assert.match(solve, /Why\?/);
+  assert.match(solve, /Why did they take the box\?/);
   assert.match(solve, /id="why-choices"/);
   assert.doesNotMatch(solve, /Where is Leo/);
   assert.doesNotMatch(solve, /id="where-choices"/);

@@ -10,7 +10,7 @@ function solved() {
   return {
     time: 'About 1:20',
     who: 'Amy',
-    why: 'To draw a ticket in secret and win the big prize'
+    why: 'To pick a ticket in secret and win the new bike'
   };
 }
 
@@ -32,7 +32,7 @@ test('six hotspots and only Ken is misleading', () => {
   assert.doesNotMatch(byId.wheel.cardText, /Amy/);
   assert.doesNotMatch(byId.film.cardText, /red apple every day/);
   assert.match(byId.film.cardText, /apple sticker on a wish list/);
-  assert.match(byId.film.cardText, /would not wait for the bus/);
+  assert.match(byId.film.cardText, /would not have to wait for the bus/);
   assert.doesNotMatch(byId.film.cardText, /memo/);
   assert.doesNotMatch(byId.film.cardText, /blue jacket/);
   assert.match(byId.hall.cardText, /About 1:20/);
@@ -54,7 +54,7 @@ test('talk follow-ups stay on the case and Ken’s noon line stays', () => {
   const byId = Object.fromEntries(ClueHunt.HOTSPOTS.map((spot) => [spot.id, spot]));
   const store = byId.store.prompts;
   assert.equal(store[0].label, 'What time did you see Leo?');
-  assert.equal(store[0].reply, 'Ken says he saw Leo go into the storeroom at noon.');
+  assert.equal(store[0].reply, 'I saw Leo go into the storeroom at noon.');
   assert.equal(store[0].useful, true);
   assert.equal(store[1].label, 'Who took the box?');
   assert.match(store[1].reply, /only person I saw was Leo/);
@@ -65,7 +65,13 @@ test('talk follow-ups stay on the case and Ken’s noon line stays', () => {
   const who = ClueHunt.visit(ClueHunt.createHunt(), 'store', 'who');
   assert.equal(who.added, false);
   assert.equal(who.reply, store[1].reply);
-  assert.equal(byId.film.prompts[1].reply, 'I did not see her write a note. We were talking about her wish list.');
+  assert.equal(byId.film.prompts[1].reply, 'I did not see her write a note. We were talking about her wish list and the new bike.');
+  const noonTalk = ClueHunt.visit(ClueHunt.createHunt(), 'store', 'noon');
+  assert.equal(noonTalk.reply, 'I saw Leo go into the storeroom at noon.');
+  assert.equal(noonTalk.card.text, 'Ken says he saw Leo go into the storeroom at noon.');
+  const chan = ClueHunt.visit(ClueHunt.createHunt(), 'desk', 'move');
+  assert.equal(chan.reply, 'I did not ask anyone to move the raffle box.');
+  assert.equal(chan.card.text, 'Miss Chan did not ask anyone to move the raffle box.');
   assert.match(byId.desk.prompts[2].reply, /handwriting/);
   assert.doesNotMatch(byId.desk.prompts[2].reply, /Amy/);
   assert.match(byId.wheel.prompts[2].reply, /not at noon/);
@@ -81,7 +87,7 @@ test('each hotspot has one useful action and a useless stall tap adds nothing', 
   assert.equal(missed.added, false);
   assert.equal(missed.duplicate, false);
   assert.equal(missed.card, null);
-  assert.equal(missed.reply, 'The box space is empty. The note is still on the table.');
+  assert.equal(missed.reply, 'The raffle box is not here. Only the note is left on the table.');
   assert.deepEqual(missed.state.order, []);
   assert.equal(ClueHunt.visit.length, 3);
 });
@@ -134,7 +140,7 @@ test('solve asks who, why, and about 1:20, with no grammar blank', () => {
   assert.deepEqual(Object.keys(ClueHunt.CASE), ['who', 'why', 'time']);
   assert.equal(ClueHunt.CASE.who.answer, 'Amy');
   assert.deepEqual(ClueHunt.CASE.who.options, ['Amy', 'Ken', 'Miss Chan', 'The caretaker']);
-  assert.equal(ClueHunt.CASE.why.answer, 'To draw a ticket in secret and win the big prize');
+  assert.equal(ClueHunt.CASE.why.answer, 'To pick a ticket in secret and win the new bike');
   assert.equal(ClueHunt.CASE.time.answer, 'About 1:20');
   assert.deepEqual(ClueHunt.CASE.time.options, ['About 1:20', 'At noon', 'At 11:30', 'About 2:00']);
   assert.equal(ClueHunt.CASE.where, undefined);
@@ -144,15 +150,15 @@ test('solve asks who, why, and about 1:20, with no grammar blank', () => {
 });
 
 test('a wrong time hints a card and hides the ending', () => {
-  const noon = ClueHunt.submitSolve({ time: 'At noon', who: 'Amy', why: 'To draw a ticket in secret and win the big prize' });
-  const other = ClueHunt.submitSolve({ time: 'At 11:30', who: 'Amy', why: 'To draw a ticket in secret and win the big prize' });
+  const noon = ClueHunt.submitSolve({ time: 'At noon', who: 'Amy', why: 'To pick a ticket in secret and win the new bike' });
+  const other = ClueHunt.submitSolve({ time: 'At 11:30', who: 'Amy', why: 'To pick a ticket in secret and win the new bike' });
   assert.deepEqual(noon, { ok: false, hint: 'Read the storeroom card again.', ending: '' });
   assert.equal(other.hint, 'Read the school hall card again.');
   assert.doesNotMatch(noon.hint + other.hint, /Amy/);
 });
 
 test('a wrong who or why names a card and does not reveal the ending', () => {
-  const whoOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Ken', why: 'To draw a ticket in secret and win the big prize' });
+  const whoOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Ken', why: 'To pick a ticket in secret and win the new bike' });
   const whyOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Amy', why: 'To hide the box in the storeroom' });
   const both = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Miss Chan', why: 'To give the tickets to the film club' });
   assert.equal(whoOnly.ok, false);
@@ -168,7 +174,7 @@ test('the correct who, why, and time return the one ending', () => {
   assert.equal(result.ok, true);
   assert.equal(result.hint, '');
   assert.equal(result.ending, ClueHunt.ENDING);
-  assert.match(result.ending, /Amy brings the tickets back and says sorry/);
+  assert.match(result.ending, /Amy brought the tickets back and said sorry/);
   assert.match(result.ending, /He is safe/);
   assert.doesNotMatch(result.ending, /film club took/);
 });
