@@ -27,18 +27,18 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   assert.match(intro, /class="story-card story-card-case"/);
   assert.match(intro, /class="story-card story-card-play"/);
   assert.match(intro, /id="case-report"/);
-  assert.equal((intro.match(/class="report-page"/g) || []).length, 4);
+  assert.equal((intro.match(/class="report-page"/g) || []).length, 3);
   assert.match(intro, /id="report-back"/);
   assert.match(intro, /id="report-next"/);
   assert.match(intro, />Cover</);
   assert.doesNotMatch(intro, /Case file/);
   assert.match(intro, />What happened</);
   assert.match(intro, />Your job</);
-  assert.match(intro, />Tip</);
-  assert.match(intro, /listen for the time/);
-  assert.match(intro, /jackets and coats/);
+  assert.doesNotMatch(intro, />Tip</);
+  assert.doesNotMatch(intro, /listen for the time/);
+  assert.doesNotMatch(intro, /jackets and coats/);
   assert.doesNotMatch(intro, /Amy/);
-  assert.match(intro, /illust\/intro\/book-open\.png/);
+  assert.doesNotMatch(intro, /book-open\.png/);
   assert.doesNotMatch(intro, /illust\/intro\/report\.png/);
   assert.match(intro, /illust\/intro\/detective\.png/);
   assert.doesNotMatch(intro, /start-looking\.png/);
@@ -121,7 +121,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=32/);
+  assert.match(html, /game\.css\?v=33/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -137,8 +137,9 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.doesNotMatch(css, /\.case-you-art/);
   assert.match(css, /\.story-card \{[^}]*border:\s*0/);
   assert.doesNotMatch(css, /\.story-card \{[^}]*border:\s*[1-9]/);
-  assert.match(css, /\.story-card-case \{[^}]*background:\s*transparent/);
-  assert.match(css, /\.case-book \{[^}]*border:\s*0/);
+  assert.match(css, /\.story-card-case \{[^}]*background:\s*var\(--navy\)/);
+  assert.match(css, /\.report-sheet \{[^}]*border:\s*0/);
+  assert.match(css, /\.report-sheet \{[^}]*background:\s*#fffaf1/);
   assert.match(css, /\.report-nav button \{[^}]*border:\s*0/);
   assert.match(css, /\.story-card-play \{[^}]*background:\s*var\(--sunny\)/);
   assert.match(css, /\.start-look \{[^}]*border:\s*0/);
@@ -147,7 +148,7 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /\.fair-map-base \{[^}]*object-fit:\s*contain/);
-  assert.match(css, /\.zoom-card \.talk-said \{[^}]*background:\s*color-mix\(in srgb, var\(--green\) 16%, #fff\)/);
+  assert.match(css, /\.zoom-card \.talk-said \{[^}]*background:\s*color-mix\(in srgb, var\(--green\) 12%, #fff\)/);
   assert.match(css, /\.zoom-card \.talk-reply \{[^}]*background:\s*#fff/);
 });
 

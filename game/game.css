@@ -166,7 +166,7 @@
   align-self: flex-end;
   max-width: 92%;
   border-radius: 16px 16px 4px 16px;
-  background: color-mix(in srgb, var(--green) 16%, #fff);
+  background: color-mix(in srgb, var(--green) 12%, #fff);
   color: var(--choice-ink);
 }
 .zoom-card .talk-reply {
@@ -362,46 +362,24 @@
   border: 0;
   border-radius: 28px;
 }
-.story-card-case { background: transparent; padding: 0; }
-.story-card-case .block-label { color: var(--navy); }
+.story-card-case { background: var(--navy); }
+.story-card-case .block-label { color: var(--cream); }
 .story-card-play { background: var(--sunny); }
-.case-book {
-  position: relative;
+.report-sheet {
+  min-height: 7.2rem;
+  padding: 0.9rem 1rem 0.85rem;
   border: 0;
-  background: transparent;
+  border-radius: 18px;
+  background: #fffaf1;
+  color: var(--navy);
 }
-.case-book-art {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.case-book-copy {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 26%;
-  bottom: 30%;
-  overflow: hidden;
-}
-.book-spread {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 10%;
-  height: 100%;
-  align-content: start;
-}
-.book-spread h3 {
+.report-sheet h3 {
   margin: 0 0 0.3rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   color: var(--navy);
 }
-.book-spread .case-lead {
-  font-size: 0.92rem;
-  line-height: 1.35;
-}
-.book-spread .story-icon { width: 2.6rem; }
 .report-nav {
   display: flex;
   align-items: center;
@@ -420,7 +398,7 @@
 }
 #report-count {
   margin: 0;
-  color: var(--navy);
+  color: var(--cream);
   font-weight: 700;
 }
 .report-dots { display: flex; gap: 0.35rem; }
@@ -428,9 +406,9 @@
   width: 0.72rem;
   height: 0.72rem;
   padding: 0;
-  background: color-mix(in srgb, var(--navy) 22%, var(--cream));
+  background: color-mix(in srgb, var(--cream) 40%, transparent);
 }
-.report-dots button[aria-current="true"] { background: var(--sunny); }
+.report-dots button[aria-current="true"] { background: var(--cream); }
 .report-nav button:disabled {
   background: color-mix(in srgb, var(--sunny) 38%, #fff);
   color: color-mix(in srgb, var(--navy) 42%, #fff);

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=32"/>
+<link rel="stylesheet" href="game.css?v=33"/>
 </head>
 <body>
 <header class="prac-header">
@@ -25,55 +25,34 @@
         </div>
         <article class="story-card story-card-case" id="case-report">
           <h2 class="block-label">The case</h2>
-          <div class="case-book">
-            <!-- Open book: いらすとや 開いた白紙の本 https://www.irasutoya.com/2014/09/blog-post_56.html -->
-            <img class="case-book-art" src="illust/intro/book-open.png" alt="" width="800" height="713"/>
-            <div class="case-book-copy">
-              <div class="report-page">
-                <div class="book-spread">
-                  <div>
-                    <h3>Cover</h3>
-                    <p class="case-lead">School Mystery</p>
-                  </div>
-                  <div>
-                    <p class="case-lead">The missing raffle box</p>
-                  </div>
+          <div class="report-sheet">
+            <div class="report-page">
+              <div class="case-row">
+                <img class="story-icon" src="illust/intro/glass.png" alt="" width="72" height="120"/>
+                <div>
+                  <h3>Cover</h3>
+                  <p class="case-lead">School Mystery</p>
+                  <p class="case-lead">The missing raffle box</p>
                 </div>
               </div>
-              <div class="report-page" hidden>
-                <div class="book-spread">
-                  <div><h3>What happened</h3></div>
-                  <div><p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p></div>
-                </div>
-              </div>
-              <div class="report-page" hidden>
-                <div class="book-spread">
-                  <div><h3>Your job</h3></div>
-                  <div>
-                    <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
-                    <p class="case-lead">Talk to people, and search the fair. Write the clues in your notebook.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="report-page" hidden>
-                <div class="book-spread">
-                  <div>
-                    <h3>Tip</h3>
-                    <img class="story-icon" src="illust/intro/glass.png" alt="" width="48" height="80"/>
-                  </div>
-                  <div><p class="case-lead">When people talk, listen for the time. Notice jackets and coats. Your notebook will help.</p></div>
-                </div>
-              </div>
+            </div>
+            <div class="report-page" hidden>
+              <h3>What happened</h3>
+              <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
+            </div>
+            <div class="report-page" hidden>
+              <h3>Your job</h3>
+              <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+              <p class="case-lead">Talk to people, and search the fair. Write the clues in your notebook.</p>
             </div>
           </div>
           <div class="report-nav">
             <button type="button" id="report-back" disabled>Back</button>
-            <span id="report-count">1 / 4</span>
+            <span id="report-count">1 / 3</span>
             <div class="report-dots" id="report-dots">
               <button type="button" data-report="0" aria-label="Page 1" aria-current="true"></button>
               <button type="button" data-report="1" aria-label="Page 2"></button>
               <button type="button" data-report="2" aria-label="Page 3"></button>
-              <button type="button" data-report="3" aria-label="Page 4"></button>
             </div>
             <button type="button" id="report-next">Next</button>
           </div>
