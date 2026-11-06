@@ -119,7 +119,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=29/);
+  assert.match(html, /game\.css\?v=30/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -145,6 +145,8 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /\.fair-map-base \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.zoom-card \.talk-said \{[^}]*background:\s*color-mix\(in srgb, var\(--green\) 30%, #fff\)/);
+  assert.match(css, /\.zoom-card \.talk-reply \{[^}]*background:\s*#fff/);
 });
 
 test('page script explores before it grades and does not label the false card', () => {
