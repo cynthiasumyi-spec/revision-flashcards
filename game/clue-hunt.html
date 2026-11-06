@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=22"/>
+<link rel="stylesheet" href="game.css?v=23"/>
 </head>
 <body>
 <header class="prac-header">
@@ -25,6 +25,10 @@
         </div>
         <div class="case-block">
           <h2 class="block-label">The case</h2>
+          <div class="case-you">
+            <img class="person-avatar person-avatar-lg" src="illust/people/you.png" alt="" width="96" height="96"/>
+            <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+          </div>
           <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
         </div>
         <div class="play-block">
@@ -51,6 +55,19 @@
           <button type="button" class="hotspot pin-hall" data-hotspot="hall"><span>School hall</span></button>
           <button type="button" class="hotspot pin-desk" data-hotspot="desk"><span>Miss Chan's desk</span></button>
           <button type="button" class="hotspot pin-store" data-hotspot="store"><span>Storeroom</span></button>
+        </div>
+      </section>
+      <section id="people" hidden>
+        <div class="btn-row">
+          <button type="button" class="btn btn-ghost" id="people-close">Back</button>
+        </div>
+        <h2 class="hunt-q">People</h2>
+        <div id="people-list"></div>
+        <div id="people-detail" hidden>
+          <img id="people-detail-art" class="person-avatar person-avatar-lg" alt="" width="160" height="160"/>
+          <h3 id="people-detail-name"></h3>
+          <p id="people-detail-fact"></p>
+          <button type="button" class="btn btn-ghost" id="people-to-map">Back to the map</button>
         </div>
       </section>
       <section id="scene" hidden>
@@ -111,6 +128,9 @@
     </div>
     <!-- Notebook frame: いらすとや clipboard https://www.irasutoya.com/2017/02/blog-post.html -->
     <aside id="notebook" class="notebook" hidden>
+      <div class="hunt-side-bar">
+        <button type="button" class="btn btn-ghost" id="open-people">People</button>
+      </div>
       <div class="notebook-sheet">
         <div class="notebook-write">
           <h2>Notebook</h2>
@@ -154,6 +174,10 @@
   var zoomReply = document.getElementById("zoom-reply");
   var stepLabel = document.getElementById("step-label");
   var feedback = document.getElementById("solve-feedback");
+  var people = document.getElementById("people");
+  var peopleList = document.getElementById("people-list");
+  var peopleDetail = document.getElementById("people-detail");
+  var peopleFrom = "map";
 
   function hotspotById(id) {
     return ClueHunt.HOTSPOTS.filter(function (item) { return item.id === id; })[0];
@@ -178,6 +202,7 @@
     });
     openSolve.disabled = ended || !solve.hidden || !ClueHunt.solveUnlocked(hunt);
     notebook.classList.toggle("is-open", !solve.hidden || !ending.hidden);
+    if (people && people.hidden === false) renderPeople();
   }
 
   function closeZoom() {
@@ -206,6 +231,7 @@
     solve.hidden = true;
     ending.hidden = true;
     map.hidden = false;
+    people.hidden = true;
     notebook.hidden = false;
     stepLabel.textContent = "Walk the school fair";
     renderNotebook();
@@ -234,6 +260,27 @@
     return svg;
   }
 
+  function talkLine(personId, text, rowClass) {
+    var person = ClueHunt.personById(personId);
+    var row = document.createElement("div");
+    row.className = "talk-line " + rowClass;
+    var img = document.createElement("img");
+    img.className = "person-avatar";
+    img.src = person.art;
+    img.alt = "";
+    var copy = document.createElement("div");
+    var name = document.createElement("span");
+    name.className = "talk-name";
+    name.textContent = person.name;
+    var body = document.createElement("p");
+    body.textContent = text;
+    copy.appendChild(name);
+    copy.appendChild(body);
+    row.appendChild(img);
+    row.appendChild(copy);
+    return row;
+  }
+
   function openAsk(hotspot, items) {
     closeZoom();
     askTitle.textContent = hotspot.name;
@@ -249,17 +296,12 @@
       btn.textContent = item.label;
       btn.addEventListener("click", function () {
         btn.disabled = true;
-        var said = document.createElement("p");
-        said.className = "talk-said";
-        said.textContent = item.label;
+        var said = talkLine("you", item.label, "talk-said");
         btn.replaceWith(said);
         var result = ClueHunt.visit(hunt, hotspot.id, item.id);
         hunt = result.state;
         renderNotebook();
-        var reply = document.createElement("p");
-        reply.className = "talk-reply";
-        reply.textContent = result.reply;
-        askThread.appendChild(reply);
+        askThread.appendChild(talkLine(ClueHunt.speakerId(hotspot.id), result.reply, "talk-reply"));
         asked += 1;
         askNext();
         askThread.scrollTop = askThread.scrollHeight;
@@ -317,6 +359,7 @@
     map.hidden = true;
     solve.hidden = true;
     ending.hidden = true;
+    people.hidden = true;
     scene.hidden = false;
     notebook.hidden = false;
     document.getElementById("scene-kicker").textContent = hotspot.kind === "search" ? "Search" : "Talk";
@@ -390,6 +433,7 @@
     map.hidden = true;
     scene.hidden = true;
     ending.hidden = true;
+    people.hidden = true;
     solve.hidden = false;
     notebook.hidden = false;
     casePicks = { time: null, who: null, why: null };
@@ -422,6 +466,51 @@
     }
   });
 
+  function renderPeople() {
+    var album = ClueHunt.peopleAlbum(hunt);
+    peopleList.innerHTML = "";
+    peopleDetail.hidden = true;
+    peopleList.hidden = false;
+    album.forEach(function (person) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "people-row";
+      var img = document.createElement("img");
+      img.className = "person-avatar";
+      img.src = person.art;
+      img.alt = "";
+      var name = document.createElement("span");
+      name.textContent = person.name;
+      btn.appendChild(img);
+      btn.appendChild(name);
+      btn.addEventListener("click", function () {
+        peopleList.hidden = true;
+        peopleDetail.hidden = false;
+        document.getElementById("people-detail-art").src = person.art;
+        document.getElementById("people-detail-name").textContent = person.name;
+        document.getElementById("people-detail-fact").textContent = person.fact;
+      });
+      peopleList.appendChild(btn);
+    });
+  }
+
+  function openPeople() {
+    peopleFrom = scene.hidden ? "map" : "scene";
+    map.hidden = true;
+    scene.hidden = true;
+    people.hidden = false;
+    renderPeople();
+  }
+
+  function closePeople() {
+    people.hidden = true;
+    if (peopleFrom === "scene") scene.hidden = false;
+    else map.hidden = false;
+  }
+
+  document.getElementById("open-people").addEventListener("click", openPeople);
+  document.getElementById("people-close").addEventListener("click", closePeople);
+  document.getElementById("people-to-map").addEventListener("click", showMap);
   document.getElementById("start-map").addEventListener("click", showMap);
   document.getElementById("back-map").addEventListener("click", showMap);
   document.getElementById("solve-back").addEventListener("click", showMap);

@@ -1,0 +1,38 @@
+School Mystery people portraits. Official いらすとや only. Do not generate replacements.
+
+You — boy with a magnifying glass, not a police officer
+Page: https://www.irasutoya.com/2013/08/blog-post_7373.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC4-5UU4BRNQhcQSxc4itejid3E-XlcjTEqp72sdndlUHcsuIezDlw_7ASt6aqnniD1X-01ZGbiphwko64Av0wjNTs9hV3oOaQgGbedunrpHmIKc9EFhJRxA_I7YEipNpgfzDwsetx0pfs/s400/mushimegane_boy.png
+Repo: game/illust/people/you.png
+
+Amy — blazer schoolgirl (junior-high / high-school jacket; closest official jacket portrait; do not redraw)
+Page: https://www.irasutoya.com/2015/09/blog-post_768.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsFiF890ydvyTXHhXwaIgtpzkLRQYUr4ie1G77tmKjPst9oZMmWOmK6PUalzFtdb_v0g77eqBkbXlziivx0sgGuVOZdefnax2z5w5vD56KwSFSryz8o-pX2UTdjB2bKMV0s19vyS2mpEo/s800/seifuku4_blazer_girl.png
+Repo: game/illust/people/amy.png
+
+May — elementary schoolgirl, different file from Amy
+Page: https://www.irasutoya.com/2013/11/blog-post_3364.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiw2g_UDq44tNp5dZ-uutCrFG1olbTC1NpDA7YOgMBGBgxp5srxeK_wEcMlcECwSKXARnrX6PNVVnftqbbEGAjDg6SENJfMPqLTkCOuWzt0F5V-E6sMnQamLHpcxqrkOK-SzofciNHj4YJQ/s400/tsugaku_girl.png
+Repo: game/illust/people/may.png
+
+Leo — elementary schoolboy walking to school
+Page: https://www.irasutoya.com/2013/11/blog-post_508.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWc8uAJXu58E8msMVjAPHfJIfnoVw7doym2ER66PqEoXF2AlKtYi9Un9idyrUFLNy1nEMD1wu68pNFeV-bPr_kM2x4T4oUXiZFMOlr-aFBYTuPsonvpnb1wjT-GaO2PFbVAkb-o3VZYDn9/s800/tsugaku_boy.png
+Repo: game/illust/people/leo.png
+
+Sam — elementary schoolboy with a randoseru and no yellow hat
+Page: https://www.irasutoya.com/2020/01/blog-post_35.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhZD_0oZPdff5EXGhJq7npkiQcgRSOqhfJBAt1MwKX_T05RwhTiTTBjF4Z2cDbvd3hyoneBFlxFlMPrOv02XOPkkgDNzeyX9HfYanXuNH3hmbk2QZldkl6dfcUDMypva7y2d_BkWy1HtyOm/s400/school_randoseru_boy.png
+Repo: game/illust/people/sam.png
+
+Ken — different boy from Leo and Sam
+Page: https://www.irasutoya.com/2016/01/blog-post_2.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPMlWIBQyODz4-vIG7xABOfS1sCfjf_0-UJzoEs_BBd9DO2JVmBUHxdDQOuSE-zmWMtU00Pp03WuPICzWQQ5tbe9hzwNHXKh7qBRb0dCBbyAVNvpZgEFke_gAVxVkQZB8qxpjqwjOG0Uw/s800/pose_genki01_boy.png
+Repo: game/illust/people/ken.png
+
+Miss Chan — woman teacher
+Page: https://www.irasutoya.com/2016/02/blog-post_84.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6cVGchklhipf-oWZV29_qEMbfma-eB8Xt3sfKNcgoWCtwnG4c-ElR7pzffKqG9-1PprYMJ8cJMBuMwrK_Uq-LGJEw4H7y6MzRfZI53C83A-qRD0Tq32bbPb9GNQ79s8xLxHDD16_RS91g/s800/job_teacher_woman.png
+Repo: game/illust/people/miss-chan.png
+
+Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy these seven PNGs into Drive library folder people/ at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN and add the page URLs to that library's SOURCES.txt.

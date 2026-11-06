@@ -14,6 +14,9 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   const intro = html.slice(html.indexOf('id="intro"'), html.indexOf('id="fair-map"'));
   assert.match(intro, />The case</);
   assert.match(intro, />How to play</);
+  assert.match(intro, /id="you-intro"/);
+  assert.match(intro, /You are a Primary 6 student\. You are looking into what happened to the raffle box\./);
+  assert.match(intro, /src="illust\/people\/you\.png"/);
   assert.match(intro, /Leo was looking after the raffle box at the school charity fair/);
   assert.match(intro, /The box is gone, and Leo has not come back/);
   assert.match(intro, /say who took the box, and why/);
@@ -40,6 +43,15 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(notebook, /id="notebook-cards"/);
   assert.match(notebook, /Clues from talks and searches are written here/);
   assert.doesNotMatch(notebook, /Nothing written yet/);
+  assert.match(notebook, /id="open-people"/);
+  assert.match(notebook, />People</);
+  assert.doesNotMatch(notebook, /id="people-list"/);
+  const stage = html.slice(html.indexOf('class="hunt-stage"'), html.indexOf('id="notebook"'));
+  assert.match(stage, /id="people"/);
+  assert.match(stage, /id="people-list"/);
+  assert.match(stage, /id="people-detail"/);
+  assert.match(stage, /id="people-to-map"/);
+  assert.match(stage, />Back to the map</);
   assert.match(notebook, /id="open-solve"/);
   assert.match(notebook, /Solve Case/);
   assert.match(notebook, /disabled/);
@@ -77,7 +89,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=22/);
+  assert.match(html, /game\.css\?v=23/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -86,6 +98,7 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.doesNotMatch(css, /grid-template-columns:\s*1fr 1fr/);
   assert.match(css, /\.notebook \{[^}]*border:\s*0/);
   assert.match(css, /\.clue-card \{[^}]*border:\s*0/);
+  assert.match(css, /\.person-avatar \{[^}]*border-radius:\s*50%/);
   assert.match(css, /illust\/clipboard-line\.png/);
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
@@ -97,6 +110,15 @@ test('page script explores before it grades and does not label the false card', 
   const script = html.slice(html.lastIndexOf('<script>'), html.lastIndexOf('</script>'));
   assert.equal((script.match(/ClueHunt\.createHunt\(\)/g) || []).length, 1);
   assert.match(script, /ClueHunt\.visit/);
+  assert.match(script, /function talkLine/);
+  assert.match(script, /speakerId\(hotspot\.id\)/);
+  assert.match(script, /talkLine\("you"/);
+  assert.doesNotMatch(script, /className = "talk-said"/);
+  assert.doesNotMatch(script, /className = "talk-reply"/);
+  assert.match(script, /function renderPeople/);
+  assert.match(script, /ClueHunt\.peopleAlbum\(hunt\)/);
+  assert.match(script, /function showMap/);
+  assert.match(script, /people\.hidden = true/);
   assert.match(script, /ClueHunt\.notebook/);
   assert.match(script, /purposeEl\.hidden = cards\.length > 0/);
   assert.match(script, /ClueHunt\.solveUnlocked/);

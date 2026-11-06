@@ -148,8 +148,76 @@
     return null;
   }
 
+  var YOU_FACT = "You are a Primary 6 student. You are looking into what happened to the raffle box.";
+
+  var PEOPLE = [
+    { id: "you", name: "You", art: "illust/people/you.png", speakerFor: null },
+    { id: "may", name: "May", art: "illust/people/may.png", speakerFor: "wheel" },
+    { id: "amy", name: "Amy", art: "illust/people/amy.png", speakerFor: "film" },
+    { id: "miss-chan", name: "Miss Chan", art: "illust/people/miss-chan.png", speakerFor: "desk" },
+    { id: "ken", name: "Ken", art: "illust/people/ken.png", speakerFor: "store" },
+    { id: "leo", name: "Leo", art: "illust/people/leo.png", speakerFor: null },
+    { id: "sam", name: "Sam", art: "illust/people/sam.png", speakerFor: null }
+  ];
+
+  function firstSentence(text) {
+    var match = String(text).match(/[^.!?]*[.!?]/);
+    return match ? match[0].trim() : String(text).trim();
+  }
+
+  function sentenceWith(text, name) {
+    var parts = String(text).split(/(?<=[.!?])\s+/);
+    var pattern = new RegExp("\\b" + name + "\\b");
+    for (var i = 0; i < parts.length; i++) {
+      if (pattern.test(parts[i])) return parts[i].trim();
+    }
+    return firstSentence(text);
+  }
+
+  function speakerId(hotspotId) {
+    for (var i = 0; i < PEOPLE.length; i++) {
+      if (PEOPLE[i].speakerFor === hotspotId) return PEOPLE[i].id;
+    }
+    return null;
+  }
+
+  function personById(id) {
+    for (var i = 0; i < PEOPLE.length; i++) {
+      if (PEOPLE[i].id === id) return PEOPLE[i];
+    }
+    return null;
+  }
+
+  function withPerson(state, id, fact) {
+    if (state.people[id]) return state;
+    var people = Object.assign({}, state.people);
+    people[id] = { fact: fact };
+    return { found: state.found, order: state.order, people: people };
+  }
+
+  function unlockFromTalk(state, hotspot, reply) {
+    var next = state;
+    var speaker = speakerId(hotspot.id);
+    if (speaker) next = withPerson(next, speaker, firstSentence(reply));
+    if (/\bLeo\b/.test(reply)) next = withPerson(next, "leo", sentenceWith(reply, "Leo"));
+    if (/\bSam\b/.test(reply)) next = withPerson(next, "sam", sentenceWith(reply, "Sam"));
+    return next;
+  }
+
+  function peopleAlbum(state) {
+    return PEOPLE.filter(function (person) {
+      return state.people[person.id];
+    }).map(function (person) {
+      return { id: person.id, name: person.name, art: person.art, fact: state.people[person.id].fact };
+    });
+  }
+
+  function personFact(state, id) {
+    return state.people[id] ? state.people[id].fact : "";
+  }
+
   function createHunt() {
-    return { found: {}, order: [] };
+    return { found: {}, order: [], people: { you: { fact: YOU_FACT } } };
   }
 
   function visit(state, hotspotId, actionId) {
@@ -161,6 +229,7 @@
     if (!action) {
       return { state: state, added: false, duplicate: false, reply: "Try another spot.", card: null };
     }
+    if (hotspot.kind === "talk") state = unlockFromTalk(state, hotspot, action.reply);
     if (!action.useful) {
       return { state: state, added: false, duplicate: false, reply: action.reply, card: null };
     }
@@ -175,7 +244,7 @@
     };
     var found = Object.assign({}, state.found);
     found[hotspot.id] = card;
-    var next = { found: found, order: state.order.concat([hotspot.id]) };
+    var next = { found: found, order: state.order.concat([hotspot.id]), people: state.people };
     return { state: next, added: true, duplicate: false, reply: action.reply, card: card };
   }
 
@@ -219,6 +288,12 @@
     HOTSPOTS: HOTSPOTS,
     CASE: CASE,
     ENDING: ENDING,
+    YOU_FACT: YOU_FACT,
+    PEOPLE: PEOPLE,
+    speakerId: speakerId,
+    personById: personById,
+    peopleAlbum: peopleAlbum,
+    personFact: personFact,
     createHunt: createHunt,
     visit: visit,
     notebook: notebook,
