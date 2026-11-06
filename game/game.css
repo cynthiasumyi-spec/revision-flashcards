@@ -90,12 +90,12 @@
   color: transparent;
   pointer-events: none;
 }
-.pin-stall { left: 7%; top: 8%; width: 22%; height: 24%; }
-.pin-wheel { left: 8%; top: 60%; width: 28%; height: 32%; }
-.pin-film { left: 72%; top: 8%; width: 24%; height: 32%; }
-.pin-hall { left: 32%; top: 6%; width: 36%; height: 42%; }
-.pin-desk { left: 68%; top: 52%; width: 28%; height: 40%; }
-.pin-store { left: 40%; top: 64%; width: 24%; height: 30%; }
+.pin-stall { left: 7%; top: 8%; width: 22%; height: 35%; }
+.pin-wheel { left: 8%; top: 60%; width: 28%; height: 40%; }
+.pin-film { left: 72%; top: 8%; width: 24%; height: 35%; }
+.pin-hall { left: 32%; top: 6%; width: 36%; height: 58%; }
+.pin-desk { left: 68%; top: 52%; width: 28%; height: 48%; }
+.pin-store { left: 40%; top: 64%; width: 24%; height: 36%; }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {
