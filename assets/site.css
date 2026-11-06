@@ -433,7 +433,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pack-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 88%;
+  flex: 0 0 min(26rem, 70%);
   scroll-snap-align: start;
   scroll-snap-stop: always;
   border-radius: var(--radius);
@@ -455,8 +455,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pack-card:focus-visible { transform: translateY(-4px); }
 .pack-card.is-active { outline: 4px solid var(--navy); outline-offset: 3px; }
 .pack-cover {
-  aspect-ratio: 5 / 4;
-  max-height: 18rem;
+  aspect-ratio: 1;
   overflow: hidden;
   background: color-mix(in srgb, var(--sky) 42%, #fff);
   border-radius: calc(var(--radius) - 6px);
@@ -931,7 +930,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .folder-cover { grid-row: auto; max-height: 220px; }
   .folder-cta { width: 100%; }
   .hero-title { font-size: clamp(2.6rem, 14vw, 4rem); margin-top: 1rem; }
-  .pack-card { flex-basis: 86%; }
+  .pack-card { flex-basis: min(26rem, 78%); }
   .cta-inner {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -974,7 +973,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 @media (min-width: 821px) {
-  .pack-card { flex-basis: 86%; }
+  .pack-card { flex-basis: min(26rem, 46%); }
 }
 
 .pack-card, .how-card, .reply-card, .folder-open > * {

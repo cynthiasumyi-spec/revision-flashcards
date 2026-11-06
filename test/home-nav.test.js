@@ -46,7 +46,10 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.doesNotMatch(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
   assert.match(html, /covers\/unit2\.jpg\?v=2/);
-  assert.equal(html.includes('site.css?v=33'), true);
+  assert.equal(html.includes('site.css?v=34'), true);
+  assert.match(css, /\.pack-card \{[^}]*flex:\s*0 0 min\(26rem, 70%\)/);
+  assert.match(css, /aspect-ratio:\s*1/);
+  assert.doesNotMatch(cover, /max-height:\s*18rem/);
   const hear = css.slice(css.indexOf('.how-card.tone-sky .how-art img {'), css.indexOf('.how-card.tone-sky .how-art img {') + 280);
   assert.match(hear, /height:\s*107%/);
   assert.match(hear, /object-fit:\s*cover/);
