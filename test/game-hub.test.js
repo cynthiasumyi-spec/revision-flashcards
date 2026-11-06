@@ -50,6 +50,8 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, /class="game-card gc-mystery"/);
   assert.doesNotMatch(hub, /Mixed games/);
   assert.match(hub, /illust\/zoom-raffle-box\.png/);
+  assert.match(hub, /assets\/stamps\/confidential-irasutoya\.png/);
+  assert.match(hub, /class="case-stamp"/);
   assert.doesNotMatch(hub, /u4_curious\.png/);
   assert.doesNotMatch(hub, /where he is/);
   assert.doesNotMatch(hub, /sealed cards/);

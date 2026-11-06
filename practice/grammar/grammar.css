@@ -218,11 +218,23 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   padding: 0.65rem;
 }
 .gc-mystery .case-page {
+  position: relative;
   min-width: 0;
   background: #fffdf8;
   border: 1.5px solid #c5ced8;
   border-radius: 4px;
-  padding: 0.6rem 0.65rem 0.7rem;
+  padding: 5.8rem 0.65rem 0.7rem;
+}
+.gc-mystery .case-stamp {
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  width: 86%;
+  height: auto;
+  margin: 0;
+  transform: translateX(-50%) rotate(-12deg);
+  pointer-events: none;
+  z-index: 2;
 }
 .gc-mystery .case-page-top {
   display: flex;
@@ -296,6 +308,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 @media (max-width: 640px) {
   .gc-mystery .case-box p,
   .gc-mystery .case-no { font-size: 0.95rem; }
+  .gc-mystery .case-stamp { width: 74%; top: 0.85rem; }
+  .gc-mystery .case-page { padding-top: 5.1rem; }
 }
 .game-card h3 {
   margin: 0 0 0.3rem;
