@@ -5,7 +5,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var ENDING = "Amy opened the raffle box backstage to pick a ticket for the new bike. Leo was waiting there the whole time. He is safe. Amy brought the tickets back and said sorry. The charity stall can use the tickets again.";
+  var ENDING = "Amy opened the raffle box backstage to pick a ticket for the new bike. Leo was waiting there the whole time. He is safe. Sam had only carried old books, and May had stayed at the prize wheel. Amy brought the tickets back and said sorry. The charity stall can use the tickets again.";
 
   var HOTSPOTS = [
     {
@@ -30,14 +30,14 @@
       kind: "talk",
       marker: "../practice/grammar/illust/u1_s4_lucky_draw.jpg",
       art: "illust/scene-prize-wheel-fair.png",
-      intro: "A student is watching the prize wheel.",
+      intro: "May is watching the prize wheel.",
       mark: { x: "26%", y: "32%" },
       cardTitle: "Prize wheel",
-      cardText: "About 1:15, someone in a blue jacket left the stall with Leo. The big prize is a new bike. People keep guessing which ticket is the lucky one.",
+      cardText: "About 1:15, someone in a blue jacket left the stall with Leo. Sam had left earlier with a big box. He said it was the raffle box. The big prize is a new bike.",
       misleading: false,
       prompts: [
-        { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, I saw someone in a blue jacket leave the stall with Leo. The big prize is a new bike. People keep guessing which ticket is the lucky one." },
-        { id: "lucky", label: "What are people guessing?", useful: false, reply: "They are guessing the lucky ticket for the new bike." },
+        { id: "jacket", label: "Who left with Leo?", useful: true, reply: "About 1:15, I saw someone in a blue jacket leave the stall with Leo. Before that, Sam left with a big box. He said it was the raffle box. The big prize is a new bike." },
+        { id: "lucky", label: "Did you want the bike?", useful: false, reply: "Yes. I wanted the new bike too, but I stayed here at the wheel." },
         { id: "noon", label: "Was that at noon?", useful: false, reply: "I saw them after lunch, not at noon." }
       ]
     },
@@ -83,10 +83,10 @@
       intro: "Miss Chan is at her desk.",
       mark: { x: "54%", y: "22%" },
       cardTitle: "Miss Chan's desk",
-      cardText: "Miss Chan did not ask anyone to move the raffle box.",
+      cardText: "Miss Chan did not ask Sam, or anyone else, to move the raffle box.",
       misleading: false,
       prompts: [
-        { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "I did not ask anyone to move the raffle box." },
+        { id: "move", label: "Did you ask anyone to move the box?", useful: true, reply: "I did not ask Sam, or anyone else, to move the raffle box." },
         { id: "leo", label: "Where is Leo?", useful: false, reply: "I have not seen Leo since this morning. I have been in the classroom." },
         { id: "note", label: "Who wrote the note?", useful: false, reply: "I did not write it. I do not know the handwriting." }
       ]
@@ -104,8 +104,8 @@
       misleading: true,
       prompts: [
         { id: "noon", label: "What time did you see Leo?", useful: true, reply: "I saw Leo go into the storeroom at noon." },
-        { id: "who", label: "Who took the box?", useful: false, reply: "I did not see who took it. The only person I saw was Leo." },
-        { id: "books", label: "Why are you in the storeroom?", useful: false, reply: "I am sorting old books for Miss Chan. I did not see the raffle box in here." }
+        { id: "who", label: "Who took the box?", useful: false, reply: "I did not see who took the raffle box. Sam brought old books, and I also saw Leo." },
+        { id: "books", label: "Why are you in the storeroom?", useful: false, reply: "I am sorting the old books Sam brought for Miss Chan. I did not see the raffle box in here." }
       ]
     }
   ];
@@ -113,7 +113,7 @@
   var CASE = {
     who: {
       prompt: "Who took the box?",
-      options: ["Amy", "Ken", "Miss Chan", "The caretaker"],
+      options: ["Amy", "Sam", "May", "Ken"],
       answer: "Amy"
     },
     why: {

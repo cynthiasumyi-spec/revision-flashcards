@@ -40,7 +40,9 @@ test('six hotspots and only Ken is misleading', () => {
   assert.match(byId.hall.cardText, /tickets were sticking out/);
   assert.doesNotMatch(byId.hall.cardText, /apple|Leo|Win bike|waiting/i);
   assert.doesNotMatch(byId.hall.cardText, /Amy/);
-  assert.equal(byId.desk.cardText, 'Miss Chan did not ask anyone to move the raffle box.');
+  assert.equal(byId.desk.cardText, 'Miss Chan did not ask Sam, or anyone else, to move the raffle box.');
+  assert.match(byId.wheel.cardText, /Sam had left earlier with a big box/);
+  assert.doesNotMatch(byId.wheel.cardText, /Amy/);
   assert.doesNotMatch(byId.desk.cardText, /Amy/);
   assert.equal(byId.store.art, 'illust/scene-storeroom-ken.png');
   assert.equal(byId.store.marker, '../practice/grammar/illust/u1_07_books.jpg');
@@ -57,10 +59,11 @@ test('talk follow-ups stay on the case and Ken’s noon line stays', () => {
   assert.equal(store[0].reply, 'I saw Leo go into the storeroom at noon.');
   assert.equal(store[0].useful, true);
   assert.equal(store[1].label, 'Who took the box?');
-  assert.match(store[1].reply, /only person I saw was Leo/);
+  assert.match(store[1].reply, /Sam brought old books/);
+  assert.match(store[1].reply, /I also saw Leo/);
   assert.doesNotMatch(store[1].reply, /not sure|only remember|Amy/i);
   assert.equal(store[2].label, 'Why are you in the storeroom?');
-  assert.match(store[2].reply, /sorting old books/);
+  assert.match(store[2].reply, /old books Sam brought/);
   assert.doesNotMatch(store.map((item) => item.label + item.reply).join(' '), /Where is the school hall|across the fair/i);
   const who = ClueHunt.visit(ClueHunt.createHunt(), 'store', 'who');
   assert.equal(who.added, false);
@@ -70,8 +73,9 @@ test('talk follow-ups stay on the case and Ken’s noon line stays', () => {
   assert.equal(noonTalk.reply, 'I saw Leo go into the storeroom at noon.');
   assert.equal(noonTalk.card.text, 'Ken says he saw Leo go into the storeroom at noon.');
   const chan = ClueHunt.visit(ClueHunt.createHunt(), 'desk', 'move');
-  assert.equal(chan.reply, 'I did not ask anyone to move the raffle box.');
-  assert.equal(chan.card.text, 'Miss Chan did not ask anyone to move the raffle box.');
+  assert.equal(chan.reply, 'I did not ask Sam, or anyone else, to move the raffle box.');
+  assert.equal(chan.card.text, 'Miss Chan did not ask Sam, or anyone else, to move the raffle box.');
+  assert.equal(byId.wheel.prompts[1].reply, 'Yes. I wanted the new bike too, but I stayed here at the wheel.');
   assert.match(byId.desk.prompts[2].reply, /handwriting/);
   assert.doesNotMatch(byId.desk.prompts[2].reply, /Amy/);
   assert.match(byId.wheel.prompts[2].reply, /not at noon/);
@@ -140,7 +144,7 @@ test('the notebook view of Ken’s card is unlabeled', () => {
 test('solve asks who, why, and about 1:20, with no grammar blank', () => {
   assert.deepEqual(Object.keys(ClueHunt.CASE), ['who', 'why', 'time']);
   assert.equal(ClueHunt.CASE.who.answer, 'Amy');
-  assert.deepEqual(ClueHunt.CASE.who.options, ['Amy', 'Ken', 'Miss Chan', 'The caretaker']);
+  assert.deepEqual(ClueHunt.CASE.who.options, ['Amy', 'Sam', 'May', 'Ken']);
   assert.equal(ClueHunt.CASE.why.answer, 'To pick a ticket in secret and win the new bike');
   assert.equal(ClueHunt.CASE.time.answer, 'About 1:20');
   assert.deepEqual(ClueHunt.CASE.time.options, ['About 1:20', 'At noon', 'At 11:30', 'About 2:00']);
@@ -161,7 +165,7 @@ test('a wrong time hints a card and hides the ending', () => {
 test('a wrong who or why names a card and does not reveal the ending', () => {
   const whoOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Ken', why: 'To pick a ticket in secret and win the new bike' });
   const whyOnly = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Amy', why: 'To hide the box in the storeroom' });
-  const both = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Miss Chan', why: 'To give the tickets to the film club' });
+  const both = ClueHunt.submitSolve({ time: 'About 1:20', who: 'Sam', why: 'To give the tickets to the film club' });
   assert.equal(whoOnly.ok, false);
   assert.equal(whoOnly.ending, '');
   assert.equal(whoOnly.hint, 'Read the film club card again.');
@@ -177,5 +181,7 @@ test('the correct who, why, and time return the one ending', () => {
   assert.equal(result.ending, ClueHunt.ENDING);
   assert.match(result.ending, /Amy brought the tickets back and said sorry/);
   assert.match(result.ending, /He is safe/);
+  assert.match(result.ending, /Sam had only carried old books/);
+  assert.match(result.ending, /May had stayed at the prize wheel/);
   assert.doesNotMatch(result.ending, /film club took/);
 });
