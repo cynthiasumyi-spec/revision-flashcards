@@ -34,7 +34,8 @@ test('six hotspots and only Ken is misleading', () => {
   assert.match(byId.film.cardText, /new bike/);
   assert.match(byId.film.cardText, /would not have to wait for the bus/);
   assert.doesNotMatch(byId.film.cardText, /memo/);
-  assert.doesNotMatch(byId.film.cardText, /blue jacket/);
+  assert.match(byId.film.cardText, /left in her blue jacket just after lunch/);
+  assert.doesNotMatch(byId.film.cardText, /raffle|Leo|1:15|took the box/);
   assert.match(byId.hall.cardText, /About 1:20/);
   assert.match(byId.hall.cardText, /raffle box was backstage/);
   assert.match(byId.hall.cardText, /tickets were sticking out/);
@@ -183,5 +184,6 @@ test('the correct who, why, and time return the one ending', () => {
   assert.match(result.ending, /He is safe/);
   assert.match(result.ending, /Sam had only carried old books/);
   assert.match(result.ending, /May had stayed at the prize wheel/);
+  assert.match(result.ending, /She was the student in the blue jacket/);
   assert.doesNotMatch(result.ending, /film club took/);
 });

@@ -5,7 +5,7 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  var ENDING = "Amy opened the raffle box backstage to pick a ticket for the new bike. Leo was waiting there the whole time. He is safe. Sam had only carried old books, and May had stayed at the prize wheel. Amy brought the tickets back and said sorry. The charity stall can use the tickets again.";
+  var ENDING = "Amy opened the raffle box backstage to pick a ticket for the new bike. She was the student in the blue jacket. Leo was waiting there the whole time. He is safe. Sam had only carried old books, and May had stayed at the prize wheel. Amy brought the tickets back and said sorry. The charity stall can use the tickets again.";
 
   var HOTSPOTS = [
     {
@@ -50,10 +50,10 @@
       intro: "Amy is here with the film club.",
       mark: { x: "54%", y: "24%" },
       cardTitle: "Film club",
-      cardText: "Amy wished for the new bike. She said if she won the bike, she would not have to wait for the bus.",
+      cardText: "Amy left in her blue jacket just after lunch, and she came back later. She wished for the new bike. She said if she won the bike, she would not have to wait for the bus.",
       misleading: false,
       prompts: [
-        { id: "lunch", label: "What did Amy wish for?", useful: true, reply: "She wished for the new bike. She said if she won it, she would not have to wait for the bus." },
+        { id: "lunch", label: "What did Amy do after lunch?", useful: true, reply: "She left in her blue jacket just after lunch, and she came back later. She wished for the new bike. She said if she won it, she would not have to wait for the bus." },
         { id: "note", label: "Did Amy write a note?", useful: false, reply: "I did not see her write a note. We were talking about her wish list and the new bike." },
         { id: "box", label: "Did you see the raffle box?", useful: false, reply: "No. We were filming in this room. I did not see the raffle box." }
       ]
