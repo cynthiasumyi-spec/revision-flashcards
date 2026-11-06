@@ -202,42 +202,119 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   display: block;
 }
 .gc-mystery {
-  background: color-mix(in srgb, var(--sunny) 32%, var(--cream));
+  max-width: 20.5rem;
+  justify-self: start;
+  background: #fbf6ea;
   color: var(--navy);
+  border-radius: 8px;
+  padding: 0.95rem 1rem 0.8rem;
 }
-.gc-mystery .case-file-head {
+.gc-mystery .case-doc-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-align: center;
+}
+.gc-mystery .case-doc-brand {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  margin: 0 0 0.55rem;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.gc-mystery .case-badge {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--navy);
+  flex: 0 0 auto;
 }
 .gc-mystery .case-file-kicker {
-  display: inline-block;
   margin: 0;
-  padding: 0.15rem 0.55rem;
-  border-radius: 999px;
-  background: var(--navy);
-  color: var(--cream);
+  padding: 0;
+  background: none;
+  color: var(--navy);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.gc-mystery .case-no {
+.gc-mystery .case-doc-rule {
+  height: 2px;
+  margin: 0.4rem 0 0.75rem;
+  background: var(--navy);
+}
+.gc-mystery .case-doc-mid {
+  display: grid;
+  grid-template-columns: 1fr 5.4rem;
+  gap: 0.7rem;
+  align-items: start;
+}
+.gc-mystery .case-field {
+  margin: 0 0 0.62rem;
+  min-height: 1.15rem;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--navy) 70%, #fff);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--navy);
 }
-.gc-mystery .icon {
-  background: color-mix(in srgb, var(--sky) 42%, #fff);
+.gc-mystery .case-doc-photo {
+  border: 2px solid var(--navy);
+  background: #fffaf1;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
 }
-.gc-mystery .icon img {
+.gc-mystery .case-doc-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+.gc-mystery .case-doc-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.72rem;
+  margin: 0.15rem 0 0.75rem;
+}
+.gc-mystery .case-doc-lines span {
+  display: block;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--navy) 55%, #fff);
+}
+.gc-mystery .case-doc-note {
+  margin: 0 0 0.8rem;
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.gc-mystery .case-doc-foot {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+.gc-mystery .case-seal {
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 50%;
+  border: 3px solid var(--navy);
+  box-shadow: inset 0 0 0 2px var(--sunny), inset 0 0 0 5px var(--navy);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.62rem;
+  line-height: 1.05;
+  color: var(--navy);
+  background: color-mix(in srgb, var(--sunny) 40%, #fff);
+  transform: rotate(-8deg);
+  flex: 0 0 auto;
+}
+.gc-mystery .case-foot-line {
+  flex: 1;
+  margin-bottom: 0.35rem;
+  border-bottom: 1.5px solid color-mix(in srgb, var(--navy) 55%, #fff);
 }
 .game-card h3 {
   margin: 0 0 0.3rem;
