@@ -77,31 +77,25 @@
 }
 .hotspot span {
   position: absolute;
-  display: inline-block;
-  margin: 0;
-  padding: 0.28rem 0.78rem 0.32rem;
-  border: 0;
-  border-radius: var(--pill);
-  background: #e25c12;
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.15;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
+  border: 0;
+  background: transparent;
+  color: transparent;
   pointer-events: none;
 }
 .pin-stall { left: 7%; top: 8%; width: 22%; height: 24%; }
-.pin-stall span { left: 2%; bottom: -16%; }
 .pin-wheel { left: 8%; top: 60%; width: 28%; height: 32%; }
-.pin-wheel span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-film { left: 72%; top: 8%; width: 24%; height: 32%; }
-.pin-film span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-hall { left: 32%; top: 6%; width: 36%; height: 42%; }
-.pin-hall span { left: 50%; bottom: -28%; transform: translateX(-50%); }
 .pin-desk { left: 68%; top: 52%; width: 28%; height: 40%; }
-.pin-desk span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .pin-store { left: 40%; top: 64%; width: 24%; height: 30%; }
-.pin-store span { left: 50%; bottom: 2%; transform: translateX(-50%); }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {

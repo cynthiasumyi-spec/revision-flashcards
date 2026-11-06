@@ -25,7 +25,7 @@ test('intro leads to a six-stop paper map before any quiz', () => {
     assert.match(html, new RegExp('data-hotspot="' + id + '"'));
   });
   const map = html.slice(html.indexOf('id="fair-map"'), html.indexOf('id="scene"'));
-  assert.match(map, /illust\/map-school-busy\.png/);
+  assert.match(map, /illust\/map-school-signs\.png/);
   assert.doesNotMatch(map, /class="hotspot\b[^>]*>\s*<img/);
   ['Charity stall', 'Prize wheel', 'Film club', 'School hall', "Miss Chan's desk", 'Storeroom'].forEach((label) => {
     assert.match(map, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
@@ -77,7 +77,8 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=19/);
+  assert.match(html, /game\.css\?v=20/);
+  assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
   assert.match(css, /\.hotspot \{[^}]*border:\s*0/);
