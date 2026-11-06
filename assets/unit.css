@@ -198,16 +198,21 @@ button { font: inherit; cursor: pointer; }
   padding: 0.85rem 3.7rem 0 0.85rem;
 }
 .illust {
+  position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
   aspect-ratio: 1;
-  background: rgba(255,255,255,0.45);
+  background: color-mix(in srgb, var(--sky) 42%, #fff);
   cursor: pointer;
 }
 .illust img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: none;
+  object-fit: contain;
+  background: transparent;
 }
 .main .num {
   display: inline-block;

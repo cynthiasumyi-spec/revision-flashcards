@@ -46,7 +46,16 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.doesNotMatch(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
   assert.match(html, /covers\/unit2\.jpg\?v=2/);
-  assert.equal(html.includes('site.css?v=34'), true);
+  assert.equal(html.includes('site.css?v=35'), true);
+  assert.match(css, /\.how-card\.tone-sunny \.how-art,\s*\.how-card\.tone-pink \.how-art \{[^}]*aspect-ratio:\s*4 \/ 3/);
+  assert.match(css, /\.how-card\.tone-sunny \.how-art img,\s*\.how-card\.tone-pink \.how-art img \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.daily-img \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /\.daily-img \{[^}]*background:\s*color-mix\(in srgb, var\(--sky\) 42%, #fff\)/);
+  const unitCss = fs.readFileSync(path.join(root, 'assets/unit.css'), 'utf8');
+  const unitIllust = unitCss.slice(unitCss.indexOf('.illust {'), unitCss.indexOf('.main .num'));
+  assert.match(unitIllust, /object-fit:\s*contain/);
+  assert.doesNotMatch(unitIllust, /object-fit:\s*cover/);
+  assert.match(unitIllust, /background:\s*color-mix\(in srgb, var\(--sky\) 42%, #fff\)/);
   assert.match(css, /\.pack-card \{[^}]*flex:\s*0 0 min\(26rem, 70%\)/);
   assert.match(css, /aspect-ratio:\s*1/);
   assert.doesNotMatch(cover, /max-height:\s*18rem/);

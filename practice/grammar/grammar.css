@@ -201,9 +201,30 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   object-fit: contain;
   display: block;
 }
+.gc-mystery {
+  background: color-mix(in srgb, var(--sunny) 32%, var(--cream));
+  color: var(--navy);
+}
+.gc-mystery .case-file-kicker {
+  display: inline-block;
+  margin: 0 0 0.55rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gc-mystery .icon {
+  background: color-mix(in srgb, var(--sky) 42%, #fff);
+}
 .gc-mystery .icon img {
-  width: 48px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .game-card h3 {
   margin: 0 0 0.3rem;
@@ -218,6 +239,11 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--white);
   font-weight: 600;
   opacity: 0.95;
+}
+.game-card.gc-mystery h3,
+.game-card.gc-mystery p {
+  color: var(--navy);
+  opacity: 1;
 }
 .game-card .zh {
   display: block;
