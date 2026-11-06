@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../practice/grammar/grammar.css?v=40"/>
+<link rel="stylesheet" href="../practice/grammar/grammar.css?v=41"/>
 </head>
 <body>
 <header class="prac-header">
@@ -19,33 +19,50 @@
   <p class="section-label">Choose a case</p>
   <div class="game-grid">
     <a class="game-card gc-mystery" href="clue-hunt.html">
-      <header class="case-doc-head">
-        <div class="case-doc-brand">
-          <svg class="case-badge" viewBox="0 0 24 24" aria-hidden="true">
-            <polygon fill="currentColor" points="12,1.2 14.8,8 22,8.5 16.5,13.1 18.5,20.4 12,16.4 5.5,20.4 7.5,13.1 2,8.5 9.2,8"/>
-          </svg>
-          <p class="case-file-kicker">Case file</p>
+      <div class="case-book">
+        <div class="case-page">
+          <div class="case-page-top">
+            <span class="case-holes" aria-hidden="true"><i></i><i></i><i></i></span>
+            <p class="case-file-kicker">Case file</p>
+            <div class="case-photo">
+              <img src="illust/zoom-raffle-box.png" alt="" width="72" height="72"/>
+            </div>
+          </div>
+          <div class="case-box">
+            <span class="case-label">Case No.</span>
+            <span class="case-no">001</span>
+          </div>
+          <div class="case-box">
+            <span class="case-label">Case Name</span>
+            <h3>School Mystery</h3>
+            <p>Missing raffle box</p>
+          </div>
+          <div class="case-split">
+            <div class="case-box">
+              <span class="case-label">Date</span>
+              <p>School Fair Day</p>
+            </div>
+            <div class="case-box">
+              <span class="case-label">Location</span>
+              <p>School fair</p>
+            </div>
+          </div>
+          <ul class="case-rows">
+            <li><span class="case-tick" aria-hidden="true"></span><span>Leo did not come back</span></li>
+            <li><span class="case-tick" aria-hidden="true"></span><span>Tickets were in the box</span></li>
+            <li><span class="case-tick" aria-hidden="true"></span><span></span></li>
+            <li><span class="case-tick" aria-hidden="true"></span><span></span></li>
+          </ul>
         </div>
-        <h3>School Mystery</h3>
-      </header>
-      <div class="case-doc-rule"></div>
-      <div class="case-doc-mid">
-        <div class="case-doc-side">
-          <p class="case-field case-no">Case No. 001</p>
-          <p class="case-field case-field-blank" aria-hidden="true"></p>
-          <p class="case-field case-field-blank" aria-hidden="true"></p>
+        <div class="case-page">
+          <div class="case-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="case-panel">
+            <span class="case-label">Incident Details</span>
+            <p>The raffle prize box went missing at the school fair. Walk the school fair, fill your notebook, and find who took the box, and why.</p>
+          </div>
+          <div class="case-panel case-panel-short" aria-hidden="true"></div>
+          <div class="case-lines" aria-hidden="true"><span></span><span></span><span></span></div>
         </div>
-        <div class="case-doc-photo">
-          <img src="illust/zoom-raffle-box.png" alt="" width="88" height="112"/>
-        </div>
-      </div>
-      <div class="case-doc-lines" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
-      </div>
-      <p class="case-doc-note">Leo was looking after the raffle box and did not come back. Walk the school fair, fill your notebook, and find who took the box, and why.</p>
-      <div class="case-doc-foot">
-        <span class="case-seal" aria-hidden="true"><span>Case</span><span>001</span></span>
-        <span class="case-foot-line" aria-hidden="true"></span>
       </div>
     </a>
   </div>
