@@ -95,7 +95,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=24/);
+  assert.match(html, /game\.css\?v=25/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -107,6 +107,8 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.person-avatar \{[^}]*border-radius:\s*50%/);
   assert.match(css, /\.person-avatar \{[^}]*object-fit:\s*cover/);
   assert.match(css, /\.person-avatar \{[^}]*object-position:\s*center center/);
+  assert.match(css, /\.person-avatar \{[^}]*background-color:\s*color-mix\(in srgb, var\(--sunny\) 46%, #fff\)/);
+  assert.match(css, /\.case-you-art \{[^}]*background:\s*transparent/);
   assert.match(css, /\.case-you-art \{[^}]*border-radius:\s*0/);
   assert.match(css, /\.case-you-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /illust\/clipboard-line\.png/);

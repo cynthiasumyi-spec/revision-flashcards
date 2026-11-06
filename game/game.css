@@ -380,7 +380,8 @@
   object-fit: cover;
   object-position: center center;
   flex: 0 0 auto;
-  background: transparent;
+  /* Soft butter disc from the site sunny/cream family. Transparent headshot corners show this circle, not the blue bubble. */
+  background-color: color-mix(in srgb, var(--sunny) 46%, #fff);
 }
 .person-avatar-lg {
   width: 7.5rem;
