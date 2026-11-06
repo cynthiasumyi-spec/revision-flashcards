@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=21"/>
+<link rel="stylesheet" href="game.css?v=22"/>
 </head>
 <body>
 <header class="prac-header">
@@ -109,12 +109,17 @@
         <p id="ending-copy"></p>
       </section>
     </div>
+    <!-- Notebook frame: いらすとや clipboard https://www.irasutoya.com/2017/02/blog-post.html -->
     <aside id="notebook" class="notebook" hidden>
-      <h2>Notebook</h2>
-      <p class="notebook-purpose">Clues from talks and searches are written here. Use these notes to solve the case.</p>
-      <div id="notebook-cards"></div>
-      <div class="btn-row">
-        <button type="button" class="btn btn-primary" id="open-solve" disabled>Solve Case</button>
+      <div class="notebook-sheet">
+        <div class="notebook-write">
+          <h2>Notebook</h2>
+          <p class="notebook-purpose">Clues from talks and searches are written here. Use these notes to solve the case.</p>
+          <div id="notebook-cards"></div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="open-solve" disabled>Solve Case</button>
+          </div>
+        </div>
       </div>
     </aside>
   </div>

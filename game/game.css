@@ -39,7 +39,7 @@
 .case-steps li { margin: 0.2rem 0; }
 .hunt-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 15rem;
+  grid-template-columns: minmax(0, 1fr) 19rem;
   gap: 0.8rem;
   align-items: start;
 }
@@ -235,49 +235,87 @@
   border-radius: 12px;
 }
 .notebook {
+  container-type: inline-size;
+  box-sizing: border-box;
+  width: 100%;
   border: 0;
-  border-radius: 4px 18px 18px 4px;
+  padding: 0;
+  background: transparent;
   color: var(--navy);
-  padding: 0.8rem 0.75rem 0.75rem 1.5rem;
-  background-color: #fff8e6;
-  background-image:
-    radial-gradient(circle at 0.62rem 0.72rem, #fff 0.16rem, color-mix(in srgb, var(--navy) 22%, #e4d0a4) 0.18rem 0.28rem, transparent 0.31rem),
-    linear-gradient(to right, color-mix(in srgb, var(--coral) 32%, #f6e2c4) 0.72rem, transparent 0.72rem),
-    repeating-linear-gradient(to bottom, transparent 0 1.42rem, color-mix(in srgb, var(--sky) 50%, #d5e8f6) 1.42rem 1.5rem);
-  background-repeat: repeat-y, no-repeat, repeat;
-  background-size: 100% 1.55rem, 100% 100%, 100% 1.5rem;
-  background-position: 0 0.95rem, 0 0, 0 2.7rem;
+}
+/* Lined clipboard crops of いらすとや clipboard2_notebook.png
+   https://www.irasutoya.com/2017/02/blog-post.html */
+.notebook-sheet {
+  position: relative;
+  background-color: transparent;
+  background-image: url("illust/clipboard-line.png");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  background-origin: content-box;
+  background-clip: content-box;
+  padding: calc(100cqw * 167 / 583) 0 calc(100cqw * 83 / 583);
+}
+.notebook-sheet::before,
+.notebook-sheet::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.notebook-sheet::before {
+  top: 0;
+  height: calc(100cqw * 167 / 583);
+  background-image: url("illust/clipboard-top.png");
+}
+.notebook-sheet::after {
+  bottom: 0;
+  height: calc(100cqw * 83 / 583);
+  background-image: url("illust/clipboard-bottom.png");
+}
+.notebook-write {
+  position: relative;
+  z-index: 1;
+  margin: 0 calc(100cqw * 68 / 583) 0 calc(100cqw * 124 / 583);
+  padding-top: calc(100cqw * 16 / 583);
+  color: var(--navy);
+}
+.notebook h2,
+.notebook-purpose,
+.clue-card,
+.clue-card strong,
+.clue-card p {
+  margin: 0;
+  line-height: calc(100cqw * 60 / 583);
+  font-weight: 700;
 }
 .notebook h2 {
-  margin: 0 0 0.25rem;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: calc(100cqw * 40 / 583);
 }
-.notebook-purpose {
-  margin: 0 0 0.55rem;
-  font-weight: 700;
-  font-size: 0.92rem;
-  line-height: 1.35;
+.notebook-purpose,
+.clue-card p {
+  font-size: calc(100cqw * 30 / 583);
 }
-.notebook.is-open { background-color: #fff3d4; }
 .clue-card {
-  margin: 0 0 0.45rem;
-  padding: 0.55rem 0.65rem;
   border: 0;
-  border-radius: 16px;
-  background: color-mix(in srgb, #fff 86%, var(--sky));
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
   color: var(--navy);
 }
 .clue-card strong {
   display: block;
   font-family: var(--font-display);
-  font-size: 0.82rem;
-  margin-bottom: 0.15rem;
+  font-size: calc(100cqw * 32 / 583);
 }
-.clue-card p {
-  margin: 0;
-  font-weight: 700;
-  font-size: 0.92rem;
+.notebook .btn-row { margin: calc(100cqw * 18 / 583) 0 calc(100cqw * 10 / 583); }
+.notebook .btn {
+  width: 100%;
+  padding: 0.4rem 0.7rem;
+  font-size: calc(100cqw * 32 / 583);
 }
 .hunt-q {
   margin: 0 0 0.55rem;
@@ -322,5 +360,5 @@
   .hunt-q { margin-bottom: 0.3rem; }
   .scene-look { flex-wrap: wrap; }
   .hotspot { font-size: 0.66rem; }
-  .notebook { padding: 0.6rem 0.55rem 0.6rem 1.35rem; }
+  .notebook { max-width: 22rem; margin-inline: auto; }
 }
