@@ -125,7 +125,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=35/);
+  assert.match(html, /game\.css\?v=36/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -137,7 +137,11 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.person-avatar \{[^}]*border-radius:\s*50%/);
   assert.match(css, /\.person-avatar \{[^}]*object-fit:\s*cover/);
   assert.match(css, /\.person-avatar \{[^}]*object-position:\s*center center/);
-  assert.match(css, /\.person-avatar \{[^}]*background-color:\s*#fff/);
+  assert.match(css, /\.person-avatar \{[^}]*background-color:\s*color-mix\(in srgb, var\(--sunny\) 46%, #fff\)/);
+  assert.match(css, /\.talk-said \.person-avatar \{[^}]*background-color:\s*#fff/);
+  assert.match(css, /\.notebook-solve \{[^}]*justify-content:\s*center/);
+  assert.match(css, /\.notebook #open-solve \{[^}]*width:\s*auto/);
+  assert.match(html, /class="btn-row notebook-solve"/);
   assert.doesNotMatch(css, /\.case-you-art/);
   assert.match(css, /\.story-card \{[^}]*border:\s*0/);
   assert.doesNotMatch(css, /\.story-card \{[^}]*border:\s*[1-9]/);
@@ -150,7 +154,10 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /\.start-look \{[^}]*background:\s*var\(--coral\)/);
   assert.match(css, /illust\/clipboard-line\.png/);
   assert.match(css, /illust\/clipboard-top\.png/);
-  assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
+  assert.match(css, /#scene-art \{[^}]*object-fit:\s*cover/);
+  assert.match(css, /\.case-art img \{[^}]*object-fit:\s*cover/);
+  assert.match(css, /\.zoom-frame \{[^}]*aspect-ratio:\s*1/);
+  assert.match(css, /\.zoom-frame img \{[^}]*object-fit:\s*cover/);
   assert.match(css, /\.fair-map-base \{[^}]*object-fit:\s*contain/);
   assert.match(css, /\.zoom-frame \{[^}]*aspect-ratio:\s*1/);
   assert.match(css, /\.zoom-frame img \{[^}]*object-fit:\s*cover/);

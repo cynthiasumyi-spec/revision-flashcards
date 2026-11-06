@@ -1,18 +1,21 @@
 .case-art {
-  width: fit-content;
-  max-width: min(100%, 560px);
+  /* 4:3 frame matches the fair picture, so the sky fills edge to edge. */
+  width: min(100%, 560px, calc(min(42vh, 340px) * 4 / 3));
+  aspect-ratio: 4 / 3;
   margin: 0 auto 0.9rem;
-  background: color-mix(in srgb, var(--pink) 28%, #fff);
+  background: #8ec8ef;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
 .case-art img {
   display: block;
-  width: auto;
-  max-width: 100%;
-  max-height: min(42vh, 340px);
-  margin: 0 auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: center;
 }
 .wrap { max-width: 960px; }
 .block-label {
@@ -119,6 +122,9 @@
   max-width: 100%;
   min-width: 0;
   line-height: 0;
+  background: #f6ead6;
+  border-radius: 12px;
+  overflow: hidden;
 }
 #scene-spots { position: absolute; inset: 0; }
 .scene-spot {
@@ -218,6 +224,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  background: #fce7d4;
 }
 .zoom-card p {
   margin: 0.6rem 0 0.75rem;
@@ -226,12 +234,14 @@
 .zoom-card .btn { width: 100%; }
 #scene-art {
   display: block;
-  width: auto;
+  width: min(100%, 720px, calc(min(46vh, 420px) * 4 / 3));
   height: auto;
-  max-width: min(100%, 720px);
-  max-height: min(46vh, 420px);
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
   margin: 0;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+  background: #f6ead6;
   border-radius: 12px;
 }
 .notebook {
@@ -311,19 +321,23 @@
   font-family: var(--font-display);
   font-size: calc(100cqw * 32 / 583);
 }
-.notebook .btn-row {
+.notebook-solve {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
-  margin: calc(100cqw * 18 / 583) 0 calc(100cqw * 10 / 583);
-}
-.notebook .btn {
-  width: auto;
-  padding: 0.35rem 1.05rem;
-  font-size: calc(100cqw * 32 / 583);
+  align-items: center;
+  width: 100%;
+  margin: calc(100cqw * 12 / 583) 0 calc(100cqw * 8 / 583);
 }
 .notebook #open-solve {
   width: auto;
-  margin-inline: auto;
+  max-width: 72%;
+  flex: 0 0 auto;
+  margin-inline: 0;
+  padding: 0.45rem 1.25rem;
+  font-size: calc(100cqw * 30 / 583);
+  line-height: 1.15;
 }
 .hunt-q {
   margin: 0 0 0.55rem;
@@ -448,9 +462,12 @@
   font-weight: 700;
 }
 .play-steps img {
-  width: 3.15rem;
-  height: 3.15rem;
+  width: auto;
+  height: auto;
+  max-width: 3.15rem;
+  max-height: 3.15rem;
   object-fit: contain;
+  background: transparent;
   flex: 0 0 auto;
 }
 .start-look {
@@ -491,6 +508,9 @@
   object-position: center center;
   flex: 0 0 auto;
   /* Soft butter disc from the site sunny/cream family. Transparent headshot corners show this circle, not the blue bubble. */
+  background-color: color-mix(in srgb, var(--sunny) 46%, #fff);
+}
+.talk-said .person-avatar {
   background-color: #fff;
 }
 .talk-line {

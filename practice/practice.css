@@ -860,9 +860,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .mcard-front.face-zh img {
   width: 100%;
   height: 48%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   border-radius: 12px;
-  background: color-mix(in srgb, var(--sky) 42%, #fff);
+  background: #fffaf1;
   flex: 1 1 auto;
 }
 .mcard-front.face-zh .zh {

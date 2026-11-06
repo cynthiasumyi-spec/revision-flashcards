@@ -457,15 +457,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pack-cover {
   aspect-ratio: 1;
   overflow: hidden;
-  background: color-mix(in srgb, var(--sky) 42%, #fff);
+  background: #fffaf1;
   border-radius: calc(var(--radius) - 6px);
 }
 .pack-cover img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  background: color-mix(in srgb, var(--sky) 42%, #fff);
+  background: #fffaf1;
   -webkit-user-drag: none;
   user-select: none;
 }
@@ -592,7 +592,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .how-card.tone-sunny .how-art img,
 .how-card.tone-pink .how-art img {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 /* Hear it art has a white strip along the top. Shift it up so the scene fills the square. */
 .how-card.tone-sky .how-art img {
@@ -674,9 +675,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .daily-img {
   width: 6.5rem;
   height: 6.5rem;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   border-radius: 18px;
-  background: color-mix(in srgb, var(--sky) 42%, #fff);
+  background: #fffaf1;
   flex: 0 0 auto;
 }
 .daily-en {
