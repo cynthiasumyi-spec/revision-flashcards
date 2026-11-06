@@ -89,14 +89,17 @@
           <button type="button" class="btn btn-ghost" id="solve-back">Back to the map</button>
         </div>
         <h2 class="hunt-q">Solve the case</h2>
-        <span class="solve-label">About what time did the box leave the stall?</span>
-        <div class="choices" id="time-choices"></div>
-        <span class="solve-label">Who took the box?</span>
-        <div class="choices" id="who-choices"></div>
-        <span class="solve-label">Why did they take the box?</span>
-        <div class="choices" id="why-choices"></div>
-        <div class="btn-row">
-          <button type="button" class="btn btn-primary" id="solve-btn" disabled>Close the case</button>
+        <div id="solve-time">
+          <span class="solve-label">About what time did the box leave the stall?</span>
+          <div class="choices" id="time-choices"></div>
+        </div>
+        <div id="solve-who" hidden>
+          <span class="solve-label">Who took the box?</span>
+          <div class="choices" id="who-choices"></div>
+        </div>
+        <div id="solve-why" hidden>
+          <span class="solve-label">Why did they take the box?</span>
+          <div class="choices" id="why-choices"></div>
         </div>
         <p class="hint" id="solve-feedback" hidden></p>
       </section>
@@ -120,6 +123,8 @@
 (function () {
   var hunt = ClueHunt.createHunt();
   var casePicks = { time: null, who: null, why: null };
+  var solveOrder = ["time", "who", "why"];
+  var solveOn = "time";
   var ended = false;
 
   var intro = document.getElementById("intro");
@@ -142,7 +147,6 @@
   var zoomReply = document.getElementById("zoom-reply");
   var stepLabel = document.getElementById("step-label");
   var feedback = document.getElementById("solve-feedback");
-  var solveBtn = document.getElementById("solve-btn");
 
   function hotspotById(id) {
     return ClueHunt.HOTSPOTS.filter(function (item) { return item.id === id; })[0];
@@ -316,6 +320,26 @@
     renderNotebook();
   }
 
+  function gradePick(key, value) {
+    var picks = {
+      time: key === "time" ? value : ClueHunt.CASE.time.answer,
+      who: key === "who" ? value : ClueHunt.CASE.who.answer,
+      why: key === "why" ? value : ClueHunt.CASE.why.answer
+    };
+    return ClueHunt.submitSolve(picks);
+  }
+
+  function finishCase(endingText) {
+    ended = true;
+    solve.hidden = true;
+    map.hidden = true;
+    scene.hidden = true;
+    ending.hidden = false;
+    document.getElementById("ending-copy").textContent = endingText;
+    stepLabel.textContent = "Case closed";
+    renderNotebook();
+  }
+
   function renderCaseGroup(container, key, options) {
     container.innerHTML = "";
     options.forEach(function (opt) {
@@ -324,10 +348,28 @@
       btn.className = "choice";
       btn.textContent = opt;
       btn.addEventListener("click", function () {
-        casePicks[key] = opt;
+        if (ended || key !== solveOn) return;
         Array.prototype.forEach.call(container.children, function (el) { el.classList.remove("selected"); });
         btn.classList.add("selected");
-        solveBtn.disabled = !(casePicks.time && casePicks.who && casePicks.why);
+        var graded = gradePick(key, opt);
+        if (opt !== ClueHunt.CASE[key].answer) {
+          feedback.hidden = false;
+          feedback.textContent = graded.hint;
+          return;
+        }
+        feedback.hidden = true;
+        feedback.textContent = "";
+        casePicks[key] = opt;
+        Array.prototype.forEach.call(container.children, function (el) { el.disabled = true; });
+        var nextAt = solveOrder.indexOf(key) + 1;
+        if (nextAt >= solveOrder.length) {
+          finishCase(graded.ending);
+          return;
+        }
+        solveOn = solveOrder[nextAt];
+        var nextQuestion = document.getElementById("solve-" + solveOn);
+        nextQuestion.hidden = false;
+        nextQuestion.scrollIntoView({ block: "nearest" });
       });
       container.appendChild(btn);
     });
@@ -343,11 +385,15 @@
     solve.hidden = false;
     notebook.hidden = false;
     casePicks = { time: null, who: null, why: null };
-    solveBtn.disabled = true;
+    solveOn = "time";
+    document.getElementById("solve-time").hidden = false;
+    document.getElementById("solve-who").hidden = true;
+    document.getElementById("solve-why").hidden = true;
     feedback.hidden = true;
     feedback.textContent = "";
-    stepLabel.textContent = "Who took the box, and why?";
+    stepLabel.textContent = "About what time did the box leave the stall?";
     renderCaseGroup(document.getElementById("time-choices"), "time", ClueHunt.CASE.time.options);
+    window.scrollTo(0, 0);
     renderCaseGroup(document.getElementById("who-choices"), "who", ClueHunt.CASE.who.options);
     renderCaseGroup(document.getElementById("why-choices"), "why", ClueHunt.CASE.why.options);
     renderNotebook();
@@ -379,22 +425,6 @@
     });
   });
 
-  solveBtn.addEventListener("click", function () {
-    var result = ClueHunt.submitSolve(casePicks);
-    feedback.hidden = false;
-    if (!result.ok) {
-      feedback.textContent = result.hint;
-      return;
-    }
-    ended = true;
-    solve.hidden = true;
-    map.hidden = true;
-    scene.hidden = true;
-    ending.hidden = false;
-    document.getElementById("ending-copy").textContent = result.ending;
-    stepLabel.textContent = "Case closed";
-    renderNotebook();
-  });
 })();
 </script>
 

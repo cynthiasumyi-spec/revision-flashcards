@@ -52,6 +52,9 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(solve, /Who took the box\?/);
   assert.match(solve, /id="who-choices"/);
   assert.match(solve, /Why did they take the box\?/);
+  assert.match(solve, /id="solve-who" hidden/);
+  assert.match(solve, /id="solve-why" hidden/);
+  assert.doesNotMatch(solve, /Close the case/);
   assert.match(solve, /id="why-choices"/);
   assert.doesNotMatch(solve, /Where is Leo/);
   assert.doesNotMatch(solve, /id="where-choices"/);
