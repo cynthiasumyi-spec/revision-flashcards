@@ -27,7 +27,7 @@ test('home page tucks Be a Detective at the top-left of the packs sheet', () => 
 test('game hub lists Clue Hunt and is not inside Practice', () => {
   const hub = fs.readFileSync(path.join(root, 'game/index.html'), 'utf8');
   assert.match(hub, /href="clue-hunt\.html"/);
-  assert.match(hub, />Clue Hunt</);
+  assert.match(hub, />School Mystery</);
   assert.match(hub, /href="\.\.\/index\.html"/);
   assert.match(hub, /Walk the school fair, fill your notebook/);
   assert.match(hub, /who took the box, and why/);
