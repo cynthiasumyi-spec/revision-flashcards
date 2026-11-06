@@ -362,34 +362,46 @@
   border: 0;
   border-radius: 28px;
 }
-.story-card-case { background: var(--navy); }
-.story-card-case .block-label { color: var(--cream); }
+.story-card-case { background: transparent; padding: 0; }
+.story-card-case .block-label { color: var(--navy); }
 .story-card-play { background: var(--sunny); }
-.report-sheet {
-  min-height: 7.6rem;
-  padding: 0.85rem 0.95rem 0.7rem;
+.case-book {
+  position: relative;
   border: 0;
-  border-radius: 18px;
-  background: #fffaf1;
-  color: var(--navy);
+  background: transparent;
 }
-.report-sheet h3 {
-  margin: 0 0 0.35rem;
+.case-book-art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.case-book-copy {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 26%;
+  bottom: 30%;
+  overflow: hidden;
+}
+.book-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10%;
+  height: 100%;
+  align-content: start;
+}
+.book-spread h3 {
+  margin: 0 0 0.3rem;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--navy);
 }
-.report-cover {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.book-spread .case-lead {
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
-.report-cover img {
-  width: 4.6rem;
-  height: auto;
-  flex: 0 0 auto;
-}
+.book-spread .story-icon { width: 2.6rem; }
 .report-nav {
   display: flex;
   align-items: center;
@@ -406,13 +418,9 @@
   font-weight: 700;
   padding: 0.35rem 0.85rem;
 }
-.report-nav button:disabled {
-  background: color-mix(in srgb, var(--cream) 28%, var(--navy));
-  color: color-mix(in srgb, var(--cream) 72%, transparent);
-}
 #report-count {
   margin: 0;
-  color: var(--cream);
+  color: var(--navy);
   font-weight: 700;
 }
 .report-dots { display: flex; gap: 0.35rem; }
@@ -420,9 +428,13 @@
   width: 0.72rem;
   height: 0.72rem;
   padding: 0;
-  background: color-mix(in srgb, var(--cream) 40%, transparent);
+  background: color-mix(in srgb, var(--navy) 22%, var(--cream));
 }
-.report-dots button[aria-current="true"] { background: var(--cream); }
+.report-dots button[aria-current="true"] { background: var(--sunny); }
+.report-nav button:disabled {
+  background: color-mix(in srgb, var(--sunny) 38%, #fff);
+  color: color-mix(in srgb, var(--navy) 42%, #fff);
+}
 .case-row {
   display: flex;
   align-items: center;

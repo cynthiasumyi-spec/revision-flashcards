@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=30"/>
+<link rel="stylesheet" href="game.css?v=31"/>
 </head>
 <body>
 <header class="prac-header">
@@ -25,31 +25,45 @@
         </div>
         <article class="story-card story-card-case" id="case-report">
           <h2 class="block-label">The case</h2>
-          <div class="report-sheet">
-            <div class="report-page">
-              <div class="report-cover">
-                <!-- Report sheet: いらすとや https://www.irasutoya.com/2018/12/blog-post_656.html -->
-                <img src="illust/intro/report.png" alt="" width="120" height="118"/>
-                <div>
-                  <h3>Case file</h3>
-                  <p class="case-lead">School Mystery</p>
-                  <p class="case-lead">The missing raffle box</p>
+          <div class="case-book">
+            <!-- Open book: いらすとや 開いた白紙の本 https://www.irasutoya.com/2014/09/blog-post_56.html -->
+            <img class="case-book-art" src="illust/intro/book-open.png" alt="" width="800" height="713"/>
+            <div class="case-book-copy">
+              <div class="report-page">
+                <div class="book-spread">
+                  <div>
+                    <h3>Case file</h3>
+                    <p class="case-lead">School Mystery</p>
+                  </div>
+                  <div>
+                    <p class="case-lead">The missing raffle box</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="report-page" hidden>
-              <h3>What happened</h3>
-              <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
-            </div>
-            <div class="report-page" hidden>
-              <h3>Your job</h3>
-              <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
-              <p class="case-lead">Talk to people, and search the fair. Write the clues in your notebook.</p>
-            </div>
-            <div class="report-page" hidden>
-              <h3>A tip</h3>
-              <img class="story-icon" src="illust/intro/glass.png" alt="" width="56" height="92"/>
-              <p class="case-lead">When people talk, listen for the time. Notice jackets and coats. Your notebook will help.</p>
+              <div class="report-page" hidden>
+                <div class="book-spread">
+                  <div><h3>What happened</h3></div>
+                  <div><p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p></div>
+                </div>
+              </div>
+              <div class="report-page" hidden>
+                <div class="book-spread">
+                  <div><h3>Your job</h3></div>
+                  <div>
+                    <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+                    <p class="case-lead">Talk to people, and search the fair. Write the clues in your notebook.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="report-page" hidden>
+                <div class="book-spread">
+                  <div>
+                    <h3>A tip</h3>
+                    <img class="story-icon" src="illust/intro/glass.png" alt="" width="48" height="80"/>
+                  </div>
+                  <div><p class="case-lead">When people talk, listen for the time. Notice jackets and coats. Your notebook will help.</p></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="report-nav">

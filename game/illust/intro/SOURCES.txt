@@ -26,10 +26,20 @@ Page: https://www.irasutoya.com/2017/02/blog-post.html
 Library file: clipboard/clipboard4_check.png
 Repo: game/illust/intro/solve.png
 
-Report sheet — case-file accent
-Page: https://www.irasutoya.com/2018/12/blog-post_656.html
-File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRHxBMdljykhTxgTrbDTTemFwvVTVXldzDOlVyBV2WAmkTmIgLL7YJV2gvqpeAPYYqR-HZmXrOYf1dodYSxjkJZ7on0MDdahcZmS2hoH51PWyzVRdIIYs_QvB5U5AB0dbzSbHiyuzGe63Q/s800/document_houkokusyo.png
-Repo: game/illust/intro/report.png
+Open book used as the case pages — blank so the English story can sit on the pages.
+Page: https://www.irasutoya.com/2014/09/blog-post_56.html
+Mirror: https://irasutoya.blogspot.com/2014/09/blog-post_56.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgYdnc3lIsiroYWd_rDWecgBCJxsnZPuZrvt0SkAC1sNCTSyxfE3ZSeb1hgcwjJKDxvPUiIs2B0H21EgVlH0pHbO7WGMXZnHmWQPgGIO1flybB_wsV7CPPI57rB9mT7PyET2qfw7ZwN90/s800/book_zabuton.png
+Repo: game/illust/intro/book-open.png
+
+Also considered 開いた本 (pages already have placeholder writing, so not used as the text surface):
+Page: https://www.irasutoya.com/2016/10/blog-post_450.html
+Mirror: https://irasutoya.blogspot.com/2016/10/blog-post_838.html
+Files: book_open_yoko.png and book_open_tate.png
+
+Open notebook, also blank, not used for the case book:
+Page: https://www.irasutoya.com/2016/07/blog-post_882.html
+File: zabuton_notebook.png
 
 Kid detective — Start looking tap target. Not the player You portrait.
 Page: https://www.irasutoya.com/2016/09/blog-post_974.html
@@ -38,7 +48,8 @@ File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjD-9HqsF9SDQUtV
 Repo: game/illust/intro/detective.png
 
 Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy these new files into the library at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN (folder name: Clue Hunt - Irasutoya Asset Library, path Bricks Calendar Developing / Clue Hunt - Irasutoya Asset Library):
-- report.png (document_houkokusyo.png)
+- book-open.png (book_zabuton.png, 開いた白紙の本)
 - detective.png (tantei_boy.png)
+- report.png (document_houkokusyo.png) if it is still in the folder
 - glass.png, map.png, and talk.png if they are not there yet
 The clipboard files are already in that library. The wooden start sign is no longer used.
