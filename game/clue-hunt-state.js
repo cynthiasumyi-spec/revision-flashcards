@@ -47,7 +47,7 @@
       kind: "talk",
       marker: "../practice/grammar/illust/u4_s5_studio_lights.jpg",
       art: "illust/scene-film-sticker.png",
-      intro: "Amy is here with the film club.",
+      intro: "Zoe is here with the film club.",
       mark: { x: "54%", y: "24%" },
       cardTitle: "Film club",
       cardText: "Amy left in her blue jacket just after lunch, and she came back later. She wished for the new bike. She said if she won the bike, she would not have to wait for the bus.",
@@ -153,7 +153,7 @@
   var PEOPLE = [
     { id: "you", name: "You", art: "illust/people/you.png", head: "illust/people/heads/you.png", speakerFor: null },
     { id: "may", name: "May", art: "illust/people/may.png", head: "illust/people/heads/may.png", speakerFor: "wheel" },
-    { id: "amy", name: "Amy", art: "illust/people/amy.png", head: "illust/people/heads/amy.png", speakerFor: "film" },
+    { id: "zoe", name: "Zoe", art: "illust/people/zoe.png", head: "illust/people/heads/zoe.png", speakerFor: "film" },
     { id: "miss-chan", name: "Miss Chan", art: "illust/people/miss-chan.png", head: "illust/people/heads/miss-chan.png", speakerFor: "desk" },
     { id: "ken", name: "Ken", art: "illust/people/ken.png", head: "illust/people/heads/ken.png", speakerFor: "store" },
     { id: "leo", name: "Leo", art: "illust/people/leo.png", head: "illust/people/heads/leo.png", speakerFor: null },

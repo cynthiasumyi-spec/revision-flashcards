@@ -5,12 +5,12 @@ Page: https://www.irasutoya.com/2013/08/blog-post_7373.html
 File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhC4-5UU4BRNQhcQSxc4itejid3E-XlcjTEqp72sdndlUHcsuIezDlw_7ASt6aqnniD1X-01ZGbiphwko64Av0wjNTs9hV3oOaQgGbedunrpHmIKc9EFhJRxA_I7YEipNpgfzDwsetx0pfs/s400/mushimegane_boy.png
 Repo: game/illust/people/you.png
 
-Amy — blazer schoolgirl (junior-high / high-school jacket; closest official jacket portrait; do not redraw)
+Zoe — film club student, not Amy the raffle thief. Blazer schoolgirl (junior-high / high-school jacket; closest official jacket portrait; do not redraw)
 Page: https://www.irasutoya.com/2015/09/blog-post_768.html
 File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsFiF890ydvyTXHhXwaIgtpzkLRQYUr4ie1G77tmKjPst9oZMmWOmK6PUalzFtdb_v0g77eqBkbXlziivx0sgGuVOZdefnax2z5w5vD56KwSFSryz8o-pX2UTdjB2bKMV0s19vyS2mpEo/s800/seifuku4_blazer_girl.png
-Repo: game/illust/people/amy.png
+Repo: game/illust/people/zoe.png
 
-May — elementary schoolgirl, different file from Amy
+May — elementary schoolgirl, different file from Zoe
 Page: https://www.irasutoya.com/2013/11/blog-post_3364.html
 File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiw2g_UDq44tNp5dZ-uutCrFG1olbTC1NpDA7YOgMBGBgxp5srxeK_wEcMlcECwSKXARnrX6PNVVnftqbbEGAjDg6SENJfMPqLTkCOuWzt0F5V-E6sMnQamLHpcxqrkOK-SzofciNHj4YJQ/s400/tsugaku_girl.png
 Repo: game/illust/people/may.png

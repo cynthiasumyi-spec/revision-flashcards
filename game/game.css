@@ -166,7 +166,7 @@
   align-self: flex-end;
   max-width: 92%;
   border-radius: 16px 16px 4px 16px;
-  background: color-mix(in srgb, var(--green) 12%, #fff);
+  background: var(--choice-bg);
   color: var(--choice-ink);
 }
 .zoom-card .talk-reply {

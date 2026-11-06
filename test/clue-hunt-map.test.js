@@ -30,7 +30,10 @@ test('intro leads to a six-stop paper map before any quiz', () => {
   assert.equal((intro.match(/class="report-page"/g) || []).length, 3);
   assert.match(intro, /id="report-back"/);
   assert.match(intro, /id="report-next"/);
-  assert.match(intro, />Cover</);
+  assert.doesNotMatch(intro, />Cover</);
+  assert.doesNotMatch(intro, /\bCover\b/);
+  assert.match(intro, /<h3>School Mystery<\/h3>/);
+  assert.match(intro, /The missing raffle box/);
   assert.doesNotMatch(intro, /Case file/);
   assert.match(intro, />What happened</);
   assert.match(intro, />Your job</);
@@ -121,7 +124,7 @@ test('notebook and solve page are present, without a missing-person picker', () 
 test('clue hunt styles use fills and contain the pictures', () => {
   const html = huntHtml();
   const css = fs.readFileSync(path.join(root, 'game/game.css'), 'utf8');
-  assert.match(html, /game\.css\?v=33/);
+  assert.match(html, /game\.css\?v=34/);
   assert.doesNotMatch(css, /#e25c12/);
   assert.match(css, /\.fair-map \{/);
   assert.match(css, /\.hotspot \{[^}]*position:\s*absolute/);
@@ -148,7 +151,8 @@ test('clue hunt styles use fills and contain the pictures', () => {
   assert.match(css, /illust\/clipboard-top\.png/);
   assert.match(css, /#scene-art \{[^}]*object-fit:\s*contain/);
   assert.match(css, /\.fair-map-base \{[^}]*object-fit:\s*contain/);
-  assert.match(css, /\.zoom-card \.talk-said \{[^}]*background:\s*color-mix\(in srgb, var\(--green\) 12%, #fff\)/);
+  assert.match(css, /\.zoom-card \.talk-said \{[^}]*background:\s*var\(--choice-bg\)/);
+  assert.doesNotMatch(css, /\.zoom-card \.talk-said \{[^}]*--green/);
   assert.match(css, /\.zoom-card \.talk-reply \{[^}]*background:\s*#fff/);
 });
 

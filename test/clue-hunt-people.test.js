@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const peopleDir = path.join(root, 'game/illust/people');
-const files = ['you.png', 'amy.png', 'may.png', 'leo.png', 'sam.png', 'ken.png', 'miss-chan.png'];
+const files = ['you.png', 'zoe.png', 'may.png', 'leo.png', 'sam.png', 'ken.png', 'miss-chan.png'];
 
 test('seven irasutoya people portraits exist and differ', () => {
   const hashes = files.map((name) => {
@@ -46,7 +46,9 @@ test('the first question at a talk unlocks that speaker, even when the question 
   assert.equal(may.added, false);
   assert.deepEqual(ClueHunt.peopleAlbum(may.state).map((person) => person.id), ['you', 'may']);
   assert.equal(ClueHunt.speakerId('wheel'), 'may');
-  assert.equal(ClueHunt.speakerId('film'), 'amy');
+  assert.equal(ClueHunt.speakerId('film'), 'zoe');
+  assert.equal(ClueHunt.personById('zoe').name, 'Zoe');
+  assert.equal(ClueHunt.PEOPLE.some((person) => person.name === 'Amy' || person.id === 'amy'), false);
   assert.equal(ClueHunt.speakerId('desk'), 'miss-chan');
   assert.equal(ClueHunt.speakerId('store'), 'ken');
   assert.equal(ClueHunt.speakerId('hall'), null);
@@ -77,9 +79,15 @@ test('searching does not unlock Leo, and Miss Chan unlocks only from her own tal
   assert.equal(ClueHunt.personFact(chan.state, 'sam'), 'I did not ask Sam, or anyone else, to move the raffle box.');
 });
 
-test('film club unlocks Amy without rewriting her third-person reply', () => {
+test('film club unlocks Zoe and the notebook still names Amy the thief', () => {
+  const filmSpot = ClueHunt.HOTSPOTS.find((spot) => spot.id === 'film');
+  assert.equal(filmSpot.intro, 'Zoe is here with the film club.');
+  assert.equal(filmSpot.prompts[0].label, 'What did Amy do after lunch?');
+  assert.equal(filmSpot.prompts[1].label, 'Did Amy write a note?');
   const film = ClueHunt.visit(ClueHunt.createHunt(), 'film', 'lunch');
   assert.match(film.reply, /^She left /);
-  assert.equal(ClueHunt.personFact(film.state, 'amy'), film.reply.split(/(?<=\.)\s/)[0]);
+  assert.equal(ClueHunt.personFact(film.state, 'zoe'), film.reply.split(/(?<=\.)\s/)[0]);
+  assert.equal(ClueHunt.peopleAlbum(film.state).find((person) => person.id === 'zoe').name, 'Zoe');
   assert.equal(film.card.text, 'Amy left in her blue jacket just after lunch, and she came back later. She wished for the new bike. She said if she won the bike, she would not have to wait for the bus.');
+  assert.equal(ClueHunt.CASE.who.answer, 'Amy');
 });
