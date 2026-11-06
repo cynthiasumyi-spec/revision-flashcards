@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 
 const root = path.join(__dirname, '..');
 
@@ -39,8 +40,44 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.equal((html.match(/class="pack-card/g) || []).length, 5);
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
   assert.match(css, /scroll-snap-type:\s*x mandatory/);
+  const cover = css.slice(css.indexOf('.pack-cover {'), css.indexOf('.pack-body'));
+  assert.match(cover, /background:\s*color-mix\(in srgb, var\(--sky\) 42%, #fff\)/);
+  assert.doesNotMatch(cover, /#000|black/);
+  assert.match(html, /covers\/unit2\.jpg\?v=2/);
+  assert.equal(html.includes('site.css?v=32'), true);
   assert.match(css, /\.nav-jump[\s\S]*border:\s*0/);
   assert.match(css, /\.nav-jump[\s\S]*box-shadow:\s*none/);
+});
+
+test('pack covers have no black letterbox bars', () => {
+  const script = `
+from PIL import Image
+import os
+root = ${JSON.stringify(root)}
+names = ['unit1.jpg', 'unit2.jpg', 'unit3.jpg', 'unit4.jpg', 'dictation3.jpg']
+for folder in ('covers', 'home-eduhome/covers'):
+    for name in names:
+        im = Image.open(os.path.join(root, folder, name)).convert('RGB')
+        w, h = im.size
+        px = im.load()
+        edges = {
+            'top': [(x, 0) for x in range(w)],
+            'bottom': [(x, h - 1) for x in range(w)],
+            'left': [(0, y) for y in range(h)],
+            'right': [(w - 1, y) for y in range(h)],
+        }
+        for edge, coords in edges.items():
+            dark = 0
+            for x, y in coords:
+                r, g, b = px[x, y]
+                if r < 24 and g < 24 and b < 24:
+                    dark += 1
+            if dark / len(coords) > 0.45:
+                raise SystemExit(folder + '/' + name + ' ' + edge + ' ' + str(dark))
+print('ok')
+`;
+  const out = execFileSync('python3', ['-c', script], { encoding: 'utf8' });
+  assert.match(out, /ok/);
 });
 
 test('badges page has no illustration caption and the same two links', () => {
