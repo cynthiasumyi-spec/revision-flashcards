@@ -18,4 +18,9 @@ https://cynthiasumyi-spec.github.io/revision-flashcards/
 
 ## 注意
 - 請勿上傳到 publish.my；本包專供 GitHub Pages。
-- 所有路徑均為相對路徑，可離線開啟 `index.html` 預覽。
+- 所有路徑均為相對路徑，可離線開啟 `index.html` 預覽。單元和默書不登入也能用。
+
+## 帳號
+- 用使用者名稱和密碼註冊／登入（不是電郵，也不用確認信）。
+- 登入後，徽章、練習進度、暱稱和上次字卡會存到帳號。同一時間只保留一部裝置的登入；新的登入會把另一部裝置登出。
+- 瀏覽器只用 Supabase 的 publishable key（`assets/supabase-public.js`）。不要把 service-role key 放進這個靜態網站。

@@ -270,7 +270,7 @@ window.Profile = (function () {
     });
 
     paintChip();
-    if (!load().nickname) open('setup');
+    if (!load().nickname && !document.getElementById('account-notice')) open('setup');
   }
 
   function buildChip() {

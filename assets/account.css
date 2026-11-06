@@ -1,0 +1,150 @@
+/* Sign-in chip and account page. Uses the site's cream / navy / coral. */
+
+html.account-booting body { visibility: hidden; }
+
+.account-link-fab {
+  position: fixed;
+  z-index: 25;
+  left: max(0.75rem, env(safe-area-inset-left));
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  max-width: 12rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--navy, #243c6c);
+  color: var(--cream, #fcf0d8);
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: 0.95rem;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-notice {
+  max-width: var(--page-max, 1080px);
+  width: calc(100% - 2 * var(--margin, 1.25rem));
+  margin: 0.75rem auto 0;
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  background: var(--pale-yellow, #fcc03c);
+  color: var(--navy, #243c6c);
+  font-weight: 750;
+}
+
+.account-main {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1.5rem var(--margin, 1.25rem) 5rem;
+}
+
+.account-main h1 {
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-weight: 650;
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+  letter-spacing: -0.03em;
+  color: var(--navy, #243c6c);
+}
+
+.account-lead,
+.account-zh {
+  margin-top: 0.6rem;
+  color: var(--navy, #243c6c);
+}
+
+.account-zh { color: var(--muted, #5a6570); }
+
+.account-card {
+  margin-top: 1.25rem;
+  padding: 1.2rem 1.15rem 1.3rem;
+  border-radius: var(--radius, 24px);
+  background: var(--white, #fff);
+}
+
+.account-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.95rem;
+  font-weight: 800;
+  color: var(--navy, #243c6c);
+}
+
+.account-field input {
+  min-height: 52px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: var(--bg, #fcf0d8);
+  padding: 0.65rem 0.8rem;
+  font: inherit;
+  color: var(--navy, #243c6c);
+}
+
+.account-hint {
+  margin-top: 0.35rem;
+  color: var(--muted, #5a6570);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.account-error {
+  margin-top: 0.85rem;
+  color: #9a3412;
+  font-weight: 800;
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.account-actions .btn { border: 0; }
+
+.account-text-btn {
+  min-height: 44px;
+  padding: 0.4rem 0.2rem;
+  background: transparent;
+  color: var(--navy, #243c6c);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.account-ask {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(36, 60, 108, 0.46);
+}
+
+.account-ask-panel {
+  width: min(100%, 28rem);
+  padding: 1.2rem 1.15rem 1.25rem;
+  border-radius: 24px;
+  background: var(--cream, #fcf0d8);
+  color: var(--navy, #243c6c);
+}
+
+.account-ask-panel h2 {
+  font-family: var(--font-display, "Fredoka", sans-serif);
+  font-size: 1.7rem;
+  font-weight: 650;
+}
+
+.account-ask-panel p { margin-top: 0.55rem; }
+
+.account-ask-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}

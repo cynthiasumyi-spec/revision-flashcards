@@ -13,18 +13,20 @@ function nav(file) {
   return { html, nav: match[0] };
 }
 
-test('homepage header is Revision and Practice only', () => {
+test('homepage header is Revision, Practice, and Sign in', () => {
   const { nav: bar } = nav('index.html');
   assert.match(bar, /href="#packs"/);
   assert.match(bar, />Revision</);
   assert.match(bar, /href="practice\/grammar\/practice-entry.html"/);
   assert.match(bar, />Practice</);
+  assert.match(bar, /href="account\.html"/);
+  assert.match(bar, />Sign in</);
   assert.doesNotMatch(bar, /href="game\/index.html"/);
   assert.doesNotMatch(bar, />Game</);
   assert.doesNotMatch(bar, />Packs</);
   assert.doesNotMatch(bar, />Start</);
   assert.doesNotMatch(bar, /nav-action/);
-  assert.equal(bar.match(/<a\b/g).length, 2);
+  assert.equal(bar.match(/<a\b/g).length, 3);
 });
 
 test('packs are a swipe carousel, not a grid', () => {
@@ -117,7 +119,7 @@ print('ok')
   assert.match(out, /ok/);
 });
 
-test('badges page has no illustration caption and the same two links', () => {
+test('badges page has no illustration caption and links Revision, Practice, and Sign in', () => {
   const { html, nav: bar } = nav('badges.html');
   assert.equal(html.includes('Illustrations of people'), false);
   assert.equal(html.includes('badge-credit'), false);
@@ -125,5 +127,7 @@ test('badges page has no illustration caption and the same two links', () => {
   assert.match(bar, /href="index\.html#packs"/);
   assert.match(bar, />Revision</);
   assert.match(bar, />Practice</);
-  assert.equal(bar.match(/<a\b/g).length, 2);
+  assert.match(bar, /href="account\.html"/);
+  assert.match(bar, />Sign in</);
+  assert.equal(bar.match(/<a\b/g).length, 3);
 });
