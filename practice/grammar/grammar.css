@@ -201,6 +201,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   object-fit: contain;
   display: block;
 }
+.gc-mystery .icon img {
+  width: 48px;
+  height: 48px;
+}
 .game-card h3 {
   margin: 0 0 0.3rem;
   font-family: var(--font-display);
