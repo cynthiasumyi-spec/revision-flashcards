@@ -94,7 +94,8 @@ test('notebook and solve page are present, without a missing-person picker', () 
   assert.match(solve, /hidden/);
   assert.doesNotMatch(solve, /id="practice"/);
   assert.doesNotMatch(solve, /A comedy ___/);
-  assert.match(solve, /About what time did the box leave the stall\?/);
+  assert.match(solve, /About what time did the box arrive backstage\?/);
+  assert.doesNotMatch(solve, /leave the stall/);
   assert.match(solve, /id="time-choices"/);
   assert.match(solve, /Who took the box\?/);
   assert.match(solve, /id="who-choices"/);

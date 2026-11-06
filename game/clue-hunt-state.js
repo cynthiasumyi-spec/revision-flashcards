@@ -127,7 +127,7 @@
       answer: "To pick a ticket in secret and win the new bike"
     },
     time: {
-      prompt: "About what time did the box leave the stall?",
+      prompt: "About what time did the box arrive backstage?",
       options: ["About 1:20", "At noon", "At 11:30", "About 2:00"],
       answer: "About 1:20"
     }

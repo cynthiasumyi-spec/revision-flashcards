@@ -122,7 +122,7 @@
         </div>
         <h2 class="hunt-q">Solve the case</h2>
         <div id="solve-time">
-          <span class="solve-label">About what time did the box leave the stall?</span>
+          <span class="solve-label">About what time did the box arrive backstage?</span>
           <div class="choices" id="time-choices"></div>
         </div>
         <div id="solve-who" hidden>
@@ -451,7 +451,7 @@
     document.getElementById("solve-why").hidden = true;
     feedback.hidden = true;
     feedback.textContent = "";
-    setStep("About what time did the box leave the stall?");
+    setStep("About what time did the box arrive backstage?");
     renderCaseGroup(document.getElementById("time-choices"), "time", ClueHunt.CASE.time.options);
     window.scrollTo(0, 0);
     renderCaseGroup(document.getElementById("who-choices"), "who", ClueHunt.CASE.who.options);

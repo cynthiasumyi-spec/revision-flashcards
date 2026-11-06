@@ -147,6 +147,7 @@ test('solve asks who, why, and about 1:20, with no grammar blank', () => {
   assert.equal(ClueHunt.CASE.who.answer, 'Amy');
   assert.deepEqual(ClueHunt.CASE.who.options, ['Amy', 'Sam', 'May', 'Ken']);
   assert.equal(ClueHunt.CASE.why.answer, 'To pick a ticket in secret and win the new bike');
+  assert.equal(ClueHunt.CASE.time.prompt, 'About what time did the box arrive backstage?');
   assert.equal(ClueHunt.CASE.time.answer, 'About 1:20');
   assert.deepEqual(ClueHunt.CASE.time.options, ['About 1:20', 'At noon', 'At 11:30', 'About 2:00']);
   assert.equal(ClueHunt.CASE.where, undefined);
