@@ -29,8 +29,9 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, /href="clue-hunt\.html"/);
   assert.match(hub, />School Mystery</);
   assert.match(hub, /href="\.\.\/index\.html"/);
-  assert.match(hub, /Walk the school fair, fill your notebook/);
-  assert.match(hub, /who took the box, and why/);
+  assert.match(hub, /The raffle prize box went missing at the school fair/);
+  assert.doesNotMatch(hub, /Leo did not come back/);
+  assert.doesNotMatch(hub, /Tickets were/);
   assert.match(hub, /Easy, fun mystery games/);
   assert.match(hub, />Choose a case</);
   assert.doesNotMatch(hub, />Choose a game</);
