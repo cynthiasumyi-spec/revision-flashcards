@@ -104,6 +104,7 @@ test('opening a unit card stores a homepage resume link', () => {
 test('homepage drops the old blurb and the keep-practising footer', () => {
   const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   assert.match(html, /Word of the day/);
+  assert.ok(html.indexOf('id="daily"') < html.indexOf('id="packs"'));
   assert.match(html, /Continue last/);
   assert.match(html, /id="daily-play"/);
   assert.match(html, /Play audio/);

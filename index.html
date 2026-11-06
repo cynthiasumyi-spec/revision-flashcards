@@ -48,6 +48,34 @@
       </div>
     </section>
 
+    <section class="section cta" id="daily" aria-labelledby="daily-title">
+      <div class="daily-card">
+        <div class="daily-word">
+          <p class="daily-kicker">Word of the day <span lang="zh-Hant">今日一字</span></p>
+          <div class="daily-word-row">
+            <img class="daily-img" id="daily-img" alt="" width="112" height="112" hidden />
+            <div>
+              <h2 id="daily-title" class="daily-en"></h2>
+              <p class="daily-zh" id="daily-zh" lang="zh-Hant"></p>
+              <p class="daily-unit" id="daily-unit"></p>
+            </div>
+          </div>
+          <div class="daily-actions">
+            <button type="button" class="btn btn-primary" id="daily-play">
+              <svg class="daily-speaker" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
+              Play audio
+            </button>
+            <a class="btn daily-open" id="daily-open" href="unit1/index.html#c1">Open this card</a>
+          </div>
+        </div>
+        <div class="daily-continue">
+          <p class="daily-kicker">Continue last <span lang="zh-Hant">繼續上次</span></p>
+          <p class="daily-continue-copy" id="daily-continue-copy">No card yet. Start with Unit 1.</p>
+          <a class="btn btn-primary" id="daily-resume" href="unit1/index.html#c1">Start Unit 1</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Simple pack cards grid -->
     <section class="section packs" id="packs" aria-labelledby="packs-title">
       <div class="packs-field">
@@ -159,33 +187,6 @@
       </div>
     </section>
 
-    <section class="section cta" id="daily" aria-labelledby="daily-title">
-      <div class="daily-card">
-        <div class="daily-word">
-          <p class="daily-kicker">Word of the day <span lang="zh-Hant">今日一字</span></p>
-          <div class="daily-word-row">
-            <img class="daily-img" id="daily-img" alt="" width="112" height="112" hidden />
-            <div>
-              <h2 id="daily-title" class="daily-en"></h2>
-              <p class="daily-zh" id="daily-zh" lang="zh-Hant"></p>
-              <p class="daily-unit" id="daily-unit"></p>
-            </div>
-          </div>
-          <div class="daily-actions">
-            <button type="button" class="btn btn-primary" id="daily-play">
-              <svg class="daily-speaker" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
-              Play audio
-            </button>
-            <a class="btn daily-open" id="daily-open" href="unit1/index.html#c1">Open this card</a>
-          </div>
-        </div>
-        <div class="daily-continue">
-          <p class="daily-kicker">Continue last <span lang="zh-Hant">繼續上次</span></p>
-          <p class="daily-continue-copy" id="daily-continue-copy">No card yet. Start with Unit 1.</p>
-          <a class="btn btn-primary" id="daily-resume" href="unit1/index.html#c1">Start Unit 1</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <script>
