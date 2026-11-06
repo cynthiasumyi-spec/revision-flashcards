@@ -42,9 +42,15 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(css, /scroll-snap-type:\s*x mandatory/);
   const cover = css.slice(css.indexOf('.pack-cover {'), css.indexOf('.pack-body'));
   assert.match(cover, /background:\s*color-mix\(in srgb, var\(--sky\) 42%, #fff\)/);
+  assert.match(cover, /object-fit:\s*contain/);
+  assert.doesNotMatch(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
   assert.match(html, /covers\/unit2\.jpg\?v=2/);
-  assert.equal(html.includes('site.css?v=32'), true);
+  assert.equal(html.includes('site.css?v=33'), true);
+  const hear = css.slice(css.indexOf('.how-card.tone-sky .how-art img {'), css.indexOf('.how-card.tone-sky .how-art img {') + 280);
+  assert.match(hear, /height:\s*107%/);
+  assert.match(hear, /object-fit:\s*cover/);
+  assert.match(hear, /object-position:\s*center bottom/);
   assert.match(css, /\.nav-jump[\s\S]*border:\s*0/);
   assert.match(css, /\.nav-jump[\s\S]*box-shadow:\s*none/);
 });
