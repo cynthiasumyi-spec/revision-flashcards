@@ -35,6 +35,7 @@ test('game hub lists Clue Hunt and is not inside Practice', () => {
   assert.match(hub, />Choose a case</);
   assert.doesNotMatch(hub, />Choose a game</);
   assert.match(hub, /class="case-file-kicker">Case file</);
+  assert.match(hub, /class="case-no">Case No\. 001</);
   assert.match(hub, /class="game-card gc-mystery"/);
   assert.doesNotMatch(hub, /Mixed games/);
   assert.match(hub, /illust\/zoom-raffle-box\.png/);

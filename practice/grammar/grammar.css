@@ -205,9 +205,16 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   background: color-mix(in srgb, var(--sunny) 32%, var(--cream));
   color: var(--navy);
 }
+.gc-mystery .case-file-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0 0 0.55rem;
+}
 .gc-mystery .case-file-kicker {
   display: inline-block;
-  margin: 0 0 0.55rem;
+  margin: 0;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
   background: var(--navy);
@@ -217,6 +224,12 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+.gc-mystery .case-no {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--navy);
 }
 .gc-mystery .icon {
   background: color-mix(in srgb, var(--sky) 42%, #fff);
