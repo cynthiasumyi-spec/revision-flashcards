@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=36"/>
-<link rel="stylesheet" href="game.css?v=28"/>
+<link rel="stylesheet" href="game.css?v=29"/>
 </head>
 <body>
 <header class="prac-header">
@@ -23,15 +23,45 @@
         <div class="case-art">
           <img src="../practice/grammar/illust/u1_09_fair.jpg" alt="" width="640" height="480"/>
         </div>
-        <article class="story-card story-card-case">
+        <article class="story-card story-card-case" id="case-report">
           <h2 class="block-label">The case</h2>
-          <div class="case-row">
-            <!-- Magnifying glass: いらすとや https://www.irasutoya.com/2013/03/blog-post_385.html -->
-            <img class="story-icon" src="illust/intro/glass.png" alt="" width="72" height="120"/>
-            <div>
-              <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+          <div class="report-sheet">
+            <div class="report-page">
+              <div class="report-cover">
+                <!-- Report sheet: いらすとや https://www.irasutoya.com/2018/12/blog-post_656.html -->
+                <img src="illust/intro/report.png" alt="" width="120" height="118"/>
+                <div>
+                  <h3>Case file</h3>
+                  <p class="case-lead">School Mystery</p>
+                  <p class="case-lead">The missing raffle box</p>
+                </div>
+              </div>
+            </div>
+            <div class="report-page" hidden>
+              <h3>What happened</h3>
               <p class="case-lead" id="case-lead">Leo was looking after the raffle box at the school charity fair. The box is gone, and Leo has not come back.</p>
             </div>
+            <div class="report-page" hidden>
+              <h3>Your job</h3>
+              <p class="case-lead" id="you-intro">You are a Primary 6 student. You are looking into what happened to the raffle box.</p>
+              <p class="case-lead">Talk to people, and search the fair. Write the clues in your notebook.</p>
+            </div>
+            <div class="report-page" hidden>
+              <h3>A tip</h3>
+              <img class="story-icon" src="illust/intro/glass.png" alt="" width="56" height="92"/>
+              <p class="case-lead">When people talk, listen for the time. Notice jackets and coats. Your notebook will help.</p>
+            </div>
+          </div>
+          <div class="report-nav">
+            <button type="button" id="report-back" disabled>Back</button>
+            <span id="report-count">1 / 4</span>
+            <div class="report-dots" id="report-dots">
+              <button type="button" data-report="0" aria-label="Page 1" aria-current="true"></button>
+              <button type="button" data-report="1" aria-label="Page 2"></button>
+              <button type="button" data-report="2" aria-label="Page 3"></button>
+              <button type="button" data-report="3" aria-label="Page 4"></button>
+            </div>
+            <button type="button" id="report-next">Next</button>
           </div>
         </article>
         <article class="story-card story-card-play">
@@ -43,9 +73,10 @@
             <li><img src="illust/intro/solve.png" alt="" width="54" height="72"/><span>When you have all the notes, tap Solve Case and say who took the box, and why.</span></li>
           </ol>
         </article>
-        <!-- Wooden sign: library blank-wooden-signs/wood_kanban1.png, English painted on the blank. -->
+        <!-- Kid detective: いらすとや https://www.irasutoya.com/2016/09/blog-post_974.html -->
         <button type="button" class="start-look" id="start-map">
-          <img src="illust/intro/start-looking.png" alt="Start looking" width="634" height="475"/>
+          <img src="illust/intro/detective.png" alt="" width="150" height="200"/>
+          <span>Start looking</span>
         </button>
       </section>
       <section id="fair-map" hidden>
@@ -449,6 +480,38 @@
       closeZoom();
       closeAsk();
     }
+  });
+
+  var reportPages = document.querySelectorAll("#case-report .report-page");
+  var reportDots = document.querySelectorAll("#report-dots button");
+  var reportBack = document.getElementById("report-back");
+  var reportNext = document.getElementById("report-next");
+  var reportCount = document.getElementById("report-count");
+  var reportAt = 0;
+
+  function showReport(index) {
+    var last = reportPages.length - 1;
+    if (index < 0) index = 0;
+    if (index > last) index = last;
+    reportAt = index;
+    Array.prototype.forEach.call(reportPages, function (page, i) {
+      page.hidden = i !== index;
+    });
+    Array.prototype.forEach.call(reportDots, function (dot, i) {
+      if (i === index) dot.setAttribute("aria-current", "true");
+      else dot.removeAttribute("aria-current");
+    });
+    reportBack.disabled = index === 0;
+    reportNext.disabled = index === last;
+    reportCount.textContent = (index + 1) + " / " + reportPages.length;
+  }
+
+  reportBack.addEventListener("click", function () { showReport(reportAt - 1); });
+  reportNext.addEventListener("click", function () { showReport(reportAt + 1); });
+  Array.prototype.forEach.call(reportDots, function (dot) {
+    dot.addEventListener("click", function () {
+      showReport(Number(dot.getAttribute("data-report")));
+    });
   });
 
   document.getElementById("start-map").addEventListener("click", showMap);

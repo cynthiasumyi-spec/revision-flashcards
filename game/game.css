@@ -362,8 +362,67 @@
   border: 0;
   border-radius: 28px;
 }
-.story-card-case { background: var(--sky); }
+.story-card-case { background: var(--navy); }
+.story-card-case .block-label { color: var(--cream); }
 .story-card-play { background: var(--sunny); }
+.report-sheet {
+  min-height: 7.6rem;
+  padding: 0.85rem 0.95rem 0.7rem;
+  border: 0;
+  border-radius: 18px;
+  background: #fffaf1;
+  color: var(--navy);
+}
+.report-sheet h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--navy);
+}
+.report-cover {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.report-cover img {
+  width: 4.6rem;
+  height: auto;
+  flex: 0 0 auto;
+}
+.report-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+.report-nav button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--sunny);
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+}
+.report-nav button:disabled {
+  background: color-mix(in srgb, var(--cream) 28%, var(--navy));
+  color: color-mix(in srgb, var(--cream) 72%, transparent);
+}
+#report-count {
+  margin: 0;
+  color: var(--cream);
+  font-weight: 700;
+}
+.report-dots { display: flex; gap: 0.35rem; }
+.report-dots button {
+  width: 0.72rem;
+  height: 0.72rem;
+  padding: 0;
+  background: color-mix(in srgb, var(--cream) 40%, transparent);
+}
+.report-dots button[aria-current="true"] { background: var(--cream); }
 .case-row {
   display: flex;
   align-items: center;
@@ -395,18 +454,26 @@
   flex: 0 0 auto;
 }
 .start-look {
-  display: block;
-  width: min(100%, 17.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: min(100%, 20rem);
   margin: 0.35rem auto 0.2rem;
-  padding: 0;
+  padding: 0.2rem 1.15rem 0.2rem 0.35rem;
   border: 0;
-  background: transparent;
+  border-radius: 999px;
+  background: var(--coral);
   box-shadow: none;
   cursor: pointer;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
 }
 .start-look img {
   display: block;
-  width: 100%;
+  width: 4.6rem;
   height: auto;
 }
 .start-look:focus-visible {

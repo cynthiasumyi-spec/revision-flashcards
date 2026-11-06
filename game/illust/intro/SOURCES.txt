@@ -26,8 +26,19 @@ Page: https://www.irasutoya.com/2017/02/blog-post.html
 Library file: clipboard/clipboard4_check.png
 Repo: game/illust/intro/solve.png
 
-Wooden sign — Start looking tap target. English words are drawn on the blank library sign, not a new illustration.
-Library file: blank-wooden-signs/wood_kanban1.png
-Repo: game/illust/intro/start-looking.png
+Report sheet — case-file accent
+Page: https://www.irasutoya.com/2018/12/blog-post_656.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjRHxBMdljykhTxgTrbDTTemFwvVTVXldzDOlVyBV2WAmkTmIgLL7YJV2gvqpeAPYYqR-HZmXrOYf1dodYSxjkJZ7on0MDdahcZmS2hoH51PWyzVRdIIYs_QvB5U5AB0dbzSbHiyuzGe63Q/s800/document_houkokusyo.png
+Repo: game/illust/intro/report.png
 
-Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy glass.png, map.png, and talk.png into the library at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN (folder name: Clue Hunt - Irasutoya Asset Library, path Bricks Calendar Developing / Clue Hunt - Irasutoya Asset Library). The clipboard and wooden sign are already in that library.
+Kid detective — Start looking tap target. Not the player You portrait.
+Page: https://www.irasutoya.com/2016/09/blog-post_974.html
+Mirror: https://irasutoya.blogspot.com/2016/09/blog-post_974.html
+File: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjD-9HqsF9SDQUtVP1Vy4hCZ3RWpAzhYDtzPh2n15JrbPxFKAjceWxUSoe4ZgfJAWH3Cks3XG7dMmaQb7piwj7x_1-4KNqJXt_JQqMzLxIV7WHHYGVWPyderxl1TP1EnLOShjnIZZLCYmzC/s800/tantei_boy.png
+Repo: game/illust/intro/detective.png
+
+Drive mirror: this VM cannot upload to Wu's Drive. Grok Bot or Wu should copy these new files into the library at https://drive.google.com/drive/folders/1DcRpsm74eklw_ces2NqQd_dp5xcU2KwN (folder name: Clue Hunt - Irasutoya Asset Library, path Bricks Calendar Developing / Clue Hunt - Irasutoya Asset Library):
+- report.png (document_houkokusyo.png)
+- detective.png (tantei_boy.png)
+- glass.png, map.png, and talk.png if they are not there yet
+The clipboard files are already in that library. The wooden start sign is no longer used.
