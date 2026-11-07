@@ -167,6 +167,8 @@ body.device-huawei .face {
 .pack-btn.tone-u2 { border-left: 5px solid var(--green); }
 .pack-btn.tone-u3 { border-left: 5px solid var(--sky); }
 .pack-btn.tone-u4 { border-left: 5px solid var(--sunny); }
+.pack-btn.tone-u5 { border-left: 5px solid var(--coral); }
+.pack-btn.tone-u6 { border-left: 5px solid var(--pink); }
 .pack-btn.tone-d3 { border-left: 5px solid var(--pink); }
 
 .home-foot {

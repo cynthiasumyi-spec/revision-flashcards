@@ -60,7 +60,7 @@ window.HomeToday = (function () {
       if (!raw) return null;
       var data = JSON.parse(raw);
       if (!data || typeof data.href !== 'string' || typeof data.en !== 'string') return null;
-      if (!/^(unit[1-4]|dictation3)\/index\.html#c[1-9]\d*$/.test(data.href)) return null;
+      if (!/^(unit[1-6]|dictation3)\/index\.html#c[1-9]\d*$/.test(data.href)) return null;
       return data;
     } catch (e) {
       return null;
