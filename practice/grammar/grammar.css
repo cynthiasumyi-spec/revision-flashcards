@@ -228,17 +228,18 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .gc-mystery .case-stamp {
   position: absolute;
-  right: 0.2rem;
-  bottom: 0.28rem;
+  /* Blank paper under the photo, above Case No. Covers the sheet; do not reflow the fields. */
+  top: 3.15rem;
+  right: -0.2rem;
   left: auto;
-  top: auto;
-  width: 9.1rem;
+  bottom: auto;
+  width: 11rem;
   height: auto;
   margin: 0;
   transform: rotate(-12deg);
-  transform-origin: right center;
+  transform-origin: center center;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 .gc-mystery .case-page-top {
   display: flex;
@@ -293,9 +294,6 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   margin: 0 0 0.4rem;
 }
 .gc-mystery .case-box.case-incident {
-  position: relative;
-  min-height: 3.6rem;
-  padding: 0.28rem 9.6rem 0.45rem 0.4rem;
   margin-bottom: 0.1rem;
 }
 .gc-mystery .case-label {
@@ -320,8 +318,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 @media (max-width: 640px) {
   .gc-mystery .case-box p,
   .gc-mystery .case-no { font-size: 0.95rem; }
-  .gc-mystery .case-stamp { width: 8rem; right: 0.1rem; bottom: 0.1rem; }
-  .gc-mystery .case-box.case-incident { padding-right: 8.4rem; min-height: 4.2rem; }
+  .gc-mystery .case-stamp { width: 9.4rem; top: 2.85rem; right: -0.45rem; }
   .gc-mystery .case-page { padding: 0.55rem 0.55rem 0.5rem; }
 }
 .game-card h3 {

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=46"/>
-<link rel="stylesheet" href="game.css?v=36"/>
+<link rel="stylesheet" href="game.css?v=37"/>
 </head>
 <body>
 <header class="prac-header">
@@ -75,7 +75,8 @@
         <h2 class="hunt-q">School fair</h2>
         <div class="fair-map">
           <!-- Door plates: いらすとや https://www.irasutoya.com/2014/12/blog-post_13.html room15 blank, English names. -->
-          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=4" alt="School floor plan" width="1152" height="864"/>
+          <!-- Flat irasutoya-style floor plan. No single irasutoya map showed these six rooms. -->
+          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=5" alt="School floor plan" width="1152" height="864"/>
           <button type="button" class="hotspot pin-stall" data-hotspot="stall"><span>Charity stall</span></button>
           <button type="button" class="hotspot pin-wheel" data-hotspot="wheel"><span>Prize wheel</span></button>
           <button type="button" class="hotspot pin-film" data-hotspot="film"><span>Film club</span></button>
@@ -247,6 +248,19 @@
     renderNotebook();
   }
 
+  function speechBubbleIcon() {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 64 64");
+    svg.setAttribute("width", "22");
+    svg.setAttribute("height", "22");
+    svg.setAttribute("aria-hidden", "true");
+    var bubble = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    bubble.setAttribute("fill", "currentColor");
+    bubble.setAttribute("d", "M14 12h32c6.2 0 10 4.2 10 10v14c0 5.8-3.8 10-10 10H30l-12 12V46h-4c-6.2 0-10-4.2-10-10V22c0-5.8 3.8-10 10-10z");
+    svg.appendChild(bubble);
+    return svg;
+  }
+
   function magnifierIcon() {
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 64 64");
@@ -293,6 +307,8 @@
 
   function openAsk(hotspot, items) {
     closeZoom();
+    var speaker = ClueHunt.personById(ClueHunt.speakerId(hotspot.id));
+    var askLabel = "Ask " + (speaker ? speaker.name : "a classmate");
     askTitle.textContent = hotspot.name;
     askThread.innerHTML = "";
     askPop.hidden = false;
@@ -319,7 +335,16 @@
       askThread.appendChild(btn);
       btn.focus();
     }
-    askNext();
+    var start = document.createElement("button");
+    start.type = "button";
+    start.className = "choice talk-next";
+    start.textContent = askLabel;
+    start.addEventListener("click", function () {
+      start.remove();
+      askNext();
+    });
+    askThread.appendChild(start);
+    start.focus();
   }
 
   function renderActions(hotspot) {
@@ -334,8 +359,9 @@
       var mark = document.createElement("button");
       mark.type = "button";
       mark.className = "scene-spot scene-ask";
-      mark.textContent = "?";
-      mark.setAttribute("aria-label", "Ask a question");
+      mark.appendChild(speechBubbleIcon());
+      var speaker = ClueHunt.personById(ClueHunt.speakerId(hotspot.id));
+      mark.setAttribute("aria-label", speaker ? "Ask " + speaker.name : "Talk");
       mark.style.left = hotspot.mark.x;
       mark.style.top = hotspot.mark.y;
       mark.addEventListener("click", function () { openAsk(hotspot, items); });

@@ -586,9 +586,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   object-position: center;
   background: color-mix(in srgb, var(--sky) 42%, #fff);
 }
+/* Hear it is the size reference: See it and Read it use the same square art, so the text cells match. */
 .how-card.tone-sunny .how-art,
 .how-card.tone-pink .how-art {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1;
 }
 .how-card.tone-sunny .how-art img,
 .how-card.tone-pink .how-art img {

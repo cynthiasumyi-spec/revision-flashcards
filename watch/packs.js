@@ -58,7 +58,7 @@ window.WATCH_PACKS = {
         "zh": "捐錢",
         "pos": "動詞短語 v.",
         "audio": "../unit1/audio/audio_06.mp3",
-        "img": "../unit1/thumb_06.png"
+        "img": "../unit1/thumb_06.png?v=3"
       },
       {
         "n": 7,

@@ -41,7 +41,7 @@ let activeCard = null;
 function openLightbox(card, article) {
   if (window.LastPlace) LastPlace.save(card);
   activeCard = { card, article };
-  lbImg.src = card.img + "?v=2";
+  lbImg.src = card.img + "?v=3";
   lbImg.alt = card.en;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -94,7 +94,7 @@ CARDS.forEach(card => {
     const wrap = document.createElement('div');
     wrap.className = 'illust';
     const img = document.createElement('img');
-    img.src = card.img + "?v=2"; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
+    img.src = card.img + "?v=3"; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
     wrap.appendChild(img);
     wrap.setAttribute('role', 'button');
     wrap.setAttribute('tabindex', '0');

@@ -45,8 +45,10 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
   assert.match(html, /covers\/unit2\.jpg\?v=2/);
-  assert.equal(html.includes('site.css?v=36'), true);
-  assert.match(css, /\.how-card\.tone-sunny \.how-art,\s*\.how-card\.tone-pink \.how-art \{[^}]*aspect-ratio:\s*4 \/ 3/);
+  assert.equal(html.includes('site.css?v=37'), true);
+  assert.doesNotMatch(html, /<span class="tag">Unit \d/);
+  assert.match(html, /<span class="tag nums">10 words<\/span>/);
+  assert.match(css, /\.how-card\.tone-sunny \.how-art,\s*\.how-card\.tone-pink \.how-art \{[^}]*aspect-ratio:\s*1/);
   assert.match(css, /\.how-card\.tone-sunny \.how-art img,\s*\.how-card\.tone-pink \.how-art img \{[^}]*object-fit:\s*cover/);
   assert.match(css, /\.daily-img \{[^}]*object-fit:\s*cover/);
   assert.match(css, /\.daily-img \{[^}]*background:\s*#fffaf1/);
