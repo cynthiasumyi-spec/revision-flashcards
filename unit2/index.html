@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../assets/unit.css?v=7"/>
+<link rel="stylesheet" href="../assets/unit.css?v=8"/>
 </head>
 <body class="theme-unit2">
 <header class="unit-header">
@@ -41,7 +41,7 @@ let activeCard = null;
 function openLightbox(card, article) {
   if (window.LastPlace) LastPlace.save(card);
   activeCard = { card, article };
-  lbImg.src = card.img + "?v=2";
+  lbImg.src = card.img + "?v=3";
   lbImg.alt = card.en;
   lightbox.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -92,9 +92,9 @@ CARDS.forEach(card => {
 
   if (card.img) {
     const wrap = document.createElement('div');
-    wrap.className = 'illust';
+    wrap.className = 'illust' + ({'thumb_01.png':1,'thumb_03.png':1,'thumb_04.png':1,'thumb_07.png':1,'thumb_08.png':1,'thumb_10.png':1}[card.img] ? ' cutout' : '');
     const img = document.createElement('img');
-    img.src = card.img + "?v=2"; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
+    img.src = card.img + "?v=3"; img.alt = card.en; img.loading = 'lazy'; img.decoding = 'async';
     wrap.appendChild(img);
     wrap.setAttribute('role', 'button');
     wrap.setAttribute('tabindex', '0');

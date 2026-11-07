@@ -210,7 +210,7 @@ button { font: inherit; cursor: pointer; }
   cursor: pointer;
 }
 .illust img {
-  /* Absolute box matches the frame, so contain letterboxes instead of letting a square drawing overflow and get clipped. */
+  /* The picture is locked to the frame. Scenes cover it; cutouts contain the whole drawing on white. */
   position: absolute;
   inset: 0;
   display: block;
@@ -218,10 +218,17 @@ button { font: inherit; cursor: pointer; }
   height: 100%;
   max-width: none;
   max-height: none;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  background: #fff;
+  background: transparent;
   border: 0;
+}
+.illust.cutout {
+  background: #fff;
+}
+.illust.cutout img {
+  object-fit: contain;
+  background: #fff;
 }
 .main .num {
   display: inline-block;

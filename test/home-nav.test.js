@@ -58,9 +58,9 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(unitIllust, /background:\s*#fff/);
   assert.match(unitIllust, /position:\s*absolute/);
   assert.match(unitIllust, /inset:\s*0/);
-  assert.match(unitIllust, /object-fit:\s*contain/);
+  assert.match(unitIllust, /\.illust img \{[^}]*object-fit:\s*cover/);
+  assert.match(unitIllust, /\.illust\.cutout img \{[^}]*object-fit:\s*contain/);
   assert.match(unitIllust, /border:\s*0/);
-  assert.doesNotMatch(unitIllust, /object-fit:\s*cover/);
   assert.doesNotMatch(unitIllust, /#000|black/);
   assert.match(css, /\.pack-card \{[^}]*flex:\s*0 0 min\(26rem, 70%\)/);
   assert.match(css, /aspect-ratio:\s*1/);
