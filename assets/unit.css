@@ -203,18 +203,22 @@ button { font: inherit; cursor: pointer; }
   overflow: hidden;
   width: 100%;
   height: auto;
-  aspect-ratio: auto;
-  background: transparent;
+  aspect-ratio: 4 / 3;
+  background: #fff;
+  border: 0;
+  box-shadow: none;
   cursor: pointer;
 }
 .illust img {
   position: static;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: none;
-  object-fit: contain;
-  background: transparent;
+  object-fit: cover;
+  object-position: center;
+  background: #fff;
+  border: 0;
 }
 .main .num {
   display: inline-block;
@@ -288,7 +292,7 @@ button { font: inherit; cursor: pointer; }
   max-height: 70vh;
   object-fit: contain;
   border-radius: var(--radius);
-  background: var(--cream);
+  background: #fff;
 }
 .lb-bar { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
 .lb-btn {

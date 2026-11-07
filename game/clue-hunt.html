@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../practice/grammar/grammar.css?v=46"/>
-<link rel="stylesheet" href="game.css?v=37"/>
+<link rel="stylesheet" href="game.css?v=38"/>
 </head>
 <body>
 <header class="prac-header">
@@ -74,9 +74,8 @@
       <section id="fair-map" hidden>
         <h2 class="hunt-q">School fair</h2>
         <div class="fair-map">
-          <!-- Door plates: いらすとや https://www.irasutoya.com/2014/12/blog-post_13.html room15 blank, English names. -->
-          <!-- Flat irasutoya-style floor plan. No single irasutoya map showed these six rooms. -->
-          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=5" alt="School floor plan" width="1152" height="864"/>
+          <!-- Rooms keep the irasutoya scenes; walls, corridors, and doors make the floor plan. -->
+          <img class="fair-map-base" src="illust/map-school-doorplates.png?v=6" alt="School floor plan" width="1152" height="864"/>
           <button type="button" class="hotspot pin-stall" data-hotspot="stall"><span>Charity stall</span></button>
           <button type="button" class="hotspot pin-wheel" data-hotspot="wheel"><span>Prize wheel</span></button>
           <button type="button" class="hotspot pin-film" data-hotspot="film"><span>Film club</span></button>
@@ -256,7 +255,7 @@
     svg.setAttribute("aria-hidden", "true");
     var bubble = document.createElementNS("http://www.w3.org/2000/svg", "path");
     bubble.setAttribute("fill", "currentColor");
-    bubble.setAttribute("d", "M14 12h32c6.2 0 10 4.2 10 10v14c0 5.8-3.8 10-10 10H30l-12 12V46h-4c-6.2 0-10-4.2-10-10V22c0-5.8 3.8-10 10-10z");
+    bubble.setAttribute("d", "M25.7 12.4 L17.9 13.8 L11.6 16.6 L7.6 20.2 L5 27.4 L5 35.9 L6.6 39.5 L8.7 42.4 L10.7 43.8 L17.3 45.9 L26.4 47.4 L21 51.6 L25.6 51.6 L29.1 50.2 L30.9 48.8 L41.1 48.1 L48.4 45.2 L52 43.1 L56.1 39.5 L58.3 35.9 L59 33.8 L59 26.6 L56.3 21.6 L54.4 19.5 L42 13.8 L39.7 13.1 L31.7 12.4 Z");
     svg.appendChild(bubble);
     return svg;
   }

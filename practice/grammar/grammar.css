@@ -228,15 +228,15 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .gc-mystery .case-stamp {
   position: absolute;
-  /* Blank paper under the photo, above Case No. Covers the sheet; do not reflow the fields. */
-  top: 3.15rem;
-  right: -0.2rem;
-  left: auto;
+  /* Center of the blank header oval above Case No., left of the raffle photo. */
+  left: 53%;
+  top: 16.7%;
+  right: auto;
   bottom: auto;
-  width: 11rem;
+  width: 46%;
   height: auto;
   margin: 0;
-  transform: rotate(-12deg);
+  transform: translate(-50%, -50%) rotate(-12deg);
   transform-origin: center center;
   pointer-events: none;
   z-index: 3;
@@ -318,7 +318,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 @media (max-width: 640px) {
   .gc-mystery .case-box p,
   .gc-mystery .case-no { font-size: 0.95rem; }
-  .gc-mystery .case-stamp { width: 9.4rem; top: 2.85rem; right: -0.45rem; }
+  .gc-mystery .case-stamp { width: 46%; left: 53%; top: 16.7%; right: auto; }
   .gc-mystery .case-page { padding: 0.55rem 0.55rem 0.5rem; }
 }
 .game-card h3 {

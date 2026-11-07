@@ -93,12 +93,12 @@
   color: transparent;
   pointer-events: none;
 }
-.pin-stall { left: 1.5%; top: 2%; width: 30.5%; height: 45%; }
-.pin-wheel { left: 1.5%; top: 49%; width: 31%; height: 49%; }
-.pin-film { left: 67%; top: 2%; width: 31.5%; height: 45%; }
-.pin-hall { left: 32.5%; top: 1.5%; width: 32%; height: 54.5%; }
-.pin-desk { left: 64.5%; top: 49%; width: 34%; height: 49%; }
-.pin-store { left: 33.5%; top: 56.5%; width: 30.5%; height: 41.5%; }
+.pin-stall { left: 5.56%; top: 5.56%; width: 21.53%; height: 34.17%; }
+.pin-wheel { left: 5.56%; top: 49.77%; width: 25.35%; height: 44.23%; }
+.pin-film { left: 75.35%; top: 5.56%; width: 19.44%; height: 30.50%; }
+.pin-hall { left: 35.76%; top: 5.09%; width: 30.56%; height: 47.40%; }
+.pin-desk { left: 70.49%; top: 46.30%; width: 23.26%; height: 41.49%; }
+.pin-store { left: 38.89%; top: 59.26%; width: 18.23%; height: 31.36%; }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {
@@ -145,12 +145,14 @@
 }
 .scene-spot svg { display: block; }
 .scene-ask {
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: #fff;
+  color: #243c6c;
 }
 .scene-ask svg {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 1.6rem;
+  height: 1.6rem;
   display: block;
 }
 .ask-thread {

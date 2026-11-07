@@ -44,7 +44,7 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(cover, /background:\s*#fffaf1/);
   assert.match(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
-  assert.match(html, /covers\/unit2\.jpg\?v=2/);
+  assert.match(html, /covers\/unit2\.jpg\?v=3/);
   assert.equal(html.includes('site.css?v=37'), true);
   assert.doesNotMatch(html, /<span class="tag">Unit \d/);
   assert.match(html, /<span class="tag nums">10 words<\/span>/);
@@ -54,10 +54,11 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(css, /\.daily-img \{[^}]*background:\s*#fffaf1/);
   const unitCss = fs.readFileSync(path.join(root, 'assets/unit.css'), 'utf8');
   const unitIllust = unitCss.slice(unitCss.indexOf('.illust {'), unitCss.indexOf('.main .num'));
-  assert.match(unitIllust, /object-fit:\s*contain/);
-  assert.doesNotMatch(unitIllust, /object-fit:\s*cover/);
-  assert.match(unitIllust, /aspect-ratio:\s*auto/);
-  assert.match(unitIllust, /background:\s*transparent/);
+  assert.match(unitIllust, /aspect-ratio:\s*4 \/ 3/);
+  assert.match(unitIllust, /background:\s*#fff/);
+  assert.match(unitIllust, /object-fit:\s*cover/);
+  assert.match(unitIllust, /border:\s*0/);
+  assert.doesNotMatch(unitIllust, /object-fit:\s*contain/);
   assert.doesNotMatch(unitIllust, /#000|black/);
   assert.match(css, /\.pack-card \{[^}]*flex:\s*0 0 min\(26rem, 70%\)/);
   assert.match(css, /aspect-ratio:\s*1/);
