@@ -37,7 +37,7 @@ test('word of the day stays on the same word for one calendar day', () => {
   assert.equal(first.href, second.href);
   assert.equal(H.dateKey(day), '2026-10-24');
   assert.ok(first.zh);
-  assert.match(first.audio, /^(unit[1-6]|dictation3)\/audio\/audio_\d+\.mp3$/);
+  assert.match(first.audio, /^(unit[1-6]|dictation3)\/audio\/audio_\d+\.mp3(\?v=\d+)?$/);
   assert.equal(first.audio.startsWith('../'), false);
 });
 

@@ -1,273 +1,273 @@
 /**
- * Unit 5 · The land of kangaroos — practice data
+ * Unit 5 · The Land of Kangaroos — practice data
  * Vocab + grammar from unit5/index.html CARDS
  */
 window.PRACTICE_UNIT5 = {
   "id": "unit5",
-  "title": "Unit 5 · The land of kangaroos",
+  "title": "Unit 5 · The Land of Kangaroos",
   "words": [
     {
       "key": "unit5:snowboard",
       "en": "go snowboarding",
       "zh": "去滑雪板",
-      "audio": "../unit5/audio/audio_01.mp3",
-      "img": "../unit5/thumb_01.png",
+      "audio": "../unit5/audio/audio_01.mp3?v=2",
+      "img": "../unit5/thumb_01.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:guided",
       "en": "go on a guided tour",
       "zh": "參加導賞團",
-      "audio": "../unit5/audio/audio_02.mp3",
-      "img": "../unit5/thumb_02.png",
+      "audio": "../unit5/audio/audio_02.mp3?v=2",
+      "img": "../unit5/thumb_02.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:sightseeing",
       "en": "go sightseeing",
       "zh": "去觀光",
-      "audio": "../unit5/audio/audio_03.mp3",
-      "img": "../unit5/thumb_03.png",
+      "audio": "../unit5/audio/audio_03.mp3?v=2",
+      "img": "../unit5/thumb_03.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:zoo",
       "en": "visit a zoo",
       "zh": "參觀動物園",
-      "audio": "../unit5/audio/audio_04.mp3",
-      "img": "../unit5/thumb_04.png",
+      "audio": "../unit5/audio/audio_04.mp3?v=2",
+      "img": "../unit5/thumb_04.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:banana",
       "en": "ride on a banana boat",
       "zh": "坐香蕉船",
-      "audio": "../unit5/audio/audio_05.mp3",
-      "img": "../unit5/thumb_05.png",
+      "audio": "../unit5/audio/audio_05.mp3?v=2",
+      "img": "../unit5/thumb_05.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:palace",
       "en": "visit a palace",
       "zh": "參觀宮殿",
-      "audio": "../unit5/audio/audio_06.mp3",
-      "img": "../unit5/thumb_06.jpg",
+      "audio": "../unit5/audio/audio_06.mp3?v=2",
+      "img": "../unit5/thumb_06.jpg?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:skiing",
       "en": "go skiing",
       "zh": "去滑雪",
-      "audio": "../unit5/audio/audio_07.mp3",
-      "img": "../unit5/thumb_07.png",
+      "audio": "../unit5/audio/audio_07.mp3?v=2",
+      "img": "../unit5/thumb_07.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:theme",
       "en": "visit a theme park",
       "zh": "參觀主題樂園",
-      "audio": "../unit5/audio/audio_08.mp3",
-      "img": "../unit5/thumb_08.png",
+      "audio": "../unit5/audio/audio_08.mp3?v=2",
+      "img": "../unit5/thumb_08.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:kangaroo",
       "en": "feed a kangaroo",
       "zh": "餵袋鼠",
-      "audio": "../unit5/audio/audio_09.mp3",
-      "img": "../unit5/thumb_09.png",
+      "audio": "../unit5/audio/audio_09.mp3?v=2",
+      "img": "../unit5/thumb_09.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:rainforest",
       "en": "go into a rainforest",
       "zh": "進入雨林",
-      "audio": "../unit5/audio/audio_10.mp3",
-      "img": "../unit5/thumb_10.jpg",
+      "audio": "../unit5/audio/audio_10.mp3?v=2",
+      "img": "../unit5/thumb_10.jpg?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:cruise",
       "en": "go on a cruise",
       "zh": "坐郵輪／遊輪旅行",
-      "audio": "../unit5/audio/audio_11.mp3",
-      "img": "../unit5/thumb_11.jpg",
+      "audio": "../unit5/audio/audio_11.mp3?v=2",
+      "img": "../unit5/thumb_11.jpg?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:scuba",
       "en": "go scuba-diving",
       "zh": "去水肺潛水",
-      "audio": "../unit5/audio/audio_12.mp3",
-      "img": "../unit5/thumb_12.jpg",
+      "audio": "../unit5/audio/audio_12.mp3?v=2",
+      "img": "../unit5/thumb_12.jpg?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:snorkel",
       "en": "go snorkelling",
       "zh": "去浮潛",
-      "audio": "../unit5/audio/audio_13.mp3",
-      "img": "../unit5/thumb_13.png",
+      "audio": "../unit5/audio/audio_13.mp3?v=2",
+      "img": "../unit5/thumb_13.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:surfing",
       "en": "go surfing",
       "zh": "去衝浪",
-      "audio": "../unit5/audio/audio_14.mp3",
-      "img": "../unit5/thumb_14.png",
+      "audio": "../unit5/audio/audio_14.mp3?v=2",
+      "img": "../unit5/thumb_14.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:safari",
       "en": "visit a safari park",
       "zh": "參觀野生動物園",
-      "audio": "../unit5/audio/audio_15.mp3",
-      "img": "../unit5/thumb_15.png",
+      "audio": "../unit5/audio/audio_15.mp3?v=2",
+      "img": "../unit5/thumb_15.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:aquarium",
       "en": "visit an aquarium",
       "zh": "參觀水族館",
-      "audio": "../unit5/audio/audio_16.mp3",
-      "img": "../unit5/thumb_16.png",
+      "audio": "../unit5/audio/audio_16.mp3?v=2",
+      "img": "../unit5/thumb_16.png?v=2",
       "form": "phrasal verb"
     },
     {
       "key": "unit5:afraid",
       "en": "afraid of",
       "zh": "害怕……",
-      "audio": "../unit5/audio/audio_17.mp3",
-      "img": "../unit5/thumb_17.png",
+      "audio": "../unit5/audio/audio_17.mp3?v=2",
+      "img": "../unit5/thumb_17.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:fond",
       "en": "fond of",
       "zh": "喜愛……",
-      "audio": "../unit5/audio/audio_18.mp3",
-      "img": "../unit5/thumb_18.png",
+      "audio": "../unit5/audio/audio_18.mp3?v=2",
+      "img": "../unit5/thumb_18.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:full",
       "en": "full of",
       "zh": "充滿……",
-      "audio": "../unit5/audio/audio_19.mp3",
-      "img": "../unit5/thumb_19.png",
+      "audio": "../unit5/audio/audio_19.mp3?v=2",
+      "img": "../unit5/thumb_19.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:angry",
       "en": "angry with",
       "zh": "對……生氣",
-      "audio": "../unit5/audio/audio_20.mp3",
-      "img": "../unit5/thumb_20.png",
+      "audio": "../unit5/audio/audio_20.mp3?v=2",
+      "img": "../unit5/thumb_20.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:bored",
       "en": "bored with",
       "zh": "對……感到無聊",
-      "audio": "../unit5/audio/audio_21.mp3",
-      "img": "../unit5/thumb_21.png",
+      "audio": "../unit5/audio/audio_21.mp3?v=2",
+      "img": "../unit5/thumb_21.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:pleased",
       "en": "pleased with",
       "zh": "對……滿意",
-      "audio": "../unit5/audio/audio_22.mp3",
-      "img": "../unit5/thumb_22.png",
+      "audio": "../unit5/audio/audio_22.mp3?v=2",
+      "img": "../unit5/thumb_22.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:popular",
       "en": "popular with",
       "zh": "受……歡迎",
-      "audio": "../unit5/audio/audio_23.mp3",
-      "img": "../unit5/thumb_23.png",
+      "audio": "../unit5/audio/audio_23.mp3?v=2",
+      "img": "../unit5/thumb_23.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:crazy",
       "en": "crazy about",
       "zh": "對……痴迷",
-      "audio": "../unit5/audio/audio_24.mp3",
-      "img": "../unit5/thumb_24.png",
+      "audio": "../unit5/audio/audio_24.mp3?v=2",
+      "img": "../unit5/thumb_24.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:excited",
       "en": "excited about",
       "zh": "對……感到興奮",
-      "audio": "../unit5/audio/audio_25.mp3",
-      "img": "../unit5/thumb_25.png",
+      "audio": "../unit5/audio/audio_25.mp3?v=2",
+      "img": "../unit5/thumb_25.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:happy",
       "en": "happy about",
       "zh": "對……感到高興",
-      "audio": "../unit5/audio/audio_26.mp3",
-      "img": "../unit5/thumb_26.png",
+      "audio": "../unit5/audio/audio_26.mp3?v=2",
+      "img": "../unit5/thumb_26.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:worried",
       "en": "worried about",
       "zh": "擔心……",
-      "audio": "../unit5/audio/audio_27.mp3",
-      "img": "../unit5/thumb_27.png",
+      "audio": "../unit5/audio/audio_27.mp3?v=2",
+      "img": "../unit5/thumb_27.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:bad",
       "en": "bad for",
       "zh": "對……有害",
-      "audio": "../unit5/audio/audio_28.mp3",
-      "img": "../unit5/thumb_28.png",
+      "audio": "../unit5/audio/audio_28.mp3?v=2",
+      "img": "../unit5/thumb_28.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:famous",
       "en": "famous for",
       "zh": "以……聞名",
-      "audio": "../unit5/audio/audio_29.mp3",
-      "img": "../unit5/thumb_29.jpg",
+      "audio": "../unit5/audio/audio_29.mp3?v=2",
+      "img": "../unit5/thumb_29.jpg?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:good",
       "en": "good for",
       "zh": "對……有益",
-      "audio": "../unit5/audio/audio_30.mp3",
-      "img": "../unit5/thumb_30.png",
+      "audio": "../unit5/audio/audio_30.mp3?v=2",
+      "img": "../unit5/thumb_30.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:interested",
       "en": "interested in",
       "zh": "對……感興趣",
-      "audio": "../unit5/audio/audio_31.mp3",
-      "img": "../unit5/thumb_31.png",
+      "audio": "../unit5/audio/audio_31.mp3?v=2",
+      "img": "../unit5/thumb_31.png?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:successful",
       "en": "successful in",
       "zh": "在……方面成功",
-      "audio": "../unit5/audio/audio_32.mp3",
-      "img": "../unit5/thumb_32.jpg",
+      "audio": "../unit5/audio/audio_32.mp3?v=2",
+      "img": "../unit5/thumb_32.jpg?v=2",
       "form": "adj. + prep."
     },
     {
       "key": "unit5:where",
       "en": "where",
       "zh": "為地方加資料",
-      "audio": "../unit5/audio/audio_33.mp3",
-      "img": "../unit5/thumb_33.png"
+      "audio": "../unit5/audio/audio_33.mp3?v=2",
+      "img": "../unit5/thumb_33.png?v=2"
     }
   ],
   "fillIn": [
@@ -1203,199 +1203,199 @@ window.PRACTICE_UNIT5 = {
       "id": "u5-m1",
       "wordKey": "unit5:snowboard",
       "word": "go snowboarding",
-      "audio": "../unit5/audio/audio_01.mp3"
+      "audio": "../unit5/audio/audio_01.mp3?v=2"
     },
     {
       "id": "u5-m2",
       "wordKey": "unit5:guided",
       "word": "go on a guided tour",
-      "audio": "../unit5/audio/audio_02.mp3"
+      "audio": "../unit5/audio/audio_02.mp3?v=2"
     },
     {
       "id": "u5-m3",
       "wordKey": "unit5:sightseeing",
       "word": "go sightseeing",
-      "audio": "../unit5/audio/audio_03.mp3"
+      "audio": "../unit5/audio/audio_03.mp3?v=2"
     },
     {
       "id": "u5-m4",
       "wordKey": "unit5:zoo",
       "word": "visit a zoo",
-      "audio": "../unit5/audio/audio_04.mp3"
+      "audio": "../unit5/audio/audio_04.mp3?v=2"
     },
     {
       "id": "u5-m5",
       "wordKey": "unit5:banana",
       "word": "ride on a banana boat",
-      "audio": "../unit5/audio/audio_05.mp3"
+      "audio": "../unit5/audio/audio_05.mp3?v=2"
     },
     {
       "id": "u5-m6",
       "wordKey": "unit5:palace",
       "word": "visit a palace",
-      "audio": "../unit5/audio/audio_06.mp3"
+      "audio": "../unit5/audio/audio_06.mp3?v=2"
     },
     {
       "id": "u5-m7",
       "wordKey": "unit5:skiing",
       "word": "go skiing",
-      "audio": "../unit5/audio/audio_07.mp3"
+      "audio": "../unit5/audio/audio_07.mp3?v=2"
     },
     {
       "id": "u5-m8",
       "wordKey": "unit5:theme",
       "word": "visit a theme park",
-      "audio": "../unit5/audio/audio_08.mp3"
+      "audio": "../unit5/audio/audio_08.mp3?v=2"
     },
     {
       "id": "u5-m9",
       "wordKey": "unit5:kangaroo",
       "word": "feed a kangaroo",
-      "audio": "../unit5/audio/audio_09.mp3"
+      "audio": "../unit5/audio/audio_09.mp3?v=2"
     },
     {
       "id": "u5-m10",
       "wordKey": "unit5:rainforest",
       "word": "go into a rainforest",
-      "audio": "../unit5/audio/audio_10.mp3"
+      "audio": "../unit5/audio/audio_10.mp3?v=2"
     },
     {
       "id": "u5-m11",
       "wordKey": "unit5:cruise",
       "word": "go on a cruise",
-      "audio": "../unit5/audio/audio_11.mp3"
+      "audio": "../unit5/audio/audio_11.mp3?v=2"
     },
     {
       "id": "u5-m12",
       "wordKey": "unit5:scuba",
       "word": "go scuba-diving",
-      "audio": "../unit5/audio/audio_12.mp3"
+      "audio": "../unit5/audio/audio_12.mp3?v=2"
     },
     {
       "id": "u5-m13",
       "wordKey": "unit5:snorkel",
       "word": "go snorkelling",
-      "audio": "../unit5/audio/audio_13.mp3"
+      "audio": "../unit5/audio/audio_13.mp3?v=2"
     },
     {
       "id": "u5-m14",
       "wordKey": "unit5:surfing",
       "word": "go surfing",
-      "audio": "../unit5/audio/audio_14.mp3"
+      "audio": "../unit5/audio/audio_14.mp3?v=2"
     },
     {
       "id": "u5-m15",
       "wordKey": "unit5:safari",
       "word": "visit a safari park",
-      "audio": "../unit5/audio/audio_15.mp3"
+      "audio": "../unit5/audio/audio_15.mp3?v=2"
     },
     {
       "id": "u5-m16",
       "wordKey": "unit5:aquarium",
       "word": "visit an aquarium",
-      "audio": "../unit5/audio/audio_16.mp3"
+      "audio": "../unit5/audio/audio_16.mp3?v=2"
     },
     {
       "id": "u5-m17",
       "wordKey": "unit5:afraid",
       "word": "afraid of",
-      "audio": "../unit5/audio/audio_17.mp3"
+      "audio": "../unit5/audio/audio_17.mp3?v=2"
     },
     {
       "id": "u5-m18",
       "wordKey": "unit5:fond",
       "word": "fond of",
-      "audio": "../unit5/audio/audio_18.mp3"
+      "audio": "../unit5/audio/audio_18.mp3?v=2"
     },
     {
       "id": "u5-m19",
       "wordKey": "unit5:full",
       "word": "full of",
-      "audio": "../unit5/audio/audio_19.mp3"
+      "audio": "../unit5/audio/audio_19.mp3?v=2"
     },
     {
       "id": "u5-m20",
       "wordKey": "unit5:angry",
       "word": "angry with",
-      "audio": "../unit5/audio/audio_20.mp3"
+      "audio": "../unit5/audio/audio_20.mp3?v=2"
     },
     {
       "id": "u5-m21",
       "wordKey": "unit5:bored",
       "word": "bored with",
-      "audio": "../unit5/audio/audio_21.mp3"
+      "audio": "../unit5/audio/audio_21.mp3?v=2"
     },
     {
       "id": "u5-m22",
       "wordKey": "unit5:pleased",
       "word": "pleased with",
-      "audio": "../unit5/audio/audio_22.mp3"
+      "audio": "../unit5/audio/audio_22.mp3?v=2"
     },
     {
       "id": "u5-m23",
       "wordKey": "unit5:popular",
       "word": "popular with",
-      "audio": "../unit5/audio/audio_23.mp3"
+      "audio": "../unit5/audio/audio_23.mp3?v=2"
     },
     {
       "id": "u5-m24",
       "wordKey": "unit5:crazy",
       "word": "crazy about",
-      "audio": "../unit5/audio/audio_24.mp3"
+      "audio": "../unit5/audio/audio_24.mp3?v=2"
     },
     {
       "id": "u5-m25",
       "wordKey": "unit5:excited",
       "word": "excited about",
-      "audio": "../unit5/audio/audio_25.mp3"
+      "audio": "../unit5/audio/audio_25.mp3?v=2"
     },
     {
       "id": "u5-m26",
       "wordKey": "unit5:happy",
       "word": "happy about",
-      "audio": "../unit5/audio/audio_26.mp3"
+      "audio": "../unit5/audio/audio_26.mp3?v=2"
     },
     {
       "id": "u5-m27",
       "wordKey": "unit5:worried",
       "word": "worried about",
-      "audio": "../unit5/audio/audio_27.mp3"
+      "audio": "../unit5/audio/audio_27.mp3?v=2"
     },
     {
       "id": "u5-m28",
       "wordKey": "unit5:bad",
       "word": "bad for",
-      "audio": "../unit5/audio/audio_28.mp3"
+      "audio": "../unit5/audio/audio_28.mp3?v=2"
     },
     {
       "id": "u5-m29",
       "wordKey": "unit5:famous",
       "word": "famous for",
-      "audio": "../unit5/audio/audio_29.mp3"
+      "audio": "../unit5/audio/audio_29.mp3?v=2"
     },
     {
       "id": "u5-m30",
       "wordKey": "unit5:good",
       "word": "good for",
-      "audio": "../unit5/audio/audio_30.mp3"
+      "audio": "../unit5/audio/audio_30.mp3?v=2"
     },
     {
       "id": "u5-m31",
       "wordKey": "unit5:interested",
       "word": "interested in",
-      "audio": "../unit5/audio/audio_31.mp3"
+      "audio": "../unit5/audio/audio_31.mp3?v=2"
     },
     {
       "id": "u5-m32",
       "wordKey": "unit5:successful",
       "word": "successful in",
-      "audio": "../unit5/audio/audio_32.mp3"
+      "audio": "../unit5/audio/audio_32.mp3?v=2"
     },
     {
       "id": "u5-m33",
       "wordKey": "unit5:where",
       "word": "where",
-      "audio": "../unit5/audio/audio_33.mp3"
+      "audio": "../unit5/audio/audio_33.mp3?v=2"
     }
   ],
   "matching": [
@@ -1404,7 +1404,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:snowboard",
       "en": "go snowboarding",
       "zh": "去滑雪板",
-      "img": "../unit5/thumb_01.png",
+      "img": "../unit5/thumb_01.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1412,7 +1412,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:guided",
       "en": "go on a guided tour",
       "zh": "參加導賞團",
-      "img": "../unit5/thumb_02.png",
+      "img": "../unit5/thumb_02.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1420,7 +1420,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:sightseeing",
       "en": "go sightseeing",
       "zh": "去觀光",
-      "img": "../unit5/thumb_03.png",
+      "img": "../unit5/thumb_03.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1428,7 +1428,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:zoo",
       "en": "visit a zoo",
       "zh": "參觀動物園",
-      "img": "../unit5/thumb_04.png",
+      "img": "../unit5/thumb_04.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1436,7 +1436,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:banana",
       "en": "ride on a banana boat",
       "zh": "坐香蕉船",
-      "img": "../unit5/thumb_05.png",
+      "img": "../unit5/thumb_05.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1444,7 +1444,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:palace",
       "en": "visit a palace",
       "zh": "參觀宮殿",
-      "img": "../unit5/thumb_06.jpg",
+      "img": "../unit5/thumb_06.jpg?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1452,7 +1452,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:skiing",
       "en": "go skiing",
       "zh": "去滑雪",
-      "img": "../unit5/thumb_07.png",
+      "img": "../unit5/thumb_07.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1460,7 +1460,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:theme",
       "en": "visit a theme park",
       "zh": "參觀主題樂園",
-      "img": "../unit5/thumb_08.png",
+      "img": "../unit5/thumb_08.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1468,7 +1468,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:kangaroo",
       "en": "feed a kangaroo",
       "zh": "餵袋鼠",
-      "img": "../unit5/thumb_09.png",
+      "img": "../unit5/thumb_09.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1476,7 +1476,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:rainforest",
       "en": "go into a rainforest",
       "zh": "進入雨林",
-      "img": "../unit5/thumb_10.jpg",
+      "img": "../unit5/thumb_10.jpg?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1484,7 +1484,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:cruise",
       "en": "go on a cruise",
       "zh": "坐郵輪／遊輪旅行",
-      "img": "../unit5/thumb_11.jpg",
+      "img": "../unit5/thumb_11.jpg?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1492,7 +1492,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:scuba",
       "en": "go scuba-diving",
       "zh": "去水肺潛水",
-      "img": "../unit5/thumb_12.jpg",
+      "img": "../unit5/thumb_12.jpg?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1500,7 +1500,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:snorkel",
       "en": "go snorkelling",
       "zh": "去浮潛",
-      "img": "../unit5/thumb_13.png",
+      "img": "../unit5/thumb_13.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1508,7 +1508,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:surfing",
       "en": "go surfing",
       "zh": "去衝浪",
-      "img": "../unit5/thumb_14.png",
+      "img": "../unit5/thumb_14.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1516,7 +1516,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:safari",
       "en": "visit a safari park",
       "zh": "參觀野生動物園",
-      "img": "../unit5/thumb_15.png",
+      "img": "../unit5/thumb_15.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1524,7 +1524,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:aquarium",
       "en": "visit an aquarium",
       "zh": "參觀水族館",
-      "img": "../unit5/thumb_16.png",
+      "img": "../unit5/thumb_16.png?v=2",
       "form": "phrasal verb"
     },
     {
@@ -1532,7 +1532,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:afraid",
       "en": "afraid of",
       "zh": "害怕……",
-      "img": "../unit5/thumb_17.png",
+      "img": "../unit5/thumb_17.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1540,7 +1540,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:fond",
       "en": "fond of",
       "zh": "喜愛……",
-      "img": "../unit5/thumb_18.png",
+      "img": "../unit5/thumb_18.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1548,7 +1548,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:full",
       "en": "full of",
       "zh": "充滿……",
-      "img": "../unit5/thumb_19.png",
+      "img": "../unit5/thumb_19.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1556,7 +1556,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:angry",
       "en": "angry with",
       "zh": "對……生氣",
-      "img": "../unit5/thumb_20.png",
+      "img": "../unit5/thumb_20.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1564,7 +1564,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:bored",
       "en": "bored with",
       "zh": "對……感到無聊",
-      "img": "../unit5/thumb_21.png",
+      "img": "../unit5/thumb_21.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1572,7 +1572,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:pleased",
       "en": "pleased with",
       "zh": "對……滿意",
-      "img": "../unit5/thumb_22.png",
+      "img": "../unit5/thumb_22.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1580,7 +1580,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:popular",
       "en": "popular with",
       "zh": "受……歡迎",
-      "img": "../unit5/thumb_23.png",
+      "img": "../unit5/thumb_23.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1588,7 +1588,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:crazy",
       "en": "crazy about",
       "zh": "對……痴迷",
-      "img": "../unit5/thumb_24.png",
+      "img": "../unit5/thumb_24.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1596,7 +1596,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:excited",
       "en": "excited about",
       "zh": "對……感到興奮",
-      "img": "../unit5/thumb_25.png",
+      "img": "../unit5/thumb_25.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1604,7 +1604,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:happy",
       "en": "happy about",
       "zh": "對……感到高興",
-      "img": "../unit5/thumb_26.png",
+      "img": "../unit5/thumb_26.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1612,7 +1612,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:worried",
       "en": "worried about",
       "zh": "擔心……",
-      "img": "../unit5/thumb_27.png",
+      "img": "../unit5/thumb_27.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1620,7 +1620,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:bad",
       "en": "bad for",
       "zh": "對……有害",
-      "img": "../unit5/thumb_28.png",
+      "img": "../unit5/thumb_28.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1628,7 +1628,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:famous",
       "en": "famous for",
       "zh": "以……聞名",
-      "img": "../unit5/thumb_29.jpg",
+      "img": "../unit5/thumb_29.jpg?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1636,7 +1636,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:good",
       "en": "good for",
       "zh": "對……有益",
-      "img": "../unit5/thumb_30.png",
+      "img": "../unit5/thumb_30.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1644,7 +1644,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:interested",
       "en": "interested in",
       "zh": "對……感興趣",
-      "img": "../unit5/thumb_31.png",
+      "img": "../unit5/thumb_31.png?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1652,7 +1652,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:successful",
       "en": "successful in",
       "zh": "在……方面成功",
-      "img": "../unit5/thumb_32.jpg",
+      "img": "../unit5/thumb_32.jpg?v=2",
       "form": "adj. + prep."
     },
     {
@@ -1660,7 +1660,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:where",
       "en": "where",
       "zh": "為地方加資料",
-      "img": "../unit5/thumb_33.png"
+      "img": "../unit5/thumb_33.png?v=2"
     }
   ]
 };

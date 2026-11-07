@@ -10,181 +10,181 @@ window.PRACTICE_UNIT6 = {
       "key": "unit6:china",
       "en": "China",
       "zh": "中國",
-      "audio": "../unit6/audio/audio_01.mp3",
-      "img": "../unit6/thumb_01.png",
+      "audio": "../unit6/audio/audio_01.mp3?v=2",
+      "img": "../unit6/thumb_01.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:canada",
       "en": "Canada",
       "zh": "加拿大",
-      "audio": "../unit6/audio/audio_02.mp3",
-      "img": "../unit6/thumb_02.png",
+      "audio": "../unit6/audio/audio_02.mp3?v=2",
+      "img": "../unit6/thumb_02.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:japan",
       "en": "Japan",
       "zh": "日本",
-      "audio": "../unit6/audio/audio_03.mp3",
-      "img": "../unit6/thumb_03.jpg",
+      "audio": "../unit6/audio/audio_03.mp3?v=2",
+      "img": "../unit6/thumb_03.jpg?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:korea",
       "en": "Korea",
       "zh": "韓國",
-      "audio": "../unit6/audio/audio_04.mp3",
-      "img": "../unit6/thumb_04.png",
+      "audio": "../unit6/audio/audio_04.mp3?v=2",
+      "img": "../unit6/thumb_04.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:italy",
       "en": "Italy",
       "zh": "意大利",
-      "audio": "../unit6/audio/audio_05.mp3",
-      "img": "../unit6/thumb_05.png",
+      "audio": "../unit6/audio/audio_05.mp3?v=2",
+      "img": "../unit6/thumb_05.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:scotland",
       "en": "Scotland",
       "zh": "蘇格蘭",
-      "audio": "../unit6/audio/audio_06.mp3",
-      "img": "../unit6/thumb_06.png",
+      "audio": "../unit6/audio/audio_06.mp3?v=2",
+      "img": "../unit6/thumb_06.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:cheongsam",
       "en": "cheongsam",
       "zh": "旗袍",
-      "audio": "../unit6/audio/audio_07.mp3",
-      "img": "../unit6/thumb_07.png",
+      "audio": "../unit6/audio/audio_07.mp3?v=2",
+      "img": "../unit6/thumb_07.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:opera",
       "en": "a Chinese opera",
       "zh": "中國戲曲／京劇表演",
-      "audio": "../unit6/audio/audio_08.mp3",
-      "img": "../unit6/thumb_08.png",
+      "audio": "../unit6/audio/audio_08.mp3?v=2",
+      "img": "../unit6/thumb_08.png?v=2",
       "form": "noun phrase"
     },
     {
       "key": "unit6:hockey",
       "en": "ice hockey",
       "zh": "冰球",
-      "audio": "../unit6/audio/audio_09.mp3",
-      "img": "../unit6/thumb_09.png",
+      "audio": "../unit6/audio/audio_09.mp3?v=2",
+      "img": "../unit6/thumb_09.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:kimono",
       "en": "a kimono",
       "zh": "和服",
-      "audio": "../unit6/audio/audio_10.mp3",
-      "img": "../unit6/thumb_10.png",
+      "audio": "../unit6/audio/audio_10.mp3?v=2",
+      "img": "../unit6/thumb_10.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:origami",
       "en": "origami",
       "zh": "摺紙",
-      "audio": "../unit6/audio/audio_11.mp3",
-      "img": "../unit6/thumb_11.png",
+      "audio": "../unit6/audio/audio_11.mp3?v=2",
+      "img": "../unit6/thumb_11.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:kimchi",
       "en": "kimchi",
       "zh": "泡菜",
-      "audio": "../unit6/audio/audio_12.mp3",
-      "img": "../unit6/thumb_12.png",
+      "audio": "../unit6/audio/audio_12.mp3?v=2",
+      "img": "../unit6/thumb_12.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:carnival",
       "en": "a carnival",
       "zh": "嘉年華／狂歡節",
-      "audio": "../unit6/audio/audio_13.mp3",
-      "img": "../unit6/thumb_13.png",
+      "audio": "../unit6/audio/audio_13.mp3?v=2",
+      "img": "../unit6/thumb_13.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:mask",
       "en": "a Venetian mask",
       "zh": "威尼斯面具",
-      "audio": "../unit6/audio/audio_14.mp3",
-      "img": "../unit6/thumb_14.png",
+      "audio": "../unit6/audio/audio_14.mp3?v=2",
+      "img": "../unit6/thumb_14.png?v=2",
       "form": "noun phrase"
     },
     {
       "key": "unit6:kilt",
       "en": "a kilt",
       "zh": "蘇格蘭短裙（格子呢）",
-      "audio": "../unit6/audio/audio_15.mp3",
-      "img": "../unit6/thumb_15.png",
+      "audio": "../unit6/audio/audio_15.mp3?v=2",
+      "img": "../unit6/thumb_15.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:drum",
       "en": "an African drum",
       "zh": "非洲鼓",
-      "audio": "../unit6/audio/audio_16.mp3",
-      "img": "../unit6/thumb_16.png",
+      "audio": "../unit6/audio/audio_16.mp3?v=2",
+      "img": "../unit6/thumb_16.png?v=2",
       "form": "noun phrase"
     },
     {
       "key": "unit6:samba",
       "en": "samba",
       "zh": "森巴舞",
-      "audio": "../unit6/audio/audio_17.mp3",
-      "img": "../unit6/thumb_17.png",
+      "audio": "../unit6/audio/audio_17.mp3?v=2",
+      "img": "../unit6/thumb_17.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:belly",
       "en": "belly dance",
       "zh": "肚皮舞",
-      "audio": "../unit6/audio/audio_18.mp3",
-      "img": "../unit6/thumb_18.png",
+      "audio": "../unit6/audio/audio_18.mp3?v=2",
+      "img": "../unit6/thumb_18.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:rock",
       "en": "rock music",
       "zh": "搖滾樂",
-      "audio": "../unit6/audio/audio_19.mp3",
-      "img": "../unit6/thumb_19.png",
+      "audio": "../unit6/audio/audio_19.mp3?v=2",
+      "img": "../unit6/thumb_19.png?v=2",
       "form": "noun"
     },
     {
       "key": "unit6:until",
       "en": "until",
       "zh": "直到……為止",
-      "audio": "../unit6/audio/audio_20.mp3",
-      "img": "../unit6/thumb_20.png"
+      "audio": "../unit6/audio/audio_20.mp3?v=2",
+      "img": "../unit6/thumb_20.png?v=2"
     },
     {
       "key": "unit6:each",
       "en": "each",
       "zh": "每一",
-      "audio": "../unit6/audio/audio_21.mp3",
-      "img": "../unit6/thumb_21.png"
+      "audio": "../unit6/audio/audio_21.mp3?v=2",
+      "img": "../unit6/thumb_21.png?v=2"
     },
     {
       "key": "unit6:both",
       "en": "both",
       "zh": "兩個都",
-      "audio": "../unit6/audio/audio_22.mp3",
-      "img": "../unit6/thumb_22.png"
+      "audio": "../unit6/audio/audio_22.mp3?v=2",
+      "img": "../unit6/thumb_22.png?v=2"
     },
     {
       "key": "unit6:several",
       "en": "several",
       "zh": "幾個（三個或以上）",
-      "audio": "../unit6/audio/audio_23.mp3",
-      "img": "../unit6/thumb_23.png"
+      "audio": "../unit6/audio/audio_23.mp3?v=2",
+      "img": "../unit6/thumb_23.png?v=2"
     }
   ],
   "fillIn": [
@@ -840,139 +840,139 @@ window.PRACTICE_UNIT6 = {
       "id": "u6-m1",
       "wordKey": "unit6:china",
       "word": "China",
-      "audio": "../unit6/audio/audio_01.mp3"
+      "audio": "../unit6/audio/audio_01.mp3?v=2"
     },
     {
       "id": "u6-m2",
       "wordKey": "unit6:canada",
       "word": "Canada",
-      "audio": "../unit6/audio/audio_02.mp3"
+      "audio": "../unit6/audio/audio_02.mp3?v=2"
     },
     {
       "id": "u6-m3",
       "wordKey": "unit6:japan",
       "word": "Japan",
-      "audio": "../unit6/audio/audio_03.mp3"
+      "audio": "../unit6/audio/audio_03.mp3?v=2"
     },
     {
       "id": "u6-m4",
       "wordKey": "unit6:korea",
       "word": "Korea",
-      "audio": "../unit6/audio/audio_04.mp3"
+      "audio": "../unit6/audio/audio_04.mp3?v=2"
     },
     {
       "id": "u6-m5",
       "wordKey": "unit6:italy",
       "word": "Italy",
-      "audio": "../unit6/audio/audio_05.mp3"
+      "audio": "../unit6/audio/audio_05.mp3?v=2"
     },
     {
       "id": "u6-m6",
       "wordKey": "unit6:scotland",
       "word": "Scotland",
-      "audio": "../unit6/audio/audio_06.mp3"
+      "audio": "../unit6/audio/audio_06.mp3?v=2"
     },
     {
       "id": "u6-m7",
       "wordKey": "unit6:cheongsam",
       "word": "cheongsam",
-      "audio": "../unit6/audio/audio_07.mp3"
+      "audio": "../unit6/audio/audio_07.mp3?v=2"
     },
     {
       "id": "u6-m8",
       "wordKey": "unit6:opera",
       "word": "a Chinese opera",
-      "audio": "../unit6/audio/audio_08.mp3"
+      "audio": "../unit6/audio/audio_08.mp3?v=2"
     },
     {
       "id": "u6-m9",
       "wordKey": "unit6:hockey",
       "word": "ice hockey",
-      "audio": "../unit6/audio/audio_09.mp3"
+      "audio": "../unit6/audio/audio_09.mp3?v=2"
     },
     {
       "id": "u6-m10",
       "wordKey": "unit6:kimono",
       "word": "a kimono",
-      "audio": "../unit6/audio/audio_10.mp3"
+      "audio": "../unit6/audio/audio_10.mp3?v=2"
     },
     {
       "id": "u6-m11",
       "wordKey": "unit6:origami",
       "word": "origami",
-      "audio": "../unit6/audio/audio_11.mp3"
+      "audio": "../unit6/audio/audio_11.mp3?v=2"
     },
     {
       "id": "u6-m12",
       "wordKey": "unit6:kimchi",
       "word": "kimchi",
-      "audio": "../unit6/audio/audio_12.mp3"
+      "audio": "../unit6/audio/audio_12.mp3?v=2"
     },
     {
       "id": "u6-m13",
       "wordKey": "unit6:carnival",
       "word": "a carnival",
-      "audio": "../unit6/audio/audio_13.mp3"
+      "audio": "../unit6/audio/audio_13.mp3?v=2"
     },
     {
       "id": "u6-m14",
       "wordKey": "unit6:mask",
       "word": "a Venetian mask",
-      "audio": "../unit6/audio/audio_14.mp3"
+      "audio": "../unit6/audio/audio_14.mp3?v=2"
     },
     {
       "id": "u6-m15",
       "wordKey": "unit6:kilt",
       "word": "a kilt",
-      "audio": "../unit6/audio/audio_15.mp3"
+      "audio": "../unit6/audio/audio_15.mp3?v=2"
     },
     {
       "id": "u6-m16",
       "wordKey": "unit6:drum",
       "word": "an African drum",
-      "audio": "../unit6/audio/audio_16.mp3"
+      "audio": "../unit6/audio/audio_16.mp3?v=2"
     },
     {
       "id": "u6-m17",
       "wordKey": "unit6:samba",
       "word": "samba",
-      "audio": "../unit6/audio/audio_17.mp3"
+      "audio": "../unit6/audio/audio_17.mp3?v=2"
     },
     {
       "id": "u6-m18",
       "wordKey": "unit6:belly",
       "word": "belly dance",
-      "audio": "../unit6/audio/audio_18.mp3"
+      "audio": "../unit6/audio/audio_18.mp3?v=2"
     },
     {
       "id": "u6-m19",
       "wordKey": "unit6:rock",
       "word": "rock music",
-      "audio": "../unit6/audio/audio_19.mp3"
+      "audio": "../unit6/audio/audio_19.mp3?v=2"
     },
     {
       "id": "u6-m20",
       "wordKey": "unit6:until",
       "word": "until",
-      "audio": "../unit6/audio/audio_20.mp3"
+      "audio": "../unit6/audio/audio_20.mp3?v=2"
     },
     {
       "id": "u6-m21",
       "wordKey": "unit6:each",
       "word": "each",
-      "audio": "../unit6/audio/audio_21.mp3"
+      "audio": "../unit6/audio/audio_21.mp3?v=2"
     },
     {
       "id": "u6-m22",
       "wordKey": "unit6:both",
       "word": "both",
-      "audio": "../unit6/audio/audio_22.mp3"
+      "audio": "../unit6/audio/audio_22.mp3?v=2"
     },
     {
       "id": "u6-m23",
       "wordKey": "unit6:several",
       "word": "several",
-      "audio": "../unit6/audio/audio_23.mp3"
+      "audio": "../unit6/audio/audio_23.mp3?v=2"
     }
   ],
   "matching": [
@@ -981,7 +981,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:china",
       "en": "China",
       "zh": "中國",
-      "img": "../unit6/thumb_01.png",
+      "img": "../unit6/thumb_01.png?v=2",
       "form": "noun"
     },
     {
@@ -989,7 +989,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:canada",
       "en": "Canada",
       "zh": "加拿大",
-      "img": "../unit6/thumb_02.png",
+      "img": "../unit6/thumb_02.png?v=2",
       "form": "noun"
     },
     {
@@ -997,7 +997,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:japan",
       "en": "Japan",
       "zh": "日本",
-      "img": "../unit6/thumb_03.jpg",
+      "img": "../unit6/thumb_03.jpg?v=2",
       "form": "noun"
     },
     {
@@ -1005,7 +1005,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:korea",
       "en": "Korea",
       "zh": "韓國",
-      "img": "../unit6/thumb_04.png",
+      "img": "../unit6/thumb_04.png?v=2",
       "form": "noun"
     },
     {
@@ -1013,7 +1013,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:italy",
       "en": "Italy",
       "zh": "意大利",
-      "img": "../unit6/thumb_05.png",
+      "img": "../unit6/thumb_05.png?v=2",
       "form": "noun"
     },
     {
@@ -1021,7 +1021,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:scotland",
       "en": "Scotland",
       "zh": "蘇格蘭",
-      "img": "../unit6/thumb_06.png",
+      "img": "../unit6/thumb_06.png?v=2",
       "form": "noun"
     },
     {
@@ -1029,7 +1029,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:cheongsam",
       "en": "cheongsam",
       "zh": "旗袍",
-      "img": "../unit6/thumb_07.png",
+      "img": "../unit6/thumb_07.png?v=2",
       "form": "noun"
     },
     {
@@ -1037,7 +1037,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:opera",
       "en": "a Chinese opera",
       "zh": "中國戲曲／京劇表演",
-      "img": "../unit6/thumb_08.png",
+      "img": "../unit6/thumb_08.png?v=2",
       "form": "noun phrase"
     },
     {
@@ -1045,7 +1045,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:hockey",
       "en": "ice hockey",
       "zh": "冰球",
-      "img": "../unit6/thumb_09.png",
+      "img": "../unit6/thumb_09.png?v=2",
       "form": "noun"
     },
     {
@@ -1053,7 +1053,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:kimono",
       "en": "a kimono",
       "zh": "和服",
-      "img": "../unit6/thumb_10.png",
+      "img": "../unit6/thumb_10.png?v=2",
       "form": "noun"
     },
     {
@@ -1061,7 +1061,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:origami",
       "en": "origami",
       "zh": "摺紙",
-      "img": "../unit6/thumb_11.png",
+      "img": "../unit6/thumb_11.png?v=2",
       "form": "noun"
     },
     {
@@ -1069,7 +1069,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:kimchi",
       "en": "kimchi",
       "zh": "泡菜",
-      "img": "../unit6/thumb_12.png",
+      "img": "../unit6/thumb_12.png?v=2",
       "form": "noun"
     },
     {
@@ -1077,7 +1077,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:carnival",
       "en": "a carnival",
       "zh": "嘉年華／狂歡節",
-      "img": "../unit6/thumb_13.png",
+      "img": "../unit6/thumb_13.png?v=2",
       "form": "noun"
     },
     {
@@ -1085,7 +1085,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:mask",
       "en": "a Venetian mask",
       "zh": "威尼斯面具",
-      "img": "../unit6/thumb_14.png",
+      "img": "../unit6/thumb_14.png?v=2",
       "form": "noun phrase"
     },
     {
@@ -1093,7 +1093,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:kilt",
       "en": "a kilt",
       "zh": "蘇格蘭短裙（格子呢）",
-      "img": "../unit6/thumb_15.png",
+      "img": "../unit6/thumb_15.png?v=2",
       "form": "noun"
     },
     {
@@ -1101,7 +1101,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:drum",
       "en": "an African drum",
       "zh": "非洲鼓",
-      "img": "../unit6/thumb_16.png",
+      "img": "../unit6/thumb_16.png?v=2",
       "form": "noun phrase"
     },
     {
@@ -1109,7 +1109,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:samba",
       "en": "samba",
       "zh": "森巴舞",
-      "img": "../unit6/thumb_17.png",
+      "img": "../unit6/thumb_17.png?v=2",
       "form": "noun"
     },
     {
@@ -1117,7 +1117,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:belly",
       "en": "belly dance",
       "zh": "肚皮舞",
-      "img": "../unit6/thumb_18.png",
+      "img": "../unit6/thumb_18.png?v=2",
       "form": "noun"
     },
     {
@@ -1125,7 +1125,7 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:rock",
       "en": "rock music",
       "zh": "搖滾樂",
-      "img": "../unit6/thumb_19.png",
+      "img": "../unit6/thumb_19.png?v=2",
       "form": "noun"
     },
     {
@@ -1133,28 +1133,28 @@ window.PRACTICE_UNIT6 = {
       "wordKey": "unit6:until",
       "en": "until",
       "zh": "直到……為止",
-      "img": "../unit6/thumb_20.png"
+      "img": "../unit6/thumb_20.png?v=2"
     },
     {
       "id": "u6-k21",
       "wordKey": "unit6:each",
       "en": "each",
       "zh": "每一",
-      "img": "../unit6/thumb_21.png"
+      "img": "../unit6/thumb_21.png?v=2"
     },
     {
       "id": "u6-k22",
       "wordKey": "unit6:both",
       "en": "both",
       "zh": "兩個都",
-      "img": "../unit6/thumb_22.png"
+      "img": "../unit6/thumb_22.png?v=2"
     },
     {
       "id": "u6-k23",
       "wordKey": "unit6:several",
       "en": "several",
       "zh": "幾個（三個或以上）",
-      "img": "../unit6/thumb_23.png"
+      "img": "../unit6/thumb_23.png?v=2"
     }
   ]
 };
