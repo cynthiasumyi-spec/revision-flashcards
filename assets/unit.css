@@ -249,14 +249,6 @@ button { font: inherit; cursor: pointer; }
   overflow-wrap: normal;
   hyphens: manual;
 }
-.syl-hint {
-  margin: 0.4rem 0 0.08rem;
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", var(--font-text);
-  font-weight: 700;
-  font-size: 0.82rem;
-  line-height: 1.35;
-  color: var(--navy);
-}
 .syllables {
   font-family: var(--font-display);
   font-weight: 600;
@@ -267,13 +259,16 @@ button { font: inherit; cursor: pointer; }
   word-break: normal;
   overflow-wrap: normal;
   hyphens: manual;
+  /* Darker than #e6b800 so the syllable line stays readable on cream. */
+  color: #a67c00;
 }
 .syllables.is-break {
   font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: 0;
-  margin: 0 0 0.4rem;
+  margin: 0.2rem 0 0.4rem;
+  color: #a67c00;
 }
 .zh {
   margin: 0;

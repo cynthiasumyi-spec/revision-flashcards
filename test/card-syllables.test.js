@@ -24,12 +24,12 @@ function samePhrase(en, syllables) {
   });
 }
 
-test('unit word cards show the headword, a syllable hint, and the syllable line', () => {
+test('unit word cards show the headword and a gold syllable line', () => {
   for (const unit of UNITS) {
     const { html, cards: list } = cards(unit);
-    assert.match(html, /unit\.css\?v=9/);
+    assert.match(html, /unit\.css\?v=10/);
     assert.match(html, /class="headword"/);
-    assert.match(html, /class="syl-hint" lang="zh-Hant">下方是分音節寫法</);
+    assert.doesNotMatch(html, /syl-hint|下方是分音節寫法/);
     assert.match(html, /class="syllables is-break"/);
     assert.ok(list.length > 0, unit);
     for (const card of list) {
@@ -42,6 +42,11 @@ test('unit word cards show the headword, a syllable hint, and the syllable line'
   assert.equal(quake.syllables, 'an earth-quake');
   const drought = cards('unit2').cards.find((card) => card.en === 'a drought');
   assert.equal(drought.syllables, 'a drought');
+  const css = fs.readFileSync(path.join(root, 'assets/unit.css'), 'utf8');
+  assert.equal(css.includes('.syl-hint'), false);
+  const syllableRule = css.slice(css.indexOf('.syllables {'), css.indexOf('.zh {'));
+  assert.match(syllableRule, /\.syllables \{[^}]*color:\s*#a67c00/);
+  assert.match(syllableRule, /\.syllables\.is-break \{[^}]*color:\s*#a67c00/);
 });
 
 test('wicked card art has no title band and the unit 4 cover has no white top strip', () => {
