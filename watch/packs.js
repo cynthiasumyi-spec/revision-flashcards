@@ -599,7 +599,7 @@ window.WATCH_PACKS = {
         "n": 1,
         "en": "go snowboarding",
         "syllables": "go snow-board-ing",
-        "zh": "去滑雪板",
+        "zh": "去單板滑雪",
         "pos": "片語動詞 phr. v.",
         "audio": "../unit5/audio/audio_01.mp3?v=2",
         "img": "../unit5/thumb_01.png?v=1"
@@ -647,7 +647,7 @@ window.WATCH_PACKS = {
         "zh": "參觀宮殿",
         "pos": "片語動詞 phr. v.",
         "audio": "../unit5/audio/audio_06.mp3?v=2",
-        "img": "../unit5/thumb_06.jpg?v=1"
+        "img": "../unit5/thumb_06.jpg?v=3"
       },
       {
         "n": 7,
@@ -881,7 +881,7 @@ window.WATCH_PACKS = {
         "zh": "在……方面成功",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_32.mp3?v=2",
-        "img": "../unit5/thumb_32.jpg?v=1"
+        "img": "../unit5/thumb_32.jpg?v=3"
       },
       {
         "n": 33,
@@ -960,7 +960,7 @@ window.WATCH_PACKS = {
         "syllables": "cheong-sam",
         "zh": "旗袍",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_07.mp3?v=2",
+        "audio": "../unit6/audio/audio_07.mp3?v=3",
         "img": "../unit6/thumb_07.png?v=1"
       },
       {
@@ -1005,7 +1005,7 @@ window.WATCH_PACKS = {
         "syllables": "kim-chi",
         "zh": "泡菜",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_12.mp3?v=2",
+        "audio": "../unit6/audio/audio_12.mp3?v=3",
         "img": "../unit6/thumb_12.png?v=1"
       },
       {

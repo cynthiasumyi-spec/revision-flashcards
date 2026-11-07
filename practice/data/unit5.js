@@ -9,7 +9,7 @@ window.PRACTICE_UNIT5 = {
     {
       "key": "unit5:snowboard",
       "en": "go snowboarding",
-      "zh": "去滑雪板",
+      "zh": "去單板滑雪",
       "audio": "../unit5/audio/audio_01.mp3?v=2",
       "img": "../unit5/thumb_01.png?v=2",
       "form": "phrasal verb"
@@ -51,7 +51,7 @@ window.PRACTICE_UNIT5 = {
       "en": "visit a palace",
       "zh": "參觀宮殿",
       "audio": "../unit5/audio/audio_06.mp3?v=2",
-      "img": "../unit5/thumb_06.jpg?v=2",
+      "img": "../unit5/thumb_06.jpg?v=3",
       "form": "phrasal verb"
     },
     {
@@ -259,7 +259,7 @@ window.PRACTICE_UNIT5 = {
       "en": "successful in",
       "zh": "在……方面成功",
       "audio": "../unit5/audio/audio_32.mp3?v=2",
-      "img": "../unit5/thumb_32.jpg?v=2",
+      "img": "../unit5/thumb_32.jpg?v=3",
       "form": "adj. + prep."
     },
     {
@@ -286,7 +286,7 @@ window.PRACTICE_UNIT5 = {
       "accept": [
         "go snowboarding"
       ],
-      "explain": "Sliding on one wide board = go snowboarding (去滑雪板)."
+      "explain": "Sliding on one wide board = go snowboarding (去單板滑雪)."
     },
     {
       "id": "u5-f2",
@@ -843,7 +843,7 @@ window.PRACTICE_UNIT5 = {
       "accept": [
         "go snowboarding"
       ],
-      "explain": "Sliding on one wide board = go snowboarding (去滑雪板)."
+      "explain": "Sliding on one wide board = go snowboarding (去單板滑雪)."
     },
     {
       "id": "u5-h2",
@@ -1403,7 +1403,7 @@ window.PRACTICE_UNIT5 = {
       "id": "u5-k1",
       "wordKey": "unit5:snowboard",
       "en": "go snowboarding",
-      "zh": "去滑雪板",
+      "zh": "去單板滑雪",
       "img": "../unit5/thumb_01.png?v=2",
       "form": "phrasal verb"
     },
@@ -1444,7 +1444,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:palace",
       "en": "visit a palace",
       "zh": "參觀宮殿",
-      "img": "../unit5/thumb_06.jpg?v=2",
+      "img": "../unit5/thumb_06.jpg?v=3",
       "form": "phrasal verb"
     },
     {
@@ -1652,7 +1652,7 @@ window.PRACTICE_UNIT5 = {
       "wordKey": "unit5:successful",
       "en": "successful in",
       "zh": "在……方面成功",
-      "img": "../unit5/thumb_32.jpg?v=2",
+      "img": "../unit5/thumb_32.jpg?v=3",
       "form": "adj. + prep."
     },
     {

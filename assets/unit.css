@@ -245,7 +245,8 @@ button { font: inherit; cursor: pointer; }
   cursor: pointer;
 }
 .illust img {
-  /* The picture is locked to the frame. Scenes cover it; cutouts contain the whole drawing on white. */
+  /* Show the whole illustration as large as the frame allows.
+     A filled 4:3 scene is not cropped by cover. Cutouts use contain on white. */
   position: absolute;
   inset: 0;
   display: block;
