@@ -251,7 +251,6 @@ button { font: inherit; cursor: pointer; }
 }
 .syllables {
   font-family: var(--font-display);
-  font-weight: 600;
   font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.55rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -259,12 +258,13 @@ button { font: inherit; cursor: pointer; }
   word-break: normal;
   overflow-wrap: normal;
   hyphens: manual;
-  /* Darker than #e6b800 so the syllable line stays readable on cream. */
+  /* Lighter than the headword. Darker than #e6b800 so it stays readable on cream. */
+  font-weight: 500;
   color: #a67c00;
 }
 .syllables.is-break {
   font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.3;
   letter-spacing: 0;
   margin: 0.2rem 0 0.4rem;

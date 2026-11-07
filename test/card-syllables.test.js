@@ -24,13 +24,22 @@ function samePhrase(en, syllables) {
   });
 }
 
-test('unit word cards show the headword and a gold syllable line', () => {
+function showSyllableLine(card) {
+  const syl = String(card.syllables || '');
+  const norm = (value) => String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  if (norm(syl) === norm(card.en)) return false;
+  if (!syl.includes('-')) return false;
+  return true;
+}
+
+test('unit word cards show a thin gold syllable line only when it adds hyphens', () => {
   for (const unit of UNITS) {
     const { html, cards: list } = cards(unit);
-    assert.match(html, /unit\.css\?v=10/);
+    assert.match(html, /unit\.css\?v=11/);
     assert.match(html, /class="headword"/);
+    assert.match(html, /function showSyllableLine/);
+    assert.match(html, /showSyllableLine\(card\) \? '<p class="syllables is-break">'/);
     assert.doesNotMatch(html, /syl-hint|下方是分音節寫法/);
-    assert.match(html, /class="syllables is-break"/);
     assert.ok(list.length > 0, unit);
     for (const card of list) {
       assert.equal(typeof card.en, 'string');
@@ -38,14 +47,20 @@ test('unit word cards show the headword and a gold syllable line', () => {
       assert.ok(samePhrase(card.en, card.syllables), unit + ' ' + card.en + ' / ' + card.syllables);
     }
   }
-  const quake = cards('unit2').cards.find((card) => card.en === 'an earthquake');
-  assert.equal(quake.syllables, 'an earth-quake');
-  const drought = cards('unit2').cards.find((card) => card.en === 'a drought');
-  assert.equal(drought.syllables, 'a drought');
+  const unit2 = cards('unit2').cards;
+  assert.equal(showSyllableLine(unit2.find((card) => card.en === 'a drought')), false);
+  assert.equal(showSyllableLine(unit2.find((card) => card.en === 'block roads')), false);
+  assert.equal(showSyllableLine(unit2.find((card) => card.en === 'an earthquake')), true);
+  assert.equal(unit2.find((card) => card.en === 'an earthquake').syllables, 'an earth-quake');
+  assert.equal(showSyllableLine(unit2.find((card) => card.en === 'a tsunami')), true);
   const css = fs.readFileSync(path.join(root, 'assets/unit.css'), 'utf8');
   assert.equal(css.includes('.syl-hint'), false);
   const syllableRule = css.slice(css.indexOf('.syllables {'), css.indexOf('.zh {'));
+  assert.doesNotMatch(syllableRule, /font-weight:\s*600/);
+  assert.doesNotMatch(syllableRule, /font-weight:\s*700/);
+  assert.match(syllableRule, /\.syllables \{[^}]*font-weight:\s*500/);
   assert.match(syllableRule, /\.syllables \{[^}]*color:\s*#a67c00/);
+  assert.match(syllableRule, /\.syllables\.is-break \{[^}]*font-weight:\s*500/);
   assert.match(syllableRule, /\.syllables\.is-break \{[^}]*color:\s*#a67c00/);
 });
 

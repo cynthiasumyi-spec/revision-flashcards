@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../assets/unit.css?v=10"/>
+<link rel="stylesheet" href="../assets/unit.css?v=11"/>
 </head>
 <body class="theme-unit2">
 <header class="unit-header">
@@ -74,6 +74,16 @@ function playCard(card, article) {
   a.onended = () => article.classList.remove('playing');
 }
 
+function showSyllableLine(card) {
+  var syl = String(card.syllables || '');
+  var norm = function (value) {
+    return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  };
+  if (norm(syl) === norm(card.en)) return false;
+  if (syl.indexOf('-') < 0) return false;
+  return true;
+}
+
 CARDS.forEach(card => {
   const article = document.createElement('article');
   article.className = 'card ' + FILLS[(card.n - 1) % FILLS.length];
@@ -111,7 +121,7 @@ CARDS.forEach(card => {
   main.innerHTML =
     '<span class="num">' + card.n + '</span>' +
     '<p class="headword">' + card.en + '</p>' +
-    '<p class="syllables is-break">' + card.syllables + '</p>' +
+    (showSyllableLine(card) ? '<p class="syllables is-break">' + card.syllables + '</p>' : '') +
     '<p class="zh">' + card.zh + '（' + card.pos + '）</p>';
   top.appendChild(main);
   article.appendChild(top);
