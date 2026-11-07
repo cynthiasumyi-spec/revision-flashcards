@@ -18,7 +18,7 @@ window.PRACTICE_UNIT4 = {
     { key: "unit4:obedient", form: "adjective", en: "obedient", zh: "聽話的", audio: "../unit4/audio/audio_10.mp3", img: "../unit4/thumb_10.jpg" },
     { key: "unit4:selfish", form: "adjective", en: "selfish", zh: "自私的", audio: "../unit4/audio/audio_11.mp3", img: "../unit4/thumb_11.jpg" },
     { key: "unit4:timid", form: "adjective", en: "timid", zh: "膽小的", audio: "../unit4/audio/audio_12.mp3", img: "../unit4/thumb_12.png" },
-    { key: "unit4:wicked", form: "adjective", en: "wicked", zh: "邪惡的", audio: "../unit4/audio/audio_13.mp3", img: "../unit4/thumb_13.png" },
+    { key: "unit4:wicked", form: "adjective", en: "wicked", zh: "邪惡的", audio: "../unit4/audio/audio_13.mp3", img: "../unit4/thumb_13.png?v=4" },
     { key: "unit4:wise", form: "adjective", en: "wise", zh: "明智的／有智慧的", audio: "../unit4/audio/audio_14.mp3", img: "../unit4/thumb_14.png" },
   ],
 
@@ -324,7 +324,7 @@ window.PRACTICE_UNIT4 = {
     { id: "u4-k10", wordKey: "unit4:obedient", en: "obedient", zh: "聽話的", img: "../unit4/thumb_10.jpg" },
     { id: "u4-k11", wordKey: "unit4:selfish", en: "selfish", zh: "自私的", img: "../unit4/thumb_11.jpg" },
     { id: "u4-k12", wordKey: "unit4:timid", en: "timid", zh: "膽小的", img: "../unit4/thumb_12.png" },
-    { id: "u4-k13", wordKey: "unit4:wicked", en: "wicked", zh: "邪惡的", img: "../unit4/thumb_13.png" },
+    { id: "u4-k13", wordKey: "unit4:wicked", en: "wicked", zh: "邪惡的", img: "../unit4/thumb_13.png?v=4" },
     { id: "u4-k14", wordKey: "unit4:wise", en: "wise", zh: "明智的／有智慧的", img: "../unit4/thumb_14.png" },
   ]
 };

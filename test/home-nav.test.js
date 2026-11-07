@@ -45,7 +45,8 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(cover, /object-fit:\s*cover/);
   assert.doesNotMatch(cover, /#000|black/);
   assert.match(html, /covers\/unit2\.jpg\?v=3/);
-  assert.equal(html.includes('site.css?v=37'), true);
+  assert.match(html, /covers\/unit4\.jpg\?v=1/);
+  assert.equal(html.includes('site.css?v=38'), true);
   assert.doesNotMatch(html, /<span class="tag">Unit \d/);
   assert.match(html, /<span class="tag nums">10 words<\/span>/);
   assert.match(css, /\.how-card\.tone-sunny \.how-art,\s*\.how-card\.tone-pink \.how-art \{[^}]*aspect-ratio:\s*1/);
@@ -65,10 +66,10 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.match(css, /\.pack-card \{[^}]*flex:\s*0 0 min\(26rem, 70%\)/);
   assert.match(css, /aspect-ratio:\s*1/);
   assert.doesNotMatch(cover, /max-height:\s*18rem/);
-  const hear = css.slice(css.indexOf('.how-card.tone-sky .how-art img {'), css.indexOf('.how-card.tone-sky .how-art img {') + 280);
-  assert.match(hear, /height:\s*107%/);
-  assert.match(hear, /object-fit:\s*cover/);
-  assert.match(hear, /object-position:\s*center bottom/);
+  assert.equal(css.includes('height: 107%'), false);
+  const howArt = css.slice(css.indexOf('.how-card .how-art img {'), css.indexOf('.how-card.tone-sunny .how-art'));
+  assert.match(howArt, /object-fit:\s*cover/);
+  assert.match(howArt, /object-position:\s*center/);
   assert.match(css, /\.nav-jump[\s\S]*border:\s*0/);
   assert.match(css, /\.nav-jump[\s\S]*box-shadow:\s*none/);
 });
@@ -117,6 +118,14 @@ for folder in ('covers', 'home-eduhome/covers'):
                     dark += 1
             if dark / len(coords) > 0.45:
                 raise SystemExit(folder + '/' + name + ' ' + edge + ' ' + str(dark))
+        if name == 'unit4.jpg':
+            white = 0
+            for x, y in edges['top']:
+                r, g, b = px[x, y]
+                if r > 245 and g > 245 and b > 245:
+                    white += 1
+            if white / len(edges['top']) > 0.2:
+                raise SystemExit(folder + '/' + name + ' white top ' + str(white))
 print('ok')
 `;
   const out = execFileSync('python3', ['-c', script], { encoding: 'utf8' });

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../assets/unit.css?v=8"/>
+<link rel="stylesheet" href="../assets/unit.css?v=9"/>
 </head>
 <body class="theme-unit1">
 <header class="unit-header">
@@ -110,7 +110,9 @@ CARDS.forEach(card => {
   main.className = 'main';
   main.innerHTML =
     '<span class="num">' + card.n + '</span>' +
-    '<p class="syllables">' + card.syllables + '</p>' +
+    '<p class="headword">' + card.en + '</p>' +
+    '<p class="syl-hint" lang="zh-Hant">下方是分音節寫法</p>' +
+    '<p class="syllables is-break">' + card.syllables + '</p>' +
     '<p class="zh">' + card.zh + '（' + card.pos + '）</p>';
   top.appendChild(main);
   article.appendChild(top);

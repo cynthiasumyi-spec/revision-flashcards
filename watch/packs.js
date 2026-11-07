@@ -433,7 +433,7 @@ window.WATCH_PACKS = {
         "zh": "邪惡的",
         "pos": "形容詞 adj.",
         "audio": "../unit4/audio/audio_13.mp3",
-        "img": "../unit4/thumb_13.png"
+        "img": "../unit4/thumb_13.png?v=4"
       },
       {
         "n": 14,

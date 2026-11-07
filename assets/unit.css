@@ -238,6 +238,25 @@ button { font: inherit; cursor: pointer; }
   opacity: 0.85;
   margin-bottom: 0.25rem;
 }
+.headword {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+.syl-hint {
+  margin: 0.4rem 0 0.08rem;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", var(--font-text);
+  font-weight: 700;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--navy);
+}
 .syllables {
   font-family: var(--font-display);
   font-weight: 600;
@@ -248,6 +267,13 @@ button { font: inherit; cursor: pointer; }
   word-break: normal;
   overflow-wrap: normal;
   hyphens: manual;
+}
+.syllables.is-break {
+  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  margin: 0 0 0.4rem;
 }
 .zh {
   margin: 0;
