@@ -8,6 +8,8 @@ window.PracticeRegistry = (function () {
     unit2: () => window.PRACTICE_UNIT2,
     unit3: () => window.PRACTICE_UNIT3,
     unit4: () => window.PRACTICE_UNIT4,
+    unit5: () => window.PRACTICE_UNIT5,
+    unit6: () => window.PRACTICE_UNIT6,
     dictation3: () => window.PRACTICE_DICTATION3
   };
 
@@ -16,6 +18,8 @@ window.PracticeRegistry = (function () {
     { id: 'unit2', label: 'Unit 2', tone: 'green', ready: true },
     { id: 'unit3', label: 'Unit 3', tone: 'sky', ready: true },
     { id: 'unit4', label: 'Unit 4', tone: 'coral', ready: true },
+    { id: 'unit5', label: 'Unit 5', tone: 'coral', ready: true },
+    { id: 'unit6', label: 'Unit 6', tone: 'pink', ready: true },
     { id: 'dictation3', label: 'Dictation 3', tone: 'pink', ready: true }
   ];
 

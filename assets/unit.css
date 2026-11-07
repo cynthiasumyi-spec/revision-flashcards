@@ -53,6 +53,16 @@ body.theme-unit4 {
   --accent-ink: #243c6c;
   --shell-color: #fcc03c;
 }
+body.theme-unit5 {
+  --accent: #fc903c;
+  --accent-ink: #243c6c;
+  --shell-color: #fc903c;
+}
+body.theme-unit6 {
+  --accent: #f0909c;
+  --accent-ink: #243c6c;
+  --shell-color: #f0909c;
+}
 body.theme-dictation3 {
   --accent: #f0909c;
   --accent-ink: #243c6c;

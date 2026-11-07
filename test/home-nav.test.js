@@ -37,7 +37,7 @@ test('packs are a swipe carousel, not a grid', () => {
   assert.doesNotMatch(html, />Next</);
   assert.doesNotMatch(html, /61 words/);
   assert.doesNotMatch(html, /pack-grid/);
-  assert.equal((html.match(/class="pack-card/g) || []).length, 5);
+  assert.equal((html.match(/class="pack-card/g) || []).length, 7);
   const css = fs.readFileSync(path.join(root, 'assets/site.css'), 'utf8');
   assert.match(css, /scroll-snap-type:\s*x mandatory/);
   const cover = css.slice(css.indexOf('.pack-cover {'), css.indexOf('.pack-body'));
@@ -98,7 +98,7 @@ test('pack covers have no black letterbox bars', () => {
 from PIL import Image
 import os
 root = ${JSON.stringify(root)}
-names = ['unit1.jpg', 'unit2.jpg', 'unit3.jpg', 'unit4.jpg', 'dictation3.jpg']
+names = ['unit1.jpg', 'unit2.jpg', 'unit3.jpg', 'unit4.jpg', 'unit5.jpg', 'unit6.jpg', 'dictation3.jpg']
 for folder in ('covers', 'home-eduhome/covers'):
     for name in names:
         im = Image.open(os.path.join(root, folder, name)).convert('RGB')

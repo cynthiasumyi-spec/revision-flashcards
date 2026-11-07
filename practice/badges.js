@@ -315,14 +315,14 @@ window.Badges = (function () {
   }
 
   function unitUnlocked(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return true;
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed' || unitId === 'unit5' || unitId === 'unit6') return true;
     const i = unitIndex(unitId);
     if (i <= 0) return false;
     return coreComplete(ORDER[i - 1].id);
   }
 
   function lockReason(unitId) {
-    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed') return '';
+    if (unitId === 'unit1' || unitId === 'dictation3' || unitId === 'mixed' || unitId === 'unit5' || unitId === 'unit6') return '';
     const i = unitIndex(unitId);
     if (i <= 0) return '';
     const prev = ORDER[i - 1];

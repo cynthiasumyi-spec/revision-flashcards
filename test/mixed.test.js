@@ -18,7 +18,7 @@ test('mixed topic reuses unit phrases and writes new fill sentences', () => {
   const { window } = loadScripts(PACKS);
   const R = window.PracticeRegistry;
   const ids = R.listUnits().map(u => u.id);
-  assert.equal(ids.join(','), 'unit1,unit2,unit3,unit4,dictation3');
+  assert.equal(ids.join(','), 'unit1,unit2,unit3,unit4,unit5,unit6,dictation3');
   const choices = R.practiceChoices();
   assert.equal(choices[choices.length - 1].label, 'Mixed topic');
 

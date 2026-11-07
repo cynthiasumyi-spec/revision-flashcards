@@ -6,7 +6,7 @@ window.LastPlace = (function () {
 
   function folder() {
     var path = (location && location.pathname) || '';
-    var match = path.match(/\/(unit[1-4]|dictation3)(?:\/|$)/);
+    var match = path.match(/\/(unit[1-6]|dictation3)(?:\/|$)/);
     return match ? match[1] : '';
   }
 
