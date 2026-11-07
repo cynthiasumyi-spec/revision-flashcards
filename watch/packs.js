@@ -75,7 +75,7 @@ window.WATCH_PACKS = {
         "syllables": "go on a walk-a-thon",
         "zh": "參加步行籌款",
         "pos": "動詞短語 v.",
-        "audio": "../unit1/audio/audio_08.mp3",
+        "audio": "../unit1/audio/audio_08.mp3?v=2",
         "img": "../unit1/thumb_08.jpg"
       },
       {
