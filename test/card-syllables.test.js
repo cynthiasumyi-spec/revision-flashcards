@@ -32,10 +32,10 @@ function showSyllableLine(card) {
   return true;
 }
 
-test('unit word cards show a thin gray syllable line only when it adds hyphens', () => {
+test('unit word cards show a thin navy Nunito syllable line only when it adds hyphens', () => {
   for (const unit of UNITS) {
     const { html, cards: list } = cards(unit);
-    assert.match(html, /unit\.css\?v=12/);
+    assert.match(html, /unit\.css\?v=13/);
     assert.match(html, /class="headword"/);
     assert.match(html, /function showSyllableLine/);
     assert.match(html, /showSyllableLine\(card\) \? '<p class="syllables is-break">'/);
@@ -58,11 +58,13 @@ test('unit word cards show a thin gray syllable line only when it adds hyphens',
   const syllableRule = css.slice(css.indexOf('.syllables {'), css.indexOf('.zh {'));
   assert.doesNotMatch(syllableRule, /font-weight:\s*600/);
   assert.doesNotMatch(syllableRule, /font-weight:\s*700/);
-  assert.doesNotMatch(syllableRule, /#a67c00|gold/);
+  assert.doesNotMatch(syllableRule, /#a67c00|#5a6570|var\(--muted\)|var\(--font-display\)/);
+  assert.match(syllableRule, /\.syllables \{[^}]*font-family:\s*var\(--font-text\)/);
   assert.match(syllableRule, /\.syllables \{[^}]*font-weight:\s*500/);
-  assert.match(syllableRule, /\.syllables \{[^}]*color:\s*var\(--muted\)/);
+  assert.match(syllableRule, /\.syllables \{[^}]*color:\s*var\(--navy\)/);
+  assert.match(syllableRule, /\.syllables\.is-break \{[^}]*font-family:\s*var\(--font-text\)/);
   assert.match(syllableRule, /\.syllables\.is-break \{[^}]*font-weight:\s*500/);
-  assert.match(syllableRule, /\.syllables\.is-break \{[^}]*color:\s*var\(--muted\)/);
+  assert.match(syllableRule, /\.syllables\.is-break \{[^}]*color:\s*var\(--navy\)/);
 });
 
 test('wicked card art has no title band and the unit 4 cover has no white top strip', () => {
