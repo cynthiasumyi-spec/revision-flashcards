@@ -13,7 +13,7 @@ window.PRACTICE_UNIT1 = {
     { key: 'unit1:voluntary', form: 'verb', en: 'do voluntary work', zh: '做義務工作', audio: '../unit1/audio/audio_05.mp3', img: '../unit1/thumb_05.jpg' },
     { key: 'unit1:donate', form: 'verb', en: 'donate money', zh: '捐錢', audio: '../unit1/audio/audio_06.mp3', img: '../unit1/thumb_06.png?v=3' },
     { key: 'unit1:books', form: 'verb', en: 'give away old books', zh: '贈送舊書', audio: '../unit1/audio/audio_07.mp3', img: '../unit1/thumb_07.jpg' },
-    { key: 'unit1:walkathon', form: 'verb', en: 'go on a walkathon', zh: '參加步行籌款', audio: '../unit1/audio/audio_08.mp3', img: '../unit1/thumb_08.jpg' },
+    { key: 'unit1:walkathon', form: 'verb', en: 'go on a walkathon', zh: '參加步行籌款', audio: '../unit1/audio/audio_08.mp3?v=2', img: '../unit1/thumb_08.jpg' },
     { key: 'unit1:fair', form: 'verb', en: 'take part in a fund-raising fair', zh: '參加籌款嘉年華', audio: '../unit1/audio/audio_09.mp3', img: '../unit1/thumb_09.jpg' },
     { key: 'unit1:elderly', form: 'verb', en: 'visit an elderly home', zh: '探訪安老院', audio: '../unit1/audio/audio_10.mp3', img: '../unit1/thumb_10.png' }
   ],
@@ -223,7 +223,7 @@ window.PRACTICE_UNIT1 = {
     { id: 'u1-m5', wordKey: 'unit1:voluntary', word: 'do voluntary work', audio: '../unit1/audio/audio_05.mp3' },
     { id: 'u1-m6', wordKey: 'unit1:donate', word: 'donate money', audio: '../unit1/audio/audio_06.mp3' },
     { id: 'u1-m7', wordKey: 'unit1:books', word: 'give away old books', audio: '../unit1/audio/audio_07.mp3' },
-    { id: 'u1-m8', wordKey: 'unit1:walkathon', word: 'go on a walkathon', audio: '../unit1/audio/audio_08.mp3' },
+    { id: 'u1-m8', wordKey: 'unit1:walkathon', word: 'go on a walkathon', audio: '../unit1/audio/audio_08.mp3?v=2' },
     { id: 'u1-m9', wordKey: 'unit1:fair', word: 'take part in a fund-raising fair', audio: '../unit1/audio/audio_09.mp3' },
     { id: 'u1-m10', wordKey: 'unit1:elderly', word: 'visit an elderly home', audio: '../unit1/audio/audio_10.mp3' }
   ],
