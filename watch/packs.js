@@ -592,7 +592,7 @@ window.WATCH_PACKS = {
 "unit5": {
     "id": "unit5",
     "title": "Unit 5",
-    "sub": "The land of kangaroos",
+    "sub": "The Land of Kangaroos",
     "count": 33,
     "cards": [
       {
@@ -601,16 +601,16 @@ window.WATCH_PACKS = {
         "syllables": "go snow-board-ing",
         "zh": "去滑雪板",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_01.mp3",
+        "audio": "../unit5/audio/audio_01.mp3?v=2",
         "img": "../unit5/thumb_01.png?v=1"
       },
       {
         "n": 2,
         "en": "go on a guided tour",
-        "syllables": "go on a guid-ed tour",
+        "syllables": "go on a guided tour",
         "zh": "參加導賞團",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_02.mp3",
+        "audio": "../unit5/audio/audio_02.mp3?v=2",
         "img": "../unit5/thumb_02.png?v=1"
       },
       {
@@ -619,7 +619,7 @@ window.WATCH_PACKS = {
         "syllables": "go sight-see-ing",
         "zh": "去觀光",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_03.mp3",
+        "audio": "../unit5/audio/audio_03.mp3?v=2",
         "img": "../unit5/thumb_03.png?v=1"
       },
       {
@@ -628,7 +628,7 @@ window.WATCH_PACKS = {
         "syllables": "vis-it a zoo",
         "zh": "參觀動物園",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_04.mp3",
+        "audio": "../unit5/audio/audio_04.mp3?v=2",
         "img": "../unit5/thumb_04.png?v=1"
       },
       {
@@ -637,7 +637,7 @@ window.WATCH_PACKS = {
         "syllables": "ride on a ba-na-na boat",
         "zh": "坐香蕉船",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_05.mp3",
+        "audio": "../unit5/audio/audio_05.mp3?v=2",
         "img": "../unit5/thumb_05.png?v=1"
       },
       {
@@ -646,7 +646,7 @@ window.WATCH_PACKS = {
         "syllables": "vis-it a pal-ace",
         "zh": "參觀宮殿",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_06.mp3",
+        "audio": "../unit5/audio/audio_06.mp3?v=2",
         "img": "../unit5/thumb_06.jpg?v=1"
       },
       {
@@ -655,7 +655,7 @@ window.WATCH_PACKS = {
         "syllables": "go ski-ing",
         "zh": "去滑雪",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_07.mp3",
+        "audio": "../unit5/audio/audio_07.mp3?v=2",
         "img": "../unit5/thumb_07.png?v=1"
       },
       {
@@ -664,7 +664,7 @@ window.WATCH_PACKS = {
         "syllables": "vis-it a theme park",
         "zh": "參觀主題樂園",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_08.mp3",
+        "audio": "../unit5/audio/audio_08.mp3?v=2",
         "img": "../unit5/thumb_08.png?v=1"
       },
       {
@@ -673,7 +673,7 @@ window.WATCH_PACKS = {
         "syllables": "feed a kan-ga-roo",
         "zh": "餵袋鼠",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_09.mp3",
+        "audio": "../unit5/audio/audio_09.mp3?v=2",
         "img": "../unit5/thumb_09.png?v=1"
       },
       {
@@ -682,7 +682,7 @@ window.WATCH_PACKS = {
         "syllables": "go into a rain-for-est",
         "zh": "進入雨林",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_10.mp3",
+        "audio": "../unit5/audio/audio_10.mp3?v=2",
         "img": "../unit5/thumb_10.jpg?v=1"
       },
       {
@@ -691,7 +691,7 @@ window.WATCH_PACKS = {
         "syllables": "go on a cruise",
         "zh": "坐郵輪／遊輪旅行",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_11.mp3",
+        "audio": "../unit5/audio/audio_11.mp3?v=2",
         "img": "../unit5/thumb_11.jpg?v=1"
       },
       {
@@ -700,7 +700,7 @@ window.WATCH_PACKS = {
         "syllables": "go scu-ba-div-ing",
         "zh": "去水肺潛水",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_12.mp3",
+        "audio": "../unit5/audio/audio_12.mp3?v=2",
         "img": "../unit5/thumb_12.jpg?v=1"
       },
       {
@@ -709,7 +709,7 @@ window.WATCH_PACKS = {
         "syllables": "go snor-kel-ling",
         "zh": "去浮潛",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_13.mp3",
+        "audio": "../unit5/audio/audio_13.mp3?v=2",
         "img": "../unit5/thumb_13.png?v=1"
       },
       {
@@ -718,7 +718,7 @@ window.WATCH_PACKS = {
         "syllables": "go surf-ing",
         "zh": "去衝浪",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_14.mp3",
+        "audio": "../unit5/audio/audio_14.mp3?v=2",
         "img": "../unit5/thumb_14.png?v=1"
       },
       {
@@ -727,7 +727,7 @@ window.WATCH_PACKS = {
         "syllables": "vis-it a sa-fa-ri park",
         "zh": "參觀野生動物園",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_15.mp3",
+        "audio": "../unit5/audio/audio_15.mp3?v=2",
         "img": "../unit5/thumb_15.png?v=1"
       },
       {
@@ -736,7 +736,7 @@ window.WATCH_PACKS = {
         "syllables": "vis-it an a-quar-i-um",
         "zh": "參觀水族館",
         "pos": "片語動詞 phr. v.",
-        "audio": "../unit5/audio/audio_16.mp3",
+        "audio": "../unit5/audio/audio_16.mp3?v=2",
         "img": "../unit5/thumb_16.png?v=1"
       },
       {
@@ -745,7 +745,7 @@ window.WATCH_PACKS = {
         "syllables": "a-fraid of",
         "zh": "害怕……",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_17.mp3",
+        "audio": "../unit5/audio/audio_17.mp3?v=2",
         "img": "../unit5/thumb_17.png?v=1"
       },
       {
@@ -754,7 +754,7 @@ window.WATCH_PACKS = {
         "syllables": "fond of",
         "zh": "喜愛……",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_18.mp3",
+        "audio": "../unit5/audio/audio_18.mp3?v=2",
         "img": "../unit5/thumb_18.png?v=1"
       },
       {
@@ -763,7 +763,7 @@ window.WATCH_PACKS = {
         "syllables": "full of",
         "zh": "充滿……",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_19.mp3",
+        "audio": "../unit5/audio/audio_19.mp3?v=2",
         "img": "../unit5/thumb_19.png?v=1"
       },
       {
@@ -772,7 +772,7 @@ window.WATCH_PACKS = {
         "syllables": "an-gry with",
         "zh": "對……生氣",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_20.mp3",
+        "audio": "../unit5/audio/audio_20.mp3?v=2",
         "img": "../unit5/thumb_20.png?v=1"
       },
       {
@@ -781,7 +781,7 @@ window.WATCH_PACKS = {
         "syllables": "bored with",
         "zh": "對……感到無聊",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_21.mp3",
+        "audio": "../unit5/audio/audio_21.mp3?v=2",
         "img": "../unit5/thumb_21.png?v=1"
       },
       {
@@ -790,7 +790,7 @@ window.WATCH_PACKS = {
         "syllables": "pleased with",
         "zh": "對……滿意",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_22.mp3",
+        "audio": "../unit5/audio/audio_22.mp3?v=2",
         "img": "../unit5/thumb_22.png?v=1"
       },
       {
@@ -799,7 +799,7 @@ window.WATCH_PACKS = {
         "syllables": "pop-u-lar with",
         "zh": "受……歡迎",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_23.mp3",
+        "audio": "../unit5/audio/audio_23.mp3?v=2",
         "img": "../unit5/thumb_23.png?v=1"
       },
       {
@@ -808,16 +808,16 @@ window.WATCH_PACKS = {
         "syllables": "cra-zy about",
         "zh": "對……痴迷",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_24.mp3",
+        "audio": "../unit5/audio/audio_24.mp3?v=2",
         "img": "../unit5/thumb_24.png?v=1"
       },
       {
         "n": 25,
         "en": "excited about",
-        "syllables": "ex-cit-ed about",
+        "syllables": "ex-ci-ted about",
         "zh": "對……感到興奮",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_25.mp3",
+        "audio": "../unit5/audio/audio_25.mp3?v=2",
         "img": "../unit5/thumb_25.png?v=1"
       },
       {
@@ -826,7 +826,7 @@ window.WATCH_PACKS = {
         "syllables": "hap-py about",
         "zh": "對……感到高興",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_26.mp3",
+        "audio": "../unit5/audio/audio_26.mp3?v=2",
         "img": "../unit5/thumb_26.png?v=1"
       },
       {
@@ -835,7 +835,7 @@ window.WATCH_PACKS = {
         "syllables": "wor-ried about",
         "zh": "擔心……",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_27.mp3",
+        "audio": "../unit5/audio/audio_27.mp3?v=2",
         "img": "../unit5/thumb_27.png?v=1"
       },
       {
@@ -844,7 +844,7 @@ window.WATCH_PACKS = {
         "syllables": "bad for",
         "zh": "對……有害",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_28.mp3",
+        "audio": "../unit5/audio/audio_28.mp3?v=2",
         "img": "../unit5/thumb_28.png?v=1"
       },
       {
@@ -853,7 +853,7 @@ window.WATCH_PACKS = {
         "syllables": "fa-mous for",
         "zh": "以……聞名",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_29.mp3",
+        "audio": "../unit5/audio/audio_29.mp3?v=2",
         "img": "../unit5/thumb_29.jpg?v=1"
       },
       {
@@ -862,16 +862,16 @@ window.WATCH_PACKS = {
         "syllables": "good for",
         "zh": "對……有益",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_30.mp3",
+        "audio": "../unit5/audio/audio_30.mp3?v=2",
         "img": "../unit5/thumb_30.png?v=1"
       },
       {
         "n": 31,
         "en": "interested in",
-        "syllables": "in-ter-est-ed in",
+        "syllables": "in-terest-ed in",
         "zh": "對……感興趣",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_31.mp3",
+        "audio": "../unit5/audio/audio_31.mp3?v=2",
         "img": "../unit5/thumb_31.png?v=1"
       },
       {
@@ -880,7 +880,7 @@ window.WATCH_PACKS = {
         "syllables": "suc-cess-ful in",
         "zh": "在……方面成功",
         "pos": "adj. + prep.",
-        "audio": "../unit5/audio/audio_32.mp3",
+        "audio": "../unit5/audio/audio_32.mp3?v=2",
         "img": "../unit5/thumb_32.jpg?v=1"
       },
       {
@@ -889,7 +889,7 @@ window.WATCH_PACKS = {
         "syllables": "where",
         "zh": "為地方加資料",
         "pos": "",
-        "audio": "../unit5/audio/audio_33.mp3",
+        "audio": "../unit5/audio/audio_33.mp3?v=2",
         "img": "../unit5/thumb_33.png?v=1"
       }
     ]
@@ -906,7 +906,7 @@ window.WATCH_PACKS = {
         "syllables": "Chi-na",
         "zh": "中國",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_01.mp3",
+        "audio": "../unit6/audio/audio_01.mp3?v=2",
         "img": "../unit6/thumb_01.png?v=1"
       },
       {
@@ -915,7 +915,7 @@ window.WATCH_PACKS = {
         "syllables": "Can-a-da",
         "zh": "加拿大",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_02.mp3",
+        "audio": "../unit6/audio/audio_02.mp3?v=2",
         "img": "../unit6/thumb_02.png?v=1"
       },
       {
@@ -924,7 +924,7 @@ window.WATCH_PACKS = {
         "syllables": "Ja-pan",
         "zh": "日本",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_03.mp3",
+        "audio": "../unit6/audio/audio_03.mp3?v=2",
         "img": "../unit6/thumb_03.jpg?v=1"
       },
       {
@@ -933,7 +933,7 @@ window.WATCH_PACKS = {
         "syllables": "Ko-re-a",
         "zh": "韓國",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_04.mp3",
+        "audio": "../unit6/audio/audio_04.mp3?v=2",
         "img": "../unit6/thumb_04.png?v=1"
       },
       {
@@ -942,7 +942,7 @@ window.WATCH_PACKS = {
         "syllables": "It-a-ly",
         "zh": "意大利",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_05.mp3",
+        "audio": "../unit6/audio/audio_05.mp3?v=2",
         "img": "../unit6/thumb_05.png?v=1"
       },
       {
@@ -951,7 +951,7 @@ window.WATCH_PACKS = {
         "syllables": "Scot-land",
         "zh": "蘇格蘭",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_06.mp3",
+        "audio": "../unit6/audio/audio_06.mp3?v=2",
         "img": "../unit6/thumb_06.png?v=1"
       },
       {
@@ -960,16 +960,16 @@ window.WATCH_PACKS = {
         "syllables": "cheong-sam",
         "zh": "旗袍",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_07.mp3",
+        "audio": "../unit6/audio/audio_07.mp3?v=2",
         "img": "../unit6/thumb_07.png?v=1"
       },
       {
         "n": 8,
         "en": "a Chinese opera",
-        "syllables": "a Chi-nese op-e-ra",
+        "syllables": "a Chi-nese op-er-a",
         "zh": "中國戲曲／京劇表演",
         "pos": "名詞片語 n. phr.",
-        "audio": "../unit6/audio/audio_08.mp3",
+        "audio": "../unit6/audio/audio_08.mp3?v=2",
         "img": "../unit6/thumb_08.png?v=1"
       },
       {
@@ -978,7 +978,7 @@ window.WATCH_PACKS = {
         "syllables": "ice hock-ey",
         "zh": "冰球",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_09.mp3",
+        "audio": "../unit6/audio/audio_09.mp3?v=2",
         "img": "../unit6/thumb_09.png?v=1"
       },
       {
@@ -987,7 +987,7 @@ window.WATCH_PACKS = {
         "syllables": "a ki-mo-no",
         "zh": "和服",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_10.mp3",
+        "audio": "../unit6/audio/audio_10.mp3?v=2",
         "img": "../unit6/thumb_10.png?v=1"
       },
       {
@@ -996,7 +996,7 @@ window.WATCH_PACKS = {
         "syllables": "o-ri-ga-mi",
         "zh": "摺紙",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_11.mp3",
+        "audio": "../unit6/audio/audio_11.mp3?v=2",
         "img": "../unit6/thumb_11.png?v=1"
       },
       {
@@ -1005,7 +1005,7 @@ window.WATCH_PACKS = {
         "syllables": "kim-chi",
         "zh": "泡菜",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_12.mp3",
+        "audio": "../unit6/audio/audio_12.mp3?v=2",
         "img": "../unit6/thumb_12.png?v=1"
       },
       {
@@ -1014,7 +1014,7 @@ window.WATCH_PACKS = {
         "syllables": "a car-ni-val",
         "zh": "嘉年華／狂歡節",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_13.mp3",
+        "audio": "../unit6/audio/audio_13.mp3?v=2",
         "img": "../unit6/thumb_13.png?v=1"
       },
       {
@@ -1023,7 +1023,7 @@ window.WATCH_PACKS = {
         "syllables": "a Ve-ne-tian mask",
         "zh": "威尼斯面具",
         "pos": "名詞片語 n. phr.",
-        "audio": "../unit6/audio/audio_14.mp3",
+        "audio": "../unit6/audio/audio_14.mp3?v=2",
         "img": "../unit6/thumb_14.png?v=1"
       },
       {
@@ -1032,7 +1032,7 @@ window.WATCH_PACKS = {
         "syllables": "a kilt",
         "zh": "蘇格蘭短裙（格子呢）",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_15.mp3",
+        "audio": "../unit6/audio/audio_15.mp3?v=2",
         "img": "../unit6/thumb_15.png?v=1"
       },
       {
@@ -1041,7 +1041,7 @@ window.WATCH_PACKS = {
         "syllables": "an Af-ri-can drum",
         "zh": "非洲鼓",
         "pos": "名詞片語 n. phr.",
-        "audio": "../unit6/audio/audio_16.mp3",
+        "audio": "../unit6/audio/audio_16.mp3?v=2",
         "img": "../unit6/thumb_16.png?v=1"
       },
       {
@@ -1050,7 +1050,7 @@ window.WATCH_PACKS = {
         "syllables": "sam-ba",
         "zh": "森巴舞",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_17.mp3",
+        "audio": "../unit6/audio/audio_17.mp3?v=2",
         "img": "../unit6/thumb_17.png?v=1"
       },
       {
@@ -1059,7 +1059,7 @@ window.WATCH_PACKS = {
         "syllables": "bel-ly dance",
         "zh": "肚皮舞",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_18.mp3",
+        "audio": "../unit6/audio/audio_18.mp3?v=2",
         "img": "../unit6/thumb_18.png?v=1"
       },
       {
@@ -1068,7 +1068,7 @@ window.WATCH_PACKS = {
         "syllables": "rock mu-sic",
         "zh": "搖滾樂",
         "pos": "名詞 n.",
-        "audio": "../unit6/audio/audio_19.mp3",
+        "audio": "../unit6/audio/audio_19.mp3?v=2",
         "img": "../unit6/thumb_19.png?v=1"
       },
       {
@@ -1077,7 +1077,7 @@ window.WATCH_PACKS = {
         "syllables": "un-til",
         "zh": "直到……為止",
         "pos": "",
-        "audio": "../unit6/audio/audio_20.mp3",
+        "audio": "../unit6/audio/audio_20.mp3?v=2",
         "img": "../unit6/thumb_20.png?v=1"
       },
       {
@@ -1086,7 +1086,7 @@ window.WATCH_PACKS = {
         "syllables": "each",
         "zh": "每一",
         "pos": "",
-        "audio": "../unit6/audio/audio_21.mp3",
+        "audio": "../unit6/audio/audio_21.mp3?v=2",
         "img": "../unit6/thumb_21.png?v=1"
       },
       {
@@ -1095,7 +1095,7 @@ window.WATCH_PACKS = {
         "syllables": "both",
         "zh": "兩個都",
         "pos": "",
-        "audio": "../unit6/audio/audio_22.mp3",
+        "audio": "../unit6/audio/audio_22.mp3?v=2",
         "img": "../unit6/thumb_22.png?v=1"
       },
       {
@@ -1104,7 +1104,7 @@ window.WATCH_PACKS = {
         "syllables": "sev-er-al",
         "zh": "幾個（三個或以上）",
         "pos": "",
-        "audio": "../unit6/audio/audio_23.mp3",
+        "audio": "../unit6/audio/audio_23.mp3?v=2",
         "img": "../unit6/thumb_23.png?v=1"
       }
     ]
@@ -1145,7 +1145,7 @@ window.WATCH_PACK_LIST = [
   {
     "id": "unit5",
     "title": "Unit 5",
-    "sub": "The land of kangaroos",
+    "sub": "The Land of Kangaroos",
     "count": 33
   },
   {
