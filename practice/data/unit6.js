@@ -58,7 +58,7 @@ window.PRACTICE_UNIT6 = {
       "key": "unit6:cheongsam",
       "en": "cheongsam",
       "zh": "旗袍",
-      "audio": "../unit6/audio/audio_07.mp3?v=2",
+      "audio": "../unit6/audio/audio_07.mp3?v=3",
       "img": "../unit6/thumb_07.png?v=2",
       "form": "noun"
     },
@@ -98,7 +98,7 @@ window.PRACTICE_UNIT6 = {
       "key": "unit6:kimchi",
       "en": "kimchi",
       "zh": "泡菜",
-      "audio": "../unit6/audio/audio_12.mp3?v=2",
+      "audio": "../unit6/audio/audio_12.mp3?v=3",
       "img": "../unit6/thumb_12.png?v=2",
       "form": "noun"
     },
@@ -876,7 +876,7 @@ window.PRACTICE_UNIT6 = {
       "id": "u6-m7",
       "wordKey": "unit6:cheongsam",
       "word": "cheongsam",
-      "audio": "../unit6/audio/audio_07.mp3?v=2"
+      "audio": "../unit6/audio/audio_07.mp3?v=3"
     },
     {
       "id": "u6-m8",
@@ -906,7 +906,7 @@ window.PRACTICE_UNIT6 = {
       "id": "u6-m12",
       "wordKey": "unit6:kimchi",
       "word": "kimchi",
-      "audio": "../unit6/audio/audio_12.mp3?v=2"
+      "audio": "../unit6/audio/audio_12.mp3?v=3"
     },
     {
       "id": "u6-m13",

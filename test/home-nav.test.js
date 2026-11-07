@@ -142,3 +142,37 @@ test('badges page has no illustration caption and the same two links', () => {
   assert.match(bar, />Practice</);
   assert.equal(bar.match(/<a\b/g).length, 2);
 });
+
+test('unit 5 palace illustration is large on its sky, not letterboxed', () => {
+  const script = `
+from PIL import Image
+im = Image.open(${JSON.stringify(root)} + "/unit5/thumb_06.jpg").convert("RGB")
+w, h = im.size
+if abs(w / h - 4 / 3) > 0.02:
+    raise SystemExit("aspect " + str(w) + "x" + str(h))
+px = im.load()
+corners = [px[2, 2], px[w - 3, 2], px[2, h - 3], px[w - 3, h - 3]]
+def far(p, c):
+    return max(abs(p[0] - c[0]), abs(p[1] - c[1]), abs(p[2] - c[2])) > 36
+minx, miny, maxx, maxy = w, h, -1, -1
+step = 3
+for y in range(0, h, step):
+    for x in range(0, w, step):
+        p = px[x, y]
+        if any(far(p, c) for c in corners):
+            if x < minx: minx = x
+            if y < miny: miny = y
+            if x > maxx: maxx = x
+            if y > maxy: maxy = y
+fw = (maxx - minx) / w
+fh = (maxy - miny) / h
+if max(fw, fh) < 0.85:
+    raise SystemExit("subject too small " + str(round(fw, 2)) + " " + str(round(fh, 2)))
+for c in corners:
+    if c[2] < c[0] + 20 or c[2] < 180:
+        raise SystemExit("corner not sky " + str(c))
+print("ok")
+`;
+  const out = execFileSync('python3', ['-c', script], { encoding: 'utf8' });
+  assert.match(out, /ok/);
+});
