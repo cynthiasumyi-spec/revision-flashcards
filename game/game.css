@@ -93,12 +93,12 @@
   color: transparent;
   pointer-events: none;
 }
-.pin-stall { left: 5.56%; top: 5.56%; width: 21.53%; height: 34.17%; }
-.pin-wheel { left: 5.56%; top: 49.77%; width: 25.35%; height: 44.23%; }
-.pin-film { left: 75.35%; top: 5.56%; width: 19.44%; height: 30.50%; }
-.pin-hall { left: 35.76%; top: 5.09%; width: 30.56%; height: 47.40%; }
-.pin-desk { left: 70.49%; top: 46.30%; width: 23.26%; height: 41.49%; }
-.pin-store { left: 38.89%; top: 59.26%; width: 18.23%; height: 31.36%; }
+.pin-stall { left: 3.99%; top: 4.63%; width: 18.75%; height: 31.25%; }
+.pin-wheel { left: 4.17%; top: 60.19%; width: 31.60%; height: 35.53%; }
+.pin-film { left: 75.87%; top: 4.63%; width: 19.79%; height: 34.14%; }
+.pin-hall { left: 34.55%; top: 4.63%; width: 30.56%; height: 54.40%; }
+.pin-desk { left: 73.61%; top: 57.64%; width: 21.88%; height: 36.81%; }
+.pin-store { left: 40.63%; top: 63.08%; width: 18.58%; height: 34.49%; }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {
@@ -151,8 +151,8 @@
   color: #243c6c;
 }
 .scene-ask svg {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.72rem;
+  height: 1.72rem;
   display: block;
 }
 .ask-thread {
