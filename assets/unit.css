@@ -258,9 +258,9 @@ button { font: inherit; cursor: pointer; }
   word-break: normal;
   overflow-wrap: normal;
   hyphens: manual;
-  /* Lighter than the headword. Darker than #e6b800 so it stays readable on cream. */
+  /* Lighter than the headword. Site muted gray stays readable on cream. */
   font-weight: 500;
-  color: #a67c00;
+  color: var(--muted);
 }
 .syllables.is-break {
   font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.2rem);
@@ -268,7 +268,7 @@ button { font: inherit; cursor: pointer; }
   line-height: 1.3;
   letter-spacing: 0;
   margin: 0.2rem 0 0.4rem;
-  color: #a67c00;
+  color: var(--muted);
 }
 .zh {
   margin: 0;
