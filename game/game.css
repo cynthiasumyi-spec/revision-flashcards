@@ -93,12 +93,12 @@
   color: transparent;
   pointer-events: none;
 }
-.pin-stall { left: 3.47%; top: 5.09%; width: 19.88%; height: 42.71%; }
-.pin-wheel { left: 2.78%; top: 60.65%; width: 37.67%; height: 38.43%; }
-.pin-film { left: 74.65%; top: 4.63%; width: 21.70%; height: 43.29%; }
-.pin-hall { left: 29.51%; top: 3.13%; width: 39.24%; height: 57.06%; }
-.pin-desk { left: 72.57%; top: 56.48%; width: 24.31%; height: 42.59%; }
-.pin-store { left: 40.80%; top: 74.54%; width: 20.83%; height: 24.54%; }
+.pin-stall { left: 3.91%; top: 8.30%; width: 20.51%; height: 29.39%; }
+.pin-wheel { left: 3.13%; top: 57.03%; width: 33.98%; height: 32.23%; }
+.pin-film { left: 75.78%; top: 6.05%; width: 20.90%; height: 31.84%; }
+.pin-hall { left: 31.74%; top: 4.30%; width: 36.82%; height: 50.00%; }
+.pin-desk { left: 74.02%; top: 52.34%; width: 22.46%; height: 37.11%; }
+.pin-store { left: 41.41%; top: 69.53%; width: 18.55%; height: 20.70%; }
 .hotspot:hover,
 .hotspot:focus,
 .hotspot:focus-visible {
