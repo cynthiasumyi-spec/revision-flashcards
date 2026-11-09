@@ -35,7 +35,7 @@ function showSyllableLine(card) {
 test('unit word cards show a thin navy Nunito syllable line only when it adds hyphens', () => {
   for (const unit of UNITS) {
     const { html, cards: list } = cards(unit);
-    assert.match(html, /unit\.css\?v=17/);
+    assert.match(html, /unit\.css\?v=18/);
     assert.match(html, /class="headword"/);
     assert.match(html, /function showSyllableLine/);
     assert.match(html, /showSyllableLine\(card\) \? '<p class="syllables is-break">'/);
