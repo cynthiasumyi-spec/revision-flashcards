@@ -742,7 +742,7 @@ window.WATCH_PACKS = {
       {
         "n": 17,
         "en": "afraid of",
-        "syllables": "a-fraid of",
+        "syllables": "",
         "zh": "害怕……",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_17.mp3?v=2",
@@ -751,7 +751,7 @@ window.WATCH_PACKS = {
       {
         "n": 18,
         "en": "fond of",
-        "syllables": "fond of",
+        "syllables": "",
         "zh": "喜愛……",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_18.mp3?v=2",
@@ -760,7 +760,7 @@ window.WATCH_PACKS = {
       {
         "n": 19,
         "en": "full of",
-        "syllables": "full of",
+        "syllables": "",
         "zh": "充滿……",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_19.mp3?v=2",
@@ -769,7 +769,7 @@ window.WATCH_PACKS = {
       {
         "n": 20,
         "en": "angry with",
-        "syllables": "an-gry with",
+        "syllables": "",
         "zh": "對……生氣",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_20.mp3?v=2",
@@ -778,7 +778,7 @@ window.WATCH_PACKS = {
       {
         "n": 21,
         "en": "bored with",
-        "syllables": "bored with",
+        "syllables": "",
         "zh": "對……感到無聊",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_21.mp3?v=2",
@@ -787,7 +787,7 @@ window.WATCH_PACKS = {
       {
         "n": 22,
         "en": "pleased with",
-        "syllables": "pleased with",
+        "syllables": "",
         "zh": "對……滿意",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_22.mp3?v=2",
@@ -796,7 +796,7 @@ window.WATCH_PACKS = {
       {
         "n": 23,
         "en": "popular with",
-        "syllables": "pop-u-lar with",
+        "syllables": "",
         "zh": "受……歡迎",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_23.mp3?v=2",
@@ -805,7 +805,7 @@ window.WATCH_PACKS = {
       {
         "n": 24,
         "en": "crazy about",
-        "syllables": "cra-zy about",
+        "syllables": "",
         "zh": "對……痴迷",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_24.mp3?v=2",
@@ -814,7 +814,7 @@ window.WATCH_PACKS = {
       {
         "n": 25,
         "en": "excited about",
-        "syllables": "ex-ci-ted about",
+        "syllables": "",
         "zh": "對……感到興奮",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_25.mp3?v=2",
@@ -823,7 +823,7 @@ window.WATCH_PACKS = {
       {
         "n": 26,
         "en": "happy about",
-        "syllables": "hap-py about",
+        "syllables": "",
         "zh": "對……感到高興",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_26.mp3?v=2",
@@ -832,7 +832,7 @@ window.WATCH_PACKS = {
       {
         "n": 27,
         "en": "worried about",
-        "syllables": "wor-ried about",
+        "syllables": "",
         "zh": "擔心……",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_27.mp3?v=2",
@@ -841,7 +841,7 @@ window.WATCH_PACKS = {
       {
         "n": 28,
         "en": "bad for",
-        "syllables": "bad for",
+        "syllables": "",
         "zh": "對……有害",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_28.mp3?v=2",
@@ -850,7 +850,7 @@ window.WATCH_PACKS = {
       {
         "n": 29,
         "en": "famous for",
-        "syllables": "fa-mous for",
+        "syllables": "",
         "zh": "以……聞名",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_29.mp3?v=2",
@@ -859,7 +859,7 @@ window.WATCH_PACKS = {
       {
         "n": 30,
         "en": "good for",
-        "syllables": "good for",
+        "syllables": "",
         "zh": "對……有益",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_30.mp3?v=2",
@@ -868,7 +868,7 @@ window.WATCH_PACKS = {
       {
         "n": 31,
         "en": "interested in",
-        "syllables": "in-terest-ed in",
+        "syllables": "",
         "zh": "對……感興趣",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_31.mp3?v=2",
@@ -877,7 +877,7 @@ window.WATCH_PACKS = {
       {
         "n": 32,
         "en": "successful in",
-        "syllables": "suc-cess-ful in",
+        "syllables": "",
         "zh": "在……方面成功",
         "pos": "adj. + prep.",
         "audio": "../unit5/audio/audio_32.mp3?v=2",
@@ -886,7 +886,7 @@ window.WATCH_PACKS = {
       {
         "n": 33,
         "en": "where",
-        "syllables": "where",
+        "syllables": "",
         "zh": "為地方加資料",
         "pos": "",
         "audio": "../unit5/audio/audio_33.mp3?v=2",
@@ -1074,7 +1074,7 @@ window.WATCH_PACKS = {
       {
         "n": 20,
         "en": "until",
-        "syllables": "un-til",
+        "syllables": "",
         "zh": "直到……為止",
         "pos": "",
         "audio": "../unit6/audio/audio_20.mp3?v=2",
@@ -1083,7 +1083,7 @@ window.WATCH_PACKS = {
       {
         "n": 21,
         "en": "each",
-        "syllables": "each",
+        "syllables": "",
         "zh": "每一",
         "pos": "",
         "audio": "../unit6/audio/audio_21.mp3?v=2",
@@ -1092,7 +1092,7 @@ window.WATCH_PACKS = {
       {
         "n": 22,
         "en": "both",
-        "syllables": "both",
+        "syllables": "",
         "zh": "兩個都",
         "pos": "",
         "audio": "../unit6/audio/audio_22.mp3?v=2",
@@ -1101,7 +1101,7 @@ window.WATCH_PACKS = {
       {
         "n": 23,
         "en": "several",
-        "syllables": "sev-er-al",
+        "syllables": "",
         "zh": "幾個（三個或以上）",
         "pos": "",
         "audio": "../unit6/audio/audio_23.mp3?v=2",
