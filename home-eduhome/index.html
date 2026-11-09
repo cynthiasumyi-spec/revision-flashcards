@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Primary 6 English Flashcards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="../assets/fonts/jf-openhuninn-2.1.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts.css?v=1" />
   <style>
     :root {
       --navy: #243c6c;
@@ -21,14 +26,16 @@
       --radius-sm: 16px;
       --nav-h: 64px;
       --max: 1040px;
+      --font-display: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+      --font-text: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+      --font-zh: "jfOpenHuninn", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
-        "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", sans-serif;
+      font-family: var(--font-text);
       background: var(--cream);
       color: var(--navy);
       line-height: 1.55;
