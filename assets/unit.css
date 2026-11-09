@@ -234,6 +234,9 @@ button { font: inherit; cursor: pointer; }
   /* leave room so syllables don't collide with inset speaker */
   padding: 0.85rem 3.7rem 0 0.85rem;
 }
+.top.no-illust {
+  grid-template-columns: 1fr;
+}
 .illust {
   position: relative;
   border-radius: var(--radius-sm);

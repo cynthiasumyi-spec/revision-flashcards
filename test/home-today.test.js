@@ -68,7 +68,18 @@ test('each pack card number matches the syllabus order', () => {
   Object.keys(files).forEach((id) => {
     const cards = cardsFrom(files[id]);
     const pack = words.filter((w) => w.unitId === id);
-    assert.equal(pack.length, cards.length, id);
+    assert.ok(cards.length >= pack.length, id);
+    const extra = cards.slice(pack.length);
+    if (extra.length) {
+      assert.ok(['unit1', 'unit2', 'unit3', 'unit4'].includes(id), id);
+      extra.forEach((card) => {
+        assert.ok(card.pattern, id + ' ' + card.en);
+        assert.equal(card.syllables, '', card.en);
+        assert.equal(card.pos, '', card.en);
+      });
+    } else {
+      assert.equal(pack.length, cards.length, id);
+    }
     pack.forEach((w, i) => {
       assert.equal(w.en, cards[i].en, id + ' card ' + (i + 1));
       assert.equal(w.zh, cards[i].zh);

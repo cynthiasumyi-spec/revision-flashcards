@@ -34,6 +34,10 @@ function showSyllableLine(html, wordsMax) {
 
 test('grammar cards keep an empty syllable field and the section never prints one', () => {
   const units = [
+    { id: 'unit1', wordsMax: 10, word: 'adopt a pet', wordSyllables: 'a-dopt a pet', plain: 'buy/sell flags' },
+    { id: 'unit2', wordsMax: 10, word: 'an earthquake', wordSyllables: 'an earth-quake', plain: 'a drought' },
+    { id: 'unit3', wordsMax: 12, word: 'sprinkle', wordSyllables: 'sprin-kle', plain: 'beat' },
+    { id: 'unit4', wordsMax: 14, word: 'cruel', wordSyllables: 'cru-el', plain: 'wise' },
     { id: 'unit5', wordsMax: 16, word: 'go snowboarding', wordSyllables: 'go snow-board-ing', plain: 'go on a guided tour' },
     { id: 'unit6', wordsMax: 19, word: 'China', wordSyllables: 'Chi-na', plain: 'a kilt' }
   ];
@@ -64,12 +68,15 @@ test('grammar cards keep an empty syllable field and the section never prints on
   }
 });
 
-test('units 1-4 are words only and have no grammar section', () => {
+test('units 1-4 grammar sections use the same teach shell as units 5-6', () => {
   for (const unit of ['unit1', 'unit2', 'unit3', 'unit4']) {
     const { html, wordsMax } = page(unit);
-    assert.equal(wordsMax, null, unit);
-    assert.doesNotMatch(html, /Grammar in use/);
-    assert.doesNotMatch(html, /data-section="grammar"/);
+    assert.ok(wordsMax > 0, unit);
+    assert.match(html, /Grammar in use/);
+    assert.match(html, /data-section="grammar"/);
+    assert.match(html, /appendTeach\(article, card\)/);
+    assert.match(html, /unit\.css\?v=19/);
+    assert.match(html, /no-illust/);
   }
 });
 
@@ -78,9 +85,10 @@ test('watch packs drop syllables on the same grammar cards and still show word s
   const sandbox = { window: {} };
   vm.runInNewContext(src, sandbox);
   const watchHtml = fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8');
-  assert.match(watchHtml, /packs\.js\?v=2/);
+  assert.match(watchHtml, /packs\.js\?v=3/);
   assert.match(watchHtml, /sylEl\.hidden = !c\.syllables/);
-  const limits = { unit5: 16, unit6: 19 };
+  assert.match(watchHtml, /imgEl\.parentElement\.hidden = true/);
+  const limits = { unit1: 10, unit2: 10, unit3: 12, unit4: 14, unit5: 16, unit6: 19 };
   for (const [id, wordsMax] of Object.entries(limits)) {
     for (const card of sandbox.window.WATCH_PACKS[id].cards) {
       if (card.n > wordsMax) {
