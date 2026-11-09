@@ -10,15 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link rel="preload" href="../assets/fonts/jf-openhuninn-2.1.woff2?v=2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="../assets/fonts.css?v=3"/>
-<link rel="stylesheet" href="../assets/unit.css?v=18"/>
+<link rel="stylesheet" href="../assets/unit.css?v=19"/>
 </head>
 <body class="theme-unit2">
 <header class="unit-header">
   <a class="back" href="../index.html">Back to packs</a>
   <h1>Unit 2 Lend a helping hand</h1>
-  <p class="sub">10 words · Primary 6 examples + Form 1 advanced examples</p>
+  <p class="sub">10 words + grammar · Primary 6 examples + Form 1 advanced examples</p>
 </header>
 <p class="hint">Tap Play for audio. Tap the illustration to enlarge.</p>
+<div class="section-pills" role="tablist" aria-label="Card sections">
+  <button type="button" class="section-pill is-active" data-section="words" role="tab" aria-selected="true">Words in use</button>
+  <button type="button" class="section-pill" data-section="grammar" role="tab" aria-selected="false">Grammar in use</button>
+</div>
 <div class="list" id="list"></div>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarge illustration">
   <img id="lb-img" alt="" />
@@ -29,7 +33,8 @@
 </div>
 <script src="../assets/last-place.js"></script>
 <script>
-const CARDS = [{"n": 1, "en": "a drought", "syllables": "a drought", "zh": "旱災", "pos": "名詞 n.", "ex_en": "The dry land shows there is a drought.", "ex_zh": "乾裂的土地顯示發生了旱災。", "adv_en": "Because there has been no rain for months, the farmers suffer from a drought.", "adv_zh": "因為好幾個月沒有下雨，農夫正受旱災之苦。", "highlight": "a drought", "audio": "audio/audio_01.mp3", "img": "thumb_01.png", "art_source": "irasutoya:https://www.irasutoya.com/2012/10/blog-post_29.html"}, {"n": 2, "en": "an earthquake", "syllables": "an earth-quake", "zh": "地震", "pos": "名詞 n.", "ex_en": "The buildings fell down in an earthquake.", "ex_zh": "地震中樓房倒塌了。", "adv_en": "When an earthquake suddenly starts, people must hide under a strong table.", "adv_zh": "當地震突然發生時，人們必須躲在堅固的桌子下。", "highlight": "an earthquake", "audio": "audio/audio_02.mp3", "img": "thumb_02.jpg", "art_source": "generated"}, {"n": 3, "en": "a flood", "syllables": "a flood", "zh": "水災", "pos": "名詞 n.", "ex_en": "People walk through water during a flood.", "ex_zh": "水災期間人們在水中行走。", "adv_en": "After heavy rain, a flood fills the streets so nobody can drive.", "adv_zh": "大雨過後，水災淹沒街道，所以沒有人能開車。", "highlight": "a flood", "audio": "audio/audio_03.mp3", "img": "thumb_03.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/09/blog-post_109.html"}, {"n": 4, "en": "a landslip", "syllables": "a land-slip", "zh": "山泥傾瀉", "pos": "名詞 n.", "ex_en": "Rocks cover the road after a landslip.", "ex_zh": "山泥傾瀉後，石頭覆蓋了道路。", "adv_en": "Because of a landslip on the mountain, the road is blocked and cars cannot pass.", "adv_zh": "因為山上發生山泥傾瀉，道路被堵塞，汽車無法通過。", "highlight": "a landslip", "audio": "audio/audio_04.mp3", "img": "thumb_04.png", "art_source": "irasutoya:https://www.irasutoya.com/2012/10/blog-post_25.html"}, {"n": 5, "en": "a tsunami", "syllables": "a tsu-na-mi", "zh": "海嘯", "pos": "名詞 n.", "ex_en": "A huge wave comes in a tsunami.", "ex_zh": "海嘯時湧來巨大的海浪。", "adv_en": "When a tsunami approaches the coast, people must move to higher ground quickly.", "adv_zh": "當海嘯逼近海岸時，人們必須迅速移往高處。", "highlight": "a tsunami", "audio": "audio/audio_05.mp3", "img": "thumb_05.jpg", "art_source": "generated"}, {"n": 6, "en": "a typhoon", "syllables": "a ty-phoon", "zh": "颱風", "pos": "名詞 n.", "ex_en": "Strong wind bends the trees in a typhoon.", "ex_zh": "颱風中強風吹彎了樹木。", "adv_en": "Although a typhoon is coming, the family stays indoors and waits safely.", "adv_zh": "雖然颱風快到了，這家人仍留在室內安全地等待。", "highlight": "a typhoon", "audio": "audio/audio_06.mp3", "img": "thumb_06.jpg", "art_source": "generated"}, {"n": 7, "en": "block roads", "syllables": "block roads", "zh": "堵塞道路", "pos": "動詞短語 v.", "ex_en": "The flood water can block roads.", "ex_zh": "洪水可以堵塞道路。", "adv_en": "Fallen trees block roads after the storm, so buses cannot run.", "adv_zh": "暴風雨後倒下的樹木堵塞道路，所以巴士無法行駛。", "highlight": "block roads", "audio": "audio/audio_07.mp3", "img": "thumb_07.png", "art_source": "irasutoya:https://www.irasutoya.com/2020/10/blog-post_798.html"}, {"n": 8, "en": "damage crops", "syllables": "dam-age crops", "zh": "損毀農作物", "pos": "動詞短語 v.", "ex_en": "The dry weather can damage crops.", "ex_zh": "乾旱天氣會損毀農作物。", "adv_en": "If there is no rain for too long, the heat will damage crops in the fields.", "adv_zh": "如果太久沒下雨，高溫就會損毀田裡的農作物。", "highlight": "damage crops", "audio": "audio/audio_08.mp3", "img": "thumb_08.png", "art_source": "irasutoya:https://www.irasutoya.com/2017/04/blog-post_89.html"}, {"n": 9, "en": "destroy buildings", "syllables": "de-stroy build-ings", "zh": "摧毀建築物", "pos": "動詞短語 v.", "ex_en": "The strong quake can destroy buildings.", "ex_zh": "強烈地震能摧毀建築物。", "adv_en": "An earthquake which is very strong may destroy buildings in the city centre.", "adv_zh": "非常強烈的地震可能摧毀市中心的建築物。", "highlight": "destroy buildings", "audio": "audio/audio_09.mp3", "img": "thumb_09.jpg", "art_source": "generated"}, {"n": 10, "en": "injure people", "syllables": "in-jure peo-ple", "zh": "使人受傷", "pos": "動詞短語 v.", "ex_en": "Falling rocks may injure people.", "ex_zh": "掉落的石頭可能使人受傷。", "adv_en": "Rescuers help a girl who was hurt when the disaster injured people nearby.", "adv_zh": "救護人員幫助一個女孩，她是在災難使人受傷時被傷到的。", "highlight": "injure people", "audio": "audio/audio_10.mp3", "img": "thumb_10.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/11/blog-post_304.html"}];
+const CARDS = [{"n": 1, "en": "a drought", "syllables": "a drought", "zh": "旱災", "pos": "名詞 n.", "ex_en": "The dry land shows there is a drought.", "ex_zh": "乾裂的土地顯示發生了旱災。", "adv_en": "Because there has been no rain for months, the farmers suffer from a drought.", "adv_zh": "因為好幾個月沒有下雨，農夫正受旱災之苦。", "highlight": "a drought", "audio": "audio/audio_01.mp3", "img": "thumb_01.png", "art_source": "irasutoya:https://www.irasutoya.com/2012/10/blog-post_29.html"}, {"n": 2, "en": "an earthquake", "syllables": "an earth-quake", "zh": "地震", "pos": "名詞 n.", "ex_en": "The buildings fell down in an earthquake.", "ex_zh": "地震中樓房倒塌了。", "adv_en": "When an earthquake suddenly starts, people must hide under a strong table.", "adv_zh": "當地震突然發生時，人們必須躲在堅固的桌子下。", "highlight": "an earthquake", "audio": "audio/audio_02.mp3", "img": "thumb_02.jpg", "art_source": "generated"}, {"n": 3, "en": "a flood", "syllables": "a flood", "zh": "水災", "pos": "名詞 n.", "ex_en": "People walk through water during a flood.", "ex_zh": "水災期間人們在水中行走。", "adv_en": "After heavy rain, a flood fills the streets so nobody can drive.", "adv_zh": "大雨過後，水災淹沒街道，所以沒有人能開車。", "highlight": "a flood", "audio": "audio/audio_03.mp3", "img": "thumb_03.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/09/blog-post_109.html"}, {"n": 4, "en": "a landslip", "syllables": "a land-slip", "zh": "山泥傾瀉", "pos": "名詞 n.", "ex_en": "Rocks cover the road after a landslip.", "ex_zh": "山泥傾瀉後，石頭覆蓋了道路。", "adv_en": "Because of a landslip on the mountain, the road is blocked and cars cannot pass.", "adv_zh": "因為山上發生山泥傾瀉，道路被堵塞，汽車無法通過。", "highlight": "a landslip", "audio": "audio/audio_04.mp3", "img": "thumb_04.png", "art_source": "irasutoya:https://www.irasutoya.com/2012/10/blog-post_25.html"}, {"n": 5, "en": "a tsunami", "syllables": "a tsu-na-mi", "zh": "海嘯", "pos": "名詞 n.", "ex_en": "A huge wave comes in a tsunami.", "ex_zh": "海嘯時湧來巨大的海浪。", "adv_en": "When a tsunami approaches the coast, people must move to higher ground quickly.", "adv_zh": "當海嘯逼近海岸時，人們必須迅速移往高處。", "highlight": "a tsunami", "audio": "audio/audio_05.mp3", "img": "thumb_05.jpg", "art_source": "generated"}, {"n": 6, "en": "a typhoon", "syllables": "a ty-phoon", "zh": "颱風", "pos": "名詞 n.", "ex_en": "Strong wind bends the trees in a typhoon.", "ex_zh": "颱風中強風吹彎了樹木。", "adv_en": "Although a typhoon is coming, the family stays indoors and waits safely.", "adv_zh": "雖然颱風快到了，這家人仍留在室內安全地等待。", "highlight": "a typhoon", "audio": "audio/audio_06.mp3", "img": "thumb_06.jpg", "art_source": "generated"}, {"n": 7, "en": "block roads", "syllables": "block roads", "zh": "堵塞道路", "pos": "動詞短語 v.", "ex_en": "The flood water can block roads.", "ex_zh": "洪水可以堵塞道路。", "adv_en": "Fallen trees block roads after the storm, so buses cannot run.", "adv_zh": "暴風雨後倒下的樹木堵塞道路，所以巴士無法行駛。", "highlight": "block roads", "audio": "audio/audio_07.mp3", "img": "thumb_07.png", "art_source": "irasutoya:https://www.irasutoya.com/2020/10/blog-post_798.html"}, {"n": 8, "en": "damage crops", "syllables": "dam-age crops", "zh": "損毀農作物", "pos": "動詞短語 v.", "ex_en": "The dry weather can damage crops.", "ex_zh": "乾旱天氣會損毀農作物。", "adv_en": "If there is no rain for too long, the heat will damage crops in the fields.", "adv_zh": "如果太久沒下雨，高溫就會損毀田裡的農作物。", "highlight": "damage crops", "audio": "audio/audio_08.mp3", "img": "thumb_08.png", "art_source": "irasutoya:https://www.irasutoya.com/2017/04/blog-post_89.html"}, {"n": 9, "en": "destroy buildings", "syllables": "de-stroy build-ings", "zh": "摧毀建築物", "pos": "動詞短語 v.", "ex_en": "The strong quake can destroy buildings.", "ex_zh": "強烈地震能摧毀建築物。", "adv_en": "An earthquake which is very strong may destroy buildings in the city centre.", "adv_zh": "非常強烈的地震可能摧毀市中心的建築物。", "highlight": "destroy buildings", "audio": "audio/audio_09.mp3", "img": "thumb_09.jpg", "art_source": "generated"}, {"n": 10, "en": "injure people", "syllables": "in-jure peo-ple", "zh": "使人受傷", "pos": "動詞短語 v.", "ex_en": "Falling rocks may injure people.", "ex_zh": "掉落的石頭可能使人受傷。", "adv_en": "Rescuers help a girl who was hurt when the disaster injured people nearby.", "adv_zh": "救護人員幫助一個女孩，她是在災難使人受傷時被傷到的。", "highlight": "injure people", "audio": "audio/audio_10.mp3", "img": "thumb_10.png", "art_source": "irasutoya:https://www.irasutoya.com/2014/11/blog-post_304.html"}, {"n": 11, "en": "If …, … will …", "syllables": "", "zh": "如果……，就會……（可能發生）", "pos": "", "pattern": "If-clause (simple present) + main clause (future / will)", "ex_en": "If a typhoon comes, we will stay at home.", "ex_zh": "如果颱風來，我們會留在家裡。", "adv_en": "If the flood blocks the roads, the workers will help the injured people first.", "adv_zh": "如果水災堵塞道路，工作人員會先幫助受傷的人。", "highlight": "If …, … will …", "audio": "audio/audio_11.mp3"}, {"n": 12, "en": "so that", "syllables": "", "zh": "以便／為了……", "pos": "", "note_zh": "so 表示「所以／因此」；so that 表示「以便／為了」（目的）", "pattern": "… so that + clause", "ex_en": "We pack dry food so that we can help after the flood.", "ex_zh": "我們準備乾糧，以便水災後能夠幫忙。", "adv_en": "The firemen clear the landslip so that cars can use the road again.", "adv_zh": "消防員清理山泥傾瀉，以便汽車能再上路。", "highlight": "so that", "audio": "audio/audio_12.mp3"}];
+const WORDS_MAX = 10;
 const list = document.getElementById('list');
 const FILLS = ['fill-a','fill-b','fill-c','fill-d','fill-e','fill-f'];
 const lightbox = document.getElementById('lightbox');
@@ -76,7 +81,12 @@ function playCard(card, article) {
   a.onended = () => article.classList.remove('playing');
 }
 
+function glossLine(card) {
+  return card.pos ? card.zh + '（' + card.pos + '）' : card.zh;
+}
+
 function showSyllableLine(card) {
+  if (card.n > WORDS_MAX) return false;
   var syl = String(card.syllables || '');
   var norm = function (value) {
     return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -86,10 +96,45 @@ function showSyllableLine(card) {
   return true;
 }
 
+function esc(text) {
+  return String(text == null ? '' : text).replace(/[&<>"']/g, function (ch) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+
+function chipHtml(chips) {
+  return (chips || []).map(function (chip) {
+    var ok = !!chip.ok;
+    return '<span class="chip ' + (ok ? 'chip-ok' : 'chip-no') + '">' +
+      (ok ? '✓' : '✕') + ' ' + esc(chip.text) + '</span>';
+  }).join('');
+}
+
+function appendTeach(article, card) {
+  var hasNote = !!card.note_zh || (card.chips && card.chips.length);
+  var hasPattern = !!card.pattern;
+  if (!hasNote && !hasPattern) return;
+  if (hasNote) {
+    var tip = document.createElement('div');
+    tip.className = 'teach teach-tip';
+    tip.innerHTML =
+      '<span class="ex-label note-label">Note<img class="note-bulb" src="../assets/note-bulb.png?v=15" alt=""></span>' +
+      '<div class="tip-inline"><p class="tip-en">' + esc(card.note_zh || '') + '</p>' + chipHtml(card.chips) + '</div>';
+    article.appendChild(tip);
+  }
+  if (hasPattern) {
+    var pattern = document.createElement('div');
+    pattern.className = 'teach';
+    pattern.innerHTML = '<span class="ex-label">Pattern</span><p class="pattern">' + esc(card.pattern) + '</p>';
+    article.appendChild(pattern);
+  }
+}
+
 CARDS.forEach(card => {
   const article = document.createElement('article');
   article.className = 'card ' + FILLS[(card.n - 1) % FILLS.length];
   article.id = 'c' + card.n;
+  article.dataset.section = card.n <= WORDS_MAX ? 'words' : 'grammar';
 
   const speaker = document.createElement('button');
   speaker.type = 'button';
@@ -100,7 +145,7 @@ CARDS.forEach(card => {
   article.appendChild(speaker);
 
   const top = document.createElement('div');
-  top.className = 'top';
+  top.className = 'top' + (card.img ? '' : ' no-illust');
 
   if (card.img) {
     const wrap = document.createElement('div');
@@ -124,9 +169,10 @@ CARDS.forEach(card => {
     '<span class="num">' + card.n + '</span>' +
     '<p class="headword">' + card.en + '</p>' +
     (showSyllableLine(card) ? '<p class="syllables is-break">' + card.syllables + '</p>' : '') +
-    '<p class="zh">' + card.zh + '（' + card.pos + '）</p>';
+    '<p class="zh">' + glossLine(card) + '</p>';
   top.appendChild(main);
   article.appendChild(top);
+  appendTeach(article, card);
 
   const ex1 = document.createElement('div');
   ex1.className = 'ex';
@@ -144,8 +190,22 @@ CARDS.forEach(card => {
 
   list.appendChild(article);
 });
+function showSection(name) {
+  document.querySelectorAll('.section-pill').forEach(function (btn) {
+    var on = btn.dataset.section === name;
+    btn.classList.toggle('is-active', on);
+    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('#list .card').forEach(function (el) {
+    el.hidden = el.dataset.section !== name;
+  });
+}
+document.querySelectorAll('.section-pill').forEach(function (btn) {
+  btn.addEventListener('click', function () { showSection(btn.dataset.section); });
+});
+var hashN = Number(String(location.hash).replace('#c', ''));
+showSection(hashN > WORDS_MAX ? 'grammar' : 'words');
 if (window.LastPlace && location.hash) {
-  var hashN = Number(String(location.hash).replace('#c', ''));
   var hashed = CARDS.filter(function (c) { return c.n === hashN; })[0];
   if (hashed) LastPlace.save(hashed);
   LastPlace.focusHash();

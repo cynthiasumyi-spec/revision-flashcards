@@ -4,7 +4,7 @@ window.WATCH_PACKS = {
     "id": "unit1",
     "title": "Unit 1",
     "sub": "For a good cause",
-    "count": 10,
+    "count": 14,
     "cards": [
       {
         "n": 1,
@@ -95,6 +95,38 @@ window.WATCH_PACKS = {
         "pos": "動詞短語 v.",
         "audio": "../unit1/audio/audio_10.mp3",
         "img": "../unit1/thumb_10.png"
+      },
+      {
+        "n": 11,
+        "en": "so many",
+        "syllables": "",
+        "zh": "這麼多（可數）",
+        "pos": "",
+        "audio": "../unit1/audio/audio_11.mp3"
+      },
+      {
+        "n": 12,
+        "en": "so much",
+        "syllables": "",
+        "zh": "這麼多（不可數）",
+        "pos": "",
+        "audio": "../unit1/audio/audio_12.mp3"
+      },
+      {
+        "n": 13,
+        "en": "who",
+        "syllables": "",
+        "zh": "……的人（關係代名詞）",
+        "pos": "",
+        "audio": "../unit1/audio/audio_13.mp3"
+      },
+      {
+        "n": 14,
+        "en": "which",
+        "syllables": "",
+        "zh": "……的事物（關係代名詞）",
+        "pos": "",
+        "audio": "../unit1/audio/audio_14.mp3"
       }
     ]
   },
@@ -102,7 +134,7 @@ window.WATCH_PACKS = {
     "id": "unit2",
     "title": "Unit 2",
     "sub": "Lend a helping hand",
-    "count": 10,
+    "count": 12,
     "cards": [
       {
         "n": 1,
@@ -193,6 +225,22 @@ window.WATCH_PACKS = {
         "pos": "動詞短語 v.",
         "audio": "../unit2/audio/audio_10.mp3",
         "img": "../unit2/thumb_10.png"
+      },
+      {
+        "n": 11,
+        "en": "If …, … will …",
+        "syllables": "",
+        "zh": "如果……，就會……（可能發生）",
+        "pos": "",
+        "audio": "../unit2/audio/audio_11.mp3"
+      },
+      {
+        "n": 12,
+        "en": "so that",
+        "syllables": "",
+        "zh": "以便／為了……",
+        "pos": "",
+        "audio": "../unit2/audio/audio_12.mp3"
       }
     ]
   },
@@ -200,7 +248,7 @@ window.WATCH_PACKS = {
     "id": "unit3",
     "title": "Unit 3",
     "sub": "Junior Super Chef",
-    "count": 12,
+    "count": 15,
     "cards": [
       {
         "n": 1,
@@ -309,6 +357,30 @@ window.WATCH_PACKS = {
         "pos": "動詞 v.",
         "audio": "../unit3/audio/audio_12.mp3",
         "img": "../unit3/thumb_12.jpg"
+      },
+      {
+        "n": 13,
+        "en": "although",
+        "syllables": "",
+        "zh": "雖然……",
+        "pos": "",
+        "audio": "../unit3/audio/audio_13.mp3"
+      },
+      {
+        "n": 14,
+        "en": "after",
+        "syllables": "",
+        "zh": "在……之後",
+        "pos": "",
+        "audio": "../unit3/audio/audio_14.mp3"
+      },
+      {
+        "n": 15,
+        "en": "before",
+        "syllables": "",
+        "zh": "在……之前",
+        "pos": "",
+        "audio": "../unit3/audio/audio_15.mp3"
       }
     ]
   },
@@ -316,7 +388,7 @@ window.WATCH_PACKS = {
     "id": "unit4",
     "title": "Unit 4",
     "sub": "Film magic",
-    "count": 14,
+    "count": 16,
     "cards": [
       {
         "n": 1,
@@ -443,6 +515,22 @@ window.WATCH_PACKS = {
         "pos": "形容詞 adj.",
         "audio": "../unit4/audio/audio_14.mp3",
         "img": "../unit4/thumb_14.png"
+      },
+      {
+        "n": 15,
+        "en": "If … were …, … would …",
+        "syllables": "",
+        "zh": "如果……是……（假設／建議）",
+        "pos": "",
+        "audio": "../unit4/audio/audio_15.mp3"
+      },
+      {
+        "n": 16,
+        "en": "as … as",
+        "syllables": "",
+        "zh": "和……一樣……",
+        "pos": "",
+        "audio": "../unit4/audio/audio_16.mp3"
       }
     ]
   },
@@ -1115,25 +1203,25 @@ window.WATCH_PACK_LIST = [
     "id": "unit1",
     "title": "Unit 1",
     "sub": "For a good cause",
-    "count": 10
+    "count": 14
   },
   {
     "id": "unit2",
     "title": "Unit 2",
     "sub": "Lend a helping hand",
-    "count": 10
+    "count": 12
   },
   {
     "id": "unit3",
     "title": "Unit 3",
     "sub": "Junior Super Chef",
-    "count": 12
+    "count": 15
   },
   {
     "id": "unit4",
     "title": "Unit 4",
     "sub": "Film magic",
-    "count": 14
+    "count": 16
   },
   {
     "id": "dictation3",

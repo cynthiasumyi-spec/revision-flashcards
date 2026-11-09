@@ -35,15 +35,22 @@ function showSyllableLine(card) {
 test('unit word cards show a thin navy Nunito syllable line only when it adds hyphens', () => {
   for (const unit of UNITS) {
     const { html, cards: list } = cards(unit);
-    assert.match(html, /unit\.css\?v=18/);
+    assert.match(html, /unit\.css\?v=19/);
     assert.match(html, /class="headword"/);
     assert.match(html, /function showSyllableLine/);
     assert.match(html, /showSyllableLine\(card\) \? '<p class="syllables is-break">'/);
     assert.doesNotMatch(html, /syl-hint|下方是分音節寫法/);
     assert.ok(list.length > 0, unit);
+    const wordsMax = Number((html.match(/const WORDS_MAX = (\d+);/) || [])[1]);
+    assert.ok(wordsMax > 0, unit);
     for (const card of list) {
       assert.equal(typeof card.en, 'string');
       assert.equal(typeof card.syllables, 'string');
+      if (card.n > wordsMax) {
+        assert.equal(card.syllables, '', unit + ' ' + card.en);
+        assert.equal(showSyllableLine(card), false, unit + ' ' + card.en);
+        continue;
+      }
       assert.ok(samePhrase(card.en, card.syllables), unit + ' ' + card.en + ' / ' + card.syllables);
     }
   }
