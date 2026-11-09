@@ -44,7 +44,7 @@ test('student pages use Nunito and a local full jfOpenHuninn file', () => {
     assert.match(css, new RegExp(TOKEN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), rel);
     assert.match(css, new RegExp(TEXT.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), rel);
     assert.match(css, new RegExp(ZH.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), rel);
-    assert.match(css, /@import url\("[^"]*fonts\.css\?v=2"\)/, rel);
+    assert.match(css, /^@import url\("[^"]*fonts\.css\?v=3"\)/, rel);
     assert.doesNotMatch(css, /Fredoka|jf-openhuninn"|emfont/, rel);
   }
 
@@ -57,7 +57,11 @@ test('student pages use Nunito and a local full jfOpenHuninn file', () => {
     if (text.includes('fonts.googleapis.com')) {
       assert.match(text, /family=Nunito:wght@400;500;600;700;800/, rel);
       assert.doesNotMatch(text, /family=Fredoka/, rel);
-      assert.match(text, /jf-openhuninn-2\.1\.woff2/, rel);
+      assert.match(text, /jf-openhuninn-2\.1\.woff2\?v=2/, rel);
+      assert.match(text, /<link rel="stylesheet" href="[^"]*fonts\.css\?v=3"/, rel);
+      const fontAt = text.search(/href="[^"]*fonts\.css\?v=3"/);
+      const mainAt = text.search(/href="[^"]*(?:unit|site|practice|grammar|watch|game)\.css\?v=/);
+      if (mainAt !== -1) assert.ok(fontAt !== -1 && fontAt < mainAt, rel + ' loads fonts.css before the main sheet');
     }
   }
 });
