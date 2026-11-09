@@ -1,0 +1,39 @@
+/* JF Open 粉圓 2.1 (SIL OFL, see OFL.txt). CSS family name: jfOpenHuninn.
+   Full WOFF2 in this repo — not a dynamic CDN subset.
+   The file is one Regular face. It is registered at the weights the UI
+   asks for so Chinese stays on this family instead of falling through. */
+@font-face {
+  font-family: "jfOpenHuninn";
+  src: url("fonts/jf-openhuninn-2.1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "jfOpenHuninn";
+  src: url("fonts/jf-openhuninn-2.1.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "jfOpenHuninn";
+  src: url("fonts/jf-openhuninn-2.1.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "jfOpenHuninn";
+  src: url("fonts/jf-openhuninn-2.1.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "jfOpenHuninn";
+  src: url("fonts/jf-openhuninn-2.1.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}

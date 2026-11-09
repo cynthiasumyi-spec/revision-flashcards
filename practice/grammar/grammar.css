@@ -1,6 +1,6 @@
+@import url("../../assets/fonts.css?v=1");
 /* Grammar practice — matches English Revision practice.css tokens.
-   The draft @font-face pointed at a machine-local woff2 that is not in this repo.
-   Fredoka, Nunito, and Noto Sans TC (where linked) cover the student pages. */
+   English is Nunito. Chinese is local jfOpenHuninn (JF Open 粉圓 2.1). */
 
 :root {
   --bg: #fcf0d8;
@@ -27,8 +27,9 @@
   --bubble-mia: color-mix(in srgb, #2aa7b8 36%, #fff);
   --bubble-chef: color-mix(in srgb, #e08a3c 26%, #fff);
   --white: #ffffff;
-  --font-display: "Fredoka", "jf-openhuninn", "Nunito", system-ui, sans-serif;
-  --font-text: "Nunito", "jf-openhuninn", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  --font-display: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+  --font-text: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+  --font-zh: "jfOpenHuninn", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
   --radius: 22px;
   --radius-sm: 16px;
   --pill: 999px;
@@ -1068,7 +1069,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .badge-card .badge-name {
   margin: 0;
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", var(--font-display);
+  font-family: var(--font-zh);
   font-weight: 700;
   font-size: 1.02rem;
   line-height: 1.25;
@@ -1149,7 +1150,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   color: var(--navy);
 }
 .badge-toast-name {
-  font-family: "Noto Sans TC", "PingFang TC", var(--font-display);
+  font-family: var(--font-zh);
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--navy);

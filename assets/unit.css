@@ -1,6 +1,7 @@
+@import url("fonts.css?v=1");
 /* Unit / dictation screens — Classroom Hub (after-folder-revise-2) tokens
    Per-unit themes via body.theme-unit1 … theme-dictation3
-   Fredoka (display) + Nunito (body) · solid accents · no pastel mint chrome */
+   Nunito (English) + jfOpenHuninn (Chinese) · solid accents · no pastel mint chrome */
 
 :root {
   --bg: #fcf0d8;
@@ -18,8 +19,9 @@
   --coral: #fc903c;        /* CTA */
   --white: #ffffff;
 
-  --font-display: "Fredoka", "Nunito", "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
-  --font-text: "Nunito", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-display: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+  --font-text: "Nunito", "jfOpenHuninn", system-ui, sans-serif;
+  --font-zh: "jfOpenHuninn", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
   --margin: clamp(1rem, 2.2vw, 1.75rem);
   --illust: 220px;
   --radius: 24px;
@@ -312,7 +314,7 @@ button { font: inherit; cursor: pointer; }
   font-size: 1rem;
   line-height: 1.45;
   opacity: 0.95;
-  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", var(--font-text);
+  font-family: var(--font-zh);
 }
 
 .ex {
@@ -334,7 +336,7 @@ button { font: inherit; cursor: pointer; }
   font-size: 0.95rem;
   line-height: 1.45;
   opacity: 0.95;
-  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", var(--font-text);
+  font-family: var(--font-zh);
 }
 .hl {
   background: var(--highlight);
@@ -431,7 +433,7 @@ button { font: inherit; cursor: pointer; }
 }
 .tip-en {
   margin: 0;
-  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", var(--font-text);
+  font-family: var(--font-zh);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.45;
