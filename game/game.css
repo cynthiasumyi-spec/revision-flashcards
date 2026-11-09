@@ -1,4 +1,4 @@
-@import url("../assets/fonts.css?v=1");
+@import url("../assets/fonts.css?v=2");
 .case-art {
   /* 4:3 frame matches the fair picture, so the sky fills edge to edge. */
   width: min(100%, 560px, calc(min(42vh, 340px) * 4 / 3));

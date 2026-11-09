@@ -38,7 +38,7 @@ const TEACH = {
 test('unit 5 grammar notes stay only on Miss Chan common-mistake cards', () => {
   const { html, cards } = unit5();
   assert.equal(cards.length, 33);
-  assert.match(html, /unit\.css\?v=16/);
+  assert.match(html, /unit\.css\?v=17/);
   assert.match(html, /note-bulb\.png\?v=15/);
   assert.match(html, /teach teach-tip/);
   assert.match(html, /Note<img class="note-bulb"/);
@@ -130,7 +130,7 @@ test('unit teach css uses Nunito for English and jfOpenHuninn for Chinese notes'
   assert.match(css, /--font-text:\s*"Nunito",\s*"jfOpenHuninn",\s*system-ui,\s*sans-serif;/);
   assert.match(css, /--font-zh:\s*"jfOpenHuninn",\s*"PingFang TC",\s*"Noto Sans TC",\s*"Microsoft JhengHei",\s*system-ui,\s*sans-serif;/);
   assert.doesNotMatch(css, /Fredoka/);
-  assert.match(css, /@import url\("fonts\.css\?v=1"\)/);
+  assert.match(css, /@import url\("fonts\.css\?v=2"\)/);
   for (const selector of ['.teach', '.teach-tip', '.note-label', '.note-bulb', '.tip-en', '.tip-inline', '.pattern', '.chip', '.chip-ok', '.chip-no']) {
     assert.match(css, new RegExp(selector.replace('.', '\\.') + '\\s*\\{'));
   }
