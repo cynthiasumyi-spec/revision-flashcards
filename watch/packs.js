@@ -102,7 +102,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "這麼多（可數）",
         "pos": "",
-        "audio": "../unit1/audio/audio_11.mp3"
+        "audio": "../unit1/audio/audio_11.mp3",
+        "img": "../unit1/thumb_11.png?v=1"
       },
       {
         "n": 12,
@@ -110,7 +111,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "這麼多（不可數）",
         "pos": "",
-        "audio": "../unit1/audio/audio_12.mp3"
+        "audio": "../unit1/audio/audio_12.mp3",
+        "img": "../unit1/thumb_12.png?v=1"
       },
       {
         "n": 13,
@@ -118,7 +120,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "……的人（關係代名詞）",
         "pos": "",
-        "audio": "../unit1/audio/audio_13.mp3"
+        "audio": "../unit1/audio/audio_13.mp3",
+        "img": "../unit1/thumb_13.png?v=1"
       },
       {
         "n": 14,
@@ -126,7 +129,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "……的事物（關係代名詞）",
         "pos": "",
-        "audio": "../unit1/audio/audio_14.mp3"
+        "audio": "../unit1/audio/audio_14.mp3",
+        "img": "../unit1/thumb_14.png?v=1"
       }
     ]
   },
@@ -232,7 +236,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "如果……，就會……（可能發生）",
         "pos": "",
-        "audio": "../unit2/audio/audio_11.mp3"
+        "audio": "../unit2/audio/audio_11.mp3",
+        "img": "../unit2/thumb_11.png?v=1"
       },
       {
         "n": 12,
@@ -240,7 +245,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "以便／為了……",
         "pos": "",
-        "audio": "../unit2/audio/audio_12.mp3"
+        "audio": "../unit2/audio/audio_12.mp3",
+        "img": "../unit2/thumb_12.png?v=1"
       }
     ]
   },
@@ -364,7 +370,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "雖然……",
         "pos": "",
-        "audio": "../unit3/audio/audio_13.mp3"
+        "audio": "../unit3/audio/audio_13.mp3",
+        "img": "../unit3/thumb_13.png?v=1"
       },
       {
         "n": 14,
@@ -372,7 +379,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "在……之後",
         "pos": "",
-        "audio": "../unit3/audio/audio_14.mp3"
+        "audio": "../unit3/audio/audio_14.mp3",
+        "img": "../unit3/thumb_14.png?v=1"
       },
       {
         "n": 15,
@@ -380,7 +388,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "在……之前",
         "pos": "",
-        "audio": "../unit3/audio/audio_15.mp3"
+        "audio": "../unit3/audio/audio_15.mp3",
+        "img": "../unit3/thumb_15.png?v=1"
       }
     ]
   },
@@ -522,7 +531,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "如果……是……（假設／建議）",
         "pos": "",
-        "audio": "../unit4/audio/audio_15.mp3"
+        "audio": "../unit4/audio/audio_15.mp3",
+        "img": "../unit4/thumb_15.png?v=1"
       },
       {
         "n": 16,
@@ -530,7 +540,8 @@ window.WATCH_PACKS = {
         "syllables": "",
         "zh": "和……一樣……",
         "pos": "",
-        "audio": "../unit4/audio/audio_16.mp3"
+        "audio": "../unit4/audio/audio_16.mp3",
+        "img": "../unit4/thumb_16.png?v=1"
       }
     ]
   },

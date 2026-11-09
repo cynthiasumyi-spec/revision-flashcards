@@ -85,7 +85,7 @@ test('watch packs drop syllables on the same grammar cards and still show word s
   const sandbox = { window: {} };
   vm.runInNewContext(src, sandbox);
   const watchHtml = fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8');
-  assert.match(watchHtml, /packs\.js\?v=3/);
+  assert.match(watchHtml, /packs\.js\?v=4/);
   assert.match(watchHtml, /sylEl\.hidden = !c\.syllables/);
   assert.match(watchHtml, /imgEl\.parentElement\.hidden = true/);
   const limits = { unit1: 10, unit2: 10, unit3: 12, unit4: 14, unit5: 16, unit6: 19 };

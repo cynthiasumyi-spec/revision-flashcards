@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 
 const root = path.join(__dirname, '..');
 const WORDS = { unit1: 10, unit2: 10, unit3: 12, unit4: 14 };
@@ -162,6 +163,28 @@ const EXPECTED = {
   ]
 };
 
+const ART = {
+  unit1: {
+    11: 'generated',
+    12: 'irasutoya:https://www.irasutoya.com/2014/01/blog-post_5281.html',
+    13: 'irasutoya:https://www.irasutoya.com/2015/09/blog-post_738.html',
+    14: 'irasutoya:https://www.irasutoya.com/2013/11/blog-post_6260.html'
+  },
+  unit2: {
+    11: 'generated',
+    12: 'irasutoya:https://www.irasutoya.com/2020/10/blog-post_460.html'
+  },
+  unit3: {
+    13: 'irasutoya:https://www.irasutoya.com/2014/04/blog-post_6903.html',
+    14: 'irasutoya:https://www.irasutoya.com/2016/09/blog-post_584.html',
+    15: 'generated'
+  },
+  unit4: {
+    15: 'irasutoya:https://www.irasutoya.com/2015/03/blog-post_64.html',
+    16: 'generated'
+  }
+};
+
 function load(unit) {
   const html = fs.readFileSync(path.join(root, unit, 'index.html'), 'utf8');
   const match = html.match(/const CARDS = (\[.*?\]);/s);
@@ -179,7 +202,13 @@ test('units 1-4 grammar cards use the approved Wu text and leave word cards alon
     assert.match(html, /Example</);
     assert.match(html, /Advanced example</);
     assert.match(html, /note-bulb\.png\?v=15/);
+    assert.match(html, /card\.cutout/);
     assert.doesNotMatch(html, /句型|留意|keep_note|rewrite_note/);
+    const classLine = html.split('\n').find((line) => line.includes("wrap.className = 'illust'"));
+    const expr = classLine.replace(/^.*wrap\.className = /, '').replace(/;\s*$/, '');
+    const illustClass = new Function('card', 'return ' + expr);
+    assert.match(illustClass({ cutout: true, img: 'thumb_grammar.png' }), /cutout/, unit);
+    assert.doesNotMatch(illustClass({ img: 'thumb_99.jpg' }), /cutout/, unit);
     const words = cards.filter((card) => card.n <= wordsMax);
     assert.equal(words.length, wordsMax, unit);
     for (const card of words) {
@@ -205,7 +234,13 @@ test('units 1-4 grammar cards use the approved Wu text and leave word cards alon
       assert.equal(card.pos, '');
       assert.equal(card.highlight, spec.en);
       assert.equal(card.audio, 'audio/audio_' + String(spec.n).padStart(2, '0') + '.mp3');
-      assert.equal(card.img, undefined, spec.en);
+      assert.equal(card.img, 'thumb_' + String(spec.n).padStart(2, '0') + '.png', spec.en);
+      assert.equal(card.cutout, true, spec.en);
+      assert.equal(card.art_source, ART[unit][spec.n], spec.en);
+      const imgPath = path.join(root, unit, card.img);
+      const imgBytes = fs.readFileSync(imgPath);
+      assert.equal(imgBytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', imgPath);
+      assert.ok(imgBytes.length > 20000, imgPath);
       assert.equal(card.keep_note, undefined);
       assert.equal(card.rewrite_note, undefined);
       const audioPath = path.join(root, unit, card.audio);
@@ -238,6 +273,22 @@ test('units 1-4 grammar cards use the approved Wu text and leave word cards alon
   assert.equal(unit4[0].en, 'an action film');
   assert.equal(unit4[13].en, 'wise');
   assert.equal(unit4[13].ex_en, 'The wise old man reads many books.');
+  assert.equal(unit1[2].img, 'thumb_03.jpg');
+  assert.equal(unit1[2].art_source, 'generated');
+  assert.equal(unit1[2].cutout, undefined);
+
+  const watchSrc = fs.readFileSync(path.join(root, 'watch/packs.js'), 'utf8');
+  const sandbox = { window: {} };
+  vm.runInNewContext(watchSrc, sandbox);
+  const packs = sandbox.window.WATCH_PACKS;
+  for (const [unit, expected] of Object.entries(EXPECTED)) {
+    for (const spec of expected) {
+      const watched = packs[unit].cards.find((card) => card.n === spec.n);
+      assert.equal(watched.en, spec.en);
+      assert.ok(watched.img.includes('thumb_' + String(spec.n).padStart(2, '0') + '.png'), watched.img);
+    }
+    assert.ok(packs[unit].cards[0].img.includes('thumb_01'), unit);
+  }
 });
 
 test('note cards show Note and chips, and pattern-only cards do not', () => {
