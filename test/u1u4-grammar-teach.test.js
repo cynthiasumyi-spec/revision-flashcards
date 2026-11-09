@@ -65,7 +65,7 @@ const EXPECTED = {
       "n": 11,
       "en": "If …, … will …",
       "zh": "如果……，就會……（可能發生）",
-      "pattern": "If-clause (simple present) + main clause (future / will)",
+      "pattern": "If-clause (simple present) + main clause (future)",
       "ex_en": "If a typhoon comes, we will stay at home.",
       "ex_zh": "如果颱風來，我們會留在家裡。",
       "adv_en": "If the flood blocks the roads, the workers will help the injured people first.",
