@@ -75,7 +75,7 @@ test('units 1-4 grammar sections use the same teach shell as units 5-6', () => {
     assert.match(html, /Grammar in use/);
     assert.match(html, /data-section="grammar"/);
     assert.match(html, /appendTeach\(article, card\)/);
-    assert.match(html, /unit\.css\?v=19/);
+    assert.match(html, /unit\.css\?v=20/);
     assert.match(html, /no-illust/);
   }
 });
@@ -85,7 +85,7 @@ test('watch packs drop syllables on the same grammar cards and still show word s
   const sandbox = { window: {} };
   vm.runInNewContext(src, sandbox);
   const watchHtml = fs.readFileSync(path.join(root, 'watch/index.html'), 'utf8');
-  assert.match(watchHtml, /packs\.js\?v=4/);
+  assert.match(watchHtml, /packs\.js\?v=5/);
   assert.match(watchHtml, /sylEl\.hidden = !c\.syllables/);
   assert.match(watchHtml, /imgEl\.parentElement\.hidden = true/);
   const limits = { unit1: 10, unit2: 10, unit3: 12, unit4: 14, unit5: 16, unit6: 19 };

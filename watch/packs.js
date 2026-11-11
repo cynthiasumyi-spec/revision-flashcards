@@ -118,7 +118,7 @@ window.WATCH_PACKS = {
         "n": 13,
         "en": "who",
         "syllables": "",
-        "zh": "……的人（關係代名詞）",
+        "zh": "……的人",
         "pos": "",
         "audio": "../unit1/audio/audio_13.mp3",
         "img": "../unit1/thumb_13.png?v=1"
@@ -127,7 +127,7 @@ window.WATCH_PACKS = {
         "n": 14,
         "en": "which",
         "syllables": "",
-        "zh": "……的事物（關係代名詞）",
+        "zh": "……的事物",
         "pos": "",
         "audio": "../unit1/audio/audio_14.mp3",
         "img": "../unit1/thumb_14.png?v=1"
