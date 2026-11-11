@@ -31,7 +31,7 @@ const EXPECTED = {
     {
       "n": 13,
       "en": "who",
-      "zh": "……的人（關係代名詞）",
+      "zh": "……的人",
       "pattern": "person / people + who + clause",
       "ex_en": "She is the volunteer who looks after the pets.",
       "ex_zh": "她就是那位照顧寵物的志願者。",
@@ -52,7 +52,7 @@ const EXPECTED = {
     {
       "n": 14,
       "en": "which",
-      "zh": "……的事物（關係代名詞）",
+      "zh": "……的事物",
       "pattern": "thing / things + which + clause",
       "ex_en": "This is the raffle ticket which wins a prize.",
       "ex_zh": "這就是那張會得獎的抽獎券。",
@@ -114,7 +114,7 @@ const EXPECTED = {
       "ex_zh": "媽媽削完蘋果皮後，把蘋果切碎。",
       "adv_en": "Amy pours the mixture into the pan after she beats the eggs.",
       "adv_zh": "Amy把混合物倒進鍋裡，是在她打好蛋之後。",
-      "note_zh": "子句在前要加逗號；用來講先後順序"
+      "note_zh": "After 放在句首時，後面要加逗號。\n用來講先後順序。"
     },
     {
       "n": 15,
@@ -125,7 +125,7 @@ const EXPECTED = {
       "ex_zh": "煎魚之前，要先仔細清洗。",
       "adv_en": "While the oil is heating, wash the fish carefully before you fry it.",
       "adv_zh": "趁油在加熱時，先仔細清洗魚，然後才煎。",
-      "note_zh": "子句在前要加逗號；用來講先後順序"
+      "note_zh": "Before 放在句首時，後面要加逗號。\n用來講先後順序。"
     }
   ],
   "unit4": [
@@ -285,6 +285,7 @@ test('units 1-4 grammar cards use the approved Wu text and leave word cards alon
     for (const spec of expected) {
       const watched = packs[unit].cards.find((card) => card.n === spec.n);
       assert.equal(watched.en, spec.en);
+      assert.equal(watched.zh, spec.zh);
       assert.ok(watched.img.includes('thumb_' + String(spec.n).padStart(2, '0') + '.png'), watched.img);
     }
     assert.ok(packs[unit].cards[0].img.includes('thumb_01'), unit);

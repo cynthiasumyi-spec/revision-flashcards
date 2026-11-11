@@ -136,6 +136,7 @@ test('unit teach css uses Nunito for English and jfOpenHuninn for Chinese notes'
   }
   const teach = css.slice(css.indexOf('.teach {'), css.indexOf('.header-nav'));
   assert.match(teach, /\.tip-en \{[^}]*font-family:\s*var\(--font-zh\)/);
+  assert.match(teach, /\.tip-en \{[^}]*white-space:\s*pre-wrap/);
   assert.match(teach, /\.pattern \{[^}]*font-family:\s*var\(--font-text\)/);
   assert.match(teach, /\.chip-ok \{[^}]*background:/);
   assert.match(teach, /\.chip-no \{[^}]*background:/);

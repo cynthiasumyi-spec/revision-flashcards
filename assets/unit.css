@@ -441,6 +441,7 @@ button { font: inherit; cursor: pointer; }
   font-weight: 600;
   line-height: 1.45;
   color: var(--ink);
+  white-space: pre-wrap;
 }
 .tip-inline {
   display: flex;
