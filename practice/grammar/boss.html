@@ -15,7 +15,7 @@
 <header class="prac-header">
   <a class="back" href="grammar-hub.html">← Grammar</a>
   <h1>Boss Round</h1>
-  <p class="sub">Mixed Units 1–4 · 3 lives</p>
+  <p class="sub">Mixed Units 1–6 · 3 lives</p>
 </header>
 <main class="wrap">
   <div class="toolbar">
@@ -58,6 +58,9 @@
 </main>
 <script src="../../practice/badges.js"></script>
 <script src="grammar-progress.js"></script>
+<script src="../../assets/supabase-public.js?v=1"></script>
+<script src="../../assets/vendor/supabase.js?v=1"></script>
+<script src="grammar-live.js?v=1"></script>
 <script>
 (function () {
   /* Authors: ?set=1|2|3|4|5 (1-based) forces that authored set; never show set chips on screen.
@@ -564,7 +567,7 @@
     ]
   };
 
-  const SETS = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  function boot(SETS) {
   const SET_KEY = "boss-set-i";
 
   function resolveSet() {
@@ -794,6 +797,15 @@
   });
 
   render();
+
+  }
+  var bakedSets = [set1Data, set2Data, set3Data, set4Data, set5Data];
+  function startPublished(sets) { boot(sets && sets.length ? sets : bakedSets); }
+  if (window.GrammarLive) {
+    GrammarLive.load({ unit: 'mixed', mode: 'boss' }).then(startPublished, function () { startPublished(null); });
+  } else {
+    startPublished(null);
+  }
 })();
 </script>
 </body>
