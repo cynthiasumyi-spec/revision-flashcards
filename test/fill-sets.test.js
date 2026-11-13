@@ -25,6 +25,8 @@ test('sentence fill continues an unfinished set and rotates after it is finished
   same(F.resume({ set: 1, item: 0, finished: false }, sets), { set: 1, item: 0 });
   same(F.resume({ set: 1, item: 0, finished: true }, sets), { set: 2, item: 0 });
   same(F.resume({ set: 2, item: 0, finished: true }, sets), { set: 0, item: 0 });
+  same(F.resume({ set: 0, item: 9, finished: false }, sets), { set: 0, item: 2 });
+  same(F.resume({ set: 1, item: 4, finished: false }, sets), { set: 1, item: 0 });
   same(F.locate(sets, 'c'), { set: 1, item: 0 });
   const mem = { store: {}, getItem(k) { return this.store[k] || null; }, setItem(k, v) { this.store[k] = v; } };
   const storageKey = F.key('unit5', 'easy');

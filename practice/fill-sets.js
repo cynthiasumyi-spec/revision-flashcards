@@ -63,10 +63,8 @@
     }
     set = ((set % count) + count) % count;
     var len = sets[set].length;
-    if (item < 0 || item >= len) {
-      set = (set + 1) % count;
-      item = 0;
-    }
+    if (item < 0) item = 0;
+    if (item >= len) item = len - 1;
     return { set: set, item: item };
   }
 
